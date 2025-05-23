@@ -88,41 +88,42 @@ def create_sample_data():
     sample_data = []
     
     for i in range(50):  # Generate 50 sample predictions
-        pred_date = start_date + timedelta(days=np.random.randint(0, 30))
-        model_idx = np.random.randint(0, len(models))
+        pred_date = start_date + timedelta(days=int(np.random.randint(0, 30)))
+        model_idx = int(np.random.randint(0, len(models)))
         model = models[model_idx]
         symbol = symbols[model_idx]
-        horizon = np.random.choice(horizons)
+        horizon = int(np.random.choice(horizons))  # Ensure integer
         
         # Generate realistic prices based on symbol
         if symbol == 'BTC-USD':
-            current_price = np.random.uniform(45000, 70000)
-            predicted_price = current_price * (1 + np.random.uniform(-0.1, 0.1))
-            actual_price = current_price * (1 + np.random.uniform(-0.08, 0.08)) if pred_date < end_date - timedelta(days=horizon) else None
+            current_price = float(np.random.uniform(45000, 70000))
+            predicted_price = float(current_price * (1 + np.random.uniform(-0.1, 0.1)))
+            # Fix: Use integer for timedelta
+            actual_price = float(current_price * (1 + np.random.uniform(-0.08, 0.08))) if pred_date < end_date - timedelta(days=int(horizon)) else None
         elif symbol == 'ALGO-USD':
-            current_price = np.random.uniform(0.15, 0.35)
-            predicted_price = current_price * (1 + np.random.uniform(-0.15, 0.15))
-            actual_price = current_price * (1 + np.random.uniform(-0.12, 0.12)) if pred_date < end_date - timedelta(days=horizon) else None
+            current_price = float(np.random.uniform(0.15, 0.35))
+            predicted_price = float(current_price * (1 + np.random.uniform(-0.15, 0.15)))
+            actual_price = float(current_price * (1 + np.random.uniform(-0.12, 0.12))) if pred_date < end_date - timedelta(days=int(horizon)) else None
         else:  # QQQ
-            current_price = np.random.uniform(350, 520)
-            predicted_price = current_price * (1 + np.random.uniform(-0.05, 0.05))
-            actual_price = current_price * (1 + np.random.uniform(-0.04, 0.04)) if pred_date < end_date - timedelta(days=horizon) else None
+            current_price = float(np.random.uniform(350, 520))
+            predicted_price = float(current_price * (1 + np.random.uniform(-0.05, 0.05)))
+            actual_price = float(current_price * (1 + np.random.uniform(-0.04, 0.04))) if pred_date < end_date - timedelta(days=int(horizon)) else None
         
         # Calculate metrics
-        error_pct = abs((predicted_price - actual_price) / current_price * 100) if actual_price else None
+        error_pct = float(abs((predicted_price - actual_price) / current_price * 100)) if actual_price else None
         direction_correct = 1 if actual_price and ((predicted_price > current_price) == (actual_price > current_price)) else 0 if actual_price else None
         
         sample_data.append({
             'model': model,
             'symbol': symbol,
             'prediction_date': pred_date,
-            'target_date': pred_date + timedelta(days=horizon),
-            'horizon': int(horizon),  # Ensure integer
+            'target_date': pred_date + timedelta(days=int(horizon)),
+            'horizon': int(horizon),
             'current_price': float(current_price),
             'predicted_price': float(predicted_price),
             'actual_price': float(actual_price) if actual_price else None,
             'confidence': float(np.random.uniform(60, 95)),
-            'suggested_action': np.random.choice(actions),
+            'suggested_action': str(np.random.choice(actions)),
             'error_pct': float(error_pct) if error_pct else None,
             'direction_correct': int(direction_correct) if direction_correct is not None else None,
             'hit_rate': float(np.random.uniform(45, 75))
@@ -135,11 +136,12 @@ def create_sample_data():
 def load_data():
     """Load prediction data from SQLite database with sample data fallback"""
     
+    is_live_data = False
+    
     # Check if using cloud database URL from secrets
-    if 'database_url' in st.secrets:
+    if hasattr(st, 'secrets') and 'database_url' in st.secrets:
         try:
             # Try to connect to cloud database
-            import sqlite3
             conn = sqlite3.connect(st.secrets.database_url)
             st.success("🔗 Connected to live database!")
             is_live_data = True
@@ -230,11 +232,11 @@ def load_data():
                 # Clean up duplicate date columns
                 df = df.drop(columns=[col for col in df.columns if col.endswith('_hit') or col == 'date'])
             else:
-                df['hit_rate'] = np.random.uniform(45, 75, len(df))  # Add sample hit rates
+                df['hit_rate'] = np.random.uniform(45, 75, len(df))
                 
         except Exception as e:
             st.warning(f"Could not load model metrics: {e}")
-            df['hit_rate'] = np.random.uniform(45, 75, len(df))  # Add sample hit rates
+            df['hit_rate'] = np.random.uniform(45, 75, len(df))
         
         conn.close()
         
@@ -248,7 +250,7 @@ def load_data():
         today = pd.Timestamp(datetime.now().date())
         try:
             days_diff = (df['target_date'] - today).dt.days
-            df['days_to_target'] = days_diff.fillna(0).astype(int)  # Convert to int, handle NaN
+            df['days_to_target'] = days_diff.fillna(0).astype(int)
         except Exception as e:
             st.warning(f"Error calculating days to target: {e}")
             df['days_to_target'] = 0
@@ -270,7 +272,7 @@ def load_data():
 st.markdown("<div class='main-header'>Trading Models Performance Dashboard</div>", unsafe_allow_html=True)
 
 # Check data source and show appropriate banner
-if 'database_url' in st.secrets or os.path.exists(DB_PATH):
+if (hasattr(st, 'secrets') and 'database_url' in st.secrets) or os.path.exists(DB_PATH):
     st.markdown("""
     <div class='live-banner'>
         <strong>🔴 LIVE DATA MODE</strong><br>
@@ -320,8 +322,8 @@ with st.expander("🔍 System Information", expanded=False):
     st.markdown('<div class="debug-info">', unsafe_allow_html=True)
     st.write(f"**Database Path:** {DB_PATH}")
     st.write(f"**Database Exists:** {os.path.exists(DB_PATH)}")
-    st.write(f"**Cloud Database:** {'Yes' if 'database_url' in st.secrets else 'No'}")
-    st.write(f"**Data Source:** {'Live Database' if (os.path.exists(DB_PATH) or 'database_url' in st.secrets) else 'Sample Data'}")
+    st.write(f"**Cloud Database:** {'Yes' if hasattr(st, 'secrets') and 'database_url' in st.secrets else 'No'}")
+    st.write(f"**Data Source:** {'Live Database' if (os.path.exists(DB_PATH) or (hasattr(st, 'secrets') and 'database_url' in st.secrets)) else 'Sample Data'}")
     st.write(f"**Total Records:** {len(data)}")
     st.write(f"**Date Range:** {data['prediction_date'].min()} to {data['prediction_date'].max()}")
     st.write(f"**Models Found:** {', '.join(data['model'].unique())}")
@@ -457,9 +459,14 @@ if len(today_predictions) > 0:
     
     # Calculate expected return safely
     try:
-        today_display['Expected Return'] = (
-            (today_display['predicted_price'] / today_display['current_price'] - 1) * 100
-        ).round(2).astype(str) + '%'
+        expected_returns = []
+        for _, row in today_display.iterrows():
+            try:
+                ret = ((row['predicted_price'] / row['current_price'] - 1) * 100)
+                expected_returns.append(f"{ret:.2f}%")
+            except (ZeroDivisionError, TypeError):
+                expected_returns.append("N/A")
+        today_display['Expected Return'] = expected_returns
     except Exception:
         today_display['Expected Return'] = "N/A"
     
@@ -493,9 +500,9 @@ if len(filtered_data) > 0:
         comparison_data.append({
             'Model': model,
             'Expected Return (%)': float(expected_return),
-            'Action': latest['suggested_action'],
+            'Action': str(latest['suggested_action']),
             'Horizon': f"{int(latest['horizon'])} days",
-            'Symbol': latest['symbol']
+            'Symbol': str(latest['symbol'])
         })
     
     if comparison_data:
@@ -515,11 +522,11 @@ if len(filtered_data) > 0:
         st.plotly_chart(fig, use_container_width=True)
 
 # INSTRUCTIONS FOR CONNECTING LIVE DATA
-if not os.path.exists(DB_PATH) and 'database_url' not in st.secrets:
+if not os.path.exists(DB_PATH) and not (hasattr(st, 'secrets') and 'database_url' in st.secrets):
     st.markdown("<div class='metrics-header'>🔗 Connect Your Live Data</div>", unsafe_allow_html=True)
     st.info("To connect your real trading models data, choose one of these options:")
     
-    tab1, tab2, tab3 = st.tabs(["📁 Upload Database", "🌐 Cloud Database", "📧 Contact Support"])
+    tab1, tab2 = st.tabs(["📁 Upload Database", "🌐 Cloud Database"])
     
     with tab1:
         st.write("**Option 1: Upload your SQLite database file**")
@@ -536,20 +543,13 @@ if not os.path.exists(DB_PATH) and 'database_url' not in st.secrets:
         st.code("""# Add to Streamlit secrets:
 database_url = "your_database_connection_string"
 db_type = "postgresql"  # or mysql, sqlite, etc.""", language="toml")
-    
-    with tab3:
-        st.write("**Option 3: Get help setting up live data**")
-        st.write("Need assistance connecting your trading models?")
-        st.write("• Database setup and configuration")
-        st.write("• Cloud deployment optimization")
-        st.write("• Custom dashboard features")
 
 # FOOTER
 st.markdown("---")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    data_source = "Live Database" if (os.path.exists(DB_PATH) or 'database_url' in st.secrets) else "Sample Data"
+    data_source = "Live Database" if (os.path.exists(DB_PATH) or (hasattr(st, 'secrets') and 'database_url' in st.secrets)) else "Sample Data"
     st.write(f"**Data Source:** {data_source}")
 
 with col2:
