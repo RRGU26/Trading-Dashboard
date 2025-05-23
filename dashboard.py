@@ -62,6 +62,14 @@ st.markdown("""
         margin-bottom: 1rem;
         text-align: center;
     }
+    .live-banner {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -109,15 +117,15 @@ def create_sample_data():
             'symbol': symbol,
             'prediction_date': pred_date,
             'target_date': pred_date + timedelta(days=horizon),
-            'horizon': horizon,
-            'current_price': current_price,
-            'predicted_price': predicted_price,
-            'actual_price': actual_price,
-            'confidence': np.random.uniform(60, 95),
+            'horizon': int(horizon),  # Ensure integer
+            'current_price': float(current_price),
+            'predicted_price': float(predicted_price),
+            'actual_price': float(actual_price) if actual_price else None,
+            'confidence': float(np.random.uniform(60, 95)),
             'suggested_action': np.random.choice(actions),
-            'error_pct': error_pct,
-            'direction_correct': direction_correct,
-            'hit_rate': np.random.uniform(45, 75)
+            'error_pct': float(error_pct) if error_pct else None,
+            'direction_correct': int(direction_correct) if direction_correct is not None else None,
+            'hit_rate': float(np.random.uniform(45, 75))
         })
     
     return pd.DataFrame(sample_data)
@@ -126,13 +134,33 @@ def create_sample_data():
 @st.cache_data(ttl=300)  # Cache for 5 minutes
 def load_data():
     """Load prediction data from SQLite database with sample data fallback"""
-    try:
-        if not os.path.exists(DB_PATH):
-            st.warning("🔧 Database not found - Using sample data for demonstration")
+    
+    # Check if using cloud database URL from secrets
+    if 'database_url' in st.secrets:
+        try:
+            # Try to connect to cloud database
+            import sqlite3
+            conn = sqlite3.connect(st.secrets.database_url)
+            st.success("🔗 Connected to live database!")
+            is_live_data = True
+        except Exception as e:
+            st.warning(f"Could not connect to live database: {e}")
+            st.info("📊 Using sample data for demonstration")
             return create_sample_data()
-        
-        conn = sqlite3.connect(DB_PATH)
-        
+    elif os.path.exists(DB_PATH):
+        try:
+            conn = sqlite3.connect(DB_PATH)
+            st.success("🔗 Connected to local database!")
+            is_live_data = True
+        except Exception as e:
+            st.warning(f"Could not connect to local database: {e}")
+            st.info("📊 Using sample data for demonstration")
+            return create_sample_data()
+    else:
+        st.info("🔧 Database not found - Using sample data for demonstration")
+        return create_sample_data()
+    
+    try:
         # Enhanced query with better date handling
         query = """
         SELECT 
@@ -160,9 +188,23 @@ def load_data():
             conn.close()
             return create_sample_data()
         
-        # Convert dates to datetime with explicit format
-        df['prediction_date'] = pd.to_datetime(df['prediction_date'])
-        df['target_date'] = pd.to_datetime(df['target_date'])
+        # Convert dates to datetime with proper error handling
+        try:
+            df['prediction_date'] = pd.to_datetime(df['prediction_date'], errors='coerce')
+            df['target_date'] = pd.to_datetime(df['target_date'], errors='coerce')
+        except Exception as e:
+            st.error(f"Date conversion error: {e}")
+            conn.close()
+            return create_sample_data()
+        
+        # Ensure numeric columns are proper types
+        numeric_columns = ['horizon', 'current_price', 'predicted_price', 'actual_price', 'confidence', 'error_pct']
+        for col in numeric_columns:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors='coerce')
+        
+        # Ensure horizon is integer
+        df['horizon'] = df['horizon'].fillna(3).astype(int)
         
         # Try to get model metrics (R² values and hit rates)
         try:
@@ -176,7 +218,7 @@ def load_data():
             if not metrics_df.empty:
                 # Add hit rates from metrics
                 hit_rate_df = metrics_df[metrics_df['metric_type'] == 'hit_rate'].copy()
-                hit_rate_df['date'] = pd.to_datetime(hit_rate_df['date'])
+                hit_rate_df['date'] = pd.to_datetime(hit_rate_df['date'], errors='coerce')
                 hit_rate_df = hit_rate_df.rename(columns={'metric_value': 'hit_rate'})
                 
                 # Join with main dataframe
@@ -186,7 +228,7 @@ def load_data():
                              how='left')
                 
                 # Clean up duplicate date columns
-                df = df.drop(columns=[col for col in df.columns if col.endswith('_hit')])
+                df = df.drop(columns=[col for col in df.columns if col.endswith('_hit') or col == 'date'])
             else:
                 df['hit_rate'] = np.random.uniform(45, 75, len(df))  # Add sample hit rates
                 
@@ -198,31 +240,50 @@ def load_data():
         
         # Calculate accuracy if actual prices exist
         df['accuracy'] = None
-        mask = df['actual_price'].notna() & df['current_price'].notna()
+        mask = df['actual_price'].notna() & df['current_price'].notna() & (df['current_price'] != 0)
         if mask.any():
             df.loc[mask, 'accuracy'] = 100 * (1 - abs((df.loc[mask, 'actual_price'] - df.loc[mask, 'predicted_price']) / df.loc[mask, 'current_price']))
         
-        # Add days to target for active predictions
+        # Add days to target for active predictions - FIXED VERSION
         today = pd.Timestamp(datetime.now().date())
-        df['days_to_target'] = (df['target_date'] - today).dt.days
+        try:
+            days_diff = (df['target_date'] - today).dt.days
+            df['days_to_target'] = days_diff.fillna(0).astype(int)  # Convert to int, handle NaN
+        except Exception as e:
+            st.warning(f"Error calculating days to target: {e}")
+            df['days_to_target'] = 0
+        
+        # Add live data indicator
+        if is_live_data:
+            st.success("✅ Using LIVE trading data!")
         
         return df
         
     except Exception as e:
-        st.warning(f"⚠️ Error loading database: {e}")
+        st.error(f"⚠️ Error loading database: {e}")
         st.info("📊 Using sample data for demonstration")
+        if 'conn' in locals():
+            conn.close()
         return create_sample_data()
 
 # Dashboard title
 st.markdown("<div class='main-header'>Trading Models Performance Dashboard</div>", unsafe_allow_html=True)
 
-# Check if we're using sample data
-if not os.path.exists(DB_PATH):
+# Check data source and show appropriate banner
+if 'database_url' in st.secrets or os.path.exists(DB_PATH):
+    st.markdown("""
+    <div class='live-banner'>
+        <strong>🔴 LIVE DATA MODE</strong><br>
+        This dashboard is connected to your live trading models database.<br>
+        Data updates automatically when your models run.
+    </div>
+    """, unsafe_allow_html=True)
+else:
     st.markdown("""
     <div class='demo-banner'>
         <strong>🔧 DEMO MODE</strong><br>
         This dashboard is running with sample data for demonstration purposes.<br>
-        To connect your real trading data, upload your database file or configure a cloud database connection.
+        To connect your real trading data, see instructions below.
     </div>
     """, unsafe_allow_html=True)
 
@@ -243,9 +304,13 @@ if data.empty:
     st.stop()
 
 # Calculate date variables
-min_date = data['prediction_date'].min().date()
-max_date = data['prediction_date'].max().date()
-today = datetime.now().date()
+try:
+    min_date = data['prediction_date'].min().date()
+    max_date = data['prediction_date'].max().date()
+    today = datetime.now().date()
+except Exception as e:
+    st.error(f"Error processing dates: {e}")
+    st.stop()
 
 # Calculate today's predictions
 today_predictions = data[data['prediction_date'].dt.date == today]
@@ -255,7 +320,8 @@ with st.expander("🔍 System Information", expanded=False):
     st.markdown('<div class="debug-info">', unsafe_allow_html=True)
     st.write(f"**Database Path:** {DB_PATH}")
     st.write(f"**Database Exists:** {os.path.exists(DB_PATH)}")
-    st.write(f"**Data Source:** {'Sample Data' if not os.path.exists(DB_PATH) else 'Real Database'}")
+    st.write(f"**Cloud Database:** {'Yes' if 'database_url' in st.secrets else 'No'}")
+    st.write(f"**Data Source:** {'Live Database' if (os.path.exists(DB_PATH) or 'database_url' in st.secrets) else 'Sample Data'}")
     st.write(f"**Total Records:** {len(data)}")
     st.write(f"**Date Range:** {data['prediction_date'].min()} to {data['prediction_date'].max()}")
     st.write(f"**Models Found:** {', '.join(data['model'].unique())}")
@@ -322,12 +388,15 @@ st.sidebar.write(f"📊 Total Predictions: {len(filtered_data)}")
 def format_price_by_symbol(price, symbol):
     if pd.isna(price):
         return "N/A"
-    if symbol in ['ALGO-USD']:
-        return f"${price:.4f}"
-    elif symbol in ['BTC-USD']:
-        return f"${price:,.2f}"
-    else:
-        return f"${price:.2f}"
+    try:
+        if symbol in ['ALGO-USD']:
+            return f"${float(price):.4f}"
+        elif symbol in ['BTC-USD']:
+            return f"${float(price):,.2f}"
+        else:
+            return f"${float(price):.2f}"
+    except (ValueError, TypeError):
+        return "N/A"
 
 # MODEL ACCURACY SUMMARY
 st.markdown("<div class='metrics-header'>📊 Model Performance Summary</div>", unsafe_allow_html=True)
@@ -356,9 +425,9 @@ for model in selected_models:
         
         accuracy_summary.append({
             'Model': model,
-            'Horizon (days)': horizon,
-            'Accuracy (%)': round(avg_accuracy, 1) if avg_accuracy is not None else "N/A",
-            'Direction Accuracy (%)': round(direction_accuracy, 1) if direction_accuracy is not None else "N/A",
+            'Horizon (days)': int(horizon),
+            'Accuracy (%)': round(float(avg_accuracy), 1) if avg_accuracy is not None else "N/A",
+            'Direction Accuracy (%)': round(float(direction_accuracy), 1) if direction_accuracy is not None else "N/A",
             'Total Predictions': total_predictions,
             'Completed': completed_predictions
         })
@@ -386,9 +455,13 @@ if len(today_predictions) > 0:
     
     today_display['Target Date'] = today_display['target_date'].dt.strftime('%Y-%m-%d')
     
-    today_display['Expected Return'] = (
-        (today_display['predicted_price'] / today_display['current_price'] - 1) * 100
-    ).round(2).astype(str) + '%'
+    # Calculate expected return safely
+    try:
+        today_display['Expected Return'] = (
+            (today_display['predicted_price'] / today_display['current_price'] - 1) * 100
+        ).round(2).astype(str) + '%'
+    except Exception:
+        today_display['Expected Return'] = "N/A"
     
     display_cols = ['model', 'symbol', 'horizon', 'Current Price', 'Predicted Price', 'Expected Return', 'suggested_action', 'Target Date']
     today_formatted = today_display[display_cols].copy()
@@ -412,13 +485,16 @@ if len(filtered_data) > 0:
         else:
             latest = model_data.sort_values('prediction_date', ascending=False).iloc[0]
         
-        expected_return = ((latest['predicted_price'] / latest['current_price']) - 1) * 100
+        try:
+            expected_return = ((latest['predicted_price'] / latest['current_price']) - 1) * 100
+        except (ZeroDivisionError, TypeError):
+            expected_return = 0
         
         comparison_data.append({
             'Model': model,
-            'Expected Return (%)': expected_return,
+            'Expected Return (%)': float(expected_return),
             'Action': latest['suggested_action'],
-            'Horizon': f"{latest['horizon']} days",
+            'Horizon': f"{int(latest['horizon'])} days",
             'Symbol': latest['symbol']
         })
     
@@ -438,12 +514,42 @@ if len(filtered_data) > 0:
         fig.update_layout(height=400)
         st.plotly_chart(fig, use_container_width=True)
 
+# INSTRUCTIONS FOR CONNECTING LIVE DATA
+if not os.path.exists(DB_PATH) and 'database_url' not in st.secrets:
+    st.markdown("<div class='metrics-header'>🔗 Connect Your Live Data</div>", unsafe_allow_html=True)
+    st.info("To connect your real trading models data, choose one of these options:")
+    
+    tab1, tab2, tab3 = st.tabs(["📁 Upload Database", "🌐 Cloud Database", "📧 Contact Support"])
+    
+    with tab1:
+        st.write("**Option 1: Upload your SQLite database file**")
+        st.write("1. Add your `models_dashboard.db` file to your GitHub repository")
+        st.write("2. Push changes to GitHub")
+        st.write("3. Streamlit will automatically redeploy with your live data")
+        st.code("# Add to your repository root:\nmodels_dashboard.db", language="bash")
+    
+    with tab2:
+        st.write("**Option 2: Connect to a cloud database**")
+        st.write("1. Go to your Streamlit app settings")
+        st.write("2. Add secrets for database connection")
+        st.write("3. Update dashboard code to use cloud database")
+        st.code("""# Add to Streamlit secrets:
+database_url = "your_database_connection_string"
+db_type = "postgresql"  # or mysql, sqlite, etc.""", language="toml")
+    
+    with tab3:
+        st.write("**Option 3: Get help setting up live data**")
+        st.write("Need assistance connecting your trading models?")
+        st.write("• Database setup and configuration")
+        st.write("• Cloud deployment optimization")
+        st.write("• Custom dashboard features")
+
 # FOOTER
 st.markdown("---")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    data_source = "Sample Data" if not os.path.exists(DB_PATH) else os.path.basename(DB_PATH)
+    data_source = "Live Database" if (os.path.exists(DB_PATH) or 'database_url' in st.secrets) else "Sample Data"
     st.write(f"**Data Source:** {data_source}")
 
 with col2:
@@ -451,11 +557,14 @@ with col2:
 
 with col3:
     if st.button("💾 Export Data"):
-        export_data = filtered_data[['model', 'symbol', 'prediction_date', 'target_date', 'horizon', 'current_price', 'predicted_price', 'actual_price', 'suggested_action']]
-        csv = export_data.to_csv(index=False)
-        st.download_button(
-            label="Download CSV",
-            data=csv,
-            file_name=f"trading_predictions_{datetime.now().strftime('%Y%m%d')}.csv",
-            mime="text/csv"
-        )
+        try:
+            export_data = filtered_data[['model', 'symbol', 'prediction_date', 'target_date', 'horizon', 'current_price', 'predicted_price', 'actual_price', 'suggested_action']]
+            csv = export_data.to_csv(index=False)
+            st.download_button(
+                label="Download CSV",
+                data=csv,
+                file_name=f"trading_predictions_{datetime.now().strftime('%Y%m%d')}.csv",
+                mime="text/csv"
+            )
+        except Exception as e:
+            st.error(f"Export error: {e}")
