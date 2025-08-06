@@ -1,0 +1,122 @@
+{
+  "analysis_timestamp": "2025-08-06T17:22:58.051463",
+  "model_metrics": {
+    "Algorand Model V2": {
+      "status": "no_data",
+      "model": "Algorand Model V2"
+    },
+    "Long Bull Model V3.2": {
+      "status": "no_data",
+      "model": "Long Bull Model V3.2"
+    },
+    "Bitcoin Model": {
+      "status": "error",
+      "model": "Bitcoin Model",
+      "error": "bad operand type for abs(): 'NoneType'"
+    },
+    "NVIDIA Bull Momentum Model": {
+      "status": "error",
+      "model": "NVIDIA Bull Momentum Model",
+      "error": "bad operand type for abs(): 'NoneType'"
+    },
+    "QQQ Trading Signal": {
+      "model": "QQQ Trading Signal",
+      "status": "pending",
+      "total_predictions": 1,
+      "resolved_predictions": 0
+    },
+    "Wishing Well QQQ Model": {
+      "status": "error",
+      "model": "Wishing Well QQQ Model",
+      "error": "bad operand type for abs(): 'NoneType'"
+    },
+    "QQQ Master Model": {
+      "status": "no_data",
+      "model": "QQQ Master Model"
+    }
+  },
+  "retraining_triggers": {
+    "Algorand Model V2": [],
+    "Long Bull Model V3.2": [],
+    "Bitcoin Model": [],
+    "NVIDIA Bull Momentum Model": [],
+    "QQQ Trading Signal": [],
+    "Wishing Well QQQ Model": [],
+    "QQQ Master Model": []
+  },
+  "correlation_analysis": {
+    "status": "success",
+    "correlation_matrix": {
+      "Algorand Model": {
+        "Algorand Model": 1.0,
+        "Bitcoin Model": NaN,
+        "Long Bull Model": NaN,
+        "NVIDIA Bull Momentum Model": NaN,
+        "Wishing Wealth QQQ Model": NaN,
+        "Wishing Well QQQ Model": NaN
+      },
+      "Bitcoin Model": {
+        "Algorand Model": NaN,
+        "Bitcoin Model": 1.0,
+        "Long Bull Model": NaN,
+        "NVIDIA Bull Momentum Model": NaN,
+        "Wishing Wealth QQQ Model": NaN,
+        "Wishing Well QQQ Model": NaN
+      },
+      "Long Bull Model": {
+        "Algorand Model": NaN,
+        "Bitcoin Model": NaN,
+        "Long Bull Model": 1.0,
+        "NVIDIA Bull Momentum Model": NaN,
+        "Wishing Wealth QQQ Model": 1.0,
+        "Wishing Well QQQ Model": NaN
+      },
+      "NVIDIA Bull Momentum Model": {
+        "Algorand Model": NaN,
+        "Bitcoin Model": NaN,
+        "Long Bull Model": NaN,
+        "NVIDIA Bull Momentum Model": 1.0,
+        "Wishing Wealth QQQ Model": NaN,
+        "Wishing Well QQQ Model": NaN
+      },
+      "Wishing Wealth QQQ Model": {
+        "Algorand Model": NaN,
+        "Bitcoin Model": NaN,
+        "Long Bull Model": 1.0,
+        "NVIDIA Bull Momentum Model": NaN,
+        "Wishing Wealth QQQ Model": 1.0,
+        "Wishing Well QQQ Model": NaN
+      },
+      "Wishing Well QQQ Model": {
+        "Algorand Model": NaN,
+        "Bitcoin Model": NaN,
+        "Long Bull Model": NaN,
+        "NVIDIA Bull Momentum Model": NaN,
+        "Wishing Wealth QQQ Model": NaN,
+        "Wishing Well QQQ Model": NaN
+      }
+    },
+    "high_correlations": [
+      {
+        "model1": "Long Bull Model",
+        "model2": "Wishing Wealth QQQ Model",
+        "correlation": 1.0,
+        "interpretation": "Highly correlated"
+      }
+    ],
+    "analysis_date": "2025-08-06T17:22:58.051463"
+  },
+  "optimization_recommendations": [
+    {
+      "priority": "critical",
+      "message": "No active models found"
+    }
+  ],
+  "summary": {
+    "total_models_analyzed": 7,
+    "active_models": 0,
+    "models_need_attention": 0,
+    "critical_recommendations": 1,
+    "high_priority_recommendations": 0
+  }
+}

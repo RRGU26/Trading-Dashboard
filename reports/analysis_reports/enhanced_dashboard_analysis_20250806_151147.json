@@ -1,0 +1,311 @@
+{
+  "health_analysis": {
+    "timestamp": "2025-08-06T15:11:47.552952",
+    "models": {
+      "QQQ Master Model": {
+        "status": "ACTIVE",
+        "recent_predictions": 24,
+        "recent_7d_predictions": 24,
+        "latest_prediction": "2025-08-03",
+        "symbols": [
+          "QQQ"
+        ],
+        "avg_confidence": 0.5333333333333333,
+        "horizons": [
+          1,
+          3,
+          5,
+          10,
+          20
+        ],
+        "health": "EXCELLENT"
+      },
+      "Algorand Model V2": {
+        "status": "INACTIVE",
+        "recent_predictions": 0,
+        "issue": "No recent predictions"
+      },
+      "Bitcoin Model": {
+        "status": "ACTIVE",
+        "recent_predictions": 7,
+        "resolved_predictions": 6,
+        "latest_prediction": "2025-07-29",
+        "symbols": [
+          "BTC-USD"
+        ],
+        "avg_expected_return": 0.1271428571428571,
+        "direction_accuracy": NaN,
+        "avg_return_error": NaN,
+        "recent_7d_predictions": 0,
+        "health": "STALE"
+      },
+      "Long Bull Model V3.2": {
+        "status": "INACTIVE",
+        "recent_predictions": 0,
+        "issue": "No recent predictions"
+      },
+      "QQQ Trading Signal": {
+        "status": "INACTIVE",
+        "recent_predictions": 0,
+        "issue": "No recent predictions"
+      },
+      "NVIDIA Bull Momentum Model": {
+        "status": "ACTIVE",
+        "recent_predictions": 8,
+        "resolved_predictions": 7,
+        "latest_prediction": "2025-07-29",
+        "symbols": [
+          "NVDA"
+        ],
+        "avg_expected_return": -0.6787500000000001,
+        "direction_accuracy": NaN,
+        "avg_return_error": NaN,
+        "recent_7d_predictions": 0,
+        "health": "STALE"
+      },
+      "Wishing Well QQQ Model": {
+        "status": "ACTIVE",
+        "recent_predictions": 2,
+        "resolved_predictions": 2,
+        "latest_prediction": "2025-07-15",
+        "symbols": [
+          "QQQ"
+        ],
+        "avg_expected_return": 1.5,
+        "direction_accuracy": NaN,
+        "avg_return_error": NaN,
+        "recent_7d_predictions": 0,
+        "health": "STALE"
+      }
+    },
+    "system_health": {
+      "active_models": 4,
+      "healthy_models": 1,
+      "total_core_models": 7,
+      "system_status": "CRITICAL",
+      "total_recent_predictions": 38,
+      "models_with_recent_activity": 6
+    },
+    "alerts": [
+      {
+        "priority": "HIGH",
+        "model": "Algorand Model V2",
+        "message": "No recent predictions - model appears inactive"
+      },
+      {
+        "priority": "MEDIUM",
+        "model": "Bitcoin Model",
+        "message": "No predictions in last 7 days"
+      },
+      {
+        "priority": "HIGH",
+        "model": "Long Bull Model V3.2",
+        "message": "No recent predictions - model appears inactive"
+      },
+      {
+        "priority": "HIGH",
+        "model": "QQQ Trading Signal",
+        "message": "No recent predictions - model appears inactive"
+      },
+      {
+        "priority": "MEDIUM",
+        "model": "NVIDIA Bull Momentum Model",
+        "message": "No predictions in last 7 days"
+      },
+      {
+        "priority": "MEDIUM",
+        "model": "Wishing Well QQQ Model",
+        "message": "No predictions in last 7 days"
+      }
+    ]
+  },
+  "validation_results": {
+    "timestamp": "2025-08-06T15:11:47.560487",
+    "validations": [],
+    "summary": {},
+    "error": "Execution failed on sql '\n            SELECT model, symbol, prediction_date, target_date, current_price,\n                   predicted_price, actual_price, horizon\n            FROM predictions \n            WHERE target_date <= date('now') \n            AND actual_price IS NULL\n            ORDER BY target_date DESC\n            LIMIT 50\n            ': no such table: predictions"
+  },
+  "performance_results": {
+    "analysis_timestamp": "2025-08-06T15:11:47.583423",
+    "model_metrics": {
+      "Algorand Model V2": {
+        "model": "Algorand Model V2",
+        "status": "active",
+        "total_predictions": 15,
+        "resolved_predictions": 15,
+        "direction_accuracy": 33.33,
+        "price_accuracy": 92.39,
+        "avg_error_pct": 7.61,
+        "error_volatility": 7.01,
+        "return_correlation": -0.004,
+        "sharpe_ratio": -0.188,
+        "performance_trend": 0,
+        "consecutive_failures": 3,
+        "latest_prediction": "2025-07-29",
+        "confidence_avg": 94.53
+      },
+      "Long Bull Model V3.2": {
+        "status": "error",
+        "model": "Long Bull Model V3.2",
+        "error": "Execution failed on sql '\n            SELECT prediction_date, target_date, symbol, horizon,\n                   current_price, predicted_price, actual_price,\n                   confidence, error_pct, direction_correct,\n                   actual_return, expected_return\n            FROM model_predictions \n            WHERE model = ? \n            AND prediction_date >= date('now', '-30 days')\n            ORDER BY prediction_date DESC\n            ': database disk image is malformed"
+      },
+      "Bitcoin Model": {
+        "status": "error",
+        "model": "Bitcoin Model",
+        "error": "Execution failed on sql '\n            SELECT prediction_date, target_date, symbol, horizon,\n                   current_price, predicted_price, actual_price,\n                   confidence, error_pct, direction_correct,\n                   actual_return, expected_return\n            FROM model_predictions \n            WHERE model = ? \n            AND prediction_date >= date('now', '-30 days')\n            ORDER BY prediction_date DESC\n            ': database disk image is malformed"
+      },
+      "NVIDIA Bull Momentum Model": {
+        "status": "error",
+        "model": "NVIDIA Bull Momentum Model",
+        "error": "database disk image is malformed"
+      },
+      "QQQ Trading Signal": {
+        "model": "QQQ Trading Signal",
+        "status": "active",
+        "total_predictions": 16,
+        "resolved_predictions": 12,
+        "direction_accuracy": 66.67,
+        "price_accuracy": 93.28,
+        "avg_error_pct": 6.72,
+        "error_volatility": 14.92,
+        "return_correlation": NaN,
+        "sharpe_ratio": 0,
+        "performance_trend": 0,
+        "consecutive_failures": 3,
+        "latest_prediction": "2025-08-03",
+        "confidence_avg": 54.33
+      },
+      "Wishing Well QQQ Model": {
+        "status": "error",
+        "model": "Wishing Well QQQ Model",
+        "error": "Execution failed on sql '\n            SELECT prediction_date, target_date, symbol, horizon,\n                   current_price, predicted_price, actual_price,\n                   confidence, error_pct, direction_correct,\n                   actual_return, expected_return\n            FROM model_predictions \n            WHERE model = ? \n            AND prediction_date >= date('now', '-30 days')\n            ORDER BY prediction_date DESC\n            ': database disk image is malformed"
+      },
+      "QQQ Master Model": {
+        "status": "error",
+        "model": "QQQ Master Model",
+        "error": "Execution failed on sql '\n            SELECT prediction_date, target_date, symbol, horizon,\n                   current_price, predicted_price, actual_price,\n                   confidence, error_pct, direction_correct,\n                   actual_return, expected_return\n            FROM model_predictions \n            WHERE model = ? \n            AND prediction_date >= date('now', '-30 days')\n            ORDER BY prediction_date DESC\n            ': database disk image is malformed"
+      }
+    },
+    "retraining_triggers": {
+      "Algorand Model V2": [
+        {
+          "type": "critical_accuracy",
+          "message": "Direction accuracy 33.3% below critical threshold",
+          "severity": "critical",
+          "recommendation": "Immediate retraining required"
+        },
+        {
+          "type": "stale_predictions",
+          "message": "No predictions for 8 days",
+          "severity": "high",
+          "recommendation": "Check model execution and data pipeline"
+        }
+      ],
+      "Long Bull Model V3.2": [],
+      "Bitcoin Model": [],
+      "NVIDIA Bull Momentum Model": [],
+      "QQQ Trading Signal": [],
+      "Wishing Well QQQ Model": [],
+      "QQQ Master Model": []
+    },
+    "correlation_analysis": {
+      "status": "error",
+      "error": "Execution failed on sql '\n            SELECT model, symbol, prediction_date, predicted_price, actual_price\n            FROM model_predictions \n            WHERE prediction_date >= date('now', '-30 days')\n            AND actual_price IS NOT NULL\n            ORDER BY prediction_date, symbol\n            ': database disk image is malformed"
+    },
+    "optimization_recommendations": [
+      {
+        "priority": "high",
+        "category": "Model Performance",
+        "model": "Algorand Model V2",
+        "message": "Critical accuracy: 33.3%",
+        "action": "Immediate retraining with expanded dataset",
+        "estimated_impact": "High"
+      },
+      {
+        "priority": "high",
+        "category": "Model Reliability",
+        "model": "Algorand Model V2",
+        "message": "3 consecutive failures",
+        "action": "Debug prediction logic and validate input data",
+        "estimated_impact": "High"
+      },
+      {
+        "priority": "high",
+        "category": "Model Reliability",
+        "model": "QQQ Trading Signal",
+        "message": "3 consecutive failures",
+        "action": "Debug prediction logic and validate input data",
+        "estimated_impact": "High"
+      }
+    ],
+    "summary": {
+      "total_models_analyzed": 7,
+      "active_models": 2,
+      "models_need_attention": 1,
+      "critical_recommendations": 0,
+      "high_priority_recommendations": 3
+    }
+  },
+  "improvements": {
+    "timestamp": "2025-08-06T15:11:47.584428",
+    "recommendations": [
+      {
+        "priority": "HIGH",
+        "category": "System Reliability",
+        "issue": "3 models inactive",
+        "action": "Restart inactive models and check scheduling",
+        "models_affected": [
+          "Algorand Model V2",
+          "Long Bull Model V3.2",
+          "QQQ Trading Signal"
+        ],
+        "implementation": "Check wrapper execution and model file paths"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Data Pipeline",
+        "issue": "Bitcoin Model not generating recent predictions",
+        "action": "Check model execution frequency",
+        "models_affected": [
+          "Bitcoin Model"
+        ],
+        "implementation": "Review scheduling and data availability"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Data Pipeline",
+        "issue": "NVIDIA Bull Momentum Model not generating recent predictions",
+        "action": "Check model execution frequency",
+        "models_affected": [
+          "NVIDIA Bull Momentum Model"
+        ],
+        "implementation": "Review scheduling and data availability"
+      },
+      {
+        "priority": "MEDIUM",
+        "category": "Data Pipeline",
+        "issue": "Wishing Well QQQ Model not generating recent predictions",
+        "action": "Check model execution frequency",
+        "models_affected": [
+          "Wishing Well QQQ Model"
+        ],
+        "implementation": "Review scheduling and data availability"
+      }
+    ],
+    "action_plan": {
+      "immediate_actions": 1,
+      "scheduled_improvements": 3,
+      "timeline": {
+        "week_1": [
+          "Restart inactive models and check scheduling"
+        ],
+        "week_2": [
+          "Check model execution frequency",
+          "Check model execution frequency",
+          "Check model execution frequency"
+        ],
+        "week_3": []
+      }
+    }
+  }
+}

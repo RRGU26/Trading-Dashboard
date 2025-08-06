@@ -1,0 +1,39 @@
+
+Algorand Price Prediction Model (Improved)
+=========================================
+
+Current Price: $0.1985
+
+Price Predictions:
+3-Day: $0.2078 (4.68%)
+7-Day: $0.2078 (4.68%)
+30-Day: $0.2078 (4.68%)
+
+Model Performance:
+RMSE: 0.022108
+MAE: 0.015171
+R²: 0.947600
+
+Strategy Evaluation:
+Buy-and-Hold Return: -20.13%
+Model Strategy Return: 2423.41%
+Buy-and-Hold Sharpe Ratio: 0.2597
+Model Strategy Sharpe Ratio: 3.3591
+
+Key Price Drivers:
+('ma30', ''): 0.5021
+('ma7', ''): 0.2966
+('atr', ''): 0.1191
+('macd', ''): 0.0272
+('rsi', ''): 0.0146
+
+Notes on Model Improvements:
+- Implemented time series cross-validation to prevent data leakage
+- Added regularization to reduce overfitting
+- Used feature selection to focus on the most important predictors
+- Evaluated model against buy-and-hold strategy
+- Reduced multicollinearity by removing highly correlated features
+
+Disclaimer: This prediction model is based on historical data and technical analysis.
+Cryptocurrency markets are highly volatile and subject to many external factors not captured in this model.
+This prediction should not be used as financial advice.

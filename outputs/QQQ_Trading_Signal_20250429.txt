@@ -1,0 +1,26 @@
+QQQ Trading Signal Report
+=======================
+Date: 2025-04-29 21:12:49
+
+Current Price: $475.53
+Predicted Price (3 days): $475.93 (0.08%)
+
+Signal: NEUTRAL
+Action: HOLD
+Confidence: 0.48%
+
+Price Range (95% Confidence):
+Lower Bound: $393.96
+Upper Bound: $557.90
+
+Model Performance:
+Hit Rate (Test): 57.62%
+R-squared (Test): -0.0631
+Sharpe Ratio: 1.75
+
+Top 5 Features:
+- MACD_Signal: 0.0840
+- SMA_20_50_Ratio: 0.0822
+- MACD: 0.0788
+- VIX_Ratio: 0.0787
+- ATR_Ratio: 0.0785

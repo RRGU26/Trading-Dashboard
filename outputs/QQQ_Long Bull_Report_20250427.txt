@@ -1,0 +1,24 @@
+
+=== QQQ Stabilized Trading Analysis ===
+Date: 2025-04-27 16:03:20
+Current Price: $472.56
+Predicted 3-Day Return: 0.53%
+Predicted 1-Day Price: $473.40 (+0.18%)
+
+--- Core Metrics ---
+R-squared: 0.0148
+Hit Rate: 57.86%
+Cumulative Return: 44.97%
+Sharpe Ratio: 1.41
+Max Drawdown: -7.68%
+
+--- Top 5 Features ---
+- ATR: 0.1211
+- VIX_Ratio: 0.1195
+- MACD: 0.1000
+- OBV: 0.0983
+- Returns_1d_lag: 0.0904
+
+--- Model Configuration ---
+Best Parameters: OrderedDict([('model__gamma', 0.006032017384131696), ('model__learning_rate', 0.005188758519702412), ('model__max_depth', 12), ('model__min_child_weight', 3), ('model__n_estimators', 827)])
+Training Period: 2015-01-01 to 2025-04-28

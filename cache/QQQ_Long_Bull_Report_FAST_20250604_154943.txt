@@ -1,0 +1,49 @@
+=== QQQ Long Bull Analysis Report (FAST OPTIMIZED VERSION) ===
+Generated on: 2025-06-04 15:49:43
+Symbol: QQQ
+Current Price: $527.30
+
+--- Prediction Details ---
+Predicted 3-Day Price: $531.63
+Predicted 3-Day Return: 0.82%
+Predicted 1-Day Price: $528.74
+Predicted 1-Day Return: +0.27%
+
+Action Signal: BUY
+Confidence: Medium
+
+--- Model Performance ---
+Hit Rate: 61.43%
+R-squared: 0.0360
+Sharpe Ratio: 2.14
+Max Drawdown: -14.86%
+Cumulative Return: 43.57%
+Backtested Predictions: 210
+
+--- Top Features ---
+- Price_vs_MA50: 0.0920
+- VIX_Level: 0.0907
+- RSI: 0.0890
+- Volatility_20d: 0.0883
+- Returns_10d: 0.0881
+- Price_vs_MA5: 0.0789
+- Returns_3d: 0.0761
+- Price_vs_MA20: 0.0740
+
+--- Model Configuration ---
+Model: Pre-optimized XGBoost (n_estimators=300, max_depth=6, lr=0.05)
+Training Period: 2015-01-01 to 2025-06-05
+Training Sample: 2000 recent data points
+Features: 13 streamlined technical indicators
+
+--- Speed Optimizations ---
+1. Pre-optimized hyperparameters (no Bayesian search)
+2. Streamlined feature engineering (12 core features)
+3. Fast walk-forward backtesting (sampling approach)
+4. Recent data focus for training efficiency
+5. Simplified data cleaning pipeline
+
+--- Risk Disclaimer ---
+This is an algorithmic prediction model for educational purposes.
+Past performance does not guarantee future results.
+Always consult with a financial advisor before making investment decisions.

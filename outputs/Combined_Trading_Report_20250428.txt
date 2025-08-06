@@ -1,0 +1,22 @@
+Trading Models Report - 2025-04-28 16:03
+
+Long Bull Model:
+Price Prediction: $477.18
+Expected Return: 1.01%
+Suggested Action: BUY
+
+QQQ Trading Signal:
+Price Prediction: $470.09
+Confidence: Low (2.78%)
+Suggested Action: HOLD
+Confidence
+
+Algorand Model:
+Price Prediction: $0.2376
+Confidence: High (0.9908 R²)
+Suggested Action: BUY
+
+Bitcoin Model:
+Price Prediction: $93096.96
+Confidence: Low (10.00%)
+Suggested Action: HOLD

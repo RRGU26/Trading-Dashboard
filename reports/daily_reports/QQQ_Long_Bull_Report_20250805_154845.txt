@@ -1,0 +1,68 @@
+QQQ Long Bull Report
+Generated: 2025-08-05 15:48:45
+
+PREDICTION SUMMARY
+=====================================
+Current Price: $564.10
+Target Price: $562.31
+Expected Return: -0.32%
+Time Horizon: 14 days
+
+SIGNAL ANALYSIS
+=====================================
+Signal: HOLD
+Suggested Action: HOLD
+Confidence: LOW
+Risk Level: HIGH
+
+TECHNICAL ANALYSIS
+=====================================
+Direction Accuracy: 59.1%
+Model R² Score: -0.255
+Hit Rate (>1% moves): 51.1%
+Model Agreement: 0.8%
+Market Regime: SIDEWAYS
+
+RISK MANAGEMENT
+=====================================
+Stop Loss: $507.69
+Position Size: Moderate (based on confidence)
+Max Drawdown Risk: 42.8%
+
+MARKET CONDITIONS
+=====================================
+VIX Data Available: No (Synthetic Used)
+Assets Analyzed: 2
+Training Data Quality: 40 features
+Data Lookback: 3 years
+
+MODEL COMPOSITION
+=====================================
+Ensemble Models: 5 (XGBoost, LightGBM, RandomForest, ExtraTrees, GradientBoost)
+Feature Engineering: QQQ-focused with VIX alignment
+Optimization: Multi-horizon with 14-day selected
+
+INDIVIDUAL MODEL PREDICTIONS
+=====================================
+Xgboost: $564.01 (-0.02%) [Weight: 20.8%]
+Lightgbm: $561.52 (-0.46%) [Weight: 20.4%]
+Random_Forest: $561.36 (-0.49%) [Weight: 20.0%]
+Extra_Trees: $562.62 (-0.26%) [Weight: 20.4%]
+Gradient_Boost: $561.97 (-0.38%) [Weight: 18.4%]
+
+TECHNICAL INDICATORS SUMMARY
+=====================================
+RSI Analysis: Multiple timeframes analyzed
+MACD Status: Trend momentum evaluated  
+Bollinger Bands: Volatility breakout signals
+Moving Averages: Multi-timeframe alignment
+Volume Analysis: Institutional flow patterns
+
+DISCLAIMER
+=====================================
+This analysis is for informational purposes only. Past performance 
+does not guarantee future results. Please consult with a financial 
+advisor before making investment decisions.
+
+Report ID: LongBull_20250805_154845
+Model Version: 3.2 VIX Alignment Fix

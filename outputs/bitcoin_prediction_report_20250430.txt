@@ -1,0 +1,117 @@
+
+=======================================================================
+                BITCOIN PRICE PREDICTION REPORT
+                Generated on: 2025-04-30 16:03:46
+=======================================================================
+
+CURRENT BITCOIN PRICE: $94,216.11
+
+
+-----------------------------------------------------------------------
+3-DAY BITCOIN PRICE PREDICTION
+-----------------------------------------------------------------------
+
+PREDICTION RESULT:
+  Target Date:           2025-05-03
+  Predicted Price:       $94,618.85
+  95% Confidence Range:  $86,649.32 to $102,588.38
+  Change:                $402.74 (+0.43%)
+  Model Used:            Random Forest
+  Confidence Level:      10.00%
+
+
+HISTORICAL PATTERN ANALYSIS:
+  Pattern-Based Price:   $91,220.41
+  Pattern-Based Change:  -3.18%
+  
+  Similar patterns were found on these dates:
+  - 2024-09-28
+  - 2024-10-19
+  - 2024-10-20
+  - 2024-09-26
+  - 2024-09-27
+
+MARKET INSIGHTS:
+  - Current market cycle phase: Correction
+  - Low confidence - Consider using pattern-based prediction or market analysis
+
+KEY PRICE DRIVERS:
+  - MA_200: 0.1270
+  - ROC_30: 0.1066
+  - volatility: 0.0946
+  - BB_width: 0.0929
+  - ROC_14: 0.0809
+
+
+-----------------------------------------------------------------------
+7-DAY BITCOIN PRICE PREDICTION
+-----------------------------------------------------------------------
+
+PREDICTION RESULT:
+  Target Date:           2025-05-07
+  Predicted Price:       $89,770.51
+  95% Confidence Range:  $75,273.10 to $104,267.92
+  Change:                $-4,445.60 (-4.72%)
+  Model Used:            Gradient Boosting
+  Confidence Level:      10.00%
+
+
+HISTORICAL PATTERN ANALYSIS:
+  Pattern-Based Price:   $90,120.97
+  Pattern-Based Change:  -4.35%
+  
+  Similar patterns were found on these dates:
+  - 2024-09-28
+  - 2024-10-19
+  - 2024-10-20
+  - 2024-09-26
+  - 2024-09-27
+
+MARKET INSIGHTS:
+  - Current market cycle phase: Correction
+  - Low confidence - Consider using pattern-based prediction or market analysis
+
+KEY PRICE DRIVERS:
+  - MA_200: 0.1561
+  - ROC_30: 0.1492
+  - volatility: 0.1021
+  - EMA_50: 0.0752
+  - drawdown_pct: 0.0749
+
+MODEL PERFORMANCE:
+3-Day Model:
+  - RMSE: $4.32
+  - MAE: $3.17
+  - R²: -0.0186
+
+7-Day Model:
+  - RMSE: $7.85
+  - MAE: $5.77
+  - R²: -0.4232
+
+
+-----------------------------------------------------------------------
+PREDICTION METHODOLOGY
+-----------------------------------------------------------------------
+
+This improved Bitcoin price prediction model incorporates multiple advanced techniques:
+
+1. Real Historical Data: Fetched from Yahoo Finance or CoinGecko API.
+
+2. Feature Engineering: Technical indicators, volatility, market cycle analysis.
+
+3. Feature Selection: Only the most predictive features are used to reduce noise.
+
+4. Machine Learning with Reduced Complexity: Optimized Gradient Boosting or Random Forest with parameters tuned to prevent overfitting.
+
+5. Enhanced Validation: Robust uncertainty estimation with confidence intervals.
+
+6. Historical Context: Analysis of similar historical patterns.
+
+7. Confidence Adjustment: Dynamic confidence levels based on market conditions.
+
+-----------------------------------------------------------------------
+DISCLAIMER
+-----------------------------------------------------------------------
+
+Cryptocurrency prices are highly volatile. These predictions are based on historical data and technical analysis and should not be used as the sole basis for investment decisions.

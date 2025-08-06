@@ -1,0 +1,246 @@
+id,model,date,metric_type,metric_value
+1,Long Bull Model,2025-05-22,hit_rate,5800.0
+2,Long Bull Model,2025-05-22,hit_rate,5800.0
+3,QQQ Trading Signal,2025-05-22,hit_rate,27.4
+4,Algorand Model,2025-05-22,r2,0.9476
+5,Algorand Model,2025-05-22,r2,0.9476
+6,Algorand Model,2025-05-22,r2,0.9476
+7,Bitcoin Model,2025-05-22,hit_rate,51.43
+8,Bitcoin Model,2025-05-22,hit_rate,51.43
+9,Bitcoin Model,2025-05-22,hit_rate,51.43
+10,Wishing Well QQQ Model,2025-05-22,hit_rate,30.1
+11,Long Bull Model,2025-05-23,hit_rate,5800.0
+12,Long Bull Model,2025-05-23,hit_rate,5800.0
+13,QQQ Trading Signal,2025-05-23,hit_rate,27.4
+14,Algorand Model,2025-05-23,r2,0.9476
+15,Algorand Model,2025-05-23,r2,0.9476
+16,Algorand Model,2025-05-23,r2,0.9476
+17,Bitcoin Model,2025-05-23,hit_rate,51.43
+18,Bitcoin Model,2025-05-23,hit_rate,51.43
+19,Bitcoin Model,2025-05-23,hit_rate,51.43
+20,Wishing Well QQQ Model,2025-05-23,hit_rate,30.1
+21,Long Bull Model,2025-05-24,r2,0.0064
+22,Long Bull Model,2025-05-24,hit_rate,5780.0
+23,Long Bull Model,2025-05-24,r2,0.0064
+24,Long Bull Model,2025-05-24,hit_rate,5780.0
+25,QQQ Trading Signal,2025-05-24,hit_rate,27.4
+26,Algorand Model,2025-05-24,r2,0.9476
+27,Algorand Model,2025-05-24,r2,0.9476
+28,Algorand Model,2025-05-24,r2,0.9476
+29,Bitcoin Model,2025-05-24,hit_rate,51.43
+30,Bitcoin Model,2025-05-24,hit_rate,51.43
+31,Bitcoin Model,2025-05-24,hit_rate,51.43
+32,Wishing Well QQQ Model,2025-05-24,hit_rate,30.0
+33,Long Bull Model,2025-05-24,r2,0.0064
+34,Long Bull Model,2025-05-24,hit_rate,5780.0
+35,Long Bull Model,2025-05-24,r2,0.0064
+36,Long Bull Model,2025-05-24,hit_rate,5780.0
+37,QQQ Trading Signal,2025-05-24,hit_rate,27.4
+38,Algorand Model,2025-05-24,r2,0.9476
+39,Algorand Model,2025-05-24,r2,0.9476
+40,Algorand Model,2025-05-24,r2,0.9476
+41,Bitcoin Model,2025-05-24,hit_rate,51.43
+42,Bitcoin Model,2025-05-24,hit_rate,51.43
+43,Bitcoin Model,2025-05-24,hit_rate,51.43
+44,Wishing Well QQQ Model,2025-05-24,hit_rate,30.0
+45,Long Bull Model,2025-05-26,r2,0.0809
+46,Long Bull Model,2025-05-26,hit_rate,5885.0
+47,Long Bull Model,2025-05-26,r2,0.0809
+48,Long Bull Model,2025-05-26,hit_rate,5885.0
+49,QQQ Trading Signal,2025-05-26,hit_rate,26.3
+50,Bitcoin Model,2025-05-26,hit_rate,50.22
+51,Bitcoin Model,2025-05-26,hit_rate,50.22
+52,Bitcoin Model,2025-05-26,hit_rate,50.22
+53,Wishing Well QQQ Model,2025-05-26,hit_rate,30.0
+54,Long Bull Model,2025-05-26,r2,0.0809
+55,Long Bull Model,2025-05-26,hit_rate,5885.0
+56,Long Bull Model,2025-05-26,r2,0.0809
+57,Long Bull Model,2025-05-26,hit_rate,5885.0
+58,QQQ Trading Signal,2025-05-26,hit_rate,26.3
+59,Bitcoin Model,2025-05-26,hit_rate,50.22
+60,Bitcoin Model,2025-05-26,hit_rate,50.22
+61,Bitcoin Model,2025-05-26,hit_rate,50.22
+62,Wishing Well QQQ Model,2025-05-26,hit_rate,30.0
+63,Long Bull Model,2025-05-27,r2,0.0809
+64,Long Bull Model,2025-05-27,hit_rate,5885.0
+65,Long Bull Model,2025-05-27,r2,0.0809
+66,Long Bull Model,2025-05-27,hit_rate,5885.0
+67,QQQ Trading Signal,2025-05-27,hit_rate,26.3
+68,Bitcoin Model,2025-05-27,hit_rate,50.22
+69,Bitcoin Model,2025-05-27,hit_rate,50.22
+70,Bitcoin Model,2025-05-27,hit_rate,50.22
+71,Wishing Well QQQ Model,2025-05-27,hit_rate,30.0
+72,Long Bull Model,2025-05-28,r2,0.0809
+73,Long Bull Model,2025-05-28,hit_rate,5885.0
+74,Long Bull Model,2025-05-28,r2,0.0809
+75,Long Bull Model,2025-05-28,hit_rate,5885.0
+76,QQQ Trading Signal,2025-05-28,hit_rate,26.3
+77,Bitcoin Model,2025-05-28,hit_rate,50.2
+78,Bitcoin Model,2025-05-28,hit_rate,50.2
+79,Bitcoin Model,2025-05-28,hit_rate,50.2
+80,Wishing Well QQQ Model,2025-05-28,hit_rate,30.0
+81,Long Bull Model,2025-05-29,r2,0.0809
+82,Long Bull Model,2025-05-29,hit_rate,5885.0
+83,Long Bull Model,2025-05-29,r2,0.0809
+84,Long Bull Model,2025-05-29,hit_rate,5885.0
+85,QQQ Trading Signal,2025-05-29,hit_rate,26.3
+86,Bitcoin Model,2025-05-29,hit_rate,50.19
+87,Bitcoin Model,2025-05-29,hit_rate,50.19
+88,Bitcoin Model,2025-05-29,hit_rate,50.19
+89,Wishing Well QQQ Model,2025-05-29,hit_rate,30.0
+90,Long Bull Model,2025-05-30,r2,0.0809
+91,Long Bull Model,2025-05-30,hit_rate,5885.0
+92,Long Bull Model,2025-05-30,r2,0.0809
+93,Long Bull Model,2025-05-30,hit_rate,5885.0
+94,QQQ Trading Signal,2025-05-30,hit_rate,26.3
+95,Bitcoin Model,2025-05-30,hit_rate,50.2
+96,Bitcoin Model,2025-05-30,hit_rate,50.2
+97,Bitcoin Model,2025-05-30,hit_rate,50.2
+98,Wishing Well QQQ Model,2025-05-30,hit_rate,30.0
+99,Long Bull Model,2025-05-31,r2,0.0809
+100,Long Bull Model,2025-05-31,hit_rate,5885.0
+101,Long Bull Model,2025-05-31,r2,0.0809
+102,Long Bull Model,2025-05-31,hit_rate,5885.0
+103,QQQ Trading Signal,2025-05-31,hit_rate,26.3
+104,Bitcoin Model,2025-05-31,hit_rate,50.22
+105,Bitcoin Model,2025-05-31,hit_rate,50.22
+106,Bitcoin Model,2025-05-31,hit_rate,50.22
+107,Wishing Well QQQ Model,2025-05-31,hit_rate,30.0
+108,Long Bull Model,2025-05-31,r2,0.0739
+109,Long Bull Model,2025-05-31,hit_rate,6190.0
+110,Long Bull Model,2025-05-31,r2,0.0739
+111,Long Bull Model,2025-05-31,hit_rate,6190.0
+112,QQQ Trading Signal,2025-05-31,hit_rate,26.3
+113,Bitcoin Model,2025-05-31,hit_rate,50.22
+114,Bitcoin Model,2025-05-31,hit_rate,50.22
+115,Bitcoin Model,2025-05-31,hit_rate,50.22
+116,Wishing Well QQQ Model,2025-05-31,hit_rate,30.0
+117,Long Bull Model,2025-05-31,r2,0.0446
+118,Long Bull Model,2025-05-31,hit_rate,5905.0
+119,Long Bull Model,2025-05-31,r2,0.0446
+120,Long Bull Model,2025-05-31,hit_rate,5905.0
+121,QQQ Trading Signal,2025-05-31,hit_rate,26.3
+122,Bitcoin Model,2025-05-31,hit_rate,50.23
+123,Bitcoin Model,2025-05-31,hit_rate,50.23
+124,Bitcoin Model,2025-05-31,hit_rate,50.23
+125,Wishing Well QQQ Model,2025-05-31,hit_rate,30.0
+126,Long Bull Model,2025-06-01,r2,0.0739
+127,Long Bull Model,2025-06-01,hit_rate,6190.0
+128,Long Bull Model,2025-06-01,r2,0.0739
+129,Long Bull Model,2025-06-01,hit_rate,6190.0
+130,QQQ Trading Signal,2025-06-01,hit_rate,26.3
+131,Bitcoin Model,2025-06-01,hit_rate,50.23
+132,Bitcoin Model,2025-06-01,hit_rate,50.23
+133,Bitcoin Model,2025-06-01,hit_rate,50.23
+134,Wishing Well QQQ Model,2025-06-01,hit_rate,30.0
+135,Long Bull Model,2025-06-01,r2,0.054
+136,Long Bull Model,2025-06-01,hit_rate,5667.0
+137,Long Bull Model,2025-06-01,r2,0.054
+138,Long Bull Model,2025-06-01,hit_rate,5667.0
+139,QQQ Trading Signal,2025-06-01,hit_rate,26.3
+140,Bitcoin Model,2025-06-01,hit_rate,50.24999999999999
+141,Bitcoin Model,2025-06-01,hit_rate,50.24999999999999
+142,Bitcoin Model,2025-06-01,hit_rate,50.24999999999999
+143,Wishing Well QQQ Model,2025-06-01,hit_rate,30.0
+144,Long Bull Model,2025-06-01,r2,0.054
+145,Long Bull Model,2025-06-01,hit_rate,5667.0
+146,Long Bull Model,2025-06-01,r2,0.054
+147,Long Bull Model,2025-06-01,hit_rate,5667.0
+148,QQQ Trading Signal,2025-06-01,hit_rate,26.3
+149,Bitcoin Model,2025-06-01,hit_rate,50.24999999999999
+150,Bitcoin Model,2025-06-01,hit_rate,50.24999999999999
+151,Bitcoin Model,2025-06-01,hit_rate,50.24999999999999
+152,Wishing Well QQQ Model,2025-06-01,hit_rate,30.0
+153,Long Bull Model,2025-06-02,r2,0.054
+154,Long Bull Model,2025-06-02,hit_rate,5667.0
+155,Long Bull Model,2025-06-02,r2,0.054
+156,Long Bull Model,2025-06-02,hit_rate,5667.0
+157,QQQ Trading Signal,2025-06-02,hit_rate,26.3
+158,Bitcoin Model,2025-06-02,hit_rate,50.24999999999999
+159,Bitcoin Model,2025-06-02,hit_rate,50.24999999999999
+160,Bitcoin Model,2025-06-02,hit_rate,50.24999999999999
+161,Wishing Well QQQ Model,2025-06-02,hit_rate,30.0
+162,Long Bull Model,2025-06-03,r2,0.0387
+163,Long Bull Model,2025-06-03,hit_rate,6095.0
+164,Long Bull Model,2025-06-03,r2,0.0387
+165,Long Bull Model,2025-06-03,hit_rate,6095.0
+166,Bitcoin Model,2025-06-03,hit_rate,50.23
+167,Bitcoin Model,2025-06-03,hit_rate,50.23
+168,Bitcoin Model,2025-06-03,hit_rate,50.23
+169,Wishing Well QQQ Model,2025-06-03,hit_rate,30.0
+170,Long Bull Model,2025-06-04,r2,0.036
+171,Long Bull Model,2025-06-04,hit_rate,6143.0
+172,Long Bull Model,2025-06-04,r2,0.036
+173,Long Bull Model,2025-06-04,hit_rate,6143.0
+174,Bitcoin Model,2025-06-04,hit_rate,50.24999999999999
+175,Bitcoin Model,2025-06-04,hit_rate,50.24999999999999
+176,Bitcoin Model,2025-06-04,hit_rate,50.24999999999999
+177,Wishing Well QQQ Model,2025-06-04,hit_rate,30.0
+178,Long Bull Model,2025-06-05,r2,0.0103
+179,Long Bull Model,2025-06-05,hit_rate,6095.0
+180,Long Bull Model,2025-06-05,r2,0.0103
+181,Long Bull Model,2025-06-05,hit_rate,6095.0
+182,Bitcoin Model,2025-06-05,hit_rate,50.23
+183,Bitcoin Model,2025-06-05,hit_rate,50.23
+184,Bitcoin Model,2025-06-05,hit_rate,50.23
+185,Wishing Well QQQ Model,2025-06-05,hit_rate,30.0
+186,Long Bull Model,2025-06-06,hit_rate,5714.0
+187,Long Bull Model,2025-06-06,hit_rate,5714.0
+188,Bitcoin Model,2025-06-06,hit_rate,50.22
+189,Bitcoin Model,2025-06-06,hit_rate,50.22
+190,Bitcoin Model,2025-06-06,hit_rate,50.22
+191,Wishing Well QQQ Model,2025-06-06,hit_rate,30.0
+192,Long Bull Model,2025-06-07,r2,0.0738
+193,Long Bull Model,2025-06-07,hit_rate,5857.0
+194,Long Bull Model,2025-06-07,r2,0.0738
+195,Long Bull Model,2025-06-07,hit_rate,5857.0
+196,QQQ Trading Signal,2025-06-07,hit_rate,87.3
+197,Bitcoin Model,2025-06-07,hit_rate,50.22
+198,Bitcoin Model,2025-06-07,hit_rate,50.22
+199,Bitcoin Model,2025-06-07,hit_rate,50.22
+200,Wishing Well QQQ Model,2025-06-07,hit_rate,30.0
+201,Long Bull Model,2025-06-08,r2,0.0729
+202,Long Bull Model,2025-06-08,hit_rate,5857.0
+203,Long Bull Model,2025-06-08,r2,0.0729
+204,Long Bull Model,2025-06-08,hit_rate,5857.0
+205,QQQ Trading Signal,2025-06-08,hit_rate,87.3
+206,Bitcoin Model,2025-06-08,hit_rate,50.2
+207,Bitcoin Model,2025-06-08,hit_rate,50.2
+208,Bitcoin Model,2025-06-08,hit_rate,50.2
+209,Wishing Well QQQ Model,2025-06-08,hit_rate,30.0
+210,Long Bull Model,2025-06-08,r2,0.0729
+211,Long Bull Model,2025-06-08,hit_rate,5857.0
+212,Long Bull Model,2025-06-08,r2,0.0729
+213,Long Bull Model,2025-06-08,hit_rate,5857.0
+214,QQQ Trading Signal,2025-06-08,hit_rate,87.3
+215,Bitcoin Model,2025-06-08,hit_rate,50.2
+216,Bitcoin Model,2025-06-08,hit_rate,50.2
+217,Bitcoin Model,2025-06-08,hit_rate,50.2
+218,Wishing Well QQQ Model,2025-06-08,hit_rate,30.0
+219,Long Bull Model,2025-06-09,r2,0.0729
+220,Long Bull Model,2025-06-09,hit_rate,5857.0
+221,Long Bull Model,2025-06-09,r2,0.0729
+222,Long Bull Model,2025-06-09,hit_rate,5857.0
+223,QQQ Trading Signal,2025-06-09,hit_rate,87.3
+224,Bitcoin Model,2025-06-09,hit_rate,50.2
+225,Bitcoin Model,2025-06-09,hit_rate,50.2
+226,Bitcoin Model,2025-06-09,hit_rate,50.2
+227,Wishing Well QQQ Model,2025-06-09,hit_rate,30.0
+228,Long Bull Model,2025-06-09,r2,0.0729
+229,Long Bull Model,2025-06-09,hit_rate,5857.0
+230,Long Bull Model,2025-06-09,r2,0.0729
+231,Long Bull Model,2025-06-09,hit_rate,5857.0
+232,QQQ Trading Signal,2025-06-09,hit_rate,87.3
+233,Bitcoin Model,2025-06-09,hit_rate,50.2
+234,Bitcoin Model,2025-06-09,hit_rate,50.2
+235,Bitcoin Model,2025-06-09,hit_rate,50.2
+236,Wishing Well QQQ Model,2025-06-09,hit_rate,30.0
+237,Long Bull Model,2025-06-09,r2,0.0729
+238,Long Bull Model,2025-06-09,hit_rate,5857.0
+239,Long Bull Model,2025-06-09,r2,0.0729
+240,Long Bull Model,2025-06-09,hit_rate,5857.0
+241,QQQ Trading Signal,2025-06-09,hit_rate,87.3
+242,Bitcoin Model,2025-06-09,hit_rate,50.2
+243,Bitcoin Model,2025-06-09,hit_rate,50.2
+244,Bitcoin Model,2025-06-09,hit_rate,50.2
+245,Wishing Well QQQ Model,2025-06-09,hit_rate,30.0

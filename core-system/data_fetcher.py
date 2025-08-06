@@ -1,0 +1,2146 @@
+import yfinance as yf
+import pandas as pd
+import numpy as np
+import math
+import time
+import os
+import json
+import requests
+import sqlite3
+from datetime import datetime, timedelta, timezone
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configuration flags
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DEBUG_DIR = os.path.join(SCRIPT_DIR, "debug")
+os.makedirs(DEBUG_DIR, exist_ok=True)
+
+# API Constants
+COIN_METRICS_API_URL = "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics"
+ALPHAVANTAGE_API_URL = "https://www.alphavantage.co/query"
+ALPHAVANTAGE_API_KEY = "YWNJ5JVM3SWD5PHD"  # Your Alpha Vantage API key
+DATA_DIR = os.path.join(SCRIPT_DIR, "data")
+os.makedirs(DATA_DIR, exist_ok=True)
+CACHE_EXPIRY = 300  # Cache expiry in seconds (5 minutes) - reduced for more frequent updates
+
+# Cache information
+CACHE_DIR = os.path.join(SCRIPT_DIR, "cache")
+os.makedirs(CACHE_DIR, exist_ok=True)
+CACHE_EXPIRY_FILE = 3600  # Cache expiry in seconds for file cache (1 hour) - reduced from 24 hours
+
+# Global cache for storing data
+CACHE = {'prices': {}, 'last_update': {}}
+
+# Debug mode
+DEBUG_MODE = os.getenv('DEBUG_MODE', 'False').lower() == 'true'
+
+# API enablement flags
+ENABLE_COINMETRICS = True
+ENABLE_ALPHAVANTAGE = True
+ENABLE_DB_CACHE = True
+
+# Symbol type classification
+CRYPTO_SYMBOLS = {
+    "BTC-USD", "ETH-USD", "ALGO-USD", "SOL-USD", "ADA-USD", "XRP-USD", "DOT-USD", 
+    "DOGE-USD", "SHIB-USD", "AVAX-USD", "MATIC-USD", "LINK-USD"
+}
+
+SPECIAL_SYMBOLS = {
+    "VIX": "^VIX",
+    "SPX": "^SPX",
+    "GSPC": "^GSPC",
+    "DJI": "^DJI",
+    "IXIC": "^IXIC",
+    "RUT": "^RUT"
+}
+
+# CoinMetrics symbol mapping
+COINMETRICS_SYMBOL_MAP = {
+    "BTC-USD": "btc",
+    "ETH-USD": "eth",
+    "ALGO-USD": "algo",
+    "SOL-USD": "sol",
+    "ADA-USD": "ada",
+    "XRP-USD": "xrp",
+    "DOT-USD": "dot",
+    "DOGE-USD": "doge",
+    "SHIB-USD": "shib",
+    "AVAX-USD": "avax",
+    "MATIC-USD": "matic",
+    "LINK-USD": "link"
+}
+
+def clear_cache():
+    """Clear all cached data"""
+    try:
+        global CACHE
+        CACHE = {'prices': {}, 'last_update': {}}
+        
+        # Also clear file cache
+        import glob
+        cache_files = glob.glob(os.path.join(CACHE_DIR, "*.json"))
+        for cache_file in cache_files:
+            try:
+                os.remove(cache_file)
+                print(f"Cleared file cache: {os.path.basename(cache_file)}")
+            except Exception as e:
+                print(f"Error clearing file cache: {e}")
+                
+    except Exception as e:
+        print(f"Error clearing cache: {e}")
+
+def save_to_file_cache(cache_key, data):
+    """Save data to file cache"""
+    try:
+        cache_file = os.path.join(CACHE_DIR, f"{cache_key}.json")
+        with open(cache_file, 'w') as f:
+            json.dump({
+                'data': data,
+                'timestamp': time.time()
+            }, f)
+    except Exception as e:
+        print(f"Error saving to file cache: {e}")
+
+def load_from_file_cache(cache_key):
+    """Load data from file cache"""
+    try:
+        cache_file = os.path.join(CACHE_DIR, f"{cache_key}.json")
+        if os.path.exists(cache_file):
+            with open(cache_file, 'r') as f:
+                cache_data = json.load(f)
+                
+            # Check if cache is expired
+            elapsed_time = time.time() - cache_data['timestamp']
+            if elapsed_time < CACHE_EXPIRY_FILE:
+                return cache_data['data']
+        return None
+    except Exception as e:
+        print(f"Error loading from file cache: {e}")
+        return None
+
+def is_crypto(symbol):
+    """Check if a symbol is a cryptocurrency"""
+    return symbol in CRYPTO_SYMBOLS
+
+def get_yfinance_symbol(symbol):
+    """Convert symbol to yfinance format"""
+    if symbol in SPECIAL_SYMBOLS:
+        return SPECIAL_SYMBOLS[symbol]
+    return symbol
+
+def get_coinmetrics_symbol(symbol):
+    """Convert symbol to CoinMetrics format
+    
+    Args:
+        symbol (str): The symbol to convert (e.g., BTC-USD)
+    
+    Returns:
+        str: The CoinMetrics symbol (e.g., btc)
+    """
+    if symbol in COINMETRICS_SYMBOL_MAP:
+        return COINMETRICS_SYMBOL_MAP[symbol]
+    
+    # Try to parse if not in mapping
+    if "-USD" in symbol:
+        base = symbol.split("-")[0].lower()
+        return base
+    
+    return symbol.lower()
+
+def _is_cache_valid(cache_key):
+    """Check if cache entry is valid"""
+    try:
+        if cache_key not in CACHE['last_update']:
+            return False
+        elapsed_time = time.time() - CACHE['last_update'][cache_key]
+        return elapsed_time < CACHE_EXPIRY
+    except:
+        return False
+
+def get_historical_price_from_db(symbol, target_date):
+    """Get historical price from database
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., BTC-USD, ALGO-USD)
+        target_date: The date to fetch
+    """
+    try:
+        if isinstance(target_date, str):
+            target_date = datetime.strptime(target_date, "%Y-%m-%d").date()
+        
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Query with LIKE to handle potential timestamp formatting issues
+        cursor.execute("""
+        SELECT close FROM price_history 
+        WHERE symbol = ? AND (date = ? OR date LIKE ?)
+        """, (symbol, target_date.strftime('%Y-%m-%d'), target_date.strftime('%Y-%m-%d') + '%'))
+        
+        result = cursor.fetchone()
+        conn.close()
+        
+        if result:
+            if DEBUG_MODE:
+                print(f"Found historical price for {symbol} on {target_date}: ${result[0]:.2f}")
+            return float(result[0])
+        
+        # If exact date not found, try looking for the closest previous date
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute("""
+        SELECT close, date FROM price_history 
+        WHERE symbol = ? AND (date <= ? OR date LIKE ?)
+        ORDER BY date DESC LIMIT 1
+        """, (symbol, target_date.strftime('%Y-%m-%d'), target_date.strftime('%Y-%m-%d') + '%'))
+        
+        result = cursor.fetchone()
+        conn.close()
+        
+        if result:
+            if DEBUG_MODE:
+                print(f"Found closest historical price for {symbol} from {result[1]}: ${result[0]:.2f}")
+            return float(result[0])
+        
+        if DEBUG_MODE:
+            print(f"No historical price found for {symbol} on or before {target_date}")
+        return None
+        
+    except Exception as e:
+        print(f"Error fetching historical price from database: {e}")
+        return None
+
+def get_historical_data_from_db(symbol, start_date, end_date):
+    """Get historical data from database
+    
+    Args:
+        symbol: Stock symbol
+        start_date: Start date
+        end_date: End date
+    """
+    try:
+        if isinstance(start_date, str):
+            start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+        elif isinstance(start_date, datetime):
+            start_date = start_date.date()
+            
+        if isinstance(end_date, str):
+            end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+        elif isinstance(end_date, datetime):
+            end_date = end_date.date()
+        
+        conn = sqlite3.connect(DB_PATH)
+        
+        # Query for the date range
+        query = """
+        SELECT date, open, high, low, close, adj_close, volume 
+        FROM price_history 
+        WHERE symbol = ? AND date >= ? AND date <= ?
+        ORDER BY date
+        """
+        
+        df = pd.read_sql_query(query, conn, params=(symbol, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d')))
+        conn.close()
+        
+        if df.empty:
+            if DEBUG_MODE:
+                print(f"No historical data found for {symbol} from {start_date} to {end_date}")
+            return None
+
+        try:
+            df['date'] = pd.to_datetime(df['date'])
+        except Exception as e1:
+            try:
+                df['date'] = pd.to_datetime(df['date'], format='mixed')
+            except Exception as e2:
+                try:
+                    df['date'] = df['date'].str.split(' ').str[0]  # Remove time component
+                    df['date'] = pd.to_datetime(df['date'])
+                except Exception as e3:
+                    print(f"Error parsing dates from database: {e1}, {e2}, {e3}")
+
+        df.set_index('date', inplace=True)
+        
+        # Rename columns to match expected format
+        df.columns = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
+        
+        if DEBUG_MODE:
+            print(f"Retrieved {len(df)} rows from database for {symbol}")
+        return df
+        
+    except Exception as e:
+        print(f"Error fetching historical data from database: {e}")
+        return None
+
+def save_historical_data_to_db(symbol, df):
+    """Save historical data to database
+    
+    Args:
+        symbol: Stock symbol
+        df: DataFrame with historical data
+    """
+    try:
+        if df is None or df.empty:
+            print(f"No data to save for {symbol}")
+            return
+
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Create table if it doesn't exist
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS price_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            symbol TEXT,
+            date DATE,
+            open REAL,
+            high REAL,
+            low REAL,
+            close REAL,
+            adj_close REAL,
+            volume REAL,
+            UNIQUE(symbol, date)
+        )
+        """)
+        
+        # Prepare data for insertion
+        df_to_save = df.copy()
+        df_to_save.index = pd.to_datetime(df_to_save.index)
+        
+        # Insert data with better error handling
+        records = []
+        for date, row in df_to_save.iterrows():
+            record = (
+                symbol,
+                date.strftime('%Y-%m-%d'),  # Ensure consistent date format
+                float(row.get('Open', 0)),
+                float(row.get('High', 0)),
+                float(row.get('Low', 0)),
+                float(row.get('Close', 0)),
+                float(row.get('Adj Close', 0)),
+                float(row.get('Volume', 0))
+            )
+            records.append(record)
+        
+        # Use INSERT OR REPLACE to handle duplicates better
+        cursor.executemany("""
+        INSERT OR REPLACE INTO price_history 
+        (symbol, date, open, high, low, close, adj_close, volume)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """, records)
+        
+        conn.commit()
+        conn.close()
+        
+        if DEBUG_MODE:
+            print(f"Saved {len(records)} records for {symbol} to database")
+
+    except Exception as e:
+        print(f"Error saving historical data to database: {e}")
+        import traceback
+        traceback.print_exc()
+
+def save_current_price_to_db(symbol, price):
+    """Save current price to database"""
+    try:
+        today = datetime.now().date()
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Create table if it doesn't exist (added for safety)
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS price_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            symbol TEXT,
+            date DATE,
+            open REAL,
+            high REAL,
+            low REAL,
+            close REAL,
+            adj_close REAL,
+            volume REAL,
+            UNIQUE(symbol, date)
+        )
+        """)
+        
+        # Check if today's price already exists
+        cursor.execute("""
+        SELECT id FROM price_history 
+        WHERE symbol = ? AND date = ?
+        """, (symbol, today.strftime('%Y-%m-%d')))
+        
+        if cursor.fetchone():
+            # Update existing record
+            cursor.execute("""
+            UPDATE price_history
+            SET close = ?, adj_close = ?
+            WHERE symbol = ? AND date = ?
+            """, (price, price, symbol, today.strftime('%Y-%m-%d')))
+        else:
+            # Insert today's price (we only have close price for current data)
+            cursor.execute("""
+            INSERT INTO price_history (symbol, date, open, high, low, close, adj_close, volume)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (symbol, today.strftime('%Y-%m-%d'), price, price, price, price, price, 0))
+        
+        conn.commit()
+        if DEBUG_MODE:
+            print(f"Saved current price for {symbol} to database: ${price:.2f}")
+        
+        conn.close()
+
+    except Exception as e:
+        print(f"Error saving current price to database: {e}")
+
+def save_onchain_metrics_to_db(asset, metrics_data):
+    """Save onchain metrics to database
+    
+    Args:
+        asset (str): The asset symbol (e.g., btc, algo)
+        metrics_data: DataFrame with metrics data
+    """
+    try:
+        if metrics_data is None or metrics_data.empty:
+            print(f"No metrics data to save for {asset}")
+            return
+
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Create table if it doesn't exist
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS onchain_metrics (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            asset TEXT,
+            date DATE,
+            metric TEXT,
+            value REAL,
+            UNIQUE(asset, date, metric)
+        )
+        """)
+        
+        # Prepare data for insertion
+        records = []
+        
+        # Convert index to datetime if not already
+        metrics_data.index = pd.to_datetime(metrics_data.index)
+        
+        for date, row in metrics_data.iterrows():
+            date_str = date.strftime('%Y-%m-%d')
+            for metric in row.index:
+                if pd.notna(row[metric]):
+                    records.append((asset, date_str, metric, float(row[metric])))
+        
+        # Use INSERT OR REPLACE to handle duplicates
+        cursor.executemany("""
+        INSERT OR REPLACE INTO onchain_metrics 
+        (asset, date, metric, value)
+        VALUES (?, ?, ?, ?)
+        """, records)
+        
+        conn.commit()
+        conn.close()
+        
+        if DEBUG_MODE:
+            print(f"Saved {len(records)} metric records for {asset} to database")
+
+    except Exception as e:
+        print(f"Error saving onchain metrics to database: {e}")
+        import traceback
+        traceback.print_exc()
+
+def get_onchain_metrics_from_db(asset, start_date, end_date, metrics=None):
+    """Get onchain metrics from database
+    
+    Args:
+        asset (str): The asset symbol (e.g., btc, algo)
+        start_date: Start date
+        end_date: End date
+        metrics: List of specific metrics to fetch
+    """
+    try:
+        if isinstance(start_date, str):
+            start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+        elif isinstance(start_date, datetime):
+            start_date = start_date.date()
+            
+        if isinstance(end_date, str):
+            end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+        elif isinstance(end_date, datetime):
+            end_date = end_date.date()
+        
+        conn = sqlite3.connect(DB_PATH)
+        
+        # Base query
+        query = """
+        SELECT date, metric, value 
+        FROM onchain_metrics 
+        WHERE asset = ? AND date >= ? AND date <= ?
+        """
+        
+        params = [asset, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d')]
+        
+        # Add metrics filter if specified
+        if metrics and len(metrics) > 0:
+            placeholders = ','.join(['?'] * len(metrics))
+            query += f" AND metric IN ({placeholders})"
+            params.extend(metrics)
+        
+        query += " ORDER BY date, metric"
+        
+        # Execute query
+        cursor = conn.cursor()
+        cursor.execute(query, params)
+        data = cursor.fetchall()
+        conn.close()
+        
+        if not data:
+            if DEBUG_MODE:
+                print(f"No onchain metrics found for {asset} from {start_date} to {end_date}")
+            return None
+
+        # Process data into dictionary format
+        result_dict = {}
+        for date_str, metric, value in data:
+            if date_str not in result_dict:
+                result_dict[date_str] = {}
+            result_dict[date_str][metric] = value
+
+        df = pd.DataFrame.from_dict(result_dict, orient='index')
+        df.index = pd.to_datetime(df.index)
+        df.sort_index(inplace=True)
+        
+        if DEBUG_MODE:
+            print(f"Retrieved {len(df)} days of onchain metrics for {asset}")
+        return df
+        
+    except Exception as e:
+        print(f"Error fetching onchain metrics from database: {e}")
+        return None
+
+def check_database_contents(symbol=None, limit=10):
+    """Check database contents for debugging
+    
+    Args:
+        symbol: Optional symbol to filter by
+        limit: Number of records to show
+    """
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        
+        if symbol:
+            query = f"""
+            SELECT symbol, date, close 
+            FROM price_history 
+            WHERE symbol = ?
+            ORDER BY date DESC 
+            LIMIT {limit}
+            """
+            df = pd.read_sql_query(query, conn, params=(symbol,))
+        else:
+            query = f"""
+            SELECT symbol, date, close 
+            FROM price_history 
+            ORDER BY date DESC 
+            LIMIT {limit}
+            """
+            df = pd.read_sql_query(query, conn)
+        
+        conn.close()
+        
+        if not df.empty:
+            print(f"Database contents (last {limit} records" + (f" for {symbol}" if symbol else "") + "):")
+            print(df.to_string())
+        else:
+            print(f"No data found in database" + (f" for {symbol}" if symbol else ""))
+            
+    except Exception as e:
+        print(f"Error checking database contents: {e}")
+
+def test_database_fix():
+    """Test database functionality"""
+    print("Testing database fixes...")
+    
+    # Check what's in the database
+    check_database_contents("QQQ", 5)
+    
+    # Try to fetch some data
+    end_date = datetime.now().date()
+    start_date = end_date - timedelta(days=30)
+    
+    print(f"\nTesting database fetch for QQQ from {start_date} to {end_date}")
+    db_data = get_historical_data_from_db("QQQ", start_date, end_date)
+    
+    if db_data is not None and not db_data.empty:
+        print(f"SUCCESS: Retrieved {len(db_data)} days of data from database")
+        print("Sample data:")
+        print(db_data.head())
+    else:
+        print("FAILED: Could not retrieve data from database")
+        
+    # Test getting a specific historical price
+    test_date = end_date - timedelta(days=5)
+    price = get_historical_price_from_db("QQQ", test_date)
+    if price:
+        print(f"SUCCESS: Retrieved price for {test_date}: ${price:.2f}")
+    else:
+        print(f"FAILED: Could not retrieve price for {test_date}")
+
+def _standardize_df(df, source="unknown"):
+    """Standardize DataFrame format"""
+    if df is None or df.empty:
+        print(f"Input DataFrame from {source} is empty or None. Cannot standardize.")
+        return None
+
+    df_copy = df.copy()
+
+    # Standardize column names
+    rename_map = {}
+    for col in df_copy.columns:
+        col_str = str(col).lower()
+        if 'open' in col_str:
+            rename_map[col] = 'Open'
+        elif 'high' in col_str:
+            rename_map[col] = 'High'
+        elif 'low' in col_str:
+            rename_map[col] = 'Low'
+        elif 'close' in col_str:
+            rename_map[col] = 'Close'
+        elif 'adj' in col_str:
+            rename_map[col] = 'Adj Close'
+        elif 'volume' in col_str:
+            rename_map[col] = 'Volume'
+
+    df_copy.rename(columns=rename_map, inplace=True)
+
+    # Convert numeric columns
+    for col in ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']:
+        if col in df_copy.columns:
+            df_copy[col] = pd.to_numeric(df_copy[col], errors="coerce")
+        
+    if not isinstance(df_copy.index, pd.DatetimeIndex):
+        df_copy.index = pd.to_datetime(df_copy.index)
+
+    df_copy = df_copy.sort_index()
+    df_copy.dropna(subset=["Close"], inplace=True)
+    df_copy.dropna(how="all", inplace=True)
+    
+    if df_copy.empty:
+        print(f"DataFrame became empty after standardization for {source}.")
+        return None
+    
+    return df_copy
+
+def _fetch_historical_data_yfinance(symbol, start_date, end_date):
+    """Fetch historical data from yfinance"""
+    yf_symbol = get_yfinance_symbol(symbol)
+        
+    try:
+        print(f"Fetching historical data for {symbol} from yfinance...")
+        
+        # Add retry logic for rate limiting
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                data_yf = yf.download(
+                    yf_symbol, 
+                    start=start_date, 
+                    end=end_date, 
+                    progress=False
+                )
+                
+                if not data_yf.empty:
+                    data_yf_std = _standardize_df(data_yf, source="yfinance_historical")
+                    if data_yf_std is not None and not data_yf_std.empty:
+                        print(f"Successfully fetched and standardized data for {symbol} from yfinance.")
+                        return data_yf_std
+                    else:
+                        print(f"yfinance data for {symbol} was empty after standardization.")
+                else:
+                    print(f"yfinance returned empty DataFrame for {symbol}.")
+                break  # If no rate limit error, break the retry loop
+
+            except Exception as e:
+                if "rate limit" in str(e).lower() and attempt < max_retries - 1:
+                    wait_time = (attempt + 1) * 30  # Exponential backoff: 30, 60, 90 seconds
+                    print(f"Rate limited. Waiting {wait_time} seconds before retry...")
+                    time.sleep(wait_time)
+                else:
+                    print(f"yfinance historical download failed for {symbol}: {e}")
+                    break
+
+        return None
+        
+    except Exception as e:
+        print(f"yfinance historical download failed for {symbol}: {e}")
+        return None
+
+def _fetch_current_price_yfinance(symbol):
+    """Fetch current price from yfinance"""
+    yf_symbol = get_yfinance_symbol(symbol)
+        
+    try:
+        print(f"Fetching current price for {symbol} from yfinance...")
+        
+        # Add retry logic for rate limiting
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                ticker_yf = yf.Ticker(yf_symbol)
+                hist = ticker_yf.history(period="2d", interval="1d", auto_adjust=False, actions=False)
+
+                if not hist.empty and 'Close' in hist.columns:
+                    current_price = hist['Close'].iloc[-1]
+                    print(f"Successfully fetched current price for {symbol} from yfinance: {current_price}")
+                    return float(current_price)
+                else:
+                    print(f"yfinance history for current price of {symbol} was empty or lacked 'Close' column.")
+                    break
+
+            except Exception as e:
+                if "rate limit" in str(e).lower() and attempt < max_retries - 1:
+                    print(f"Rate limited, retrying in 5 seconds... (attempt {attempt + 1}/{max_retries})")
+                    time.sleep(5)
+                    continue
+                else:
+                    print(f"yfinance current price fetch failed for {symbol}: {e}")
+                    break
+
+        return None
+        
+    except Exception as e:
+        print(f"yfinance current price fetch failed for {symbol}: {e}")
+        return None
+
+def fetch_current_price_alphavantage(symbol):
+    """Fetch current price from Alpha Vantage
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., QQQ, ^VIX)
+    
+    Returns:
+        float: Current price or None if failed
+    """
+    if not ENABLE_ALPHAVANTAGE or not ALPHAVANTAGE_API_KEY:
+        print("Alpha Vantage is disabled or API key is missing")
+        return None
+
+    av_symbol = symbol
+    if symbol.upper() == "VIX":
+        av_symbol = "^VIX"
+    
+    cache_key = f"{av_symbol}_av_price"
+    
+    # Check memory cache first - but use shorter expiry for crypto
+    is_crypto_symbol = is_crypto(symbol)
+    cache_expiry = CACHE_EXPIRY // 2 if is_crypto_symbol else CACHE_EXPIRY
+    
+    if _is_cache_valid(cache_key) and time.time() - CACHE['last_update'][cache_key] < cache_expiry:
+        print(f"Using memory cached price for {av_symbol} from Alpha Vantage")
+        return CACHE['prices'].get(cache_key)
+    
+    # Check file cache next - only for non-crypto symbols
+    if not is_crypto_symbol:
+        file_cache_data = load_from_file_cache(cache_key)
+        if file_cache_data is not None:
+            print(f"Using file cached price for {av_symbol} from Alpha Vantage")
+            # Update memory cache from file cache
+            CACHE['prices'][cache_key] = file_cache_data
+            CACHE['last_update'][cache_key] = time.time()
+            return file_cache_data
+    
+    try:
+        print(f"Fetching current price for {symbol} from Alpha Vantage using GLOBAL_QUOTE...")
+        
+        # Construct API URL with parameters for GLOBAL_QUOTE endpoint
+        params = {
+            'function': 'GLOBAL_QUOTE',
+            'symbol': av_symbol,
+            'apikey': ALPHAVANTAGE_API_KEY
+        }
+        
+        # Make API request
+        response = requests.get(ALPHAVANTAGE_API_URL, params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Check for API limit messages
+        if 'Note' in data:
+            print(f"Alpha Vantage API limit reached: {data['Note']}")
+            return None
+
+        if 'Global Quote' in data and '05. price' in data['Global Quote']:
+            price = float(data['Global Quote']['05. price'])
+            
+            # Update memory cache
+            CACHE['prices'][cache_key] = price
+            CACHE['last_update'][cache_key] = time.time()
+            
+            # Update file cache for non-crypto
+            if not is_crypto_symbol:
+                save_to_file_cache(cache_key, price)
+            
+            print(f"Successfully fetched current price for {av_symbol} from Alpha Vantage: {price}")
+            return price
+        else:
+            print(f"No price data returned from Alpha Vantage for {av_symbol}")
+            return None
+
+        if 'Information' in data:
+            print(f"Alpha Vantage message: {data['Information']}")
+
+        if 'Error Message' in data:
+            print(f"Alpha Vantage error: {data['Error Message']}")
+
+    except Exception as e:
+        print(f"Error fetching price from Alpha Vantage for {av_symbol}: {e}")
+        return None
+
+def fetch_historical_data_alphavantage(symbol, start_date, end_date):
+    """Fetch historical data from Alpha Vantage
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., QQQ, ^VIX)
+        start_date: Start date
+        end_date: End date
+    """
+    if not ENABLE_ALPHAVANTAGE or not ALPHAVANTAGE_API_KEY:
+        print("Alpha Vantage is disabled or API key is missing")
+        return None
+
+    av_symbol = symbol
+    if symbol.upper() == "VIX":
+        av_symbol = "^VIX"
+    
+    # Create a unique cache key for this request
+    if isinstance(start_date, datetime):
+        start_str = start_date.strftime("%Y-%m-%d")
+    else:
+        start_str = start_date
+        
+    if isinstance(end_date, datetime):
+        end_str = end_date.strftime("%Y-%m-%d")
+    else:
+        end_str = end_date
+        
+    cache_key = f"{av_symbol}_hist_{start_str}_{end_str}"
+    
+    # Check file cache - only for non-crypto symbols
+    if not is_crypto(symbol):
+        file_cache_data = load_from_file_cache(cache_key)
+        if file_cache_data is not None:
+            print(f"Using file cached historical data for {av_symbol}")
+            # Convert the cached dictionary back to DataFrame
+            df = pd.DataFrame.from_dict(file_cache_data)
+            df.index = pd.to_datetime(df.index)
+            return df
+    
+    try:
+        print(f"Fetching historical data for {symbol} from Alpha Vantage...")
+        
+        # Construct API URL with parameters
+        params = {
+            'function': 'TIME_SERIES_DAILY',
+            'symbol': av_symbol,
+            'outputsize': 'full',  # Get full history for date filtering
+            'apikey': ALPHAVANTAGE_API_KEY
+        }
+        
+        # Make API request
+        response = requests.get(ALPHAVANTAGE_API_URL, params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Check for API limit messages
+        if 'Note' in data:
+            print(f"Alpha Vantage API limit reached: {data['Note']}")
+            return None
+
+        if 'Time Series (Daily)' in data:
+            time_series = data['Time Series (Daily)']
+            
+            # Convert to DataFrame
+            df = pd.DataFrame.from_dict(time_series, orient='index')
+            
+            # Rename columns
+            df.rename(columns={
+                '1. open': 'Open',
+                '2. high': 'High',
+                '3. low': 'Low',
+                '4. close': 'Close',
+                '5. volume': 'Volume'
+            }, inplace=True)
+            
+            # Convert index to datetime and sort
+            df.index = pd.to_datetime(df.index)
+            df.sort_index(inplace=True)
+            
+            # Add Adj Close (same as Close for simplicity)
+            df['Adj Close'] = df['Close']
+            
+            # Convert to numeric
+            for col in ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']:
+                if col in df.columns:
+                    df[col] = pd.to_numeric(df[col])
+            
+            # Filter date range
+            if isinstance(start_date, str):
+                start_date = datetime.strptime(start_date, "%Y-%m-%d")
+            if isinstance(end_date, str):
+                end_date = datetime.strptime(end_date, "%Y-%m-%d")
+                
+            # Filter to requested date range
+            df = df[(df.index >= pd.Timestamp(start_date)) & 
+                    (df.index <= pd.Timestamp(end_date))]
+            
+            if not df.empty:
+                print(f"Successfully fetched historical data for {av_symbol} from Alpha Vantage: {len(df)} days")
+                
+                # Save to file cache (convert DataFrame to dict for serialization) - only for non-crypto
+                if not is_crypto(symbol):
+                    save_to_file_cache(cache_key, df.to_dict())
+                
+                return df
+            else:
+                print(f"No data found for {av_symbol} in requested date range")
+                return None
+        else:
+            print(f"No historical data returned from Alpha Vantage for {av_symbol}")
+
+            if 'Information' in data:
+                print(f"Alpha Vantage message: {data['Information']}")
+
+            if 'Error Message' in data:
+                print(f"Alpha Vantage error: {data['Error Message']}")
+
+    except Exception as e:
+        print(f"Error fetching historical data from Alpha Vantage for {av_symbol}: {e}")
+        return None
+
+def fetch_current_price_coinmetrics(symbol):
+    """Fetch current price from CoinMetrics
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., BTC-USD)
+    
+    Returns:
+        float: Current price or None if failed
+    """
+    if not ENABLE_COINMETRICS:
+        return None
+
+    cm_symbol = get_coinmetrics_symbol(symbol)
+    cache_key = f"{cm_symbol}_price"
+    
+    # Check cache first - but use very short expiry for crypto (5 minutes max)
+    if _is_cache_valid(cache_key) and time.time() - CACHE['last_update'][cache_key] < 300:  # 5 minutes
+        print(f"Using cached price for {cm_symbol} from CoinMetrics")
+        return CACHE['prices'].get(cache_key)
+    
+    try:
+        print(f"Fetching current price for {symbol} from CoinMetrics...")
+        
+        # Construct API URL
+        params = {
+            'assets': cm_symbol,
+            'metrics': 'PriceUSD',
+            'frequency': '1d',
+            'page_size': 1,
+            'sort': 'time',
+            'order': 'desc'
+        }
+        
+        response = requests.get(COIN_METRICS_API_URL, params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Process response
+        if 'data' in data and data['data']:
+            price = float(data['data'][0]['values'][0]['value'])
+            
+            # Update cache
+            CACHE['prices'][cm_symbol] = price
+            CACHE['last_update'][cache_key] = time.time()
+            
+            print(f"Successfully fetched current price for {cm_symbol} from CoinMetrics: {price}")
+            return price
+        else:
+            print(f"No price data returned from CoinMetrics for {cm_symbol}")
+            return None
+
+    except Exception as e:
+        print(f"Error fetching price from CoinMetrics for {cm_symbol}: {e}")
+        return None
+
+def fetch_historical_data_coinmetrics(symbol, start_date, end_date):
+    """Fetch historical data from CoinMetrics
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., BTC-USD)
+        start_date: Start date
+        end_date: End date
+    """
+    if not ENABLE_COINMETRICS:
+        return None
+
+    cm_symbol = get_coinmetrics_symbol(symbol)
+    
+    if isinstance(start_date, str):
+        start_date_str = start_date
+    elif isinstance(start_date, datetime):
+        start_date_str = start_date.strftime("%Y-%m-%d")
+    else:
+        start_date_str = start_date.strftime("%Y-%m-%d")
+        
+    if isinstance(end_date, str):
+        end_date_str = end_date
+    elif isinstance(end_date, datetime):
+        end_date_str = end_date.strftime("%Y-%m-%d")
+    else:
+        end_date_str = end_date.strftime("%Y-%m-%d")
+    
+    try:
+        print(f"Fetching historical data for {symbol} from CoinMetrics...")
+        
+        # Construct API URL
+        params = {
+            'assets': cm_symbol,
+            'metrics': 'PriceUSD',
+            'start_time': start_date_str,
+            'end_time': end_date_str,
+            'frequency': '1d'
+        }
+        
+        response = requests.get(COIN_METRICS_API_URL, params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Process response
+        if 'data' in data and data['data']:
+            # Create DataFrame from API response
+            dates = []
+            prices = []
+            
+            for item in data['data']:
+                date_str = item['time'].split('T')[0]
+                price = float(item['values'][0]['value'])
+                
+                dates.append(date_str)
+                prices.append(price)
+            
+            # Create DataFrame with price data
+            df = pd.DataFrame({
+                'Date': pd.to_datetime(dates),
+                'Close': prices
+            })
+            
+            # Add other required columns (same as Close for crypto)
+            df['Open'] = df['Close']
+            df['High'] = df['Close']
+            df['Low'] = df['Close']
+            df['Adj Close'] = df['Close']
+            df['Volume'] = 0
+            
+            # Set date as index
+            df.set_index('Date', inplace=True)
+            df.sort_index(inplace=True)
+            
+            print(f"Successfully fetched historical data for {cm_symbol} from CoinMetrics: {len(df)} days")
+            return df
+        else:
+            print(f"No historical data returned from CoinMetrics for {cm_symbol}")
+            return None
+
+    except Exception as e:
+        print(f"Error fetching historical data from CoinMetrics for {cm_symbol}: {e}")
+        return None
+
+def fetch_crypto_price_direct(symbol):
+    """Fetch crypto price directly from CoinGecko
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., BTC-USD, ALGO-USD)
+    
+    Returns:
+        float: Current price or None if failed
+    """
+    if '-USD' in symbol:
+        coin = symbol.split('-')[0].lower()
+    else:
+        coin = symbol.lower()
+    
+    # Map common symbols to CoinGecko IDs
+    coin_map = {
+        'btc': 'bitcoin',
+        'eth': 'ethereum',
+        'algo': 'algorand',
+        'sol': 'solana',
+        'ada': 'cardano',
+        'xrp': 'ripple',
+        'dot': 'polkadot',
+        'doge': 'dogecoin',
+        'shib': 'shiba-inu',
+        'avax': 'avalanche-2',
+        'matic': 'matic-network',
+        'link': 'chainlink'
+    }
+    
+    if coin in coin_map:
+        coin_id = coin_map[coin]
+    else:
+        print(f"Unknown coin: {coin}. Cannot map to CoinGecko ID.")
+        return None
+
+    try:
+        print(f"Fetching {symbol} price directly from CoinGecko...")
+        url = f"https://api.coingecko.com/api/v3/simple/price?ids={coin_id}&vs_currencies=usd"
+        
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        
+        if coin_id in data and 'usd' in data[coin_id]:
+            price = float(data[coin_id]['usd'])
+            print(f"Successfully fetched {symbol} price from CoinGecko: ${price}")
+            return price
+        else:
+            print(f"Could not find price data for {coin_id} in CoinGecko response")
+            return None
+
+    except Exception as e:
+        print(f"Error fetching {symbol} price from CoinGecko: {e}")
+        return None
+
+def fetch_onchain_metrics_fixed(symbol, start_date, end_date, metrics=None):
+    """Fetch onchain metrics using fixed approach"""
+    if not ENABLE_COINMETRICS:
+        return None
+
+    cm_symbol = get_coinmetrics_symbol(symbol)
+    
+    # Format dates
+    if isinstance(start_date, str):
+        start_date_str = start_date
+    elif isinstance(start_date, datetime):
+        start_date_str = start_date.strftime("%Y-%m-%d")
+    else:
+        start_date_str = start_date.strftime("%Y-%m-%d")
+        
+    if isinstance(end_date, str):
+        end_date_str = end_date
+    elif isinstance(end_date, datetime):
+        end_date_str = end_date.strftime("%Y-%m-%d")
+    else:
+        end_date_str = end_date.strftime("%Y-%m-%d")
+    
+    # Use the working metrics from our successful test
+    if not metrics:
+        metrics = ["AdrActCnt", "FeeTotUSD", "TxCnt", "TxTfrValAdjUSD"]
+
+    try:
+        print(f"Fetching onchain metrics for {symbol} from CoinMetrics Community API...")
+        
+        # Use the WORKING API parameters
+        url = "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics"
+        params = {
+            "assets": cm_symbol,
+            "metrics": ",".join(metrics),
+            "start_time": start_date_str,
+            "end_time": end_date_str
+        }
+        
+        response = requests.get(
+            url,
+            params=params,
+            timeout=15,
+            headers={'User-Agent': 'Python/requests'}
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            
+            if 'data' in data and data['data']:
+                records = data['data']
+                print(f"Retrieved {len(records)} records from CoinMetrics")
+                
+                # Process data in the working format
+                result_dict = {}
+                for record in records:
+                    date_str = record['time'][:10]  # Extract date part
+                    if date_str not in result_dict:
+                        result_dict[date_str] = {}
+                    
+                    # Extract each metric
+                    for metric in metrics:
+                        if metric in record and record[metric] is not None:
+                            try:
+                                result_dict[date_str][metric] = float(record[metric])
+                            except (ValueError, TypeError):
+                                continue
+                
+                if result_dict:
+                    df = pd.DataFrame.from_dict(result_dict, orient='index')
+                    df.index = pd.to_datetime(df.index)
+                    df.sort_index(inplace=True)
+                    
+                    # Save to database using existing function
+                    save_onchain_metrics_to_db(cm_symbol, df)
+                    
+                    print(f"Successfully fetched {len(df)} days of on-chain data with {len(df.columns)} metrics")
+                    return df
+                    
+            else:
+                print("No data in response")
+                return None
+        else:
+            print(f"API request failed: {response.status_code}")
+            return None
+
+    except Exception as e:
+        print(f"Error fetching onchain metrics: {e}")
+        return None
+
+def fetch_onchain_metrics(symbol, start_date, end_date, metrics=None):
+    """Wrapper function for onchain metrics fetching"""
+    return fetch_onchain_metrics_fixed(symbol, start_date, end_date, metrics)
+
+# Main functions for external use
+
+def get_current_price(symbol, api_key_twelvedata=None):
+    """Get current price for any symbol
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., QQQ, BTC-USD, VIX)
+        api_key_twelvedata: Unused parameter for compatibility
+    
+    Returns:
+        float: Current price or None if failed
+    """
+    if symbol is None:
+        print(f"Error: Cannot fetch current price for None symbol")
+        return None
+
+    if symbol.upper() in ["VIX", "^VIX"]:
+        vix_price = get_reliable_vix_price()
+        if vix_price:
+            save_current_price_to_db("VIX", vix_price)
+            save_current_price_to_db("^VIX", vix_price)
+            return vix_price
+    
+    # Special handling for QQQ - use Alpha Vantage first
+    if symbol.upper() == "QQQ":
+        price = fetch_current_price_alphavantage(symbol)
+        if price:
+            save_current_price_to_db(symbol, price)
+            return price
+
+    # Check if symbol is cryptocurrency
+    is_crypto_symbol = is_crypto(symbol)
+    
+    # For crypto, try direct CoinGecko fetch first (most reliable for current prices)
+    if is_crypto_symbol:
+        price = fetch_crypto_price_direct(symbol)
+        if price:
+            save_current_price_to_db(symbol, price)
+            return price
+    
+    # For crypto, try CoinMetrics next if enabled
+    if is_crypto_symbol and ENABLE_COINMETRICS:
+        price = fetch_current_price_coinmetrics(symbol)
+        if price:
+            save_current_price_to_db(symbol, price)
+            return price
+    
+    # Try yfinance next (primary source for non-crypto, backup for crypto)
+    price = _fetch_current_price_yfinance(symbol)
+    if price:
+        save_current_price_to_db(symbol, price)
+        return price
+    
+    # If all methods fail, check if we have today's price in database
+    today = datetime.now().date()
+    db_price = get_historical_price_from_db(symbol, today)
+    if db_price:
+        return db_price
+
+    print(f"Failed to get current price for {symbol} from all sources")
+    return None
+
+def get_historical_price(symbol, target_date):
+    """Get historical price for a specific date
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., QQQ, BTC-USD, VIX)
+        target_date: The target date
+    
+    Returns:
+        float: Historical price or None if failed
+    """
+    if symbol is None:
+        print(f"Error: Cannot fetch historical price for None symbol")
+        return None
+
+    # Try database first
+    db_price = get_historical_price_from_db(symbol, target_date)
+    if db_price:
+        return db_price
+
+    if isinstance(target_date, str):
+        target_date_dt = datetime.strptime(target_date, "%Y-%m-%d")
+    else:
+        target_date_dt = target_date
+    
+    # Add one day to end date to ensure we get the target date
+    end_date = target_date_dt + timedelta(days=1)
+    
+    # Check if symbol is cryptocurrency
+    is_crypto_symbol = is_crypto(symbol)
+    
+    # For QQQ and VIX, try Alpha Vantage first
+    if symbol.upper() in ["QQQ", "VIX", "^VIX"]:
+        hist_data = fetch_historical_data_alphavantage(symbol, target_date_dt, end_date)
+        if hist_data is not None and not hist_data.empty:
+            save_historical_data_to_db(symbol, hist_data)
+            
+            # Find the closest date
+            target_date_str = target_date_dt.strftime("%Y-%m-%d")
+            hist_data_on_date = hist_data[hist_data.index.strftime("%Y-%m-%d") == target_date_str]
+            
+            if not hist_data_on_date.empty:
+                price = hist_data_on_date['Close'].iloc[0]
+                print(f"Found price for {symbol} on {target_date_str} from Alpha Vantage: ${price:.2f}")
+                return float(price)
+    
+    # For crypto, try CoinMetrics first if enabled
+    elif is_crypto_symbol and ENABLE_COINMETRICS:
+        hist_data = fetch_historical_data_coinmetrics(symbol, target_date_dt, end_date)
+        if hist_data is not None and not hist_data.empty:
+            save_historical_data_to_db(symbol, hist_data)
+            
+            # Find the closest date
+            target_date_str = target_date_dt.strftime("%Y-%m-%d")
+            hist_data_on_date = hist_data[hist_data.index.strftime("%Y-%m-%d") == target_date_str]
+            
+            if not hist_data_on_date.empty:
+                price = hist_data_on_date['Close'].iloc[0]
+                print(f"Found price for {symbol} on {target_date_str} from CoinMetrics: ${price:.2f}")
+                return float(price)
+    
+    # Use yfinance as fallback
+    hist_data = _fetch_historical_data_yfinance(symbol, target_date_dt, end_date)
+    if hist_data is not None and not hist_data.empty:
+        save_historical_data_to_db(symbol, hist_data)
+        
+        # Find the closest date
+        target_date_str = target_date_dt.strftime("%Y-%m-%d")
+        closest_date = None
+        min_diff = float('inf')
+        
+        for date_idx in hist_data.index:
+            date_str = date_idx.strftime("%Y-%m-%d")
+            date_diff = abs((date_idx.date() - target_date_dt.date()).days)
+            
+            if date_diff < min_diff:
+                min_diff = date_diff
+                closest_date = date_idx
+        
+        if closest_date is not None:
+            price = hist_data.loc[closest_date, 'Close']
+            print(f"Found closest price for {symbol} on {closest_date.date()} (target: {target_date_dt.date()}): ${price:.2f}")
+            return float(price)
+    
+    print(f"Failed to get historical price for {symbol} on {target_date}")
+    return None
+
+def get_historical_data(symbol, start_date, end_date):
+    """Get historical data for a symbol
+    
+    Args:
+        symbol (str): The symbol to fetch (e.g., QQQ, BTC-USD, VIX)
+        start_date: Start date
+        end_date: End date
+    
+    Returns:
+        DataFrame: Historical data or None if failed
+    """
+    if symbol is None:
+        print(f"Error: Cannot fetch historical data for None symbol")
+        return None
+
+    # Try database first if caching is enabled
+    if ENABLE_DB_CACHE:
+        db_data = get_historical_data_from_db(symbol, start_date, end_date)
+        if db_data is not None and not db_data.empty:
+            return db_data
+
+    if symbol.upper() in ["QQQ", "VIX", "^VIX"]:
+        av_data = fetch_historical_data_alphavantage(symbol, start_date, end_date)
+        if av_data is not None and not av_data.empty:
+            save_historical_data_to_db(symbol, av_data)
+            return av_data
+    
+    # Check if symbol is cryptocurrency
+    is_crypto_symbol = is_crypto(symbol)
+    
+    # For crypto, try CoinMetrics first if enabled
+    if is_crypto_symbol and ENABLE_COINMETRICS:
+        cm_data = fetch_historical_data_coinmetrics(symbol, start_date, end_date)
+        if cm_data is not None and not cm_data.empty:
+            save_historical_data_to_db(symbol, cm_data)
+            return cm_data
+    
+    # If not in database or CoinMetrics (for crypto), fetch from yfinance
+    hist_data = _fetch_historical_data_yfinance(symbol, start_date, end_date)
+    if hist_data is not None and not hist_data.empty:
+        save_historical_data_to_db(symbol, hist_data)
+        return hist_data
+    
+    print(f"Failed to get historical data for {symbol} from {start_date} to {end_date}")
+    return None
+
+def fetch_historical_data(symbol, start_date, end_date, api_key_twelvedata=None, **kwargs):
+    """Compatibility wrapper for historical data fetching"""
+    if symbol is None:
+        print(f"Error: Cannot fetch historical data for None symbol")
+        return None
+
+    return get_historical_data(symbol, start_date, end_date)
+
+def fetch_current_price(symbol, api_key_twelvedata=None):
+    """Compatibility wrapper for current price fetching"""
+    if symbol is None:
+        print(f"Error: Cannot fetch current price for None symbol")
+        return None
+
+    if is_crypto(symbol):
+        clear_cache()
+        
+    return get_current_price(symbol, api_key_twelvedata)
+
+# Bitcoin-specific function with on-chain metrics
+
+def fetch_bitcoin_with_onchain(start_date, end_date, api_key=None):
+    """Fetch Bitcoin data with onchain metrics
+    
+    Args:
+        start_date: Start date
+        end_date: End date
+        api_key (str, optional): API key for additional data sources
+    
+    Returns:
+        DataFrame: Bitcoin data with onchain metrics
+    """
+    clear_cache()
+    
+    # Convert dates to proper format if needed
+    if isinstance(start_date, str):
+        start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+    if isinstance(end_date, str):
+        end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+    
+    print(f"Fetching Bitcoin data with on-chain metrics from {start_date} to {end_date}")
+    
+    # Get Bitcoin price data (database first, then external)
+    if ENABLE_DB_CACHE:
+        print(f"Trying to retrieve Bitcoin data from database for period {start_date} to {end_date}")
+        btc_data = get_historical_data_from_db("BTC-USD", start_date, end_date)
+        if btc_data is not None and not btc_data.empty:
+            print(f"Successfully retrieved {len(btc_data)} days of Bitcoin price data from database")
+        else:
+            print("No Bitcoin data found in database for requested period, fetching from external sources")
+            btc_data = get_historical_data("BTC-USD", start_date, end_date)
+    else:
+        btc_data = get_historical_data("BTC-USD", start_date, end_date)
+    
+    if btc_data is None or btc_data.empty:
+        print("Failed to fetch Bitcoin price data. Cannot add on-chain metrics.")
+        return None
+
+    print("Fetching on-chain metrics for Bitcoin using working approach...")
+    onchain_data = get_onchain_metrics_from_db("btc", start_date, end_date)
+    
+    # If not enough data in DB, fetch fresh data
+    if onchain_data is None or onchain_data.empty or len(onchain_data) < 7:
+        print("Insufficient on-chain data in database, fetching fresh data...")
+        onchain_data = fetch_onchain_metrics_fixed("BTC-USD", start_date, end_date)
+    
+    if onchain_data is not None and not onchain_data.empty:
+        df = btc_data.copy()
+        
+        # Ensure indices are datetime for join
+        df.index = pd.to_datetime(df.index)
+        onchain_data.index = pd.to_datetime(onchain_data.index)
+        
+        # Drop PriceUSD from onchain data if present
+        if "PriceUSD" in onchain_data.columns:
+            onchain_data = onchain_data.drop(columns=["PriceUSD"])
+        
+        # Join the DataFrames
+        result = df.join(onchain_data, how="left")
+        
+        print(f"Combined Bitcoin price data with {len(onchain_data.columns)} on-chain metrics")
+        print(f"On-chain columns: {list(onchain_data.columns)}")
+        
+        # Show data coverage
+        total_rows = len(result)
+        onchain_coverage = result[onchain_data.columns].dropna().shape[0]
+        coverage_pct = (onchain_coverage / total_rows) * 100 if total_rows > 0 else 0
+        
+        print(f"On-chain data coverage: {onchain_coverage}/{total_rows} days ({coverage_pct:.1f}%)")
+        
+        return result
+    else:
+        print("Could not fetch on-chain metrics, returning price data only")
+        print("Your model will work but without on-chain features")
+        return btc_data
+
+# Algorand-specific function with on-chain metrics
+
+def fetch_algorand_with_onchain(start_date, end_date, api_key=None):
+    """Fetch Algorand data with onchain metrics
+    
+    Args:
+        start_date: Start date
+        end_date: End date
+        api_key (str, optional): API key for additional data sources
+    
+    Returns:
+        DataFrame: Algorand data with onchain metrics or synthetic metrics
+    """
+    clear_cache()
+    
+    # Convert dates to proper format if needed
+    if isinstance(start_date, str):
+        start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+    if isinstance(end_date, str):
+        end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+    
+    print(f"Fetching Algorand data with on-chain metrics from {start_date} to {end_date}")
+    
+    # First try to get Algorand price data from database if available
+    if ENABLE_DB_CACHE:
+        print(f"Trying to retrieve Algorand data from database for period {start_date} to {end_date}")
+        algo_data = get_historical_data_from_db("ALGO-USD", start_date, end_date)
+        if algo_data is not None and not algo_data.empty:
+            print(f"Successfully retrieved {len(algo_data)} days of Algorand price data from database")
+        else:
+            print("No Algorand data found in database for requested period, fetching from external sources")
+            algo_data = get_historical_data("ALGO-USD", start_date, end_date)
+    else:
+        algo_data = get_historical_data("ALGO-USD", start_date, end_date)
+    
+    if algo_data is None or algo_data.empty:
+        print("Failed to fetch Algorand price data. Cannot add on-chain metrics.")
+        return None
+
+    # Try to get onchain metrics if CoinMetrics is enabled
+    if ENABLE_COINMETRICS:
+        print("Fetching on-chain metrics for Algorand...")
+        try:
+            onchain_data = get_onchain_metrics_from_db("algo", start_date, end_date)
+            if onchain_data is not None and not onchain_data.empty:
+                print(f"Successfully retrieved {len(onchain_data)} days of Algorand on-chain metrics from database")
+            else:
+                print("No Algorand on-chain metrics found in database, fetching from CoinMetrics")
+        
+        # If not in database or incomplete, fetch from CoinMetrics
+        except:
+            onchain_data = None
+            
+        if onchain_data is None or onchain_data.empty:
+            onchain_data = fetch_onchain_metrics("ALGO-USD", start_date, end_date)
+        
+        if onchain_data is not None and not onchain_data.empty:
+            df = algo_data.copy()
+            
+            # Ensure indices are datetime for join
+            df.index = pd.to_datetime(df.index)
+            onchain_data.index = pd.to_datetime(onchain_data.index)
+            
+            # Drop PriceUSD from onchain data as we already have price in algo_data
+            if "PriceUSD" in onchain_data.columns:
+                onchain_data = onchain_data.drop(columns=["PriceUSD"])
+            
+            # Join the DataFrames
+            result = df.join(onchain_data, how="left")
+            
+            print(f"Combined Algorand price data with {len(onchain_data.columns)} on-chain metrics")
+            return result
+    
+    # Fallback to synthetic metrics if CoinMetrics not enabled or failed
+    print("Adding synthetic on-chain metrics to Algorand data...")
+    
+    df = algo_data.copy()
+    df_len = len(df)
+    
+    # Synthetic active addresses
+    df["ActiveAddresses"] = np.maximum(1000, 
+                                     df["Close"] * 10000 + 
+                                     np.random.normal(0, df["Close"].mean() * 500, df_len))
+    df["ActiveAddresses"] = np.maximum(1000, df["ActiveAddresses"])
+    
+    # Transaction count
+    df["TransactionCount"] = df["ActiveAddresses"] * 0.5 + np.random.normal(0, 5000, df_len)
+    df["TransactionCount"] = np.maximum(100, df["TransactionCount"])
+    
+    # Transaction volume
+    df["AdjustedTransactionVolumeUSD"] = (
+        df["Close"] * df["TransactionCount"] * 0.1 + 
+        np.random.normal(0, 100000, df_len)
+    )
+    df["AdjustedTransactionVolumeUSD"] = np.maximum(1000, df["AdjustedTransactionVolumeUSD"])
+    
+    # Transaction fees (lower for Algorand)
+    df["TransactionFeesUSD"] = (
+        df["TransactionCount"] * 0.001 + 
+        np.random.normal(0, 10, df_len)
+    )
+    df["TransactionFeesUSD"] = np.maximum(1, df["TransactionFeesUSD"])
+    
+    print(f"Added synthetic on-chain metrics to Algorand data: {len(df.columns) - len(algo_data.columns)} new columns")
+    return df
+
+# Enhanced VIX price retrieval function
+
+def get_reliable_vix_price():
+    """Get VIX price from multiple sources with fallbacks"""
+    print("Fetching VIX price from multiple sources...")
+    
+    # Source 1: Yahoo Finance API (most reliable)
+    try:
+        import requests
+        url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.get(url, headers=headers, timeout=15)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'chart' in data and 'result' in data['chart']:
+                results = data['chart']['result']
+                if results and len(results) > 0:
+                    result = results[0]
+                    if 'meta' in result and 'regularMarketPrice' in result['meta']:
+                        vix_price = float(result['meta']['regularMarketPrice'])
+                        if 5.0 <= vix_price <= 100.0:  # Sanity check
+                            print(f"Got VIX from Yahoo API: {vix_price:.2f}")
+                            return vix_price
+    except Exception as e:
+        print(f"Yahoo API failed: {e}")
+    
+    # Source 2: Try existing Alpha Vantage function
+    try:
+        if 'fetch_current_price_alphavantage' in globals():
+            av_price = fetch_current_price_alphavantage("VIX")
+            if av_price and 5.0 <= av_price <= 100.0:
+                print(f"Got VIX from Alpha Vantage: {av_price:.2f}")
+                return av_price
+    except Exception as e:
+        print(f"Alpha Vantage failed: {e}")
+    
+    # Source 3: Try yfinance if available
+    try:
+        if '_fetch_current_price_yfinance' in globals():
+            yf_price = _fetch_current_price_yfinance("^VIX")
+            if yf_price and 5.0 <= yf_price <= 100.0:
+                print(f"Got VIX from yfinance: {yf_price:.2f}")
+                return yf_price
+    except Exception as e:
+        print(f"yfinance failed: {e}")
+    
+    # Source 4: Database fallback
+    try:
+        today = datetime.now().date()
+        
+        # Try to get recent VIX data from database
+        for days_back in range(7):
+            check_date = today - timedelta(days=days_back)
+            
+            if 'get_historical_price_from_db' in globals():
+                for symbol in ["VIX", "^VIX"]:
+                    db_price = get_historical_price_from_db(symbol, check_date)
+                    if db_price and 5.0 <= db_price <= 100.0:
+                        age_desc = "today" if days_back == 0 else f"{days_back} days ago"
+                        print(f"Using VIX from database ({age_desc}): {db_price:.2f}")
+                        return db_price
+    except Exception as e:
+        print(f"Database fallback failed: {e}")
+    
+    print("All VIX sources failed")
+    return None
+
+def get_vix_price(use_cached=True):
+    """Get VIX price with enhanced reliability
+    
+    Args:
+        use_cached (bool): Whether to use cached/database values as fallback
+    """
+    print("Getting VIX price with enhanced reliability...")
+    
+    # Try Alpha Vantage first
+    vix_price = fetch_current_price_alphavantage("VIX")
+    if vix_price:
+        print(f"Successfully retrieved VIX price from Alpha Vantage: {vix_price}")
+        # Save to database
+        save_current_price_to_db("VIX", vix_price)
+        save_current_price_to_db("^VIX", vix_price)  # Also save as ^VIX
+        return vix_price
+    
+    # Try Yahoo Finance direct scraping as a backup
+    try:
+        print("Trying to fetch VIX from Yahoo Finance...")
+        url = "https://finance.yahoo.com/quote/%5EVIX/"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code == 200:
+            html = response.text
+            # Simple parsing to find the current price
+            price_start = html.find('data-symbol="^VIX" data-field="regularMarketPrice"')
+            if price_start > 0:
+                value_start = html.find('value="', price_start) + 7
+                value_end = html.find('"', value_start)
+                vix_price = float(html[value_start:value_end])
+                print(f"Successfully scraped current VIX price from Yahoo: ${vix_price}")
+                
+                # Save this to the database as today's price
+                save_current_price_to_db("VIX", vix_price)
+                save_current_price_to_db("^VIX", vix_price)
+                return vix_price
+    except Exception as e:
+        print(f"Error scraping VIX from Yahoo Finance: {e}")
+    
+    # If Yahoo scraping fails and use_cached is True, try from database (recent price)
+    if use_cached:
+        today = datetime.now().date()
+        
+        # Try today first
+        db_price = get_historical_price_from_db("VIX", today)
+        if db_price:
+            print(f"Using today's VIX price from database: {db_price}")
+            return db_price
+            
+        # Try yesterday
+        yesterday = today - timedelta(days=1)
+        db_price = get_historical_price_from_db("VIX", yesterday)
+        if db_price:
+            print(f"Using yesterday's VIX price from database: {db_price}")
+            return db_price
+        
+        # Try other recent days (up to 7 days back)
+        for i in range(2, 8):
+            past_date = today - timedelta(days=i)
+            db_price = get_historical_price_from_db("VIX", past_date)
+            if db_price:
+                print(f"Using VIX price from {past_date}: {db_price}")
+                return db_price
+    
+    # If all else fails, return None and let caller handle
+    print("Failed to retrieve VIX price from all sources")
+    return None
+
+def _initialize_database():
+    """Initialize database tables"""
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Create price_history table if it doesn't exist
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS price_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            symbol TEXT,
+            date DATE,
+            open REAL,
+            high REAL,
+            low REAL,
+            close REAL,
+            adj_close REAL,
+            volume REAL,
+            UNIQUE(symbol, date)
+        )
+        """)
+        
+        # Create onchain_metrics table if it doesn't exist
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS onchain_metrics (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            asset TEXT,
+            date DATE,
+            metric TEXT,
+            value REAL,
+            UNIQUE(asset, date, metric)
+        )
+        """)
+        
+        # Create indices for faster lookups
+        cursor.execute("""
+        CREATE INDEX IF NOT EXISTS idx_price_history_symbol_date 
+        ON price_history(symbol, date)
+        """)
+        
+        cursor.execute("""
+        CREATE INDEX IF NOT EXISTS idx_onchain_metrics_asset_date
+        ON onchain_metrics(asset, date)
+        """)
+        
+        conn.commit()
+        conn.close()
+        print("Database tables initialized.")
+
+    except Exception as e:
+        print(f"Error initializing database: {e}")
+
+# Run database initialization
+_initialize_database()
+
+# Additional utility functions
+
+def test_coinmetrics_connectivity():
+    """Test CoinMetrics API connectivity"""
+    try:
+        catalog_url = "https://community-api.coinmetrics.io/v4/catalog/assets"
+        response = requests.get(catalog_url, timeout=10)
+        
+        if response.status_code == 200:
+            print("CoinMetrics API is accessible")
+            return True
+        else:
+            print(f"CoinMetrics API error: {response.status_code}")
+            return False
+
+    except Exception as e:
+        print(f"CoinMetrics connectivity test failed: {e}")
+        return False
+
+def get_latest_available_onchain_date(asset='btc'):
+    """Get the latest available onchain data date for an asset"""
+    try:
+        url = "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics"
+        params = {
+            'assets': asset,
+            'metrics': 'AdrActCnt',
+            'page_size': 1,
+            'sort': 'time',
+            'order': 'desc'
+        }
+        response = requests.get(url, params=params, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'data' in data and data['data']:
+                latest_date = data['data'][0]['time'].split('T')[0]
+                print(f"Latest on-chain data available for {asset}: {latest_date}")
+                return latest_date
+        
+        print(f"No on-chain data found for {asset}")
+        return None
+
+    except Exception as e:
+        print(f"Error getting latest on-chain date: {e}")
+        return None
+
+def get_available_metrics_for_asset(asset):
+    """Get available metrics for a specific asset"""
+    try:
+        url = "https://community-api.coinmetrics.io/v4/catalog/asset-metrics"
+        params = {'assets': asset}
+        response = requests.get(url, params=params, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'data' in data:
+                available_metrics = [item['metric'] for item in data['data']]
+                print(f"Found {len(available_metrics)} available metrics for {asset}")
+                return available_metrics
+        
+        return []
+
+    except Exception as e:
+        print(f"Error getting available metrics: {e}")
+        return []
+
+def get_fresh_bitcoin_onchain_data():
+    """Fetch fresh Bitcoin onchain data"""
+    print("FETCHING FRESH BITCOIN ON-CHAIN DATA")
+    print("=" * 50)
+    
+    # Get date range (last 7 days)
+    end_date = datetime.now().strftime('%Y-%m-%d')
+    start_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    
+    print(f"Date range: {start_date} to {end_date}")
+    
+    try:
+        # Use the working CoinMetrics Community API endpoint
+        url = "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics"
+        params = {
+            "assets": "btc",
+            "metrics": "AdrActCnt,FeeTotUSD,TxCnt,TxTfrValAdjUSD",
+            "start_time": start_date,
+            "end_time": end_date
+        }
+        
+        print("Requesting data from CoinMetrics...")
+        
+        response = requests.get(
+            url,
+            params=params,
+            timeout=15,
+            headers={'User-Agent': 'Python/requests'}
+        )
+        
+        print(f"Response status: {response.status_code}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            
+            if 'data' in data and data['data']:
+                records = data['data']
+                print(f"Retrieved {len(records)} records from CoinMetrics")
+                
+                # Show sample of what we got
+                if records:
+                    sample = records[0]
+                    print(f"Sample data: {sample['time'][:10]} - AdrActCnt: {sample.get('AdrActCnt', 'N/A')}")
+                
+                # Store to database
+                success = store_onchain_data_to_db_working(records)
+                
+                if success:
+                    print("Fresh on-chain data stored successfully!")
+                    return True
+                else:
+                    print("Data retrieved but storage failed")
+                    return False
+            else:
+                print("No data in response")
+                return False
+        else:
+            print(f"API request failed: {response.status_code}")
+            print(f"Error: {response.text[:200]}")
+            return False
+
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+        return False
+
+def store_onchain_data_to_db_working(coinmetrics_records):
+    """Store CoinMetrics records to database"""
+    print("\nSTORING TO DATABASE")
+    print("=" * 30)
+    
+    try:
+        # Find your database
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(script_dir, "models_dashboard.db")
+        
+        if not os.path.exists(db_path):
+            # Try alternative database path
+            db_path = DB_PATH
+        
+        if not os.path.exists(db_path):
+            print(f"Database not found: {db_path}")
+            return False
+
+        print(f"Database found: {db_path}")
+        
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Verify table structure
+        cursor.execute("PRAGMA table_info(onchain_metrics)")
+        columns = cursor.fetchall()
+        print(f"Table structure verified: {len(columns)} columns")
+        
+        inserted_count = 0
+        
+        # Process each record from CoinMetrics
+        for record in coinmetrics_records:
+            # Extract date (remove time part)
+            date_str = record['time'][:10]  # '2025-05-25T00:00:00...' -> '2025-05-25'
+            asset = 'btc'
+            
+            # Extract each metric and store as separate row (your table structure)
+            metrics = {
+                'AdrActCnt': record.get('AdrActCnt'),
+                'FeeTotUSD': record.get('FeeTotUSD'), 
+                'TxCnt': record.get('TxCnt'),
+                'TxTfrValAdjUSD': record.get('TxTfrValAdjUSD')
+            }
+            
+            # Insert each metric as a separate row
+            for metric_name, metric_value in metrics.items():
+                if metric_value is not None:
+                    try:
+                        if isinstance(metric_value, str):
+                            metric_value = float(metric_value)
+                        
+                        cursor.execute("""
+                            INSERT OR REPLACE INTO onchain_metrics 
+                            (asset, date, metric, value)
+                            VALUES (?, ?, ?, ?)
+                        """, (asset, date_str, metric_name, metric_value))
+                        
+                        inserted_count += 1
+                        
+                    except Exception as e:
+                        print(f"Error inserting {metric_name} for {date_str}: {e}")
+        
+        conn.commit()
+        conn.close()
+        
+        print(f"Inserted {inserted_count} metric records")
+        print(f"Data spans {len(coinmetrics_records)} days")
+        return True
+        
+    except Exception as e:
+        print(f"Database storage error: {e}")
+        return False
+
+def ensure_fresh_onchain_data(symbol="BTC-USD", max_age_days=3):
+    """Ensure we have fresh onchain data"""
+    try:
+        cm_symbol = get_coinmetrics_symbol(symbol)
+        
+        # Check current data status in database
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Get latest date in database
+        cursor.execute("""
+            SELECT MAX(date) as latest_date, COUNT(*) as record_count
+            FROM onchain_metrics 
+            WHERE asset = ?
+        """, (cm_symbol,))
+        
+        result = cursor.fetchone()
+        latest_date, record_count = result if result else (None, 0)
+        conn.close()
+        
+        # Check if we need fresh data
+        need_fresh_data = True
+        if latest_date:
+            try:
+                latest_dt = datetime.strptime(latest_date, '%Y-%m-%d')
+                days_old = (datetime.now() - latest_dt).days
+                
+                if days_old <= max_age_days and record_count > 10:
+                    print(f"On-chain data for {symbol} is fresh ({days_old} days old)")
+                    need_fresh_data = False
+                else:
+                    print(f"On-chain data for {symbol} is stale ({days_old} days old)")
+            except:
+                print(f"Cannot parse latest date: {latest_date}")
+        else:
+            print(f"No on-chain data found for {symbol}")
+        
+        # Fetch fresh data if needed
+        if need_fresh_data:
+            print(f"Fetching fresh on-chain data for {symbol}...")
+            
+            # Calculate date range
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=14)  # Get 2 weeks to ensure coverage
+            
+            # Use the fixed fetch function
+            fresh_data = fetch_onchain_metrics_fixed(symbol, start_date, end_date)
+            
+            if fresh_data is not None and not fresh_data.empty:
+                print(f"Successfully fetched {len(fresh_data)} days of fresh on-chain data")
+                return True
+            else:
+                print(f"Failed to fetch fresh on-chain data")
+                return False
+        
+        return True
+
+    except Exception as e:
+        print(f"Error ensuring fresh on-chain data: {e}")
+        return False
+
+def auto_refresh_onchain_data():
+    """Auto-refresh onchain data for key assets"""
+    try:
+        print("AUTO-REFRESH ON-CHAIN DATA")
+        print("=" * 35)
+        
+        # Try to ensure fresh data for Bitcoin
+        bitcoin_fresh = ensure_fresh_onchain_data("BTC-USD", max_age_days=2)
+        
+        # Try to ensure fresh data for Algorand if you use it
+        algo_fresh = ensure_fresh_onchain_data("ALGO-USD", max_age_days=2)
+        
+        if bitcoin_fresh:
+            print("Bitcoin on-chain data is fresh")
+        else:
+            print("Bitcoin on-chain data may be stale")
+        
+        if algo_fresh:
+            print("Algorand on-chain data is fresh")
+        else:
+            print("Algorand on-chain data may be stale")
+        
+        return bitcoin_fresh or algo_fresh
+        
+    except Exception as e:
+        print(f"Error in auto-refresh: {e}")
+        return False
+
+# Main execution block for testing
+if __name__ == "__main__":
+    print("Testing data_fetcher.py with QQQ, ALGO-USD and BTC-USD...")
+    
+    # Clear all caches first to ensure fresh data
+    clear_cache()
+    
+    # Test the database fix first
+    test_database_fix()
+    
+    # Test getting current price for QQQ
+    qqq_price = get_current_price("QQQ")
+    print(f"Current QQQ price: ${qqq_price:.2f}" if qqq_price else "Failed to get QQQ price")
+    
+    # Test getting current price for ALGO-USD
+    algo_price = get_current_price("ALGO-USD")
+    print(f"Current ALGO-USD price: ${algo_price:.4f}" if algo_price else "Failed to get ALGO-USD price")
+    
+    # Test getting current price for BTC-USD
+    btc_price = get_current_price("BTC-USD")
+    print(f"Current BTC-USD price: ${btc_price:.2f}" if btc_price else "Failed to get BTC-USD price")
+    
+    # Test VIX price with enhanced reliability
+    vix_price = get_vix_price()
+    print(f"Current VIX price: {vix_price:.2f}" if vix_price else "Failed to get VIX price with all methods")
+    
+    # Test getting historical data
+    # Get 5 days of historical data for BTC-USD
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=5)
+    btc_hist = get_historical_data("BTC-USD", start_date, end_date)
+
+    if btc_hist is not None and not btc_hist.empty:
+        print(f"Got {len(btc_hist)} days of BTC-USD data")
+        print(btc_hist.head())
+    else:
+        print("Failed to get BTC-USD historical data")
+    
+    # Test the improved fetch_bitcoin_with_onchain function
+    # Try with a longer date range to demonstrate database usage
+    long_start_date = "2022-01-01"
+    btc_with_metrics = fetch_bitcoin_with_onchain(long_start_date, end_date.strftime("%Y-%m-%d"))
+
+    if btc_with_metrics is not None and not btc_with_metrics.empty:
+        print(f"Successfully retrieved Bitcoin data with on-chain metrics: {len(btc_with_metrics)} days, {len(btc_with_metrics.columns)} columns")
+        print("Columns available:", btc_with_metrics.columns.tolist())
+    else:
+        print("Failed to get Bitcoin data with on-chain metrics")
+    
+    print("Data fetcher tests completed.")

@@ -1,0 +1,71 @@
+Trading Models Report - 2025-07-30 15:59
+
+Long Bull Model - N/A
+=====================
+Current Price: $567.26
+Target Price: $565.15
+Signal: HOLD
+Suggested Action: HOLD
+Confidence: 95%
+Risk Level: HIGH
+Stop Loss: 510.53
+
+QQQ Trading Signal - 2025-07-29T00:00:00
+========================================
+Current Price: $568.14
+Signal: HOLD
+Suggested Action: HOLD
+Confidence: 50.00
+
+Wishing Wealth QQQ Model - 2025-07-30T00:00:00
+==============================================
+Current Price: $567.26
+Signal: BUY
+Suggested Action: BUY
+Confidence: 85%
+GMI Score: 5/6
+Recommended ETF: TQQQ
+Strategy Total Return: +22.54%
+Win Rate: +30.20%
+Strategy: ------------------------------
+QQQ Trend: U-101
+
+NVIDIA Bull Momentum Model - N/A
+================================
+Current Price: $175.51
+Predicted 1-Day Price: $174.97
+Predicted 1-Day Return: -0.31
+Predicted 5-Day Price: $172.79
+Predicted 5-Day Return: -1.55
+Signal: SELL
+Suggested Action: SELL
+Confidence: 85%
+
+Algorand Model - 2025-07-16T00:00:00
+====================================
+Current Price: $0.29
+Predicted Price: $0.27
+Predicted 1-Day Price: $0.27
+Expected Return: -3.96
+Confidence: 95.00
+Market Regime: BULL_HIGH_VOL
+Direction Accuracy: 91.7%
+
+Bitcoin Model - 2025-07-30T00:00:00
+===================================
+Current Price: $116533.00
+Predicted 1-Day Price: $116619.63
+Predicted 1-Day Return: +0.07
+Predicted 3-Day Price: $117449.84
+Predicted 3-Day Return: +0.79
+Predicted 7-Day Price: $114726.62
+Predicted 7-Day Return: -1.55
+Suggested Action: HOLD
+
+SUMMARY
+==================================================
+Current Signals:
+  • Long Bull Model: HOLD
+  • QQQ Trading Signal: HOLD
+  • Wishing Wealth QQQ Model: BUY
+  • NVIDIA Bull Momentum Model: SELL

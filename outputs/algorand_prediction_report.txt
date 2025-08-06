@@ -1,0 +1,26 @@
+
+Algorand Price Prediction Model
+==============================
+
+Current Price: $0.2196
+
+Price Predictions:
+3-Day: $0.2282 (3.91%)
+7-Day: $0.2282 (3.91%)
+30-Day: $0.2282 (3.91%)
+
+Model Performance:
+RMSE: 0.008694
+MAE: 0.005377
+R²: 0.991936
+
+Key Price Drivers:
+High: 0.6910
+Low: 0.3040
+ma7: 0.0021
+volume_ma_ratio: 0.0006
+rsi: 0.0006
+
+Disclaimer: This prediction model is based on historical data and technical analysis.
+Cryptocurrency markets are highly volatile and subject to many external factors not captured in this model.
+This prediction should not be used as financial advice.
