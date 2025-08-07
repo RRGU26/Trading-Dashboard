@@ -235,6 +235,68 @@ def run_dashboard_data_collection():
         logger.error(f"[FAIL] Exception during dashboard data collection: {e}")
         return False
 
+def run_daily_trading_analysis():
+    """Run comprehensive daily trading analysis and send professional email"""
+    try:
+        logger.info("="*60)
+        logger.info("[ANALYSIS] STARTING DAILY TRADING ANALYSIS")
+        logger.info("="*60)
+        
+        # Check if daily_trading_analysis.py exists
+        analysis_script_path = os.path.join(script_dir, "daily_trading_analysis.py")
+        if not os.path.exists(analysis_script_path):
+            logger.error(f"[FAIL] Daily trading analysis script not found: {analysis_script_path}")
+            return False
+        
+        setup_environment()
+        
+        start_time = time.time()
+        process = subprocess.run(
+            [python_path, analysis_script_path],
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding='utf-8',
+            errors='replace',
+            timeout=300  # 5 minute timeout
+        )
+        
+        duration = time.time() - start_time
+        
+        # Log all output
+        if process.stdout:
+            logger.info("[ANALYSIS] Daily trading analysis output:")
+            for line in process.stdout.split('\n'):
+                if line.strip():
+                    logger.info(f"  {line}")
+        
+        if process.stderr:
+            logger.warning("[ANALYSIS] Daily trading analysis warnings/errors:")
+            for line in process.stderr.split('\n'):
+                if line.strip():
+                    logger.warning(f"  {line}")
+        
+        if process.returncode == 0:
+            logger.info(f"[OK] Daily trading analysis completed successfully in {duration:.1f} seconds")
+            
+            # Look for success indicators in output
+            if "analysis email sent successfully" in process.stdout:
+                logger.info("[EMAIL] ✅ Trading analysis email confirmed sent")
+            elif "Personal Trading Analysis" in process.stdout:
+                logger.info("[EMAIL] ✅ Trading analysis generated")
+            
+            return True
+        else:
+            logger.error(f"[FAIL] Daily trading analysis failed with exit code: {process.returncode}")
+            return False
+            
+    except subprocess.TimeoutExpired:
+        logger.error("[FAIL] Daily trading analysis timed out after 5 minutes")
+        return False
+    except Exception as e:
+        logger.error(f"[FAIL] Exception during daily trading analysis: {e}")
+        return False
+
 def run_database_health_check():
     """Run comprehensive database health check"""
     try:
@@ -583,11 +645,17 @@ def main():
             logger.info("[FINISH] COMPLETE WORKFLOW SUMMARY")
             logger.info("="*60)
             
+            # Run daily trading analysis (the comprehensive email)
+            logger.info("="*50)
+            logger.info("[ANALYSIS] Running daily trading analysis...")
+            trading_analysis_success = run_daily_trading_analysis()
+            
             workflow_steps = [
                 ("Model Execution", models_successful, "All prediction models ran successfully"),
                 ("Report Generation", send_report_success, "Email reports sent successfully"),
                 ("Data Collection", dashboard_success, "Dashboard data collected and verified"),
-                ("Health Check", health_check_success, "Database health validated")
+                ("Health Check", health_check_success, "Database health validated"),
+                ("Trading Analysis", trading_analysis_success, "Comprehensive trading analysis email sent")
             ]
             
             all_successful = True
