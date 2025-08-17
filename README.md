@@ -1,20 +1,22 @@
-# Trading Models System 🚀
+# Trading Dashboard 📊
 
-**Complete trading model ecosystem with 7 AI models, dashboard monitoring, and automated reporting**
+**Live cloud dashboard for trading models with real-time predictions and mobile-friendly interface**
 
-## 📊 System Overview
+## 🚀 Live Dashboard
 
-This repository contains a complete automated trading system with:
-- **7 AI Trading Models** (QQQ, Bitcoin, Algorand, NVIDIA, etc.)
-- **Master Orchestration** via `wrapper.py`
-- **Real-time Dashboard** with health monitoring
-- **Automated Email Reports** 
-- **Performance Analytics** and model validation
-- **Database Integration** for predictions and metrics
+🌐 **Access your live dashboard:** https://rrgu26-trading-dashboard.streamlit.app
 
-## 🎯 Models Included
+## 📊 Features
 
-1. **QQQ Long Horn Bull Model** - Primary QQQ predictions with VIX alignment
+- **📱 Mobile-Optimized** - Responsive design for all devices
+- **🔄 Auto-Updates** - Syncs with local trading system every 5 minutes  
+- **📈 Real-Time Signals** - Live predictions from all 7 trading models
+- **📊 Performance Charts** - Interactive analytics and visualizations
+- **📥 Data Export** - Download predictions as CSV
+
+## 🎯 Trading Models Included
+
+1. **QQQ Long Bull Model** - Primary QQQ predictions with VIX alignment
 2. **QQQ Trading Signal** - Confidence-based trading signals  
 3. **Algorand Price Prediction** - Crypto volatility-filtered predictions
 4. **Bitcoin Model** - Enhanced with on-chain metrics
@@ -144,3 +146,38 @@ System maintained by trading team. All models operational as of latest health ch
 **Generated**: August 6, 2025  
 **Total Files**: 335+ (22 core Python files, databases, cache, reports)
 **Status**: ✅ Fully Migrated and Operational
+=======
+# Trading Models Performance Dashboard
+
+A comprehensive Streamlit dashboard for monitoring and analyzing the performance of predictive trading models including Bitcoin, QQQ, Algorand, and VIX predictions.
+
+## 🚀 Live Demo
+
+[View Live Dashboard](https://your-app-name.streamlit.app) *(Will be available after deployment)*
+
+## 📊 Features
+
+- **Real-time Model Performance Tracking**: Monitor accuracy and predictions across multiple trading models
+- **Interactive Data Visualization**: Charts and graphs showing model performance over time
+- **Multi-timeframe Analysis**: View predictions across different horizons (1-day, 3-day, 7-day)
+- **Export Functionality**: Download prediction data as CSV files
+- **Responsive Design**: Works on desktop and mobile devices
+
+## 🏗️ Models Included
+
+- **Bitcoin Model**: Cryptocurrency price predictions with on-chain metrics
+- **QQQ Long Bull Model**: NASDAQ-100 ETF predictions
+- **Algorand Model**: ALGO cryptocurrency predictions  
+- **QQQ Trading Signal**: Technical analysis-based signals
+- **Wishing Well QQQ Model**: Advanced QQQ predictions
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Streamlit
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Plotly
+- **Database**: SQLite
+- **Deployment**: Streamlit Community Cloud
+
+## 📁 Project Structure
+>>>>>>> 32045aa7e458d93913248c6e2d7079ba073acdf7
