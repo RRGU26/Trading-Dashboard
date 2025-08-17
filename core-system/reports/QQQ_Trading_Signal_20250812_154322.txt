@@ -1,0 +1,17 @@
+=== QQQ Trading Signal Report ===
+Date: 2025-08-12 15:43:22
+Ticker: QQQ
+Current Price: 572.8500
+Predicted Return Horizon Days: 3
+Predicted Return Pct: 0.5667
+Predicted Price: 576.0965
+Confidence Pct: 18.4808
+Signal: NEUTRAL
+Action: HOLD
+Take Profit Price: None
+Stop Loss Price: None
+Risk Reward Ratio: None
+Predicted Price Lower Bound 95Ci: 558.8809
+Predicted Price Upper Bound 95Ci: 593.3120
+Daily Volatility Atr Ratio: 0.0089
+Prediction Volatility: 0.0153

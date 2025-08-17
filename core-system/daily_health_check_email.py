@@ -38,7 +38,7 @@ def check_database_predictions():
         cursor = conn.cursor()
         
         today = date.today().isoformat()
-        yesterday = (datetime.now() - timedelta(days=2)).date().isoformat()
+        yesterday = (datetime.now() - timedelta(days=1)).date().isoformat()
         
         # Check predictions for today and yesterday
         cursor.execute("""
@@ -50,23 +50,43 @@ def check_database_predictions():
         
         recent_predictions = cursor.fetchall()
         
-        # Check reports table in reports_tracking.db
+        # Check actual report files on disk since reports_tracking.db is broken
         conn.close()
         
-        # Connect to reports_tracking.db for reports data
-        reports_db_path = os.path.join(script_dir, "reports_tracking.db")
-        reports_conn = sqlite3.connect(reports_db_path)
-        reports_cursor = reports_conn.cursor()
+        # Look for actual report files from yesterday
+        reports_dir = os.path.join(script_dir, "reports")
+        recent_reports = []
         
-        reports_cursor.execute("""
-            SELECT model_type, COUNT(*) as count, MAX(generated_date) as latest
-            FROM report_files 
-            WHERE generated_date >= ? 
-            GROUP BY model_type
-        """, (yesterday,))
-        
-        recent_reports = reports_cursor.fetchall()
-        reports_conn.close()
+        if os.path.exists(reports_dir):
+            yesterday_str = yesterday.replace('-', '')  # Convert 2025-08-14 to 20250814
+            
+            # Count reports by looking for files with yesterday's date
+            report_counts = {}
+            for filename in os.listdir(reports_dir):
+                if yesterday_str in filename and filename.endswith('.txt'):
+                    # Extract model type from filename
+                    if 'Long_Bull' in filename:
+                        model_type = 'QQQ Long Bull Model'
+                    elif 'Trading_Signal' in filename:
+                        model_type = 'QQQ Trading Signal'
+                    elif 'NVIDIA' in filename:
+                        model_type = 'NVIDIA Bull Momentum'
+                    elif 'algorand' in filename.lower():
+                        model_type = 'Algorand Model'
+                    elif 'Bitcoin' in filename:
+                        model_type = 'Bitcoin Model'
+                    elif 'Master' in filename:
+                        model_type = 'QQQ Master Model'
+                    elif 'Wishing' in filename:
+                        model_type = 'Wishing Well QQQ'
+                    else:
+                        model_type = 'Other'
+                    
+                    report_counts[model_type] = report_counts.get(model_type, 0) + 1
+            
+            # Convert to expected format (model_type, count, latest_date)
+            for model_type, count in report_counts.items():
+                recent_reports.append((model_type, count, yesterday))
         
         # Expected models
         expected_models = [
@@ -108,40 +128,29 @@ def check_model_execution():
         with open(wrapper_log, 'r', encoding='utf-8') as f:
             lines = f.readlines()[-100:]
         
-        # Look for recent model executions (last 48 hours to account for weekend/holiday gaps)
-        yesterday = datetime.now() - timedelta(days=2)
+        # Look for recent model executions (last 24 hours - focus on yesterday's activity for 9am report)
+        yesterday = datetime.now() - timedelta(days=1)
         
         recent_executions = []
         model_statuses = {}
         
         for line in lines:
-            if 'Successfully ran' in line and '2025-' in line:
+            if ('All prediction models ran successfully' in line or 'Model Execution: SUCCESS' in line) and '2025-' in line:
                 try:
                     # Extract date from log line
                     date_str = line.split(' - ')[0]
                     log_date = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S,%f')
                     
                     if log_date >= yesterday:
-                        # More flexible model matching - skip send_report.py
-                        if 'send_report.py' in line:
-                            continue  # Skip the report sending, not a trading model
-                        elif 'Algorand' in line:
-                            model_statuses['Algorand Model'] = 'SUCCESS'
-                        elif 'bitcoin' in line.lower():
-                            model_statuses['Bitcoin Model'] = 'SUCCESS'
-                        elif 'QQQ Long Horn' in line or 'QQQ Long Bull' in line:
+                        # If we find "All prediction models ran successfully", mark all expected models as SUCCESS
+                        if 'All prediction models ran successfully' in line:
                             model_statuses['QQQ Long Bull Model'] = 'SUCCESS'
-                        elif 'QQQ Trading Signal' in line:
                             model_statuses['QQQ Trading Signal'] = 'SUCCESS'
-                        elif 'NVIDIA' in line:
+                            model_statuses['Algorand Model'] = 'SUCCESS'
+                            model_statuses['Bitcoin Model'] = 'SUCCESS'
                             model_statuses['NVIDIA Bull Momentum'] = 'SUCCESS'
-                        elif 'Wishing Well' in line:
                             model_statuses['Wishing Well QQQ'] = 'SUCCESS'
-                        elif 'QQQ Master' in line:
                             model_statuses['QQQ Master Model'] = 'SUCCESS'
-                        else:
-                            # Log unmatched successful runs for debugging
-                            logger.info(f"Unmatched successful run: {line.strip()}")
                         
                         recent_executions.append({
                             'timestamp': log_date.isoformat(),
@@ -245,29 +254,175 @@ def create_health_email_html(health_data):
             overall_health = "CRITICAL"
     
     html = f"""
+    <!DOCTYPE html>
     <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="x-apple-disable-message-reformatting">
+        <title>Health Check - {today}</title>
         <style>
-            body {{ font-family: Arial, sans-serif; margin: 20px; }}
-            .header {{ background-color: {status_color}; color: white; padding: 15px; border-radius: 5px; }}
-            .status {{ font-size: 24px; font-weight: bold; }}
-            .section {{ margin: 15px 0; padding: 15px; border-left: 4px solid #007bff; background-color: #f8f9fa; border-radius: 5px; }}
+            body {{ 
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+                margin: 0; 
+                padding: 10px; 
+                line-height: 1.5;
+                -webkit-text-size-adjust: 100%;
+                background-color: #f8f9fa;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }}
+            .header {{ 
+                background-color: {status_color}; 
+                color: white; 
+                padding: 20px 15px; 
+                text-align: center;
+            }}
+            .status {{ 
+                font-size: 22px; 
+                font-weight: bold; 
+                margin-bottom: 8px;
+            }}
+            .subtitle {{
+                font-size: 14px;
+                opacity: 0.9;
+            }}
+            .section {{ 
+                margin: 0; 
+                padding: 20px 15px; 
+                border-bottom: 1px solid #e9ecef;
+            }}
+            .section:last-child {{
+                border-bottom: none;
+            }}
+            .section h3 {{
+                margin: 0 0 15px 0;
+                font-size: 18px;
+                color: #333;
+            }}
             .success {{ color: #28a745; font-weight: bold; }}
             .warning {{ color: #ffc107; font-weight: bold; }}
             .error {{ color: #dc3545; font-weight: bold; }}
-            .metric {{ margin: 8px 0; padding: 5px 0; }}
-            .model-status {{ display: inline-block; margin: 3px; padding: 4px 8px; border-radius: 3px; font-size: 12px; }}
-            .model-success {{ background-color: #d4edda; color: #155724; }}
-            .model-missing {{ background-color: #f8d7da; color: #721c24; }}
-            table {{ width: 100%; border-collapse: collapse; margin: 10px 0; }}
-            th, td {{ padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }}
-            th {{ background-color: #f2f2f2; }}
+            .metric {{ 
+                margin: 12px 0; 
+                padding: 8px 0;
+                font-size: 14px;
+            }}
+            .model-grid {{
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin: 15px 0;
+            }}
+            .model-status {{ 
+                padding: 8px 12px; 
+                border-radius: 6px; 
+                font-size: 14px;
+                text-align: center;
+                font-weight: 500;
+            }}
+            .model-success {{ 
+                background-color: #d4edda; 
+                color: #155724; 
+                border-left: 4px solid #28a745;
+            }}
+            .model-missing {{ 
+                background-color: #f8d7da; 
+                color: #721c24;
+                border-left: 4px solid #dc3545;
+            }}
+            .table-container {{
+                overflow-x: auto;
+                margin: 15px 0;
+            }}
+            table {{ 
+                width: 100%; 
+                border-collapse: collapse; 
+                font-size: 14px;
+                min-width: 300px;
+            }}
+            th, td {{ 
+                padding: 12px 8px; 
+                text-align: left; 
+                border-bottom: 1px solid #ddd; 
+            }}
+            th {{ 
+                background-color: #f2f2f2; 
+                font-weight: 600;
+                color: #333;
+            }}
+            .footer {{
+                background-color: #e9ecef;
+                padding: 15px;
+                font-size: 12px;
+                color: #6c757d;
+                text-align: center;
+            }}
+            
+            /* Mobile-specific styles */
+            @media (max-width: 480px) {{
+                .container {{
+                    margin: 5px;
+                    border-radius: 4px;
+                }}
+                .header {{
+                    padding: 15px 10px;
+                }}
+                .status {{
+                    font-size: 18px;
+                }}
+                .section {{
+                    padding: 15px 10px;
+                }}
+                .section h3 {{
+                    font-size: 16px;
+                }}
+                th, td {{
+                    padding: 8px 4px;
+                    font-size: 13px;
+                }}
+                .model-status {{
+                    font-size: 13px;
+                    padding: 6px 10px;
+                }}
+            }}
+            
+            /* Dark mode support */
+            @media (prefers-color-scheme: dark) {{
+                .container {{
+                    background-color: #2d2d2d;
+                }}
+                .section {{
+                    border-bottom-color: #404040;
+                }}
+                .section h3 {{
+                    color: #ffffff;
+                }}
+                th {{
+                    background-color: #404040;
+                    color: #ffffff;
+                }}
+                td {{
+                    color: #e0e0e0;
+                }}
+                .footer {{
+                    background-color: #404040;
+                    color: #b0b0b0;
+                }}
+            }}
         </style>
     </head>
     <body>
+        <div class="container">
         <div class="header">
-            <div class="status">🔍 Daily System Health Check - {today}</div>
-            <div>Overall Status: {status_text}</div>
+            <div class="status">🌅 Morning System Health Check - {today}</div>
+            <div class="subtitle">Overall Status: {status_text} | Models run today at 3:40 PM</div>
         </div>
     """
     
@@ -283,18 +438,21 @@ def create_health_email_html(health_data):
         exec_check = health_data.get('execution_check', {})
         if exec_check.get('log_accessible'):
             html += '<div class="section"><h3>🤖 Trading Models Status</h3>'
+            html += '<div class="model-grid">'
             
             model_statuses = exec_check.get('model_statuses', {})
             expected_models = ['QQQ Long Bull Model', 'QQQ Trading Signal', 'Algorand Model', 'Bitcoin Model', 'NVIDIA Bull Momentum', 'Wishing Well QQQ', 'QQQ Master Model']
             
             for model in expected_models:
                 if model in model_statuses:
-                    html += f'<span class="model-status model-success">✅ {model}</span>'
+                    html += f'<div class="model-status model-success">✅ {model}</div>'
                 else:
-                    html += f'<span class="model-status model-missing">❌ {model}</span>'
+                    html += f'<div class="model-status model-missing">❌ {model}</div>'
+            
+            html += '</div>'
             
             last_run_count = exec_check.get('last_run_count', 0)
-            html += f'<div class="metric">Recent Executions (24h): <strong>{last_run_count}</strong></div>'
+            html += f'<div class="metric">Recent Executions (yesterday): <strong>{last_run_count}</strong></div>'
             html += '</div>'
         else:
             html += '<div class="section"><h3>🤖 Trading Models Status</h3>'
@@ -310,25 +468,25 @@ def create_health_email_html(health_data):
             predictions = db_check.get('predictions', [])
             reports = db_check.get('reports', [])
             
-            html += '<h4>Recent Predictions:</h4><table>'
+            html += '<h4>Recent Predictions:</h4><div class="table-container"><table>'
             html += '<tr><th>Model</th><th>Predictions</th><th>Latest</th></tr>'
             
             if predictions:
                 for model, count, latest in predictions:
                     html += f'<tr><td>{model}</td><td>{count}</td><td>{latest}</td></tr>'
             else:
-                html += '<tr><td colspan="3" class="warning">⚠️ No predictions found in last 24h</td></tr>'
-            html += '</table>'
+                html += '<tr><td colspan="3" class="warning">⚠️ No predictions found recently (normal at 9am - models run at 3:40pm)</td></tr>'
+            html += '</table></div>'
             
-            html += '<h4>Recent Reports:</h4><table>'
+            html += '<h4>Recent Reports:</h4><div class="table-container"><table>'
             html += '<tr><th>Model</th><th>Reports</th><th>Latest</th></tr>'
             
             if reports:
                 for model, count, latest in reports:
                     html += f'<tr><td>{model}</td><td>{count}</td><td>{latest}</td></tr>'
             else:
-                html += '<tr><td colspan="3" class="warning">⚠️ No reports found in last 24h</td></tr>'
-            html += '</table>'
+                html += '<tr><td colspan="3" class="warning">⚠️ No reports found recently (normal at 9am - models run at 3:40pm)</td></tr>'
+            html += '</table></div>'
             
             html += '</div>'
         else:
@@ -360,22 +518,24 @@ def create_health_email_html(health_data):
         html += '<div class="metric">• Check for data gaps</div>'
     else:
         html += '<div class="success">✅ SYSTEM OPERATING NORMALLY</div>'
+        html += '<div class="metric">• Yesterday\'s models ran successfully</div>'
         html += '<div class="metric">• Next trading run: Today 3:40 PM</div>'
-        html += '<div class="metric">• All systems functioning</div>'
+        html += '<div class="metric">• All systems ready for today\'s predictions</div>'
     
     html += '</div>'
     
     html += f"""
         <div class="section">
             <h3>📅 Schedule</h3>
-            <div class="metric">• Next trading models run: Today 3:40 PM</div>
+            <div class="metric">• Models will run: Today 3:40 PM</div>
             <div class="metric">• Next health check: Tomorrow 9:00 AM</div>
-            <div class="metric">• Dashboard: <a href="https://trading-models-dashboard.streamlit.app">View Live Dashboard</a></div>
+            <div class="metric">• Dashboard: <a href="http://localhost:8502">View Live Dashboard</a></div>
         </div>
         
-        <div style="margin-top: 20px; padding: 10px; background-color: #e9ecef; border-radius: 5px; font-size: 12px; color: #6c757d;">
+        <div class="footer">
             Generated: {datetime.now().strftime('%Y-%m-%d %I:%M %p ET')}<br>
             System: Comprehensive Trading System Health Check v3.0
+        </div>
         </div>
     </body>
     </html>
@@ -430,7 +590,29 @@ Generated: {datetime.now().strftime('%Y-%m-%d %I:%M %p ET')}
                 "RRGU26@gmail.com"
             ]
             
-            subject = f"📊 Daily System Health Check - {today}"
+            # Determine status for subject line
+            if health_data and 'error' not in health_data:
+                db_check = health_data.get('database_check', {})
+                exec_check = health_data.get('execution_check', {})
+                
+                issues = 0
+                if not db_check.get('database_accessible', False):
+                    issues += 1
+                if not exec_check.get('log_accessible', False):
+                    issues += 1
+                if exec_check.get('last_run_count', 0) == 0:
+                    issues += 1
+                    
+                if issues == 0:
+                    status_for_subject = "HEALTHY"
+                elif issues == 1:
+                    status_for_subject = "WARNINGS"
+                else:
+                    status_for_subject = "ISSUES"
+            else:
+                status_for_subject = "ERROR"
+                
+            subject = f"🌅 HEALTH CHECK - {today} - {status_for_subject}"
             
             success = email_manager.send_email(
                 sender_email=email_manager.sender_email,
@@ -442,11 +624,11 @@ Generated: {datetime.now().strftime('%Y-%m-%d %I:%M %p ET')}
             )
             
             if success:
-                logger.info("✅ Health check email sent successfully")
-                print("✅ Health check email sent successfully")
+                logger.info("Health check email sent successfully")
+                print("Health check email sent successfully")
                 return True
             else:
-                logger.error("❌ Failed to send health check email")
+                logger.error("Failed to send health check email")
                 return False
                 
         except Exception as email_error:

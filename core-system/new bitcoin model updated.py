@@ -81,31 +81,10 @@ os.makedirs(REPORTS_FINAL_DIR, exist_ok=True)
 os.makedirs(ONEDRIVE_EXPORT_DIR, exist_ok=True)
 os.makedirs(DEBUG_DIR, exist_ok=True)
 
-def get_desktop_path():
-    """
-    Attempts to find the user's Desktop path across different operating systems.
-    Returns the path if found, otherwise defaults to a local reports directory.
-    """
-    try:
-        username = os.path.expanduser("~").split(os.sep)[-1]
-        possible_desktop_paths = [
-            os.path.join(os.path.expanduser("~"), "Desktop"),
-            f"C:\\Users\\{username}\\Desktop",
-            f"C:\\Users\\{username}\\OneDrive\\Desktop",
-            f"/home/{username}/Desktop",
-            f"/Users/{username}/Desktop"
-        ]
-        for path in possible_desktop_paths:
-            if os.path.exists(path):
-                safe_print(f"Desktop path found: {path}")
-                return path
-        safe_print("Could not automatically detect Desktop path. Using local reports directory.")
-        return REPORTS_FINAL_DIR # Fallback to local reports dir
-    except Exception as e:
-        safe_print(f"Error detecting Desktop path: {e}. Using local reports directory.")
-        return REPORTS_FINAL_DIR # Fallback
-
-DESKTOP_PATH = get_desktop_path()
+# Use GitHub repo reports directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+DESKTOP_PATH = os.path.join(script_dir, "reports")
+os.makedirs(DESKTOP_PATH, exist_ok=True)
 
 def fetch_bitcoin_data_with_fallback():
     """

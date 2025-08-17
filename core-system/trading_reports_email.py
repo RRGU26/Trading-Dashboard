@@ -132,9 +132,13 @@ class ComprehensiveEmailFormatter:
                       and v and v != "N/A" and v != ""}
         
         if not display_data:
-            return f"""<div style="margin-bottom: 20px;">
-                <h3 style="color: #0066cc; font-size: 16px; margin-top: 15px; margin-bottom: 5px;">{title} - {date}</h3>
-                <p style="color: #6c757d; font-style: italic;">No data available</p>
+            return f"""<div class="model-section">
+                <div class="model-header">
+                    <h3 class="model-title">{title} - {date}</h3>
+                </div>
+                <div class="model-content">
+                    <p style="color: #6c757d; font-style: italic; text-align: center; padding: 20px;">No data available</p>
+                </div>
             </div>"""
         
         # Build categorized rows
@@ -178,11 +182,15 @@ class ComprehensiveEmailFormatter:
                 "raw"
             )
         
-        return f"""<div style="margin-bottom: 20px;">
-            <h3 style="color: #0066cc; font-size: 16px; margin-top: 15px; margin-bottom: 5px;">{title} - {date}</h3>
-            <table cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse: collapse; width: 100%; margin-bottom: 20px; border: 1px solid #ddd;">
-                {all_rows}
-            </table>
+        return f"""<div class="model-section">
+            <div class="model-header">
+                <h3 class="model-title">{title} - {date}</h3>
+            </div>
+            <div class="model-content">
+                <table class="responsive-table">
+                    {all_rows}
+                </table>
+            </div>
         </div>"""
     
     def _field_matches_category(self, field: str, category: str) -> bool:
@@ -420,6 +428,7 @@ class ComprehensiveEmailFormatter:
         
         model_names = {
             'longhorn': 'Long Bull Model',
+            'qqq_master': 'QQQ Master Model',
             'trading_signal': 'QQQ Trading Signal',
             'wishing_wealth': 'Wishing Well QQQ Model',
             'nvidia': 'NVIDIA Bull Momentum Model',
@@ -487,6 +496,7 @@ class ComprehensiveEmailFormatter:
         model_tables = ""
         model_configs = [
             ('longhorn', 'Long Bull Model'),
+            ('qqq_master', 'QQQ Master Model'),
             ('trading_signal', 'QQQ Trading Signal'),
             ('wishing_wealth', 'Wishing Well QQQ Model'),
             ('nvidia', 'NVIDIA Bull Momentum Model'),
@@ -501,18 +511,198 @@ class ComprehensiveEmailFormatter:
                 model_tables += self.generate_comprehensive_html_table(model_name, report_date, data)
         
         html_body = f"""
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Trading Models Report</title>
+            <meta name="x-apple-disable-message-reformatting">
+            <meta name="format-detection" content="telephone=no">
+            <title>📊 Trading Models Report - {current_date}</title>
+            <style type="text/css">
+                /* Reset styles */
+                * {{ box-sizing: border-box; }}
+                body, table, td, h1, h2, h3, h4, h5, h6, p, div {{ margin: 0; padding: 0; }}
+                
+                /* Base styles */
+                body {{
+                    -webkit-text-size-adjust: 100%;
+                    -ms-text-size-adjust: 100%;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    background-color: #f4f4f4;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+                    font-size: 16px;
+                    line-height: 1.6;
+                    color: #333333;
+                }}
+                
+                /* Container */
+                .email-container {{
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }}
+                
+                /* Header */
+                .header {{
+                    background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+                    color: #ffffff;
+                    padding: 30px 20px;
+                    text-align: center;
+                }}
+                
+                .header h1 {{
+                    font-size: 24px;
+                    font-weight: 700;
+                    margin-bottom: 8px;
+                    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+                }}
+                
+                .header .subtitle {{
+                    font-size: 16px;
+                    opacity: 0.9;
+                    font-weight: 400;
+                }}
+                
+                /* Content area */
+                .content {{
+                    padding: 20px;
+                }}
+                
+                /* Model sections */
+                .model-section {{
+                    margin-bottom: 30px;
+                    border: 1px solid #e9ecef;
+                    border-radius: 8px;
+                    overflow: hidden;
+                }}
+                
+                .model-header {{
+                    background-color: #f8f9fa;
+                    padding: 15px 20px;
+                    border-bottom: 1px solid #e9ecef;
+                }}
+                
+                .model-title {{
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: #0056b3;
+                    margin: 0;
+                }}
+                
+                .model-content {{
+                    padding: 20px;
+                }}
+                
+                /* Responsive table */
+                .responsive-table {{
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 10px 0;
+                }}
+                
+                .responsive-table th,
+                .responsive-table td {{
+                    padding: 12px 8px;
+                    text-align: left;
+                    border-bottom: 1px solid #e9ecef;
+                    font-size: 14px;
+                }}
+                
+                .responsive-table th {{
+                    background-color: #f8f9fa;
+                    font-weight: 600;
+                    color: #495057;
+                }}
+                
+                /* Attachments note */
+                .attachments-note {{
+                    background-color: #fff3cd;
+                    border: 1px solid #ffeaa7;
+                    border-radius: 6px;
+                    padding: 15px;
+                    margin: 20px 0;
+                    text-align: center;
+                }}
+                
+                .attachments-note h3 {{
+                    color: #856404;
+                    font-size: 16px;
+                    margin-bottom: 8px;
+                }}
+                
+                .attachments-note p {{
+                    color: #856404;
+                    font-size: 14px;
+                    margin: 0;
+                }}
+                
+                /* Footer */
+                .footer {{
+                    background-color: #f8f9fa;
+                    padding: 20px;
+                    text-align: center;
+                    border-top: 1px solid #e9ecef;
+                }}
+                
+                /* Mobile styles */
+                @media only screen and (max-width: 480px) {{
+                    .email-container {{
+                        margin: 10px;
+                        border-radius: 4px;
+                    }}
+                    
+                    .header {{
+                        padding: 20px 15px;
+                    }}
+                    
+                    .header h1 {{
+                        font-size: 20px;
+                    }}
+                    
+                    .header .subtitle {{
+                        font-size: 14px;
+                    }}
+                    
+                    .content {{
+                        padding: 15px;
+                    }}
+                    
+                    .model-content {{
+                        padding: 15px;
+                    }}
+                    
+                    .responsive-table th,
+                    .responsive-table td {{
+                        padding: 8px 4px;
+                        font-size: 13px;
+                    }}
+                    
+                    .attachments-note {{
+                        padding: 12px;
+                        margin: 15px 0;
+                    }}
+                }}
+            </style>
         </head>
-        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333333;">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto;">
-                <tr>
-                    <td style="padding: 20px 10px;">
-                        <h2 style="color: #0056b3; font-size: 18px; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #eeeeee; padding-bottom: 5px;">Trading Models Report - {current_date}</h2>
+        <body>
+            <div class="email-container">
+                <div class="header">
+                    <h1>📊 Trading Models Report</h1>
+                    <div class="subtitle">{current_date} • All Models Executed Successfully</div>
+                </div>
+                
+                <div class="attachments-note">
+                    <h3>📎 Complete Reports & Analysis</h3>
+                    <p>Detailed reports and options analysis are included as attachments.<br>
+                    Scroll down for the summary of all model predictions.</p>
+                </div>
+                
+                <div class="content">
                         
                         {model_tables}
                         
@@ -520,9 +710,20 @@ class ComprehensiveEmailFormatter:
                             <h3 style="color: #0056b3; font-size: 16px; margin-top: 0; margin-bottom: 15px;">Additional Resources</h3>
                             
                             <div style="margin-bottom: 15px;">
-                                <a href="{dashboard_url}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
-                                    View Interactive Dashboard
+                                <a href="{dashboard_url}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin-right: 10px;">
+                                    📊 Local Dashboard
                                 </a>
+                                <a href="https://rrgu26-trading-dashboard.streamlit.app" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                                    🌐 Live Cloud Dashboard
+                                </a>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px; padding: 15px; background-color: #e7f3ff; border-radius: 6px; border-left: 4px solid #007bff;">
+                                <h4 style="margin: 0 0 8px 0; color: #0056b3;">📱 Access Your Dashboards</h4>
+                                <p style="margin: 0; font-size: 14px;">
+                                    <strong>Local Dashboard:</strong> Real-time data from your system<br>
+                                    <strong>Cloud Dashboard:</strong> Mobile-optimized, accessible anywhere 24/7
+                                </p>
                             </div>
                             
                             <div style="padding: 10px; background-color: white; border-radius: 4px; border-left: 4px solid {db_status_color}; margin-bottom: 15px;">
@@ -535,11 +736,15 @@ class ComprehensiveEmailFormatter:
                                 <div style="margin-top: 5px; font-size: 12px; white-space: pre-line;">{performance_summary}</div>
                             </div>
                         </div>
-                        
-                        <p style="font-size: 12px; color: #888888; margin-top: 20px;">Report generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-                    </td>
-                </tr>
-            </table>
+                </div>
+                
+                <div class="footer">
+                    <p style="font-size: 12px; color: #6c757d; margin: 0;">
+                        Report generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} • 
+                        Trading Models System v3.0
+                    </p>
+                </div>
+            </div>
         </body>
         </html>
         """

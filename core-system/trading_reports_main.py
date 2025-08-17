@@ -22,6 +22,15 @@ from trading_reports_validation import validate_report_data
 
 logger = logging.getLogger("trading_reports.main")
 
+# Import options strategy analyzer
+try:
+    from options_strategy_analyzer import OptionsStrategyAnalyzer
+    HAS_OPTIONS_ANALYZER = True
+    logger.info("Options strategy analyzer available")
+except ImportError:
+    HAS_OPTIONS_ANALYZER = False
+    logger.warning("Options strategy analyzer not available")
+
 class HealthChecker:
     """Performs health checks on system components"""
     
@@ -483,7 +492,13 @@ class TradingReportsApplication:
                 'model_name': 'Long Bull Model', 
                 'symbol': 'QQQ',
                 'price_field': 'target_price',  # Exact field from longhorn parser
-                'return_field': None  # No return field in longhorn parser
+                'return_field': 'expected_return'  # FIXED: Now available from longhorn parser
+            },
+            'qqq_master': {  # From parse_qqq_master_report
+                'model_name': 'QQQ Master Model',
+                'symbol': 'QQQ',
+                'price_field': 'predicted_price',  # Field name from qqq_master parser
+                'return_field': 'expected_return'  # Field name from qqq_master parser
             },
             'trading_signal': {  # From parse_trading_signal_report
                 'model_name': 'QQQ Trading Signal', 
@@ -637,6 +652,17 @@ class TradingReportsApplication:
                 # Add combined report to attachments
                 if combined_report:
                     attachments.append(combined_report)
+                
+                # Generate options strategy analysis if available
+                if HAS_OPTIONS_ANALYZER:
+                    try:
+                        options_analyzer = OptionsStrategyAnalyzer()
+                        options_report_path = options_analyzer.save_strategy_report(cleaned_reports)
+                        if options_report_path:
+                            attachments.append(options_report_path)
+                            logger.info("Options strategy analysis added to attachments")
+                    except Exception as e:
+                        logger.error(f"Failed to generate options analysis: {e}")
                 
                 logger.info(f"Sending email with {len(attachments)} today's attachments")
                 email_sent = email_manager.send_trading_report(model_reports=cleaned_reports, attachments=attachments)

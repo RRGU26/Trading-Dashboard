@@ -1,0 +1,59 @@
+=== Bitcoin (BTC-USD) Price Prediction Report - FIXED VERSION ===
+Generated on: 2025-08-14
+Symbol: BTC-USD
+Current Price: $118,245.00
+
+--- Prediction Details ---
+Predicted 1-Day Price: $118,338.91
+Predicted 1-Day Return: +0.08%
+Predicted 3-Day Price: $118,490.20
+Predicted 3-Day Return: +0.21%
+Predicted 7-Day Price: $119,927.85
+Predicted 7-Day Return: +1.42%
+Suggested Action: HOLD
+
+--- Model Performance ---
+Horizon: 1-day
+R-squared: -0.0404
+Hit Rate: 0.5031
+Horizon: 3-day
+R-squared: -0.0873
+Hit Rate: 0.5066
+Horizon: 7-day
+R-squared: -0.0889
+Hit Rate: 0.5409
+
+--- Model Information ---
+Model Type: XGBoost Regressor with Early Stopping
+Feature Selection: Recursive Feature Elimination with Cross-Validation
+Validation Method: Walk-Forward Validation
+On-Chain Metrics: Enabled
+*** CRITICAL FIX: Smart NaN handling implemented - data preserved! ***
+
+--- Selected Features ---
+Top 10 features for 1-day model:
+1. MA_ratio_7
+2. std_7
+3. MA_ratio_30
+4. MA_ratio_100
+5. std_100
+6. MA_ratio_200
+7. mom_200
+8. BB_pos_20
+9. BB_pos_50
+10. RSI_14
+Top 5 features for 3-day model:
+1. std_200
+2. MACD
+3. BB_width_20
+4. BB_std_50
+5. BB_lower_50
+Top 5 features for 7-day model:
+1. mom_100
+2. std_200
+3. MACD
+4. BB_std_20
+5. BB_lower_50
+
+--- Disclaimer ---
+This report is for informational purposes only and does not constitute financial advice. Cryptocurrency investments are highly volatile and risky. Past performance and model predictions are not indicative of future results.

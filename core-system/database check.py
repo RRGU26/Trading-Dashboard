@@ -85,7 +85,9 @@ class DatabaseHealthChecker:
             "QQQ Trading Signal", 
             "Algorand Model", 
             "Bitcoin Model", 
-            "Wishing Well QQQ Model"
+            "Wishing Well QQQ Model",
+            "NVIDIA Bull Momentum Model",
+            "QQQ Master Model"
         ]
         
         # Health check results
@@ -233,6 +235,26 @@ class DatabaseHealthChecker:
                 return False
             
             cursor = conn.cursor()
+            
+            # Check for reports data in reports_tracking.db
+            reports_db_path = os.path.join(SCRIPT_DIR, "reports_tracking.db")
+            if os.path.exists(reports_db_path):
+                reports_conn = sqlite3.connect(reports_db_path)
+                reports_cursor = reports_conn.cursor()
+                
+                # Count recent reports
+                reports_cursor.execute("""
+                    SELECT model_type, COUNT(*) as count, MAX(generated_date) as latest
+                    FROM report_files 
+                    WHERE generated_date >= ?
+                    GROUP BY model_type
+                """, (self.yesterday.strftime('%Y-%m-%d'),))
+                
+                recent_reports_data = reports_cursor.fetchall()
+                reports_conn.close()
+                
+                # Store reports data for later use
+                self.health_report['recent_reports'] = recent_reports_data
             
             # Check if onchain_metrics table exists
             cursor.execute("""

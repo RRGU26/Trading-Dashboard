@@ -26,15 +26,13 @@ warnings.filterwarnings("ignore")
 
 # Configuration
 TICKER = "QQQ"
-START_DATE = "2015-01-01"  # Updated to match Long Bull Model
+START_DATE = "2014-08-13"  # 10+ years of historical data for robust training
 ALPHA_VANTAGE_API_KEY = "HMHALLINAHS2FF4Z" # User provided API Key
 
-try:
-    DESKTOP_PATH = os.path.join(os.environ["USERPROFILE"], "OneDrive", "Desktop")
-except:
-    # Fallback for Linux environments
-    DESKTOP_PATH = os.path.join("/home/ubuntu", "Desktop")
-    os.makedirs(DESKTOP_PATH, exist_ok=True)
+# Use GitHub repo reports directory instead of Desktop
+script_dir = os.path.dirname(os.path.abspath(__file__))
+DESKTOP_PATH = os.path.join(script_dir, "reports")
+os.makedirs(DESKTOP_PATH, exist_ok=True)
 
 class QQQTradingSignalGenerator:
     def __init__(self, start_date=START_DATE, end_date=None, prediction_days=3):
@@ -143,19 +141,36 @@ class QQQTradingSignalGenerator:
         df["Volume_SMA_20"] = df["Volume"].rolling(20).mean()
         df["Volume_Ratio"] = df["Volume"] / df["Volume_SMA_20"]
         
-        # Add VIX features if available
+        # Add VIX features (now with restored historical data)
         if vix_data is not None and not vix_data.empty and "Close" in vix_data.columns:
-            # Resample VIX to match stock data index
-            vix_resampled = vix_data["Close"].reindex(df.index, method="ffill")
-            df["VIX"] = vix_resampled
-            df["VIX_SMA_20"] = df["VIX"].rolling(20).mean()
-            df["VIX_Ratio"] = df["VIX"] / df["VIX_SMA_20"]
+            print(f"Adding real VIX features from {len(vix_data)} VIX data points")
+            try:
+                # Resample VIX to match stock data index
+                vix_resampled = vix_data["Close"].reindex(df.index, method="ffill")
+                df["VIX"] = vix_resampled
+                df["VIX_SMA_20"] = df["VIX"].rolling(20).mean()
+                df["VIX_Ratio"] = df["VIX"] / df["VIX_SMA_20"]
+                print("Successfully added real VIX features")
+            except Exception as e:
+                print(f"Failed to add real VIX features: {e}")
+        else:
+            print("WARNING: VIX data still unavailable - check data fetching")
         
         # Target variable - future returns
         df[f"Target_{self.prediction_days}d"] = close.pct_change(self.prediction_days).shift(-self.prediction_days)
         
-        # Drop rows with NaN values
-        df = df.dropna()
+        # More intelligent NaN handling - don't drop all rows
+        print(f"Before NaN handling: {len(df)} rows, {df.isna().sum().sum()} total NaN values")
+        
+        # Fill forward then backward, then drop only rows where target is NaN
+        df = df.fillna(method='ffill').fillna(method='bfill')
+        
+        # Only drop rows where the target variable is NaN (essential for training)
+        target_col = f"Target_{self.prediction_days}d"
+        if target_col in df.columns:
+            df = df.dropna(subset=[target_col])
+        
+        print(f"After NaN handling: {len(df)} rows remaining")
         
         return df
 

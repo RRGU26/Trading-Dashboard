@@ -16,6 +16,7 @@ import os
 import sqlite3
 import warnings
 from typing import Dict, Optional
+from model_db_integrator import quick_save_prediction
 
 # Machine Learning imports
 from sklearn.ensemble import RandomForestRegressor, VotingRegressor
@@ -31,10 +32,10 @@ except ImportError:
 
 warnings.filterwarnings('ignore')
 
-# Configuration
-DESKTOP_PATH = os.path.expanduser("~/OneDrive/Desktop")
-if not os.path.exists(DESKTOP_PATH):
-    DESKTOP_PATH = os.path.expanduser("~/Desktop")
+# Configuration - Use GitHub repo reports directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+DESKTOP_PATH = os.path.join(script_dir, "reports")
+os.makedirs(DESKTOP_PATH, exist_ok=True)
 
 class OptimizedQQQModel:
     """Optimized QQQ Master Model - Fast execution with full ML power"""
@@ -55,11 +56,11 @@ class OptimizedQQQModel:
                     # Method 1: Try yfinance-style fetch
                     import yfinance as yf
                     ticker = yf.Ticker("QQQ")
-                    historical_data = ticker.history(period="1y")
+                    historical_data = ticker.history(period="10y")  # 10 years of data
                 except:
                     try:
                         # Method 2: Use data_fetcher with proper parameters
-                        start_date = datetime.now() - timedelta(days=252)
+                        start_date = datetime.now() - timedelta(days=10*365)  # 10 years fallback
                         end_date = datetime.now()
                         historical_data = data_fetcher.get_historical_data("QQQ", start_date, end_date)
                     except:
@@ -235,34 +236,22 @@ class OptimizedQQQModel:
             return {'error': str(e)}
     
     def save_to_database(self, prediction: Dict):
-        """Save prediction to database"""
+        """Save prediction to database using standardized integrator"""
         try:
-            if not os.path.exists(self.db_path):
-                print("[WARN] Database not found, skipping save")
-                return
-                
-            with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.cursor()
-                
-                cursor.execute("""
-                    INSERT INTO model_predictions 
-                    (model, symbol, prediction_date, target_date, horizon, current_price, predicted_price, confidence, suggested_action, expected_return)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (
-                    "QQQ Master Model",
-                    "QQQ",
-                    datetime.now().date(),
-                    (datetime.now() + timedelta(days=1)).date(),
-                    1,
-                    prediction['current_price'],
-                    prediction['predicted_price'],
-                    prediction['confidence'],
-                    prediction['signal'],
-                    prediction['predicted_return']
-                ))
-                
-                conn.commit()
+            db_success = quick_save_prediction(
+                model_name="QQQ Master Model",
+                symbol="QQQ",
+                current_price=prediction['current_price'],
+                predicted_price=prediction['predicted_price'],
+                confidence=prediction['confidence'],
+                horizon_days=1,
+                suggested_action=prediction['signal']
+            )
+            
+            if db_success:
                 print(f"[OK] Prediction saved to database")
+            else:
+                print(f"[WARN] Database save failed")
                 
         except Exception as e:
             print(f"[WARN] Database save failed: {e}")

@@ -1,0 +1,1009 @@
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-07 18:33:12
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-07 18:33:12,644 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-07 18:33:12,675 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-07 18:33:12,675 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-07 18:33:12,697 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-07 18:33:12,697 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-07 18:33:12,698 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-07 18:33:12,698 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-07 18:33:13,371 - trading_reports.main - INFO - Running daily price updates...
+2025-08-07 18:33:14,337 - trading_reports.main - INFO - Updated QQQ: $569.24
+2025-08-07 18:33:15,079 - trading_reports.main - INFO - Updated BTC-USD: $117502.00
+2025-08-07 18:33:15,704 - trading_reports.main - INFO - Updated ALGO-USD: $0.26
+2025-08-07 18:33:16,395 - trading_reports.main - INFO - Updated VIX: $16.57
+2025-08-07 18:33:16,395 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-07 18:33:16,396 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-07 18:33:16,397 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-07 18:33:16,397 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-07 18:33:16,455 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-07 18:33:16,458 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-07 18:33:16,461 - trading_reports.main - INFO - Successfully parsed 5 reports from multiple directories
+2025-08-07 18:33:16,461 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-07 18:33:16,462 - trading_reports.main - INFO -     current_price: 179.42
+2025-08-07 18:33:16,462 - trading_reports.main - INFO -     signal: BUY
+2025-08-07 18:33:16,462 - trading_reports.main - INFO -     confidence: 95%
+2025-08-07 18:33:16,462 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-07 18:33:16,462 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-07 18:33:16,463 - trading_reports.main - INFO -     current_price: 116284.0
+2025-08-07 18:33:16,463 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-07 18:33:16,463 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-07 18:33:16,464 - trading_reports.main - INFO -     current_price: 569.24
+2025-08-07 18:33:16,464 - trading_reports.main - INFO -     signal: BUY
+2025-08-07 18:33:16,464 - trading_reports.main - INFO -     confidence: 85%
+2025-08-07 18:33:16,464 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-07 18:33:16,465 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-07 18:33:16,465 - trading_reports.main - INFO -     current_price: 569.24
+2025-08-07 18:33:16,465 - trading_reports.main - INFO -     signal: HOLD
+2025-08-07 18:33:16,465 - trading_reports.main - INFO -   longhorn: 7 meaningful fields extracted
+2025-08-07 18:33:16,465 - trading_reports.main - INFO -     current_price: 569.24
+2025-08-07 18:33:16,466 - trading_reports.main - INFO -     signal: SELL
+2025-08-07 18:33:16,466 - trading_reports.main - INFO -     confidence: 95%
+2025-08-07 18:33:16,466 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-07 18:33:16,466 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-07 18:33:16,476 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $569.24 -> $562.41 (+0.00%)
+2025-08-07 18:33:16,477 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-07 18:33:16,477 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-07 18:33:16,477 - trading_reports.main - WARNING - No data found for model: algorand
+2025-08-07 18:33:16,488 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116284.00 -> $479738.34 (+312.56%)
+2025-08-07 18:33:16,500 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $569.24 -> $569.24 (-5.44%)
+2025-08-07 18:33:16,510 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $179.42 -> $180.92 (+0.84%)
+2025-08-07 18:33:16,511 - trading_reports.main - INFO - Successfully stored 4 predictions to database
+2025-08-07 18:33:16,512 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-07 18:33:16,513 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250807_1833.txt
+2025-08-07 18:33:16,515 - trading_reports.main - INFO - Including today's file: NVIDIA_Bull_Momentum_Report_20250807_183227.txt
+2025-08-07 18:33:16,515 - trading_reports.main - INFO - Skipping older file: WishingWealthQQQ_signal.txt
+2025-08-07 18:33:16,516 - trading_reports.main - INFO - Including today's file: QQQ_Trading_Signal_20250807_182126.txt
+2025-08-07 18:33:16,516 - trading_reports.main - INFO - Including today's file: QQQ_Trading_Signal_20250807_180747.txt
+2025-08-07 18:33:16,516 - trading_reports.main - INFO - Including today's file: QQQ_Long_Bull_Report_20250807_182108.txt
+2025-08-07 18:33:16,516 - trading_reports.main - INFO - Including today's file: QQQ_Long_Bull_Report_20250807_180736.txt
+2025-08-07 18:33:16,516 - trading_reports.main - INFO - File filtering: 5 today's files, 1 older files skipped
+2025-08-07 18:33:16,517 - trading_reports.main - INFO - Sending email with 6 today's attachments
+2025-08-07 18:33:21,291 - trading_reports.main - INFO - Email report sent successfully
+2025-08-07 18:33:21,294 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-07 18:33:21,294 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-07 18:33:21,294 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-07 18:33:21,294 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 15:43:28,228 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-08 15:43:28,229 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 15:43:28,229 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-08 15:43:28,229 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 15:43:28,229 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-08 15:43:28
+2025-08-08 15:43:28,229 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-08 15:43:28,230 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-08 15:43:28,253 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-08 15:43:28,254 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-08 15:43:28,272 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-08 15:43:28,272 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-08 15:43:28,272 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-08 15:43:28,273 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-08 15:43:28,838 - trading_reports.main - INFO - Running daily price updates...
+2025-08-08 15:43:31,355 - trading_reports.main - INFO - Updated QQQ: $573.92
+2025-08-08 15:43:32,081 - trading_reports.main - INFO - Updated BTC-USD: $116388.00
+2025-08-08 15:43:32,862 - trading_reports.main - INFO - Updated ALGO-USD: $0.26
+2025-08-08 15:43:33,583 - trading_reports.main - INFO - Updated VIX: $15.44
+2025-08-08 15:43:33,584 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-08 15:43:33,585 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-08 15:43:33,586 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-08 15:43:33,586 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-08 15:43:33,619 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-08 15:43:33,621 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-08 15:43:33,627 - trading_reports.main - INFO - Successfully parsed 2 reports from multiple directories
+2025-08-08 15:43:33,627 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-08 15:43:33,627 - trading_reports.main - INFO -     current_price: 633.99
+2025-08-08 15:43:33,628 - trading_reports.main - INFO -     signal: SELL
+2025-08-08 15:43:33,628 - trading_reports.main - INFO -     confidence: 85%
+2025-08-08 15:43:33,628 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-08 15:43:33,628 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-08 15:43:33,628 - trading_reports.main - INFO -     current_price: 116284.0
+2025-08-08 15:43:33,628 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-08 15:43:33,628 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-08 15:43:33,628 - trading_reports.main - WARNING - No data found for model: longhorn
+2025-08-08 15:43:33,628 - trading_reports.main - WARNING - No data found for model: trading_signal
+2025-08-08 15:43:33,628 - trading_reports.main - WARNING - No data found for model: algorand
+2025-08-08 15:43:33,639 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116284.00 -> $479738.34 (+312.56%)
+2025-08-08 15:43:33,639 - trading_reports.main - WARNING - No data found for model: wishing_wealth
+2025-08-08 15:43:33,650 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $633.99 -> $616.88 (-2.70%)
+2025-08-08 15:43:33,650 - trading_reports.main - INFO - Successfully stored 2 predictions to database
+2025-08-08 15:43:33,650 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-08 15:43:33,652 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250808_1543.txt
+2025-08-08 15:43:33,654 - trading_reports.main - INFO - Including today's file: NVIDIA_Bull_Momentum_Report_20250808_154249.txt
+2025-08-08 15:43:33,654 - trading_reports.main - INFO - File filtering: 1 today's files, 0 older files skipped
+2025-08-08 15:43:33,654 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-08 15:43:37,650 - trading_reports.main - INFO - Email report sent successfully
+2025-08-08 15:43:37,653 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-08 15:43:37,653 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 15:43:37,654 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-08 15:43:37,654 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:02:43,934 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-08 18:02:43,936 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:02:43,936 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-08 18:02:43,936 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:02:43,936 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-08 18:02:43
+2025-08-08 18:02:43,936 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-08 18:02:43,936 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-08 18:02:43,939 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-08 18:02:43,940 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-08 18:02:43,961 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-08 18:02:43,963 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-08 18:02:43,963 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-08 18:02:43,963 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-08 18:02:44,585 - trading_reports.main - INFO - Running daily price updates...
+2025-08-08 18:02:50,299 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-08 18:02:51,648 - trading_reports.main - INFO - Updated BTC-USD: $116946.00
+2025-08-08 18:02:52,700 - trading_reports.main - INFO - Updated ALGO-USD: $0.26
+2025-08-08 18:02:53,873 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-08 18:02:53,874 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-08 18:02:53,875 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-08 18:02:53,875 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-08 18:02:53,877 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-08 18:02:53,905 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-08 18:02:53,908 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-08 18:02:53,915 - trading_reports.main - INFO - Successfully parsed 2 reports from multiple directories
+2025-08-08 18:02:53,915 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-08 18:02:53,915 - trading_reports.main - INFO -     current_price: 633.99
+2025-08-08 18:02:53,916 - trading_reports.main - INFO -     signal: SELL
+2025-08-08 18:02:53,916 - trading_reports.main - INFO -     confidence: 85%
+2025-08-08 18:02:53,916 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-08 18:02:53,916 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-08 18:02:53,916 - trading_reports.main - INFO -     current_price: 116284.0
+2025-08-08 18:02:53,916 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-08 18:02:53,916 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-08 18:02:53,916 - trading_reports.main - WARNING - No data found for model: longhorn
+2025-08-08 18:02:53,918 - trading_reports.main - WARNING - No data found for model: trading_signal
+2025-08-08 18:02:53,918 - trading_reports.main - WARNING - No data found for model: algorand
+2025-08-08 18:02:53,928 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116284.00 -> $479738.34 (+312.56%)
+2025-08-08 18:02:53,929 - trading_reports.main - WARNING - No data found for model: wishing_wealth
+2025-08-08 18:02:53,941 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $633.99 -> $616.88 (-2.70%)
+2025-08-08 18:02:53,942 - trading_reports.main - INFO - Successfully stored 2 predictions to database
+2025-08-08 18:02:53,942 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-08 18:02:53,943 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250808_1802.txt
+2025-08-08 18:02:53,946 - trading_reports.main - INFO - Including today's file: NVIDIA_Bull_Momentum_Report_20250808_154249.txt
+2025-08-08 18:02:53,946 - trading_reports.main - INFO - File filtering: 1 today's files, 0 older files skipped
+2025-08-08 18:02:53,947 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-08 18:02:57,935 - trading_reports.main - INFO - Email report sent successfully
+2025-08-08 18:02:57,938 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-08 18:02:57,938 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:02:57,938 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-08 18:02:57,938 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:05:05,447 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-08 18:05:05,448 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:05:05,448 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-08 18:05:05,448 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:05:05,448 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-08 18:05:05
+2025-08-08 18:05:05,448 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-08 18:05:05,449 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-08 18:05:05,453 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-08 18:05:05,453 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-08 18:05:05,485 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-08 18:05:05,486 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-08 18:05:05,486 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-08 18:05:05,486 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-08 18:05:06,877 - trading_reports.main - INFO - Running daily price updates...
+2025-08-08 18:05:30,540 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-08 18:05:31,682 - trading_reports.main - INFO - Updated BTC-USD: $116930.00
+2025-08-08 18:05:32,735 - trading_reports.main - INFO - Updated ALGO-USD: $0.26
+2025-08-08 18:05:34,017 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-08 18:05:34,017 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-08 18:05:34,018 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-08 18:05:34,018 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-08 18:05:34,019 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-08 18:05:34,047 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-08 18:05:34,053 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-08 18:05:34,057 - trading_reports.main - INFO - Successfully parsed 4 reports from multiple directories
+2025-08-08 18:05:34,057 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -     current_price: 633.99
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -     signal: SELL
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -     confidence: 85%
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -     current_price: 116284.0
+2025-08-08 18:05:34,058 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-08 18:05:34,060 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-08 18:05:34,060 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-08 18:05:34,060 - trading_reports.main - INFO -     signal: BUY
+2025-08-08 18:05:34,060 - trading_reports.main - INFO -     confidence: 85%
+2025-08-08 18:05:34,060 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-08 18:05:34,060 - trading_reports.main - INFO -   longhorn: 7 meaningful fields extracted
+2025-08-08 18:05:34,061 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-08 18:05:34,061 - trading_reports.main - INFO -     signal: STRONG
+2025-08-08 18:05:34,061 - trading_reports.main - INFO -     confidence: 35%
+2025-08-08 18:05:34,061 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-08 18:05:34,061 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-08 18:05:34,072 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $574.55 -> $561.27 (+0.00%)
+2025-08-08 18:05:34,072 - trading_reports.main - WARNING - No data found for model: trading_signal
+2025-08-08 18:05:34,072 - trading_reports.main - WARNING - No data found for model: algorand
+2025-08-08 18:05:34,085 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116284.00 -> $479738.34 (+312.56%)
+2025-08-08 18:05:34,098 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $574.55 -> $574.55 (-4.56%)
+2025-08-08 18:05:34,111 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $633.99 -> $616.88 (-2.70%)
+2025-08-08 18:05:34,112 - trading_reports.main - INFO - Successfully stored 4 predictions to database
+2025-08-08 18:05:34,112 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-08 18:05:34,113 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250808_1805.txt
+2025-08-08 18:05:34,115 - trading_reports.main - INFO - Including today's file: NVIDIA_Bull_Momentum_Report_20250808_154249.txt
+2025-08-08 18:05:34,116 - trading_reports.main - INFO - File filtering: 1 today's files, 0 older files skipped
+2025-08-08 18:05:34,116 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-08 18:05:38,216 - trading_reports.main - INFO - Email report sent successfully
+2025-08-08 18:05:38,219 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-08 18:05:38,219 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 18:05:38,220 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-08 18:05:38,220 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 21:34:30,359 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-08 21:34:30,360 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 21:34:30,360 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-08 21:34:30,361 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 21:34:30,361 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-08 21:34:30
+2025-08-08 21:34:30,361 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-08 21:34:30,361 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-08 21:34:30,366 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-08 21:34:30,366 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-08 21:34:30,393 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-08 21:34:30,394 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-08 21:34:30,394 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-08 21:34:30,394 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-08 21:34:31,127 - trading_reports.main - INFO - Running daily price updates...
+2025-08-08 21:34:52,059 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-08 21:34:53,017 - trading_reports.main - INFO - Updated BTC-USD: $116568.00
+2025-08-08 21:34:53,863 - trading_reports.main - INFO - Updated ALGO-USD: $0.27
+2025-08-08 21:34:54,977 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-08 21:34:54,978 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-08 21:34:54,978 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-08 21:34:54,979 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-08 21:34:54,979 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-08 21:34:55,064 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-08 21:34:55,070 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-08 21:34:55,076 - trading_reports.main - INFO - Successfully parsed 6 reports from multiple directories
+2025-08-08 21:34:55,076 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-08 21:34:55,076 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-08 21:34:55,076 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-08 21:34:55,077 - trading_reports.main - INFO -   nvidia: 7 meaningful fields extracted
+2025-08-08 21:34:55,077 - trading_reports.main - INFO -     current_price: 108.5
+2025-08-08 21:34:55,077 - trading_reports.main - INFO -     signal: BUY
+2025-08-08 21:34:55,077 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-08 21:34:55,077 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-08 21:34:55,078 - trading_reports.main - INFO -     current_price: 116557.0
+2025-08-08 21:34:55,078 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-08 21:34:55,078 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-08 21:34:55,078 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-08 21:34:55,078 - trading_reports.main - INFO -     signal: BUY
+2025-08-08 21:34:55,079 - trading_reports.main - INFO -     confidence: 85%
+2025-08-08 21:34:55,079 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-08 21:34:55,079 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-08 21:34:55,079 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-08 21:34:55,079 - trading_reports.main - INFO -     signal: HOLD
+2025-08-08 21:34:55,079 - trading_reports.main - INFO -   longhorn: 7 meaningful fields extracted
+2025-08-08 21:34:55,080 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-08 21:34:55,080 - trading_reports.main - INFO -     signal: STRONG
+2025-08-08 21:34:55,080 - trading_reports.main - INFO -     confidence: 35%
+2025-08-08 21:34:55,080 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-08 21:34:55,080 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-08 21:34:55,091 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $574.55 -> $561.30 (+0.00%)
+2025-08-08 21:34:55,092 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-08 21:34:55,092 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-08 21:34:55,104 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-08 21:34:55,113 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116557.00 -> $116677.11 (+0.10%)
+2025-08-08 21:34:55,125 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $574.55 -> $574.55 (-4.56%)
+2025-08-08 21:34:55,135 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $108.50 -> $110.15 (+1.52%)
+2025-08-08 21:34:55,136 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-08 21:34:55,136 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-08 21:34:55,137 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250808_2134.txt
+2025-08-08 21:34:55,139 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-08 21:34:55,139 - trading_reports.main - INFO - Sending email with 1 today's attachments
+2025-08-08 21:34:59,431 - trading_reports.main - INFO - Email report sent successfully
+2025-08-08 21:34:59,434 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-08 21:34:59,435 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-08 21:34:59,435 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-08 21:34:59,436 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 06:22:51,642 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-09 15:53:46,334 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-09 15:53:46,335 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 15:53:46,336 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-09 15:53:46,336 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 15:53:46,336 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-09 15:53:46
+2025-08-09 15:53:46,336 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-09 15:53:46,336 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-09 15:53:46,350 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-09 15:53:46,350 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-09 15:53:46,381 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-09 15:53:46,383 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-09 15:53:46,383 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-09 15:53:46,383 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-09 15:53:47,047 - trading_reports.main - INFO - Running daily price updates...
+2025-08-09 15:53:47,191 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-09 15:53:47,303 - trading_reports.main - INFO - Updated BTC-USD: $116576.00
+2025-08-09 15:53:47,433 - trading_reports.main - INFO - Updated ALGO-USD: $0.27
+2025-08-09 15:53:47,609 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-09 15:53:47,613 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-09 15:53:47,615 - trading_reports.main - INFO - Found 4 predictions to update with actual prices
+2025-08-09 15:53:47,625 - trading_reports.main - INFO - Updated prediction 1: QQQ on 2025-08-08 = $574.55
+2025-08-09 15:53:47,656 - trading_reports.main - INFO - Updated prediction 2: BTC-USD on 2025-08-08 = $116583.00
+2025-08-09 15:53:47,671 - trading_reports.main - INFO - Updated prediction 3: QQQ on 2025-08-08 = $574.55
+2025-08-09 15:53:47,691 - trading_reports.main - INFO - Updated prediction 4: NVDA on 2025-08-08 = $173.72
+2025-08-09 15:53:47,691 - trading_reports.main - INFO - Updated 4 predictions with actual prices
+2025-08-09 15:53:47,698 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-09 15:53:47,698 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-09 15:53:47,752 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-09 15:53:47,767 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-09 15:53:47,773 - trading_reports.main - INFO - Successfully parsed 6 reports from multiple directories
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     current_price: 182.7
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     signal: BUY
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     confidence: 95%
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     current_price: 116584.0
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-09 15:53:47,773 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     signal: BUY
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     confidence: 85%
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     signal: HOLD
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -   longhorn: 7 meaningful fields extracted
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     signal: STRONG
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     confidence: 35%
+2025-08-09 15:53:47,777 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-09 15:53:47,777 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-09 15:53:47,784 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $574.55 -> $549.57 (+0.00%)
+2025-08-09 15:53:47,784 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-09 15:53:47,784 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-09 15:53:47,800 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-09 15:53:47,809 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116584.00 -> $116712.50 (+0.11%)
+2025-08-09 15:53:47,820 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $574.55 -> $574.55 (-0.05%)
+2025-08-09 15:53:47,831 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $182.70 -> $184.72 (+1.11%)
+2025-08-09 15:53:47,831 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-09 15:53:47,833 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-09 15:53:47,833 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250809_1553.txt
+2025-08-09 15:53:47,833 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-09 15:53:47,833 - trading_reports.main - INFO - Sending email with 1 today's attachments
+2025-08-09 15:53:50,356 - trading_reports.main - INFO - Email report sent successfully
+2025-08-09 15:53:50,363 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-09 15:53:50,363 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 15:53:50,363 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-09 15:53:50,366 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:35:34,164 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-09 22:35:34,164 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-09 22:35:34,164 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:35:34,164 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-09 22:35:34,164 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:35:34,164 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-09 22:35:34
+2025-08-09 22:35:34,167 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-09 22:35:34,167 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-09 22:35:34,170 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-09 22:35:34,170 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-09 22:35:34,195 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-09 22:35:34,196 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-09 22:35:34,196 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-09 22:35:34,196 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-09 22:35:37,634 - trading_reports.main - INFO - Running daily price updates...
+2025-08-09 22:35:39,372 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-09 22:35:40,932 - trading_reports.main - INFO - Updated BTC-USD: $116797.00
+2025-08-09 22:35:42,502 - trading_reports.main - INFO - Updated ALGO-USD: $0.27
+2025-08-09 22:35:44,098 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-09 22:35:44,100 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-09 22:35:44,101 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-09 22:35:44,101 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-09 22:35:44,102 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-09 22:35:44,152 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-09 22:35:44,170 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-09 22:35:44,191 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-09 22:35:44,191 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-09 22:35:44,191 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -     current_price: 182.7
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -     signal: BUY
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -     confidence: 95%
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-09 22:35:44,194 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-09 22:35:44,198 - trading_reports.main - INFO -     current_price: 116584.0
+2025-08-09 22:35:44,198 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-09 22:35:44,200 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-09 22:35:44,200 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 22:35:44,202 - trading_reports.main - INFO -     signal: BUY
+2025-08-09 22:35:44,202 - trading_reports.main - INFO -     confidence: 85%
+2025-08-09 22:35:44,202 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-09 22:35:44,204 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-09 22:35:44,204 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 22:35:44,206 - trading_reports.main - INFO -     signal: HOLD
+2025-08-09 22:35:44,206 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-09 22:35:44,208 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 22:35:44,208 - trading_reports.main - INFO -     signal: STRONG
+2025-08-09 22:35:44,210 - trading_reports.main - INFO -     confidence: 35%
+2025-08-09 22:35:44,210 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-09 22:35:44,212 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-09 22:35:44,212 - trading_reports.main - INFO -     signal: HOLD
+2025-08-09 22:35:44,212 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-09 22:35:44,212 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-09 22:35:44,227 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $574.55 -> $549.57 (-4.35%)
+2025-08-09 22:35:44,227 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-09 22:35:44,227 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-09 22:35:44,229 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-09 22:35:44,243 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-09 22:35:44,253 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116584.00 -> $116712.50 (+0.11%)
+2025-08-09 22:35:44,268 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $574.55 -> $574.55 (-0.05%)
+2025-08-09 22:35:44,279 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $182.70 -> $184.72 (+1.11%)
+2025-08-09 22:35:44,282 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-09 22:35:44,282 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-09 22:35:44,284 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250809_2235.txt
+2025-08-09 22:35:44,291 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-09 22:35:44,299 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-09 22:35:44,299 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-09 22:35:46,471 - trading_reports.main - INFO - Email report sent successfully
+2025-08-09 22:35:46,478 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-09 22:35:46,480 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:35:46,481 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-09 22:35:46,481 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:48:10,391 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-09 22:48:10
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-09 22:48:10,391 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-09 22:48:10,404 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-09 22:48:10,404 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-09 22:48:10,455 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-09 22:48:10,455 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-09 22:48:10,455 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-09 22:48:10,455 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-09 22:48:10,791 - trading_reports.main - INFO - Running daily price updates...
+2025-08-09 22:48:11,465 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-09 22:48:12,178 - trading_reports.main - INFO - Updated BTC-USD: $117019.00
+2025-08-09 22:48:13,248 - trading_reports.main - INFO - Updated ALGO-USD: $0.27
+2025-08-09 22:48:21,114 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-09 22:48:21,130 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-09 22:48:21,132 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-09 22:48:21,132 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-09 22:48:21,132 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-09 22:48:21,164 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-09 22:48:21,193 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-09 22:48:21,214 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-09 22:48:21,214 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-09 22:48:21,214 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-09 22:48:21,219 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-09 22:48:21,219 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-09 22:48:21,219 - trading_reports.main - INFO -     current_price: 182.7
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -     signal: BUY
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -     confidence: 95%
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -     current_price: 116584.0
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-09 22:48:21,220 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-09 22:48:21,224 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 22:48:21,224 - trading_reports.main - INFO -     signal: BUY
+2025-08-09 22:48:21,226 - trading_reports.main - INFO -     confidence: 85%
+2025-08-09 22:48:21,226 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-09 22:48:21,226 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-09 22:48:21,226 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 22:48:21,226 - trading_reports.main - INFO -     signal: HOLD
+2025-08-09 22:48:21,228 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-09 22:48:21,228 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-09 22:48:21,228 - trading_reports.main - INFO -     signal: STRONG
+2025-08-09 22:48:21,230 - trading_reports.main - INFO -     confidence: 35%
+2025-08-09 22:48:21,230 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-09 22:48:21,231 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-09 22:48:21,231 - trading_reports.main - INFO -     signal: HOLD
+2025-08-09 22:48:21,232 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-09 22:48:21,232 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-09 22:48:21,249 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $574.55 -> $549.57 (-4.35%)
+2025-08-09 22:48:21,249 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-09 22:48:21,249 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-09 22:48:21,249 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-09 22:48:21,264 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-09 22:48:21,280 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $116584.00 -> $116712.50 (+0.11%)
+2025-08-09 22:48:21,309 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $574.55 -> $574.55 (-0.05%)
+2025-08-09 22:48:21,320 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $182.70 -> $184.72 (+1.11%)
+2025-08-09 22:48:21,325 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-09 22:48:21,325 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-09 22:48:21,327 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250809_2248.txt
+2025-08-09 22:48:21,336 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-09 22:48:31,219 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-09 22:48:31,219 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-09 22:48:33,384 - trading_reports.main - INFO - Email report sent successfully
+2025-08-09 22:48:33,392 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-09 22:48:33,392 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-09 22:48:33,392 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-09 22:48:33,394 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-10 15:53:23,460 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-10 15:53:23
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-10 15:53:23,460 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-10 15:53:23,484 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-10 15:53:23,484 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-10 15:53:23,501 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-10 15:53:23,501 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-10 15:53:23,501 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-10 15:53:23,501 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-10 15:53:23,695 - trading_reports.main - INFO - Running daily price updates...
+2025-08-10 15:53:23,838 - trading_reports.main - INFO - Updated QQQ: $574.55
+2025-08-10 15:53:23,962 - trading_reports.main - INFO - Updated BTC-USD: $118681.00
+2025-08-10 15:53:24,108 - trading_reports.main - INFO - Updated ALGO-USD: $0.27
+2025-08-10 15:53:24,283 - trading_reports.main - INFO - Updated VIX: $15.15
+2025-08-10 15:53:24,285 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-10 15:53:24,287 - trading_reports.main - INFO - Found 13 predictions to update with actual prices
+2025-08-10 15:53:24,302 - trading_reports.main - INFO - Updated prediction 5: BTC-USD on 2025-08-09 = $117019.00
+2025-08-10 15:53:24,315 - trading_reports.main - INFO - Updated prediction 6: NVDA on 2025-08-09 = $173.72
+2025-08-10 15:53:24,330 - trading_reports.main - INFO - Updated prediction 7: BTC-USD on 2025-08-09 = $117019.00
+2025-08-10 15:53:24,361 - trading_reports.main - INFO - Updated prediction 8: NVDA on 2025-08-09 = $173.72
+2025-08-10 15:53:24,365 - trading_reports.main - INFO - Updated prediction 9: QQQ on 2025-08-09 = $574.55
+2025-08-10 15:53:24,377 - trading_reports.main - INFO - Updated prediction 10: BTC-USD on 2025-08-09 = $117019.00
+2025-08-10 15:53:24,393 - trading_reports.main - INFO - Updated prediction 11: QQQ on 2025-08-09 = $574.55
+2025-08-10 15:53:24,411 - trading_reports.main - INFO - Updated prediction 12: NVDA on 2025-08-09 = $173.72
+2025-08-10 15:53:24,425 - trading_reports.main - INFO - Updated prediction 13: QQQ on 2025-08-09 = $574.55
+2025-08-10 15:53:24,442 - trading_reports.main - INFO - Updated prediction 14: ALGO-USD on 2025-08-09 = $0.27
+2025-08-10 15:53:24,458 - trading_reports.main - INFO - Updated prediction 15: BTC-USD on 2025-08-09 = $117019.00
+2025-08-10 15:53:24,474 - trading_reports.main - INFO - Updated prediction 16: QQQ on 2025-08-09 = $574.55
+2025-08-10 15:53:24,493 - trading_reports.main - INFO - Updated prediction 17: NVDA on 2025-08-09 = $173.72
+2025-08-10 15:53:24,493 - trading_reports.main - INFO - Updated 13 predictions with actual prices
+2025-08-10 15:53:24,495 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-10 15:53:24,495 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-10 15:53:24,552 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-10 15:53:24,570 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-10 15:53:24,570 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-10 15:53:24,570 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-10 15:53:24,570 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     current_price: 182.7
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     signal: BUY
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     confidence: 95%
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     current_price: 118604.0
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     signal: BUY
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     confidence: 85%
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     signal: HOLD
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     current_price: 574.55
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     signal: STRONG
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     confidence: 35%
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     signal: HOLD
+2025-08-10 15:53:24,584 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-10 15:53:24,584 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-10 15:53:24,697 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $574.55 -> $562.49 (-2.10%)
+2025-08-10 15:53:24,697 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-10 15:53:24,697 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-10 15:53:24,697 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-10 15:53:24,743 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-10 15:53:24,845 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $118604.00 -> $118731.84 (+0.11%)
+2025-08-10 15:53:24,956 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $574.55 -> $574.55 (-0.05%)
+2025-08-10 15:53:24,967 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $182.70 -> $184.72 (+1.11%)
+2025-08-10 15:53:24,967 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-10 15:53:24,967 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-10 15:53:24,970 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250810_1553.txt
+2025-08-10 15:53:24,972 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-10 15:53:25,093 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-10 15:53:25,093 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-10 15:53:27,228 - trading_reports.main - INFO - Email report sent successfully
+2025-08-10 15:53:27,228 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-10 15:53:27,228 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-10 15:53:27,228 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-10 15:53:27,228 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-12 15:53:07,914 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-12 15:53:07,914 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-12 15:53:07,914 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-12 15:53:07,914 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-12 15:53:07,914 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-12 15:53:07,914 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-12 15:53:07
+2025-08-12 15:53:07,928 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-12 15:53:07,928 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-12 15:53:07,945 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-12 15:53:07,945 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-12 15:53:07,967 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-12 15:53:07,967 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-12 15:53:07,967 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-12 15:53:07,967 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-12 15:53:08,166 - trading_reports.main - INFO - Running daily price updates...
+2025-08-12 15:53:08,391 - trading_reports.main - INFO - Updated QQQ: $572.85
+2025-08-12 15:53:08,597 - trading_reports.main - INFO - Updated BTC-USD: $119691.00
+2025-08-12 15:53:08,820 - trading_reports.main - INFO - Updated ALGO-USD: $0.27
+2025-08-12 15:53:08,996 - trading_reports.main - INFO - Updated VIX: $14.89
+2025-08-12 15:53:08,998 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-12 15:53:08,998 - trading_reports.main - INFO - Found 20 predictions to update with actual prices
+2025-08-12 15:53:09,012 - trading_reports.main - INFO - Updated prediction 18: QQQ on 2025-08-10 = $574.55
+2025-08-12 15:53:09,024 - trading_reports.main - INFO - Updated prediction 19: ALGO-USD on 2025-08-10 = $0.27
+2025-08-12 15:53:09,028 - trading_reports.main - INFO - Updated prediction 20: BTC-USD on 2025-08-10 = $118681.00
+2025-08-12 15:53:09,044 - trading_reports.main - INFO - Updated prediction 21: QQQ on 2025-08-10 = $574.55
+2025-08-12 15:53:09,060 - trading_reports.main - INFO - Updated prediction 22: NVDA on 2025-08-10 = $173.72
+2025-08-12 15:53:09,073 - trading_reports.main - INFO - Updated prediction 23: QQQ on 2025-08-10 = $574.55
+2025-08-12 15:53:09,076 - trading_reports.main - INFO - Updated prediction 24: ALGO-USD on 2025-08-10 = $0.27
+2025-08-12 15:53:09,095 - trading_reports.main - INFO - Updated prediction 25: BTC-USD on 2025-08-10 = $118681.00
+2025-08-12 15:53:09,103 - trading_reports.main - INFO - Updated prediction 26: QQQ on 2025-08-10 = $574.55
+2025-08-12 15:53:09,118 - trading_reports.main - INFO - Updated prediction 27: NVDA on 2025-08-10 = $173.72
+2025-08-12 15:53:09,134 - trading_reports.main - INFO - Updated prediction 28: QQQ on 2025-08-10 = $574.55
+2025-08-12 15:53:09,155 - trading_reports.main - INFO - Updated prediction 29: ALGO-USD on 2025-08-10 = $0.27
+2025-08-12 15:53:09,170 - trading_reports.main - INFO - Updated prediction 30: BTC-USD on 2025-08-10 = $118681.00
+2025-08-12 15:53:09,183 - trading_reports.main - INFO - Updated prediction 31: QQQ on 2025-08-10 = $574.55
+2025-08-12 15:53:09,202 - trading_reports.main - INFO - Updated prediction 32: NVDA on 2025-08-10 = $173.72
+2025-08-12 15:53:09,202 - trading_reports.main - INFO - Updated prediction 33: QQQ on 2025-08-11 = $574.55
+2025-08-12 15:53:09,217 - trading_reports.main - INFO - Updated prediction 34: ALGO-USD on 2025-08-11 = $0.25
+2025-08-12 15:53:09,237 - trading_reports.main - INFO - Updated prediction 35: BTC-USD on 2025-08-11 = $119219.00
+2025-08-12 15:53:09,255 - trading_reports.main - INFO - Updated prediction 36: QQQ on 2025-08-11 = $574.55
+2025-08-12 15:53:09,273 - trading_reports.main - INFO - Updated prediction 37: NVDA on 2025-08-11 = $173.72
+2025-08-12 15:53:09,273 - trading_reports.main - INFO - Updated 20 predictions with actual prices
+2025-08-12 15:53:09,273 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-12 15:53:09,273 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-12 15:53:09,345 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-12 15:53:09,351 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-12 15:53:09,359 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -     current_price: 182.06
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -     signal: HOLD
+2025-08-12 15:53:09,359 - trading_reports.main - INFO -     confidence: 35%
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     current_price: 119839.0
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     current_price: 572.85
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     signal: BUY
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     confidence: 85%
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     current_price: 572.85
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     signal: HOLD
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     current_price: 572.85
+2025-08-12 15:53:09,361 - trading_reports.main - INFO -     signal: SELL
+2025-08-12 15:53:09,363 - trading_reports.main - INFO -     confidence: 95%
+2025-08-12 15:53:09,363 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-12 15:53:09,363 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-12 15:53:09,363 - trading_reports.main - INFO -     signal: HOLD
+2025-08-12 15:53:09,363 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-12 15:53:09,363 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-12 15:53:09,370 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $572.85 -> $565.31 (-1.32%)
+2025-08-12 15:53:09,370 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-12 15:53:09,376 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-12 15:53:09,376 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-12 15:53:09,385 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-12 15:53:09,395 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $119839.00 -> $119571.57 (-0.22%)
+2025-08-12 15:53:09,408 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $572.85 -> $572.85 (-0.34%)
+2025-08-12 15:53:09,417 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $182.06 -> $181.89 (-0.09%)
+2025-08-12 15:53:09,417 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-12 15:53:09,420 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-12 15:53:09,420 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250812_1553.txt
+2025-08-12 15:53:09,422 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-12 15:53:09,619 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-12 15:53:09,621 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-12 15:53:12,270 - trading_reports.main - INFO - Email report sent successfully
+2025-08-12 15:53:12,272 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-12 15:53:12,274 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-12 15:53:12,274 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-12 15:53:12,274 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-13 16:17:42,625 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-13 16:17:42,625 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-13 16:17:42,626 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-13 16:17:42,626 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-13 16:17:42,626 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-13 16:17:42,627 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-13 16:17:42
+2025-08-13 16:17:42,627 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-13 16:17:42,627 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-13 16:17:42,654 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-13 16:17:42,654 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-13 16:17:42,669 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-13 16:17:42,669 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-13 16:17:42,669 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-13 16:17:42,669 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-13 16:17:42,868 - trading_reports.main - INFO - Running daily price updates...
+2025-08-13 16:17:44,154 - trading_reports.main - INFO - Updated QQQ: $580.34
+2025-08-13 16:17:44,953 - trading_reports.main - INFO - Updated BTC-USD: $122767.00
+2025-08-13 16:17:46,100 - trading_reports.main - INFO - Updated ALGO-USD: $0.28
+2025-08-13 16:17:47,119 - trading_reports.main - INFO - Updated VIX: $14.39
+2025-08-13 16:17:47,120 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-13 16:17:47,122 - trading_reports.main - INFO - No predictions need actual price updates
+2025-08-13 16:17:47,123 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-13 16:17:47,124 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-13 16:17:47,204 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-13 16:17:47,211 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-13 16:17:47,224 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-13 16:17:47,224 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-13 16:17:47,224 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-13 16:17:47,224 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-13 16:17:47,225 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-13 16:17:47,225 - trading_reports.main - INFO -     current_price: 183.16
+2025-08-13 16:17:47,225 - trading_reports.main - INFO -     signal: BUY
+2025-08-13 16:17:47,225 - trading_reports.main - INFO -     confidence: 95%
+2025-08-13 16:17:47,225 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-13 16:17:47,226 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-13 16:17:47,226 - trading_reports.main - INFO -     current_price: 122482.0
+2025-08-13 16:17:47,226 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-13 16:17:47,226 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-13 16:17:47,227 - trading_reports.main - INFO -     current_price: 580.05
+2025-08-13 16:17:47,227 - trading_reports.main - INFO -     signal: BUY
+2025-08-13 16:17:47,227 - trading_reports.main - INFO -     confidence: 85%
+2025-08-13 16:17:47,227 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-13 16:17:47,227 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-13 16:17:47,228 - trading_reports.main - INFO -     current_price: 580.05
+2025-08-13 16:17:47,228 - trading_reports.main - INFO -     signal: HOLD
+2025-08-13 16:17:47,228 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-13 16:17:47,228 - trading_reports.main - INFO -     current_price: 580.05
+2025-08-13 16:17:47,230 - trading_reports.main - INFO -     signal: SELL
+2025-08-13 16:17:47,230 - trading_reports.main - INFO -     confidence: 95%
+2025-08-13 16:17:47,230 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-13 16:17:47,231 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-13 16:17:47,231 - trading_reports.main - INFO -     signal: SELL
+2025-08-13 16:17:47,231 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-13 16:17:47,231 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-13 16:17:47,246 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $580.05 -> $575.98 (-0.70%)
+2025-08-13 16:17:47,246 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-13 16:17:47,248 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-13 16:17:47,248 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-13 16:17:47,258 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-13 16:17:47,268 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $122482.00 -> $122207.99 (-0.22%)
+2025-08-13 16:17:47,280 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $580.05 -> $580.05 (+0.91%)
+2025-08-13 16:17:47,321 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $183.16 -> $184.20 (+0.57%)
+2025-08-13 16:17:47,322 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-13 16:17:47,322 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-13 16:17:47,323 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250813_1617.txt
+2025-08-13 16:17:47,324 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-13 16:17:48,322 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-13 16:17:48,322 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-13 16:18:01,982 - trading_reports.main - INFO - Email report sent successfully
+2025-08-13 16:18:01,985 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-13 16:18:01,985 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-13 16:18:01,985 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-13 16:18:01,987 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-14 18:44:09,285 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-14 18:44:09
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-14 18:44:09,285 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-14 18:44:09,315 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-14 18:44:09,315 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-14 18:44:09,331 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-14 18:44:09,331 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-14 18:44:09,332 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-14 18:44:09,332 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-14 18:44:09,506 - trading_reports.main - INFO - Running daily price updates...
+2025-08-14 18:44:10,782 - trading_reports.main - INFO - Updated QQQ: $579.89
+2025-08-14 18:44:11,050 - trading_reports.main - INFO - Updated BTC-USD: $118199.00
+2025-08-14 18:44:11,382 - trading_reports.main - INFO - Updated ALGO-USD: $0.25
+2025-08-14 18:44:11,863 - trading_reports.main - INFO - Updated VIX: $14.83
+2025-08-14 18:44:11,877 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-14 18:44:11,879 - trading_reports.main - INFO - Found 5 predictions to update with actual prices
+2025-08-14 18:44:11,898 - trading_reports.main - INFO - Updated prediction 38: QQQ on 2025-08-13 = $580.34
+2025-08-14 18:44:11,912 - trading_reports.main - INFO - Updated prediction 39: ALGO-USD on 2025-08-13 = $0.28
+2025-08-14 18:44:11,928 - trading_reports.main - INFO - Updated prediction 40: BTC-USD on 2025-08-13 = $122767.00
+2025-08-14 18:44:11,946 - trading_reports.main - INFO - Updated prediction 41: QQQ on 2025-08-13 = $580.34
+2025-08-14 18:44:11,962 - trading_reports.main - INFO - Updated prediction 42: NVDA on 2025-08-13 = $173.72
+2025-08-14 18:44:11,962 - trading_reports.main - INFO - Updated 5 predictions with actual prices
+2025-08-14 18:44:11,962 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-14 18:44:11,964 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-14 18:44:12,023 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-14 18:44:12,031 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-14 18:44:12,037 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     current_price: 633.99
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     signal: SELL
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     confidence: 85%
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     current_price: 118245.0
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     current_price: 579.89
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     signal: BUY
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     confidence: 85%
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-14 18:44:12,037 - trading_reports.main - INFO -     current_price: 579.89
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -     signal: HOLD
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -     current_price: 579.89
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -     signal: SELL
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -     confidence: 35%
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-14 18:44:12,041 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-14 18:44:12,042 - trading_reports.main - INFO -     signal: HOLD
+2025-08-14 18:44:12,042 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-14 18:44:12,042 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-14 18:44:12,054 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $579.89 -> $572.89 (-1.21%)
+2025-08-14 18:44:12,055 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-14 18:44:12,055 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-14 18:44:12,055 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-14 18:44:12,067 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-14 18:44:12,074 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $118245.00 -> $118338.91 (+0.08%)
+2025-08-14 18:44:12,088 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $579.89 -> $579.89 (+0.88%)
+2025-08-14 18:44:12,102 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $633.99 -> $617.77 (-2.56%)
+2025-08-14 18:44:12,102 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-14 18:44:12,102 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-14 18:44:12,102 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250814_1844.txt
+2025-08-14 18:44:12,105 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-14 18:44:13,124 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-14 18:44:13,126 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-14 18:44:20,461 - trading_reports.main - INFO - Email report sent successfully
+2025-08-14 18:44:20,467 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-14 18:44:20,467 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-14 18:44:20,468 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-14 18:44:20,469 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-15 15:45:37,667 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-15 15:45:37
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-15 15:45:37,679 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-15 15:45:37,700 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-15 15:45:37,700 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-15 15:45:37,714 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-15 15:45:37,720 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-15 15:45:37,720 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-15 15:45:37,720 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-15 15:45:37,905 - trading_reports.main - INFO - Running daily price updates...
+2025-08-15 15:45:38,755 - trading_reports.main - INFO - Updated QQQ: $579.89
+2025-08-15 15:45:39,563 - trading_reports.main - INFO - Updated BTC-USD: $117071.00
+2025-08-15 15:45:40,449 - trading_reports.main - INFO - Updated ALGO-USD: $0.25
+2025-08-15 15:45:42,020 - trading_reports.main - INFO - Updated VIX: $14.98
+2025-08-15 15:45:42,020 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-15 15:45:42,024 - trading_reports.main - INFO - Found 5 predictions to update with actual prices
+2025-08-15 15:45:42,036 - trading_reports.main - INFO - Updated prediction 43: QQQ on 2025-08-14 = $579.89
+2025-08-15 15:45:42,049 - trading_reports.main - INFO - Updated prediction 44: ALGO-USD on 2025-08-14 = $0.25
+2025-08-15 15:45:42,057 - trading_reports.main - INFO - Updated prediction 45: BTC-USD on 2025-08-14 = $118199.00
+2025-08-15 15:45:42,072 - trading_reports.main - INFO - Updated prediction 46: QQQ on 2025-08-14 = $579.89
+2025-08-15 15:45:42,083 - trading_reports.main - INFO - Updated prediction 47: NVDA on 2025-08-14 = $173.72
+2025-08-15 15:45:42,083 - trading_reports.main - INFO - Updated 5 predictions with actual prices
+2025-08-15 15:45:42,083 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-15 15:45:42,088 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-15 15:45:42,158 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-15 15:45:42,168 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-15 15:45:42,176 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-15 15:45:42,176 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-15 15:45:42,176 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-15 15:45:42,176 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-15 15:45:42,176 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-15 15:45:42,176 - trading_reports.main - INFO -     current_price: 182.02
+2025-08-15 15:45:42,178 - trading_reports.main - INFO -     signal: SELL
+2025-08-15 15:45:42,178 - trading_reports.main - INFO -     confidence: 85%
+2025-08-15 15:45:42,178 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-15 15:45:42,179 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-15 15:45:42,179 - trading_reports.main - INFO -     current_price: 117128.0
+2025-08-15 15:45:42,179 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-15 15:45:42,179 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-15 15:45:42,180 - trading_reports.main - INFO -     current_price: 579.89
+2025-08-15 15:45:42,181 - trading_reports.main - INFO -     signal: BUY
+2025-08-15 15:45:42,181 - trading_reports.main - INFO -     confidence: 85%
+2025-08-15 15:45:42,181 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-15 15:45:42,181 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-15 15:45:42,182 - trading_reports.main - INFO -     current_price: 579.89
+2025-08-15 15:45:42,182 - trading_reports.main - INFO -     signal: HOLD
+2025-08-15 15:45:42,182 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-15 15:45:42,182 - trading_reports.main - INFO -     current_price: 579.89
+2025-08-15 15:45:42,183 - trading_reports.main - INFO -     signal: SELL
+2025-08-15 15:45:42,183 - trading_reports.main - INFO -     confidence: 35%
+2025-08-15 15:45:42,183 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-15 15:45:42,183 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-15 15:45:42,184 - trading_reports.main - INFO -     signal: HOLD
+2025-08-15 15:45:42,184 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-15 15:45:42,184 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-15 15:45:42,197 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $579.89 -> $573.63 (-1.08%)
+2025-08-15 15:45:42,197 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-15 15:45:42,197 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-15 15:45:42,197 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-15 15:45:42,206 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-15 15:45:42,217 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $117128.00 -> $117212.92 (+0.07%)
+2025-08-15 15:45:42,229 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $579.89 -> $579.89 (+0.88%)
+2025-08-15 15:45:42,242 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $182.02 -> $180.29 (-0.95%)
+2025-08-15 15:45:42,243 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-15 15:45:42,243 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-15 15:45:42,244 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250815_1545.txt
+2025-08-15 15:45:42,247 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-15 15:45:43,700 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-15 15:45:43,700 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-15 15:45:54,496 - trading_reports.main - INFO - Email report sent successfully
+2025-08-15 15:45:54,501 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-15 15:45:54,504 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-15 15:45:54,504 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-15 15:45:54,504 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-16 15:44:58,281 - trading_reports.main - INFO - Options strategy analyzer available
+2025-08-16 15:44:58,283 - trading_reports - INFO - [AUTOMATED] All modular components imported successfully!
+2025-08-16 15:44:58,284 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-16 15:44:58,284 - trading_reports - INFO - [AUTOMATED] STARTING AUTOMATED TRADING REPORTS
+2025-08-16 15:44:58,284 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-16 15:44:58,284 - trading_reports - INFO - [AUTOMATED] Started at: 2025-08-16 15:44:58
+2025-08-16 15:44:58,284 - trading_reports - INFO - [AUTOMATED] Email configured: True
+2025-08-16 15:44:58,284 - trading_reports - INFO - [AUTOMATED] Recipients: 7 addresses
+2025-08-16 15:44:58,312 - trading_reports.main - INFO - Starting Trading Reports System...
+2025-08-16 15:44:58,312 - trading_reports.main - INFO - === RUNNING STARTUP CHECKS ===
+2025-08-16 15:44:58,328 - trading_reports.main - INFO - Health check passed - database: OK
+2025-08-16 15:44:58,329 - trading_reports.main - INFO - Health check passed - email: OK
+2025-08-16 15:44:58,329 - trading_reports.main - INFO - Health check passed - directories: OK
+2025-08-16 15:44:58,329 - trading_reports.main - INFO - === RUNNING DAILY MAINTENANCE TASKS ===
+2025-08-16 15:44:58,531 - trading_reports.main - INFO - Running daily price updates...
+2025-08-16 15:44:59,198 - trading_reports.main - INFO - Updated QQQ: $577.34
+2025-08-16 15:44:59,571 - trading_reports.main - INFO - Updated BTC-USD: $117805.00
+2025-08-16 15:44:59,968 - trading_reports.main - INFO - Updated ALGO-USD: $0.26
+2025-08-16 15:45:00,485 - trading_reports.main - INFO - Updated VIX: $15.09
+2025-08-16 15:45:00,485 - trading_reports.main - INFO - Daily price update completed: 4/4 symbols updated
+2025-08-16 15:45:00,486 - trading_reports.main - INFO - Found 5 predictions to update with actual prices
+2025-08-16 15:45:00,500 - trading_reports.main - INFO - Updated prediction 48: QQQ on 2025-08-15 = $579.89
+2025-08-16 15:45:00,511 - trading_reports.main - INFO - Updated prediction 49: ALGO-USD on 2025-08-15 = $0.25
+2025-08-16 15:45:00,524 - trading_reports.main - INFO - Updated prediction 50: BTC-USD on 2025-08-15 = $117071.00
+2025-08-16 15:45:00,535 - trading_reports.main - INFO - Updated prediction 51: QQQ on 2025-08-15 = $579.89
+2025-08-16 15:45:00,547 - trading_reports.main - INFO - Updated prediction 52: NVDA on 2025-08-15 = $173.72
+2025-08-16 15:45:00,547 - trading_reports.main - INFO - Updated 5 predictions with actual prices
+2025-08-16 15:45:00,547 - trading_reports.main - INFO - === PARSING REPORTS ===
+2025-08-16 15:45:00,547 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\OneDrive\Desktop
+2025-08-16 15:45:00,604 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\Desktop
+2025-08-16 15:45:00,611 - trading_reports.main - INFO - Searching directory: C:\Users\rrose\trading-models-system\core-system
+2025-08-16 15:45:00,618 - trading_reports.main - INFO - Successfully parsed 7 reports from multiple directories
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -   algorand: 9 meaningful fields extracted
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -     current_price: 0.2854
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -   nvidia: 8 meaningful fields extracted
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -     current_price: 180.45
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -     signal: SELL
+2025-08-16 15:45:00,619 - trading_reports.main - INFO -     confidence: 85%
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -   bitcoin: 9 meaningful fields extracted
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -     current_price: 117776.0
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -     suggested_action: HOLD
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -   wishing_wealth: 45 meaningful fields extracted
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -     current_price: 577.34
+2025-08-16 15:45:00,620 - trading_reports.main - INFO -     signal: BUY
+2025-08-16 15:45:00,621 - trading_reports.main - INFO -     confidence: 85%
+2025-08-16 15:45:00,621 - trading_reports.main - INFO -     suggested_action: BUY
+2025-08-16 15:45:00,621 - trading_reports.main - INFO -   trading_signal: 3 meaningful fields extracted
+2025-08-16 15:45:00,621 - trading_reports.main - INFO -     current_price: 577.34
+2025-08-16 15:45:00,621 - trading_reports.main - INFO -     signal: HOLD
+2025-08-16 15:45:00,621 - trading_reports.main - INFO -   longhorn: 8 meaningful fields extracted
+2025-08-16 15:45:00,622 - trading_reports.main - INFO -     current_price: 577.34
+2025-08-16 15:45:00,622 - trading_reports.main - INFO -     signal: SELL
+2025-08-16 15:45:00,622 - trading_reports.main - INFO -     confidence: 95%
+2025-08-16 15:45:00,622 - trading_reports.main - INFO -     suggested_action: SELL
+2025-08-16 15:45:00,622 - trading_reports.main - INFO -   qqq_master: 4 meaningful fields extracted
+2025-08-16 15:45:00,623 - trading_reports.main - INFO -     signal: SELL
+2025-08-16 15:45:00,623 - trading_reports.main - INFO -     confidence: 95.0
+2025-08-16 15:45:00,623 - trading_reports.main - INFO - === STORING PREDICTIONS TO DATABASE ===
+2025-08-16 15:45:00,641 - trading_reports.main - INFO - Stored prediction for Long Bull Model: QQQ $577.34 -> $572.13 (-0.90%)
+2025-08-16 15:45:00,642 - trading_reports.main - WARNING - No current price for QQQ Master Model
+2025-08-16 15:45:00,642 - trading_reports.main - WARNING - No predicted price for QQQ Trading Signal (looking for field: price_target)
+2025-08-16 15:45:00,642 - trading_reports.main - INFO -   Available fields: ['signal', 'current_price', 'report_timestamp']
+2025-08-16 15:45:00,651 - trading_reports.main - INFO - Stored prediction for Algorand Model: ALGO-USD $0.29 -> $0.27 (-3.96%)
+2025-08-16 15:45:00,662 - trading_reports.main - INFO - Stored prediction for Bitcoin Model: BTC-USD $117776.00 -> $117866.99 (+0.08%)
+2025-08-16 15:45:00,673 - trading_reports.main - INFO - Stored prediction for Wishing Wealth QQQ Model: QQQ $577.34 -> $577.34 (+0.44%)
+2025-08-16 15:45:00,684 - trading_reports.main - INFO - Stored prediction for NVIDIA Bull Momentum Model: NVDA $180.45 -> $178.73 (-0.95%)
+2025-08-16 15:45:00,684 - trading_reports.main - INFO - Successfully stored 5 predictions to database
+2025-08-16 15:45:00,684 - trading_reports.main - INFO - === GENERATING AND SENDING REPORT ===
+2025-08-16 15:45:00,685 - trading_reports.main - INFO - Combined report saved to: C:\Users\rrose\OneDrive\Desktop\Combined_Trading_Report_20250816_1545.txt
+2025-08-16 15:45:00,686 - trading_reports.main - INFO - File filtering: 0 today's files, 0 older files skipped
+2025-08-16 15:45:01,159 - trading_reports.main - INFO - Options strategy analysis added to attachments
+2025-08-16 15:45:01,159 - trading_reports.main - INFO - Sending email with 2 today's attachments
+2025-08-16 15:45:09,745 - trading_reports.main - INFO - Email report sent successfully
+2025-08-16 15:45:09,750 - trading_reports.main - INFO - Trading Reports System completed successfully
+2025-08-16 15:45:09,750 - trading_reports - INFO - [AUTOMATED] ============================================================
+2025-08-16 15:45:09,751 - trading_reports - INFO - [AUTOMATED] SUCCESS - ALL REPORTS PROCESSED
+2025-08-16 15:45:09,752 - trading_reports - INFO - [AUTOMATED] ============================================================

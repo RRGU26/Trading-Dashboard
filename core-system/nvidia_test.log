@@ -1,0 +1,157 @@
+Using desktop path: C:\Users\rrose\trading-models-system\core-system\reports
+=== NVIDIA Bull Momentum Model ===
+AI-focused price prediction optimized for NVIDIA's growth patterns
+
+=== DATA ACQUISITION ===
+Loading NVDA historical data from CSV...
+Loaded 6477 days of historical data
+Date range: 1999-11-01 to 2025-08-01
+Latest historical price: $173.72
+NVIDIA data shape: (1403, 6)
+Date range: 2020-01-02 00:00:00 to 2025-08-01 00:00:00
+Using split-adjusted historical data from CSV
+Fetching current NVIDIA price...
+Current NVIDIA price (Yahoo): $182.02
+Adding API delay to prevent throttling...
+
+=== FEATURE ENGINEERING ===
+Starting NVIDIA-specific feature engineering...
+Calculating momentum features...
+Calculating trend strength features...
+Calculating volatility features...
+Calculating technical indicators...
+Calculating volume features...
+Calculating price range features...
+Calculating NVIDIA-specific pattern features...
+Cleaning and validating features...
+Feature engineering complete: 36 features created
+Creating target variable (5-day forward returns)...
+
+=== DATA PREPARATION ===
+Total features before validation: 36
+Final features: 36
+Clean dataset: 1403 rows
+
+=== MODEL TRAINING ===
+Training on 1403 samples...
+Training complete!
+
+=== BACKTESTING ===
+NVIDIA backtest: 351 total test points, sampling up to 100
+Sampling every 3 points for efficiency
+NVIDIA backtest progress: 25/117 predictions...
+NVIDIA backtest progress: 50/117 predictions...
+NVIDIA backtest progress: 75/117 predictions...
+NVIDIA backtest progress: 100/117 predictions...
+NVIDIA backtest completed: 117 predictions generated
+
+=== PERFORMANCE EVALUATION ===
+Evaluation dataset: 117 predictions
+
+=== GENERATING PREDICTIONS ===
+
+Report saved to: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250814_200517.txt
+
+================================================================================
+=== NVIDIA Bull Momentum Analysis Report ===
+Generated on: 2025-08-14 20:05:17
+Symbol: NVDA
+Current Price: $182.02
+
+--- TRADING SIGNALS ---
+5-Day Price Target: $170.80
+5-Day Return Prediction: -6.16%
+1-Day Price Target: $179.78
+1-Day Return Prediction: -1.23%
+
+SIGNAL: SELL
+CONFIDENCE: High
+
+--- MODEL PERFORMANCE ---
+Overall Hit Rate: 67.5%
+R-squared Score: 0.1422
+Mean Squared Error: 0.016275
+
+Strategy Performance:
+- Total Return (Confident Trades): 328.6%
+- Total Return (Strong Signals Only): 213.4%
+- Sharpe Ratio: 2.09
+- Maximum Drawdown: -20.5%
+- Backtested Predictions: 117
+
+--- TOP PREDICTIVE FEATURES ---
+ 1. Price_vs_MA20: 0.0857
+ 2. Volatility_20d: 0.0727
+ 3. Quarter_Phase: 0.0614
+ 4. Returns_5d: 0.0552
+ 5. Vol_Regime: 0.0498
+ 6. MACD_Signal: 0.0447
+ 7. Momentum_Accel_5d: 0.0438
+ 8. MA_Trend_20_50: 0.0394
+ 9. Range_MA: 0.0362
+10. Volatility_50d: 0.0355
+
+--- MODEL SPECIFICATIONS ---
+Algorithm: XGBoost Gradient Boosting
+Training Period: 2020-01-02 to 2025-08-01
+Training Samples: 1,403
+Features: 36 NVIDIA-optimized technical indicators
+Prediction Horizon: 5 trading days
+Model Parameters:
+  - Estimators: 400
+  - Max Depth: 8
+  - Learning Rate: 0.03
+  - Regularization: L1=0.1, L2=1.5
+
+--- NVIDIA-SPECIFIC OPTIMIZATIONS ---
+1. AI/Tech momentum pattern detection
+2. Volume surge analysis for breakout prediction
+3. Volatility regime classification
+4. Extended lookback periods for trend analysis
+5. Earnings seasonality proxy features
+6. Gap analysis for news-driven movements
+
+--- RISK CONSIDERATIONS ---
+• NVIDIA exhibits high volatility - position sizing is critical
+• Model optimized for 5-day holding periods
+• Strong correlation with tech sector and AI sentiment
+• Earnings events can cause significant deviations
+• Crypto market movements may impact predictions
+
+--- DISCLAIMER ---
+This model is for educational and informational purposes only.
+Past performance does not guarantee future results.
+NVIDIA stock carries significant volatility and risk.
+Always consult with a qualified financial advisor before making investment decisions.
+Never invest more than you can afford to lose.
+
+Data Source: Alpha Vantage / Yahoo Finance
+Model Version: NVIDIA Bull Momentum v1.0
+
+================================================================================
+
+=== QUICK SUMMARY ===
+Current NVDA Price: $182.02
+5-Day Target: $170.80 (-6.2%)
+Signal: SELL (High confidence)
+Model Hit Rate: 67.5%
+Strategy Return: +328.6%
+Standardized NVIDIA report saved: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250814_200517.txt
+
+[DATABASE] Saving predictions to database...
+[OK] Found database: models_dashboard.db
+[OK] Prediction saved to database
+   Date: 2025-08-14 -> 2025-08-15 (1d)
+   Price: $182.0200 -> $179.7767 (-1.23%)
+   Action: SELL (Confidence: 85.0%)
+[OK] Found database: models_dashboard.db
+[OK] Prediction saved to database
+   Date: 2025-08-14 -> 2025-08-19 (5d)
+   Price: $182.0200 -> $170.8036 (-6.16%)
+   Action: SELL (Confidence: 85.0%)
+[DATABASE] [OK] 1-day prediction saved to database
+[DATABASE] [OK] 5-day prediction saved to database
+[DATABASE] Saving model metrics...
+[OK] Found database: models_dashboard.db
+[OK] Model metrics saved to database
+[DATABASE] [OK] Model metrics saved to database

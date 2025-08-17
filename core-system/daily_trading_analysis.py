@@ -106,14 +106,100 @@ class TradingAnalysisEngine:
             consensus_count = list(signals.values()).count(most_common_signal)
             performance_analysis['consensus_strength'] = consensus_count / len(signals)
         
-        # Risk assessment
+        # ADD PRICE PREDICTION CORRELATION ANALYSIS
+        price_correlations = self._analyze_price_prediction_correlations(model_reports)
+        performance_analysis.update(price_correlations)
+        
+        # Enhanced risk assessment with correlation data
         avg_confidence = np.mean(list(confidences.values())) if confidences else 50
-        if avg_confidence > 80 and performance_analysis['consensus_strength'] > 0.7:
-            performance_analysis['risk_assessment'] = 'LOW'
-        elif avg_confidence < 50 or len(performance_analysis['conflicting_signals']) > 2:
-            performance_analysis['risk_assessment'] = 'HIGH'
+        correlation_strength = price_correlations.get('correlation_strength', 0.0)
+        
+        if avg_confidence > 80 and performance_analysis['consensus_strength'] > 0.7 and correlation_strength > 0.6:
+            performance_analysis['risk_assessment'] = 'LOW'  # High confidence + consensus + correlated predictions
+        elif avg_confidence < 50 or len(performance_analysis['conflicting_signals']) > 2 or correlation_strength < 0.3:
+            performance_analysis['risk_assessment'] = 'HIGH'  # Low confidence or conflicting or uncorrelated
         
         return performance_analysis
+    
+    def _analyze_price_prediction_correlations(self, model_reports: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze correlations between model price predictions for short-term options strategies"""
+        correlations = {
+            'price_predictions_1d': {},
+            'price_predictions_5d': {},
+            'prediction_directions_1d': {},
+            'prediction_directions_5d': {},
+            'correlation_strength': 0.0,
+            'directional_consensus_1d': 0.0,
+            'directional_consensus_5d': 0.0,
+            'correlation_summary': 'WEAK'
+        }
+        
+        # Extract price predictions from all models
+        current_prices = {}
+        predictions_1d = {}
+        predictions_5d = {}
+        
+        for model_key, data in model_reports.items():
+            if not isinstance(data, dict):
+                continue
+                
+            # Extract current price
+            current_price = data.get('current_price', data.get('price', 0))
+            if current_price > 0:
+                current_prices[model_key] = current_price
+            
+            # Extract 1-day predictions
+            pred_1d = data.get('predicted_price_1d', data.get('1_day_prediction', data.get('predicted_price')))
+            if pred_1d and current_price > 0:
+                predictions_1d[model_key] = pred_1d
+                correlations['price_predictions_1d'][model_key] = pred_1d
+                # Calculate directional prediction
+                direction_1d = 1 if pred_1d > current_price else (-1 if pred_1d < current_price else 0)
+                correlations['prediction_directions_1d'][model_key] = direction_1d
+            
+            # Extract 5-day predictions  
+            pred_5d = data.get('predicted_price_5d', data.get('5_day_prediction', data.get('target_price')))
+            if pred_5d and current_price > 0:
+                predictions_5d[model_key] = pred_5d
+                correlations['price_predictions_5d'][model_key] = pred_5d
+                # Calculate directional prediction
+                direction_5d = 1 if pred_5d > current_price else (-1 if pred_5d < current_price else 0)
+                correlations['prediction_directions_5d'][model_key] = direction_5d
+        
+        # Calculate directional consensus (key for options strategies)
+        if correlations['prediction_directions_1d']:
+            directions_1d = list(correlations['prediction_directions_1d'].values())
+            # Count models agreeing on direction
+            bullish_1d = sum(1 for d in directions_1d if d > 0)
+            bearish_1d = sum(1 for d in directions_1d if d < 0)
+            total_1d = len(directions_1d)
+            correlations['directional_consensus_1d'] = max(bullish_1d, bearish_1d) / total_1d if total_1d > 0 else 0
+            
+        if correlations['prediction_directions_5d']:
+            directions_5d = list(correlations['prediction_directions_5d'].values())
+            bullish_5d = sum(1 for d in directions_5d if d > 0)
+            bearish_5d = sum(1 for d in directions_5d if d < 0)
+            total_5d = len(directions_5d)
+            correlations['directional_consensus_5d'] = max(bullish_5d, bearish_5d) / total_5d if total_5d > 0 else 0
+        
+        # Calculate overall correlation strength for options strategy confidence
+        consensus_1d = correlations['directional_consensus_1d']
+        consensus_5d = correlations['directional_consensus_5d']
+        
+        # Weight short-term more heavily for options bias
+        correlations['correlation_strength'] = (consensus_1d * 0.7) + (consensus_5d * 0.3)
+        
+        # Categorize correlation for strategy selection
+        if correlations['correlation_strength'] > 0.75:
+            correlations['correlation_summary'] = 'STRONG'  # High conviction options plays
+        elif correlations['correlation_strength'] > 0.6:
+            correlations['correlation_summary'] = 'MODERATE'  # Suitable for spreads
+        elif correlations['correlation_strength'] > 0.4:
+            correlations['correlation_summary'] = 'WEAK'  # Neutral strategies preferred
+        else:
+            correlations['correlation_summary'] = 'CONFLICTING'  # Avoid directional bets
+            
+        return correlations
     
     def _extract_confidence(self, data: Dict[str, Any]) -> float:
         """Extract confidence score from model data"""
@@ -164,13 +250,13 @@ class TradingAnalysisEngine:
         """Generate bullish options strategies"""
         strategies = []
         
-        # Calculate days to expiration based on time horizon and risk level
+        # Calculate days to expiration - SHORT-TERM BIAS for quick profits
         if risk_level == 'HIGH':
-            exp_days = 14  # Short-term for high risk
+            exp_days = 7   # Very short-term for high conviction trades
         elif risk_level == 'LOW':
-            exp_days = 45  # Longer term for low risk
+            exp_days = 21  # Still short-term but more time for thesis to play out
         else:
-            exp_days = 30  # Medium term
+            exp_days = 14  # Short-term default
         
         # Long Call Strategy
         otm_strike = current_price * 1.02  # 2% OTM
@@ -220,7 +306,7 @@ class TradingAnalysisEngine:
         """Generate bearish options strategies"""
         strategies = []
         
-        exp_days = 30 if risk_level == 'MEDIUM' else (14 if risk_level == 'HIGH' else 45)
+        exp_days = 14 if risk_level == 'MEDIUM' else (7 if risk_level == 'HIGH' else 21)  # Short-term bias
         
         # Long Put Strategy
         otm_put_strike = current_price * 0.98  # 2% OTM
@@ -269,7 +355,7 @@ class TradingAnalysisEngine:
         """Generate neutral/sideways strategies"""
         strategies = []
         
-        exp_days = 30
+        exp_days = 14  # Short-term neutral strategies
         
         # Iron Condor for range-bound movement
         strategies.append(OptionsStrategy(
@@ -777,9 +863,9 @@ def main():
     success = scheduler.run_daily_analysis(recipient_email)
     
     if success:
-        print("✅ Daily trading analysis completed and sent successfully!")
+        print("[SUCCESS] Daily trading analysis completed and sent successfully!")
     else:
-        print("❌ Failed to complete daily trading analysis")
+        print("[ERROR] Failed to complete daily trading analysis")
 
 if __name__ == "__main__":
     main()

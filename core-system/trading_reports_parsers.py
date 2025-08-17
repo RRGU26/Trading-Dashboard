@@ -406,6 +406,43 @@ def parse_trading_signal_report(content: str) -> Dict[str, Any]:
     
     return extracted_data
 
+def parse_qqq_master_report(content: str) -> Dict[str, Any]:
+    """Parse QQQ Master Model Reports"""
+    patterns = {
+        'current_price': r'Current Price:\s*\$?([\d.]+)',
+        'predicted_price': r'1-Day Prediction:\s*\$?([\d.]+)',
+        'expected_return': r'Expected Return:\s*([-+]?[\d.]+)%',
+        'confidence': r'Confidence:\s*([\d.]+)%',
+        'signal': r'Signal:\s*(\w+)',
+        'suggested_action': r'Action:\s*(\w+(?:\s+\w+)*)',
+        'direction_accuracy': r'Direction Accuracy:\s*([\d.]+)%',
+        'r2_score': r'R² Score:\s*([-]?[\d.]+)',
+        'volatility': r'Market Volatility:\s*(\w+)',
+        'trend': r'Trend:\s*(\w+)',
+        'report_timestamp': r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})',
+    }
+    
+    extracted_data = {}
+    
+    for field_name, pattern in patterns.items():
+        match = re.search(pattern, content, re.IGNORECASE)
+        if match:
+            value = match.group(1)
+            # Convert numeric values
+            if field_name in ['current_price', 'predicted_price', 'expected_return', 'confidence', 
+                             'direction_accuracy', 'r2_score']:
+                try:
+                    extracted_data[field_name] = float(value)
+                except ValueError:
+                    extracted_data[field_name] = value
+            else:
+                extracted_data[field_name] = value.upper()
+    
+    # Apply value cleaning
+    extracted_data = clean_extracted_values(extracted_data)
+    
+    return extracted_data
+
 def parse_longhorn_report(content: str) -> Dict[str, Any]:
     """Parse QQQ Long Bull Reports"""
     patterns = {
@@ -414,6 +451,7 @@ def parse_longhorn_report(content: str) -> Dict[str, Any]:
         'suggested_action': r'Suggested Action:\s*(\w+(?:\s+\w+)*)',
         'confidence': r'Confidence:\s*(\w+)',
         'target_price': r'Target Price:\s*\$?([\d.]+)',
+        'expected_return': r'Expected Return:\s*([-+]?[\d.]+)%',  # FIXED: Added expected_return extraction
         'stop_loss': r'Stop Loss:\s*\$?([\d.]+)',
         'risk_level': r'Risk Level:\s*(\w+)',
         'report_timestamp': r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})',
@@ -426,7 +464,7 @@ def parse_longhorn_report(content: str) -> Dict[str, Any]:
         if match:
             value = match.group(1).strip()
             
-            numeric_fields = ['current_price', 'target_price', 'stop_loss']
+            numeric_fields = ['current_price', 'target_price', 'stop_loss', 'expected_return']
             
             if field_name in numeric_fields:
                 try:
@@ -631,7 +669,8 @@ def parse_report_file(filepath: str, report_type: str) -> Dict[str, Any]:
             'bitcoin': parse_bitcoin_report,
             'wishing_wealth': parse_wishing_wealth_report,
             'trading_signal': parse_trading_signal_report,
-            'longhorn': parse_longhorn_report
+            'longhorn': parse_longhorn_report,
+            'qqq_master': parse_qqq_master_report
         }
         
         if report_type in parser_functions:
@@ -656,7 +695,8 @@ def find_report_files(directories: List[str]) -> Dict[str, List[str]]:
         'bitcoin': 'Bitcoin_Prediction_Report*_*.txt',  # UPDATED to catch suffixes like _FIXED
         'wishing_wealth': 'WishingWealthQQQ_signal.txt',
         'trading_signal': 'QQQ_Trading_Signal*.txt',
-        'longhorn': 'QQQ_Long_Bull_Report_*.txt'
+        'longhorn': 'QQQ_Long_Bull_Report_*.txt',
+        'qqq_master': 'QQQ_Master_Analysis_*.txt'  # ADDED: QQQ Master Model reports
     }
     
     found_files = {}
@@ -691,15 +731,20 @@ def parse_all_reports(directory: str = None, latest_only: bool = True) -> Dict[s
         Dictionary with report type as key and parsed data as value
     """
     
-    # UPDATED: Search in both OneDrive Desktop and regular Desktop
+    # UPDATED: Prioritize GitHub repo over Desktop locations
     if directory is None:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
         directories = [
-            os.path.expanduser("~/OneDrive/Desktop"),
-            os.path.expanduser("~/Desktop")
+            os.path.join(script_dir, "reports"),  # GitHub repo reports directory (PRIORITY)
+            script_dir,  # Core system directory itself
+            os.path.expanduser("~/OneDrive/Desktop"),  # Legacy location
+            os.path.expanduser("~/Desktop")  # Legacy location
         ]
     else:
-        # If a specific directory is provided, also search regular Desktop as backup
+        # If a specific directory is provided, also search GitHub repo first
+        script_dir = os.path.dirname(os.path.abspath(__file__))
         directories = [
+            os.path.join(script_dir, "reports"),  # GitHub repo reports directory (PRIORITY)
             directory,
             os.path.expanduser("~/Desktop")
         ]
@@ -735,7 +780,8 @@ def parse_all_reports(directory: str = None, latest_only: bool = True) -> Dict[s
         'bitcoin': parse_bitcoin_report,
         'wishing_wealth': parse_wishing_wealth_report,
         'trading_signal': parse_trading_signal_report,
-        'longhorn': parse_longhorn_report
+        'longhorn': parse_longhorn_report,
+        'qqq_master': parse_qqq_master_report
     }
     
     results = {}
@@ -790,32 +836,32 @@ def get_latest_trading_signals(directory: str = None) -> Dict[str, str]:
 
 def print_parsing_summary(results: Dict[str, Dict[str, Any]]):
     """Print a formatted summary of parsing results"""
-    print(f"\n🎯 PARSING SUMMARY")
+    print(f"\nPARSING SUMMARY")
     print("=" * 60)
     
     if not results:
-        print("❌ No reports parsed successfully")
+        print("No reports parsed successfully")
         return
     
-    print(f"✅ Parsed {len(results)} report types\n")
+    print(f"Parsed {len(results)} report types\n")
     
     for report_type, data in results.items():
         if not data:
-            print(f"📊 {report_type.upper()}:")
-            print(f"  ❌ No data extracted\n")
+            print(f"{report_type.upper()}:")
+            print(f"  No data extracted\n")
             continue
         
         # Count meaningful fields
         meaningful_fields = len([v for k, v in data.items() if v is not None and v != ''])
         
-        print(f"📊 {report_type.upper()}:")
-        print(f"  📈 {meaningful_fields} meaningful fields extracted")
+        print(f"{report_type.upper()}:")
+        print(f"  {meaningful_fields} meaningful fields extracted")
         
         # Show key fields
         key_fields = ['current_price', 'signal', 'confidence', 'suggested_action']
         for field in key_fields:
             if field in data and data[field] is not None:
-                print(f"    ✅ {field}: {data[field]}")
+                print(f"    {field}: {data[field]}")
         
         print()
 
@@ -838,7 +884,7 @@ LonghornReportParser = EnhancedLonghornReportParser
 
 if __name__ == "__main__":
     # Test all parsers
-    print("🧪 TESTING UPDATED TRADING REPORT PARSERS")
+    print("TESTING UPDATED TRADING REPORT PARSERS")
     print("=" * 60)
     
     results = parse_all_reports(latest_only=True)
@@ -846,7 +892,7 @@ if __name__ == "__main__":
     
     # Test signals
     signals = get_latest_trading_signals()
-    print("🎯 LATEST TRADING SIGNALS")
+    print("LATEST TRADING SIGNALS")
     print("=" * 30)
     for report_type, signal in signals.items():
-        print(f"📊 {report_type.upper()}: {signal}")
+        print(f"{report_type.upper()}: {signal}")

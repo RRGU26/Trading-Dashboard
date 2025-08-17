@@ -1,0 +1,69 @@
+=== Bitcoin (BTC-USD) Price Prediction Report - FIXED VERSION ===
+Generated on: 2025-08-15
+Symbol: BTC-USD
+Current Price: $117,128.00
+
+--- Prediction Details ---
+Predicted 1-Day Price: $117,212.92
+Predicted 1-Day Return: +0.07%
+Predicted 3-Day Price: $116,030.84
+Predicted 3-Day Return: -0.94%
+Predicted 7-Day Price: $116,104.47
+Predicted 7-Day Return: -0.87%
+Suggested Action: HOLD
+
+--- Model Performance ---
+Horizon: 1-day
+R-squared: -0.0404
+Hit Rate: 0.5033
+Horizon: 3-day
+R-squared: -0.0873
+Hit Rate: 0.5067
+Horizon: 7-day
+R-squared: -0.0889
+Hit Rate: 0.5410
+
+--- Model Information ---
+Model Type: XGBoost Regressor with Early Stopping
+Feature Selection: Recursive Feature Elimination with Cross-Validation
+Validation Method: Walk-Forward Validation
+On-Chain Metrics: Enabled
+*** CRITICAL FIX: Smart NaN handling implemented - data preserved! ***
+
+--- Selected Features ---
+Top 10 features for 1-day model:
+1. MA_ratio_7
+2. std_7
+3. MA_ratio_14
+4. MA_ratio_30
+5. MA_ratio_100
+6. std_100
+7. mom_100
+8. MA_ratio_200
+9. std_200
+10. mom_200
+Top 10 features for 3-day model:
+1. volatility
+2. std_7
+3. mom_7
+4. MA_ratio_14
+5. std_14
+6. mom_14
+7. MA_ratio_30
+8. mom_30
+9. MA_50
+10. MA_ratio_50
+Top 10 features for 7-day model:
+1. volatility
+2. MA_7
+3. std_7
+4. mom_7
+5. MA_14
+6. MA_ratio_14
+7. std_14
+8. mom_14
+9. MA_ratio_30
+10. mom_30
+
+--- Disclaimer ---
+This report is for informational purposes only and does not constitute financial advice. Cryptocurrency investments are highly volatile and risky. Past performance and model predictions are not indicative of future results.

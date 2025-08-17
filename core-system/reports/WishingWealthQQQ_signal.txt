@@ -1,0 +1,57 @@
+WISHING WEALTH QQQ TRADING SIGNAL
+==================================================
+Generated on: 2025-08-16
+Signal: BUY
+PRICE PREDICTION: QQQ is expected to RISE - Buy TQQQ for leveraged upside
+Suggested Action: BUY
+Current Price: $577.34
+GMI Score: 6 / 6 (Green)
+QQQ Trend: U-77
+Win Rate: 31.4%
+
+LEVERAGE ETF STRATEGY:
+------------------------------
+Recommended ETF: TQQQ
+Strategy: Long TQQQ
+
+HISTORICAL PERFORMANCE RESULTS:
+----------------------------------------
+Backtest Period: 2.8 years
+
+QQQ Buy and Hold Strategy:
+  Total Return: 121.42%
+  Annualized Return: 32.44%
+  Sharpe Ratio: 1.28
+  Maximum Drawdown: -22.88%
+  Win Rate: 56.40%
+
+QQQ Timing Strategy (This Model):
+  Total Return: 0.44%
+  Annualized Return: 0.15%
+  Sharpe Ratio: -0.06
+  Maximum Drawdown: -19.35%
+  Win Rate: 50.43%
+  Number of Trades: 121
+
+Leveraged TQQQ/SQQQ Strategy:
+  Total Return: -25.53%
+  Annualized Return: -9.89%
+  Sharpe Ratio: 0.05
+  Maximum Drawdown: -51.24%
+  Win Rate: 50.43%
+  Number of Trades: 121
+
+PERFORMANCE COMPARISON:
+Strategy vs QQQ Buy-Hold: -54.6% outperformance
+Leveraged vs Basic Strategy: -25.9% additional return
+
+TECHNICAL ANALYSIS SUMMARY:
+------------------------------
+• Moving Averages: BULLISH
+• RSI: 61.9 - NEUTRAL
+• MACD: BULLISH
+• Bollinger Bands: WITHIN BANDS
+• VIX: 14.98 - LOW (Complacency)
+
+Dr. Wish's methodology emphasizes GMI score and trend changes for optimal timing.
+This system historically outperforms 94%+ of individual stock picks.

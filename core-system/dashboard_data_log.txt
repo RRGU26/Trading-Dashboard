@@ -1,0 +1,458 @@
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-07 18:33:22,292 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-07 18:33:22,538 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\QQQ_Long_Bull_Report_20250807_182108.txt
+2025-08-07 18:33:22,736 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\QQQ_Trading_Signal_20250807_182126.txt
+2025-08-07 18:33:22,861 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt
+2025-08-07 18:33:23,045 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250807.txt
+2025-08-07 18:33:23,167 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\WishingWealthQQQ_signal.txt
+2025-08-07 18:33:23,238 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\NVIDIA_Bull_Momentum_Report_20250807_183227.txt
+2025-08-07 18:33:23,238 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\OneDrive\Desktop\QQQ_Long_Bull_Report_20250807_182108.txt, Trading Signal=C:\Users\rrose\OneDrive\Desktop\QQQ_Trading_Signal_20250807_182126.txt, Algorand=C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250807.txt, Wishing Well=C:\Users\rrose\OneDrive\Desktop\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\OneDrive\Desktop\NVIDIA_Bull_Momentum_Report_20250807_183227.txt
+2025-08-07 18:33:23,238 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-07 18:33:23,258 - dashboard_data - INFO - Database tables verified/created.
+2025-08-07 18:33:23,258 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-06
+2025-08-07 18:33:23,270 - dashboard_data - INFO - Saved current price for NVDA to database: $118.1100
+2025-08-07 18:33:23,270 - dashboard_data - INFO - Populated NVDA price for 2025-06-06: $118.11
+2025-08-07 18:33:23,270 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-07
+2025-08-07 18:33:23,281 - dashboard_data - INFO - Updated current price for NVDA in database: $118.8500
+2025-08-07 18:33:23,281 - dashboard_data - INFO - Populated NVDA price for 2025-06-07: $118.85
+2025-08-07 18:33:23,284 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-08
+2025-08-07 18:33:23,285 - dashboard_data - INFO - Updated current price for NVDA in database: $118.8500
+2025-08-07 18:33:23,285 - dashboard_data - INFO - Populated NVDA price for 2025-06-08: $118.85
+2025-08-07 18:33:23,285 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-09
+2025-08-07 18:33:23,294 - dashboard_data - INFO - Updated current price for NVDA in database: $120.5000
+2025-08-07 18:33:23,294 - dashboard_data - INFO - Populated NVDA price for 2025-06-09: $120.50
+2025-08-07 18:33:23,294 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-07 18:33:23,296 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-07 18:33:24,390 - dashboard_data - INFO - Current price for QQQ: 569.24
+2025-08-07 18:33:24,936 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2614
+2025-08-07 18:33:24,937 - dashboard_data - INFO - Current price for ALGO-USD: 0.261362
+2025-08-07 18:33:25,588 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $117502.0000
+2025-08-07 18:33:25,590 - dashboard_data - INFO - Current price for BTC-USD: 117502.0
+2025-08-07 18:33:25,602 - dashboard_data - INFO - Updated current price for QQQ in database: $569.2400
+2025-08-07 18:33:25,604 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2614
+2025-08-07 18:33:25,615 - dashboard_data - INFO - Updated current price for BTC-USD in database: $117502.0000
+2025-08-07 18:33:25,615 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 569.24, 'ALGO-USD': 0.261362, 'BTC-USD': 117502.0}
+2025-08-07 18:33:25,615 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-07 18:33:26,685 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-07 18:33:26,685 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\OneDrive\Desktop\QQQ_Long_Bull_Report_20250807_182108.txt
+2025-08-07 18:33:26,685 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-07 18:33:26,685 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-07 18:33:26,694 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-08 15:43:38,433 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-08 15:43:38,434 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-08 15:43:38,689 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250808_154051.txt
+2025-08-08 15:43:38,905 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\QQQ_Trading_Signal_20250807_085921.txt
+2025-08-08 15:43:39,070 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt
+2025-08-08 15:43:39,296 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250807.txt
+2025-08-08 15:43:39,432 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-08 15:43:39,496 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\NVIDIA_Bull_Momentum_Report_20250808_154249.txt
+2025-08-08 15:43:39,496 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250808_154051.txt, Trading Signal=C:\Users\rrose\OneDrive\Desktop\Trading System\QQQ_Trading_Signal_20250807_085921.txt, Algorand=C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250807.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\OneDrive\Desktop\NVIDIA_Bull_Momentum_Report_20250808_154249.txt
+2025-08-08 15:43:39,497 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-08 15:43:39,497 - dashboard_data - INFO - Database tables verified/created.
+2025-08-08 15:43:39,498 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-06
+2025-08-08 15:43:39,509 - dashboard_data - INFO - Saved current price for NVDA to database: $118.1100
+2025-08-08 15:43:39,510 - dashboard_data - INFO - Populated NVDA price for 2025-06-06: $118.11
+2025-08-08 15:43:39,511 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-07
+2025-08-08 15:43:39,521 - dashboard_data - INFO - Updated current price for NVDA in database: $118.8500
+2025-08-08 15:43:39,521 - dashboard_data - INFO - Populated NVDA price for 2025-06-07: $118.85
+2025-08-08 15:43:39,523 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-08
+2025-08-08 15:43:39,523 - dashboard_data - INFO - Updated current price for NVDA in database: $118.8500
+2025-08-08 15:43:39,523 - dashboard_data - INFO - Populated NVDA price for 2025-06-08: $118.85
+2025-08-08 15:43:39,524 - dashboard_data - WARNING - [CACHE MISS] No historical price found for NVDA on or near 2025-06-09
+2025-08-08 15:43:39,534 - dashboard_data - INFO - Updated current price for NVDA in database: $120.5000
+2025-08-08 15:43:39,534 - dashboard_data - INFO - Populated NVDA price for 2025-06-09: $120.50
+2025-08-08 15:43:39,534 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-08 15:43:39,534 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-08 15:43:41,973 - dashboard_data - INFO - Current price for QQQ: 573.9500122070312
+2025-08-08 15:43:42,480 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2632
+2025-08-08 15:43:42,480 - dashboard_data - INFO - Current price for ALGO-USD: 0.26323
+2025-08-08 15:43:42,915 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $116388.0000
+2025-08-08 15:43:42,915 - dashboard_data - INFO - Current price for BTC-USD: 116388.0
+2025-08-08 15:43:42,932 - dashboard_data - INFO - Updated current price for QQQ in database: $573.9500
+2025-08-08 15:43:42,935 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2632
+2025-08-08 15:43:42,936 - dashboard_data - INFO - Updated current price for BTC-USD in database: $116388.0000
+2025-08-08 15:43:42,936 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 573.9500122070312, 'ALGO-USD': 0.26323, 'BTC-USD': 116388.0}
+2025-08-08 15:43:42,936 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-08 15:43:42,939 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-08 15:43:42,939 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250808_154051.txt
+2025-08-08 15:43:42,948 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-08 15:43:42,949 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-08 15:43:42,949 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-09 15:53:51,278 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-09 15:53:51,544 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250809_154351.txt
+2025-08-09 15:53:51,735 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250809_154403.txt
+2025-08-09 15:53:51,861 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt
+2025-08-09 15:53:52,070 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250809.txt
+2025-08-09 15:53:52,195 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-09 15:53:52,261 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250809_155308.txt
+2025-08-09 15:53:52,261 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250809_154351.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250809_154403.txt, Algorand=C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250809.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250809_155308.txt
+2025-08-09 15:53:52,261 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-09 15:53:52,261 - dashboard_data - INFO - Database tables verified/created.
+2025-08-09 15:53:52,261 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-09 15:53:52,261 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-09 15:53:52,261 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-09 15:53:52,261 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-09 15:53:52,261 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-09 15:53:52,261 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-09 15:53:52,261 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-09 15:53:52,261 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-09 15:53:52,261 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-09 15:53:52,261 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-09 15:53:52,386 - dashboard_data - INFO - Current price for QQQ: 574.55
+2025-08-09 15:53:52,511 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2743
+2025-08-09 15:53:52,511 - dashboard_data - INFO - Current price for ALGO-USD: 0.274267
+2025-08-09 15:53:52,595 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $116576.0000
+2025-08-09 15:53:52,595 - dashboard_data - INFO - Current price for BTC-USD: 116576.0
+2025-08-09 15:53:52,595 - dashboard_data - INFO - Updated current price for QQQ in database: $574.5500
+2025-08-09 15:53:52,618 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2743
+2025-08-09 15:53:52,632 - dashboard_data - INFO - Updated current price for BTC-USD in database: $116576.0000
+2025-08-09 15:53:52,632 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 574.55, 'ALGO-USD': 0.274267, 'BTC-USD': 116576.0}
+2025-08-09 15:53:52,636 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-09 15:53:53,918 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-09 15:53:53,919 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250809_154351.txt
+2025-08-09 15:53:53,919 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-09 15:53:53,922 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-09 15:53:53,922 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-10 15:53:27,987 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-10 15:53:27,987 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-10 15:53:27,989 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-10 15:53:27,989 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-10 15:53:27,989 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-10 15:53:27,989 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-10 15:53:27,989 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-10 15:53:27,989 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-10 15:53:28,248 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250810_154313.txt
+2025-08-10 15:53:28,511 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250810_154325.txt
+2025-08-10 15:53:28,639 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt
+2025-08-10 15:53:28,831 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250810.txt
+2025-08-10 15:53:28,963 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-10 15:53:29,037 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250810_155244.txt
+2025-08-10 15:53:29,037 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250810_154313.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250810_154325.txt, Algorand=C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250810.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250810_155244.txt
+2025-08-10 15:53:29,037 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-10 15:53:29,037 - dashboard_data - INFO - Database tables verified/created.
+2025-08-10 15:53:29,039 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-10 15:53:29,039 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-10 15:53:29,039 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-10 15:53:29,039 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-10 15:53:29,039 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-10 15:53:29,039 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-10 15:53:29,039 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-10 15:53:29,039 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-10 15:53:29,039 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-10 15:53:29,039 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-10 15:53:29,161 - dashboard_data - INFO - Current price for QQQ: 574.55
+2025-08-10 15:53:29,255 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2671
+2025-08-10 15:53:29,255 - dashboard_data - INFO - Current price for ALGO-USD: 0.267079
+2025-08-10 15:53:29,352 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $118681.0000
+2025-08-10 15:53:29,352 - dashboard_data - INFO - Current price for BTC-USD: 118681.0
+2025-08-10 15:53:29,354 - dashboard_data - INFO - Updated current price for QQQ in database: $574.5500
+2025-08-10 15:53:29,362 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2671
+2025-08-10 15:53:29,382 - dashboard_data - INFO - Updated current price for BTC-USD in database: $118681.0000
+2025-08-10 15:53:29,382 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 574.55, 'ALGO-USD': 0.267079, 'BTC-USD': 118681.0}
+2025-08-10 15:53:29,382 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-10 15:53:29,382 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-10 15:53:29,382 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250810_154313.txt
+2025-08-10 15:53:29,382 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-10 15:53:29,382 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-10 15:53:29,382 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-12 15:53:13,107 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-12 15:53:13,122 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-12 15:53:13,376 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250812_154309.txt
+2025-08-12 15:53:13,567 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250812_154322.txt
+2025-08-12 15:53:13,703 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt
+2025-08-12 15:53:13,892 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250812.txt
+2025-08-12 15:53:14,016 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-12 15:53:14,089 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250812_155229.txt
+2025-08-12 15:53:14,089 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250812_154309.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250812_154322.txt, Algorand=C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250812.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250812_155229.txt
+2025-08-12 15:53:14,089 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-12 15:53:14,089 - dashboard_data - INFO - Database tables verified/created.
+2025-08-12 15:53:14,089 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-12 15:53:14,089 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-12 15:53:14,089 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-12 15:53:14,089 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-12 15:53:14,089 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-12 15:53:14,089 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-12 15:53:14,089 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-12 15:53:14,089 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-12 15:53:14,089 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-12 15:53:14,089 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-12 15:53:14,237 - dashboard_data - INFO - Current price for QQQ: 572.85
+2025-08-12 15:53:14,330 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2737
+2025-08-12 15:53:14,330 - dashboard_data - INFO - Current price for ALGO-USD: 0.273662
+2025-08-12 15:53:14,462 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $119691.0000
+2025-08-12 15:53:14,462 - dashboard_data - INFO - Current price for BTC-USD: 119691.0
+2025-08-12 15:53:14,465 - dashboard_data - INFO - Updated current price for QQQ in database: $572.8500
+2025-08-12 15:53:14,496 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2737
+2025-08-12 15:53:14,523 - dashboard_data - INFO - Updated current price for BTC-USD in database: $119691.0000
+2025-08-12 15:53:14,525 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 572.85, 'ALGO-USD': 0.273662, 'BTC-USD': 119691.0}
+2025-08-12 15:53:14,525 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-12 15:53:14,999 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-12 15:53:14,999 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250812_154309.txt
+2025-08-12 15:53:15,000 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-12 15:53:15,000 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-12 15:53:15,000 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-13 16:18:02,780 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-13 16:18:02,781 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-13 16:18:02,986 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250813_155325.txt
+2025-08-13 16:18:03,187 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250813_155339.txt
+2025-08-13 16:18:03,310 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt
+2025-08-13 16:18:03,541 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250813.txt
+2025-08-13 16:18:03,669 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-13 16:18:03,741 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250813_161655.txt
+2025-08-13 16:18:03,741 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250813_155325.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250813_155339.txt, Algorand=C:\Users\rrose\OneDrive\Desktop\Trading System\reports\Algorand_ENCODING_SAFE_Report_20250608_ARCHIVE_38_DAYS_OLD.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250813.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250813_161655.txt
+2025-08-13 16:18:03,741 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-13 16:18:03,741 - dashboard_data - INFO - Database tables verified/created.
+2025-08-13 16:18:03,743 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-13 16:18:03,743 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-13 16:18:03,744 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-13 16:18:03,744 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-13 16:18:03,745 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-13 16:18:03,745 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-13 16:18:03,745 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-13 16:18:03,745 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-13 16:18:03,745 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-13 16:18:03,746 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-13 16:18:05,162 - dashboard_data - INFO - Current price for QQQ: 580.34
+2025-08-13 16:18:06,374 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2758
+2025-08-13 16:18:06,375 - dashboard_data - INFO - Current price for ALGO-USD: 0.275784
+2025-08-13 16:18:06,981 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $122767.0000
+2025-08-13 16:18:06,981 - dashboard_data - INFO - Current price for BTC-USD: 122767.0
+2025-08-13 16:18:06,993 - dashboard_data - INFO - Updated current price for QQQ in database: $580.3400
+2025-08-13 16:18:07,022 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2758
+2025-08-13 16:18:07,033 - dashboard_data - INFO - Updated current price for BTC-USD in database: $122767.0000
+2025-08-13 16:18:07,033 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 580.34, 'ALGO-USD': 0.275784, 'BTC-USD': 122767.0}
+2025-08-13 16:18:07,033 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-13 16:18:07,036 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-13 16:18:07,036 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250813_155325.txt
+2025-08-13 16:18:07,036 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-13 16:18:07,038 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-13 16:18:07,038 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-14 18:44:21,235 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-14 18:44:21,491 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250814_184221.txt
+2025-08-14 18:44:21,686 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250814_184233.txt
+2025-08-14 18:44:21,817 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\algorand_prediction_report_20250814.txt
+2025-08-14 18:44:22,051 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250814.txt
+2025-08-14 18:44:22,178 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-14 18:44:22,247 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250814_184331.txt
+2025-08-14 18:44:22,247 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250814_184221.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250814_184233.txt, Algorand=C:\Users\rrose\trading-models-system\core-system\reports\algorand_prediction_report_20250814.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250814.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250814_184331.txt
+2025-08-14 18:44:22,247 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-14 18:44:22,251 - dashboard_data - INFO - Database tables verified/created.
+2025-08-14 18:44:22,251 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-14 18:44:22,251 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-14 18:44:22,251 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-14 18:44:22,251 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-14 18:44:22,251 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-14 18:44:22,253 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-14 18:44:22,253 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-14 18:44:22,253 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-14 18:44:22,253 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-14 18:44:22,253 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-14 18:44:37,734 - dashboard_data - INFO - Current price for QQQ: 579.8900146484375
+2025-08-14 18:44:37,961 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2516
+2025-08-14 18:44:37,961 - dashboard_data - INFO - Current price for ALGO-USD: 0.25164
+2025-08-14 18:44:38,177 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $118199.0000
+2025-08-14 18:44:38,178 - dashboard_data - INFO - Current price for BTC-USD: 118199.0
+2025-08-14 18:44:38,189 - dashboard_data - INFO - Updated current price for QQQ in database: $579.8900
+2025-08-14 18:44:38,207 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2516
+2025-08-14 18:44:38,225 - dashboard_data - INFO - Updated current price for BTC-USD in database: $118199.0000
+2025-08-14 18:44:38,226 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 579.8900146484375, 'ALGO-USD': 0.25164, 'BTC-USD': 118199.0}
+2025-08-14 18:44:38,226 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-14 18:44:38,738 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-14 18:44:38,738 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250814_184221.txt
+2025-08-14 18:44:38,738 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-14 18:44:38,740 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-14 18:44:38,740 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-15 15:45:55,234 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-15 15:45:55,708 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250815_154315.txt
+2025-08-15 15:45:55,902 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250815_154327.txt
+2025-08-15 15:45:56,018 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\algorand_prediction_report_20250815.txt
+2025-08-15 15:45:56,186 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250815.txt
+2025-08-15 15:45:56,316 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-15 15:45:56,381 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250815_154453.txt
+2025-08-15 15:45:56,381 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250815_154315.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250815_154327.txt, Algorand=C:\Users\rrose\trading-models-system\core-system\reports\algorand_prediction_report_20250815.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250815.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250815_154453.txt
+2025-08-15 15:45:56,381 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-15 15:45:56,381 - dashboard_data - INFO - Database tables verified/created.
+2025-08-15 15:45:56,386 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-15 15:45:56,386 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-15 15:45:56,386 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-15 15:45:56,386 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-15 15:45:56,386 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-15 15:45:56,386 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-15 15:45:56,386 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-15 15:45:56,386 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-15 15:45:56,386 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-15 15:45:56,388 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-15 15:45:57,212 - dashboard_data - INFO - Current price for QQQ: 579.89
+2025-08-15 15:45:58,134 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2500
+2025-08-15 15:45:58,134 - dashboard_data - INFO - Current price for ALGO-USD: 0.249958
+2025-08-15 15:45:58,763 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $117071.0000
+2025-08-15 15:45:58,763 - dashboard_data - INFO - Current price for BTC-USD: 117071.0
+2025-08-15 15:45:58,764 - dashboard_data - INFO - Updated current price for QQQ in database: $579.8900
+2025-08-15 15:45:58,774 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2500
+2025-08-15 15:45:58,780 - dashboard_data - INFO - Updated current price for BTC-USD in database: $117071.0000
+2025-08-15 15:45:58,780 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 579.89, 'ALGO-USD': 0.249958, 'BTC-USD': 117071.0}
+2025-08-15 15:45:58,780 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-15 15:45:58,780 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-15 15:45:58,780 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250815_154315.txt
+2025-08-15 15:45:58,780 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-15 15:45:58,780 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-15 15:45:58,780 - dashboard_data - INFO - Dashboard data collection script finished.
+2025-08-16 15:45:10,447 - dashboard_data - INFO - Starting dashboard data collection script...
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Using path for reports: C:\Users\rrose\OneDrive\Desktop
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Looking for report files with patterns:
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Longhorn: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Long_Bull_Report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*Long_Bull*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Long*Report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\*Long_Bull_Report*.txt']
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Trading Signal: ['C:\\Users\\rrose\\OneDrive\\Desktop\\*Trading_Signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ*current_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_Trading_Signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\QQQ_current_signal*.txt']
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Algorand: ['C:\\Users\\rrose\\trading-models-system\\core-system\\outputs\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\algorand*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\algorand*report*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Algorand*Report*.txt']
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Bitcoin: ['C:\\Users\\rrose\\OneDrive\\Desktop\\Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\reports\\final\\bitcoin_prediction_report_*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\Enhanced_Bitcoin_Prediction_Report_*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\bitcoin*report*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\Bitcoin*Report*.txt']
+2025-08-16 15:45:10,449 - dashboard_data - INFO - Wishing Well: ['C:\\Users\\rrose\\OneDrive\\Desktop\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\trading-models-system\\core-system\\WishingWealthQQQ_signal*.txt', 'C:\\Users\\rrose\\OneDrive\\Desktop\\*Wishing*QQQ*.txt']
+2025-08-16 15:45:10,638 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250816_154258.txt
+2025-08-16 15:45:10,804 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250816_154310.txt
+2025-08-16 15:45:10,910 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\algorand_prediction_report_20250816.txt
+2025-08-16 15:45:11,071 - dashboard_data - INFO - Found latest Bitcoin file by date in filename: C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250816.txt
+2025-08-16 15:45:11,178 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt
+2025-08-16 15:45:11,231 - dashboard_data - INFO - Found latest file by modification time: C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250816_154418.txt
+2025-08-16 15:45:11,231 - dashboard_data - INFO - Found reports: Longhorn=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250816_154258.txt, Trading Signal=C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Trading_Signal_20250816_154310.txt, Algorand=C:\Users\rrose\trading-models-system\core-system\reports\algorand_prediction_report_20250816.txt, Bitcoin=C:\Users\rrose\trading-models-system\core-system\onedrive_export\final\Bitcoin_Prediction_Report_FIXED_20250816.txt, Wishing Well=C:\Users\rrose\trading-models-system\core-system\reports\WishingWealthQQQ_signal.txt, NVIDIA=C:\Users\rrose\trading-models-system\core-system\reports\NVIDIA_Bull_Momentum_Report_20250816_154418.txt
+2025-08-16 15:45:11,231 - dashboard_data - INFO - Connected to database at C:\Users\rrose\trading-models-system\core-system\models_dashboard.db
+2025-08-16 15:45:11,232 - dashboard_data - INFO - Database tables verified/created.
+2025-08-16 15:45:11,232 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-06: $141.72
+2025-08-16 15:45:11,232 - dashboard_data - INFO - NVDA price for 2025-06-06 already exists: $141.72
+2025-08-16 15:45:11,233 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-16 15:45:11,233 - dashboard_data - INFO - NVDA price for 2025-06-07 already exists: $141.72
+2025-08-16 15:45:11,233 - dashboard_data - INFO - [CACHE NEAR] Found closest historical price for NVDA from 2025-06-06: $141.72
+2025-08-16 15:45:11,233 - dashboard_data - INFO - NVDA price for 2025-06-08 already exists: $141.72
+2025-08-16 15:45:11,234 - dashboard_data - INFO - [CACHE HIT] Found historical price for NVDA on 2025-06-09: $142.63
+2025-08-16 15:45:11,234 - dashboard_data - INFO - NVDA price for 2025-06-09 already exists: $142.63
+2025-08-16 15:45:11,234 - dashboard_data - INFO - Fetching current market prices using data_fetcher...
+2025-08-16 15:45:11,234 - dashboard_data - INFO - Cleared data fetcher cache before fetching prices
+2025-08-16 15:45:11,972 - dashboard_data - INFO - Current price for QQQ: 577.34
+2025-08-16 15:45:12,518 - dashboard_data - INFO - Got ALGO-USD price from CoinGecko: $0.2620
+2025-08-16 15:45:12,519 - dashboard_data - INFO - Current price for ALGO-USD: 0.261986
+2025-08-16 15:45:13,117 - dashboard_data - INFO - Got BTC-USD price from CoinGecko: $117805.0000
+2025-08-16 15:45:13,118 - dashboard_data - INFO - Current price for BTC-USD: 117805.0
+2025-08-16 15:45:13,120 - dashboard_data - INFO - Updated current price for QQQ in database: $577.3400
+2025-08-16 15:45:13,135 - dashboard_data - INFO - Updated current price for ALGO-USD in database: $0.2620
+2025-08-16 15:45:13,149 - dashboard_data - INFO - Updated current price for BTC-USD in database: $117805.0000
+2025-08-16 15:45:13,150 - dashboard_data - INFO - Current market prices from data_fetcher: {'QQQ': 577.34, 'ALGO-USD': 0.261986, 'BTC-USD': 117805.0}
+2025-08-16 15:45:13,150 - dashboard_data - INFO - Ensuring fresh onchain data...
+2025-08-16 15:45:14,772 - dashboard_data - INFO - [OK] Onchain data refreshed successfully
+2025-08-16 15:45:14,772 - dashboard_data - INFO - Parsing Longhorn report: C:\Users\rrose\trading-models-system\core-system\reports\QQQ_Long_Bull_Report_20250816_154258.txt
+2025-08-16 15:45:14,774 - dashboard_data - ERROR - Error in dashboard data collection: no such group
+2025-08-16 15:45:14,777 - dashboard_data - ERROR - Stack trace: Traceback (most recent call last):
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 2097, in collect_dashboard_data
+    parsed_data = parse_longhorn_report(longhorn_report)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rrose\trading-models-system\core-system\dashboard.data.py", line 840, in parse_longhorn_report
+    base_data["report_date"] = datetime.strptime(date_match.group(1), '%Y-%m-%d').date()
+                                                 ^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+
+2025-08-16 15:45:14,777 - dashboard_data - INFO - Dashboard data collection script finished.

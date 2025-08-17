@@ -52,7 +52,7 @@ SYMBOLS_CONFIG = {
 }
 
 class DatabaseIntegrator:
-    """Enhanced database integration"""
+    """Enhanced database integration with historical data leverage"""
     
     def __init__(self):
         self.db_path = self._find_database()
@@ -73,6 +73,87 @@ class DatabaseIntegrator:
         
         print("⚠️  Database not found - will run in standalone mode")
         return None
+    
+    def get_historical_vix_data(self, days_back: int = 252) -> Optional[pd.DataFrame]:
+        """Get historical VIX data from database if available"""
+        if not self.db_path:
+            return None
+            
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            # Query for VIX data from daily_prices table
+            query = """
+            SELECT date, close_price as vix_close
+            FROM daily_prices 
+            WHERE symbol IN ('^VIX', 'VIX', 'UVXY', 'VXX')
+            ORDER BY date DESC
+            LIMIT ?
+            """
+            
+            cursor.execute(query, (days_back,))
+            results = cursor.fetchall()
+            conn.close()
+            
+            if results:
+                df = pd.DataFrame(results, columns=['date', 'vix_close'])
+                df['date'] = pd.to_datetime(df['date'])
+                df.set_index('date', inplace=True)
+                df.sort_index(inplace=True)
+                
+                print(f"✅ Retrieved {len(df)} VIX data points from database")
+                return df
+            else:
+                print("⚠️  No VIX data found in database")
+                return None
+                
+        except Exception as e:
+            print(f"❌ Failed to retrieve VIX data from database: {e}")
+            return None
+    
+    def get_historical_predictions_performance(self) -> Dict:
+        """Get performance of historical predictions for model tuning"""
+        if not self.db_path:
+            return {}
+            
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            # Get recent prediction performance
+            query = """
+            SELECT 
+                AVG(CASE WHEN direction_correct = 1 THEN 1.0 ELSE 0.0 END) as direction_accuracy,
+                AVG(ABS(error_pct)) as avg_error,
+                COUNT(*) as total_predictions,
+                AVG(confidence) as avg_confidence
+            FROM model_predictions 
+            WHERE model = ? 
+            AND actual_price IS NOT NULL
+            AND prediction_date >= date('now', '-90 days')
+            """
+            
+            cursor.execute(query, (self.model_name,))
+            result = cursor.fetchone()
+            conn.close()
+            
+            if result and result[2] > 0:  # total_predictions > 0
+                performance = {
+                    'direction_accuracy': result[0] or 0,
+                    'avg_error': result[1] or 0,
+                    'total_predictions': result[2] or 0,
+                    'avg_confidence': result[3] or 0
+                }
+                print(f"📊 Historical performance: {performance['direction_accuracy']:.1%} accuracy from {performance['total_predictions']} predictions")
+                return performance
+            else:
+                print("⚠️  No historical prediction data available")
+                return {}
+                
+        except Exception as e:
+            print(f"❌ Failed to retrieve historical performance: {e}")
+            return {}
     
     def save_prediction(self, prediction_data: Dict) -> bool:
         if not self.db_path:
@@ -326,7 +407,7 @@ class QQQLongBullModelV32:
         print("=" * 60)
         
         end_date = datetime.now().strftime("%Y-%m-%d")
-        start_date = (datetime.now() - timedelta(days=3*365)).strftime("%Y-%m-%d")
+        start_date = (datetime.now() - timedelta(days=10*365)).strftime("%Y-%m-%d")  # 10 years of data
         
         print(f"📅 Date range: {start_date} to {end_date}")
         
@@ -346,12 +427,26 @@ class QQQLongBullModelV32:
         self.correlation_assets.append('QQQ')
         print(f"    ✅ QQQ: {len(qqq_df)} rows - USING AS REFERENCE")
         
-        # STEP 2: Fetch VIX and align to QQQ immediately
+        # STEP 2: Fetch VIX and align to QQQ immediately - Enhanced with database fallback
         print("\n🔥 STEP 2: Fetching VIX and aligning to QQQ")
         vix_config = SYMBOLS_CONFIG['VIX']
         vix_df = self.data_fetcher.fetch_symbol_with_fallbacks(
             'VIX', vix_config['symbols'], start_date, end_date, 50  # Lower threshold
         )
+        
+        # If API fetch failed, try database
+        if vix_df is None or vix_df.empty:
+            print("⚠️  VIX API fetch failed - trying database...")
+            db_vix_df = self.db_integrator.get_historical_vix_data()
+            if db_vix_df is not None and not db_vix_df.empty:
+                # Convert single column VIX data to OHLC format
+                vix_df = pd.DataFrame(index=db_vix_df.index)
+                vix_df['Close'] = db_vix_df['vix_close']
+                vix_df['High'] = db_vix_df['vix_close'] * 1.02
+                vix_df['Low'] = db_vix_df['vix_close'] * 0.98
+                vix_df['Open'] = db_vix_df['vix_close']
+                vix_df['Volume'] = 1000000  # Default volume
+                print("✅ Using VIX data from database")
         
         if vix_df is not None and not vix_df.empty:
             # Find QQQ-VIX overlap
@@ -1296,9 +1391,10 @@ Model Version: 3.2 VIX Alignment Fix
 """
 
         # Save report file
-        desktop_path = os.path.expanduser("~/OneDrive/Desktop")
-        if not os.path.exists(desktop_path):
-            desktop_path = os.path.expanduser("~/Desktop")
+        # Use GitHub repo reports directory instead of Desktop
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        desktop_path = os.path.join(script_dir, "reports")
+        os.makedirs(desktop_path, exist_ok=True)
         
         filename = f"QQQ_Long_Bull_Report_{report_date}.txt"
         filepath = os.path.join(desktop_path, filename)

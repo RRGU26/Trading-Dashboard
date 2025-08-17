@@ -1,0 +1,2216 @@
+2025-08-07 18:33:27,394 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-07
+2025-08-07 18:33:27,394 - db_health_check - INFO - Running Database Integrity check...
+2025-08-07 18:33:27,394 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-07 18:33:27,396 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-07 18:33:27,396 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-07 18:33:27,396 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-07 18:33:27,397 - db_health_check - INFO - ✅ QQQ: Today's price $569.2400
+2025-08-07 18:33:27,397 - db_health_check - INFO - ✅ BTC-USD: Today's price $117502.0000
+2025-08-07 18:33:27,397 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2614
+2025-08-07 18:33:27,397 - db_health_check - INFO - ✅ VIX: Today's price $16.5700
+2025-08-07 18:33:27,397 - db_health_check - INFO - ✅ ^VIX: Today's price $16.5700
+2025-08-07 18:33:27,397 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-07 18:33:27,397 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-07 18:33:27,400 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-07 18:33:27,400 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-07 18:33:27,400 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-07 18:33:27,400 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-07 18:33:27,400 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-07 18:33:27,400 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-07 18:33:27,400 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-07 18:33:27,400 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-07 18:33:27,400 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-07 18:33:27,400 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-07 18:33:27,400 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-07 18:33:27,402 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-07 18:33:27,402 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-07 18:33:27,402 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-07 18:33:27,402 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-07 18:33:27,402 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-07 18:33:27,402 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-07 18:33:27,402 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-07 18:33:27,402 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-07 18:33:27,402 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-07 18:33:27,402 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-07 18:33:27,402 - db_health_check - INFO - ============================================================
+2025-08-07 18:33:27,402 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-07
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-07 18:33:27,402 - db_health_check - INFO - ============================================================
+2025-08-07 18:33:27,402 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:21:30,530 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:21:30,530 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:21:30,530 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:21:30,547 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:21:30,547 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:21:30,548 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:21:30,549 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:21:30,549 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:21:30,550 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:21:30,550 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:21:30,550 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:21:30,550 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:21:30,550 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:21:30,552 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:21:30,552 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:21:30,552 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:21:30,552 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:21:30,553 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:21:30,553 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:21:30,553 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:21:30,553 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:21:30,553 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:21:30,553 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:21:30,553 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:21:30,555 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:21:30,555 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:21:30,555 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:21:30,555 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:21:30,555 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:21:30,556 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:21:30,556 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:21:30,556 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:21:30,556 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:21:30,556 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:21:30,556 - db_health_check - INFO - ============================================================
+2025-08-08 13:21:30,556 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:21:30,556 - db_health_check - INFO - ============================================================
+2025-08-08 13:21:30,557 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:22:24,128 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:22:24,128 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:22:24,128 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:22:24,139 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:22:24,139 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:22:24,139 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:22:24,139 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:22:24,141 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:22:24,141 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:22:24,141 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:22:24,141 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:22:24,141 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:22:24,141 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:22:24,142 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:22:24,142 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:22:24,142 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:22:24,142 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:22:24,142 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:22:24,142 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:22:24,142 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:22:24,142 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:22:24,142 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:22:24,144 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:22:24,144 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:22:24,144 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:22:24,144 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:22:24,144 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:22:24,144 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:22:24,145 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:22:24,145 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:22:24,145 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:22:24,145 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:22:24,145 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:22:24,145 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:22:24,145 - db_health_check - INFO - ============================================================
+2025-08-08 13:22:24,145 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:22:24,147 - db_health_check - INFO - ============================================================
+2025-08-08 13:22:24,148 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:34:08,399 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:34:08,399 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:34:08,399 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:34:08,399 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:34:08,399 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:34:08,399 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:34:08,402 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:34:08,402 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:34:08,402 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:34:08,404 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:34:08,405 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:34:08,405 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:34:08,405 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:34:08,406 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:34:08,407 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:34:08,407 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:34:08,407 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:34:08,407 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:34:08,407 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:34:08,407 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:34:08,407 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:34:08,407 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:34:08,407 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:34:08,407 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:34:08,409 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:34:08,409 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:34:08,409 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:34:08,409 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:34:08,409 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:34:08,409 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:34:08,409 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:34:08,409 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:34:08,409 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:34:08,409 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:34:08,409 - db_health_check - INFO - ============================================================
+2025-08-08 13:34:08,409 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:34:08,409 - db_health_check - INFO - ============================================================
+2025-08-08 13:34:08,409 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:39:58,440 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:39:59,171 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:39:59,171 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:39:59,177 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:39:59,177 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:39:59,177 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:39:59,179 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:39:59,179 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:39:59,180 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:39:59,181 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:39:59,181 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:39:59,181 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:39:59,182 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:39:59,184 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:39:59,184 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:39:59,184 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:39:59,184 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:39:59,186 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:39:59,186 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:39:59,186 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:39:59,187 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:39:59,187 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:39:59,187 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:39:59,188 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:39:59,190 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:39:59,191 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:39:59,191 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:39:59,191 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:39:59,193 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:39:59,193 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:39:59,193 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:39:59,193 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:39:59,193 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:39:59,193 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:39:59,193 - db_health_check - INFO - ============================================================
+2025-08-08 13:39:59,193 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:39:59,195 - db_health_check - INFO - ============================================================
+2025-08-08 13:39:59,195 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:41:29,920 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:41:29,920 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:41:29,920 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:41:29,923 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:41:29,923 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:41:29,923 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:41:29,924 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:41:29,924 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:41:29,924 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:41:29,925 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:41:29,925 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:41:29,925 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:41:29,925 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:41:29,926 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:41:29,926 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:41:29,926 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:41:29,926 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:41:29,927 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:41:29,927 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:41:29,927 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:41:29,927 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:41:29,927 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:41:29,927 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:41:29,927 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:41:29,928 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:41:29,928 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:41:29,928 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:41:29,928 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:41:29,928 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:41:29,928 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:41:29,928 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:41:29,928 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:41:29,928 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:41:29,928 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:41:29,928 - db_health_check - INFO - ============================================================
+2025-08-08 13:41:29,928 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:41:29,929 - db_health_check - INFO - ============================================================
+2025-08-08 13:41:29,929 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:42:04,186 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:42:04,186 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:42:04,186 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:42:04,189 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:42:04,189 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:42:04,189 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:42:04,189 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:42:04,190 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:42:04,190 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:42:04,190 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:42:04,191 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:42:04,191 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:42:04,191 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:42:04,192 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:42:04,192 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:42:04,192 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:42:04,192 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:42:04,192 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:42:04,193 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:42:04,193 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:42:04,193 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:42:04,193 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:42:04,193 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:42:04,193 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:42:04,193 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:42:04,193 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:42:04,193 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:42:04,193 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:42:04,195 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:42:04,195 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:42:04,195 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:42:04,195 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:42:04,195 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:42:04,195 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:42:04,195 - db_health_check - INFO - ============================================================
+2025-08-08 13:42:04,195 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:42:04,195 - db_health_check - INFO - ============================================================
+2025-08-08 13:42:04,196 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 13:48:14,999 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 13:48:14,999 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 13:48:14,999 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 13:48:15,002 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 13:48:15,002 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 13:48:15,002 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 13:48:15,003 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 13:48:15,003 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 13:48:15,003 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 13:48:15,003 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:48:15,004 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 13:48:15,004 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 13:48:15,004 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 13:48:15,005 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 13:48:15,005 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 13:48:15,005 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 13:48:15,005 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 13:48:15,006 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 13:48:15,006 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 13:48:15,006 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 13:48:15,007 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 13:48:15,007 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 13:48:15,007 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 13:48:15,007 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 13:48:15,007 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 13:48:15,009 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 13:48:15,009 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 13:48:15,009 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 13:48:15,009 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 13:48:15,009 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 13:48:15,009 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 13:48:15,009 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 13:48:15,009 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 13:48:15,009 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 13:48:15,009 - db_health_check - INFO - ============================================================
+2025-08-08 13:48:15,009 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 13:48:15,009 - db_health_check - INFO - ============================================================
+2025-08-08 13:48:15,011 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 14:07:19,437 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 14:07:19,439 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 14:07:19,440 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 14:07:19,442 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 14:07:19,442 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 14:07:19,442 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 14:07:19,444 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 14:07:19,444 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 14:07:19,445 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 14:07:19,445 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 14:07:19,445 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 14:07:19,446 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 14:07:19,446 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 14:07:19,447 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 14:07:19,448 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 14:07:19,448 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 14:07:19,448 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 14:07:19,449 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 14:07:19,449 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 14:07:19,449 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 14:07:19,449 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 14:07:19,449 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 14:07:19,449 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 14:07:19,449 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 14:07:19,450 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 14:07:19,450 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 14:07:19,450 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 14:07:19,450 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 14:07:19,450 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 14:07:19,450 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 14:07:19,452 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 14:07:19,452 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 14:07:19,452 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 14:07:19,452 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 14:07:19,452 - db_health_check - INFO - ============================================================
+2025-08-08 14:07:19,452 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 14:07:19,452 - db_health_check - INFO - ============================================================
+2025-08-08 14:07:19,453 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 14:07:48,540 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 14:07:48,540 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 14:07:48,540 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 14:07:48,542 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 14:07:48,542 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 14:07:48,542 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 14:07:48,544 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $569.2400
+2025-08-08 14:07:48,544 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117502.0000
+2025-08-08 14:07:48,544 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2614
+2025-08-08 14:07:48,544 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $16.5700
+2025-08-08 14:07:48,544 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $16.5700
+2025-08-08 14:07:48,545 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 14:07:48,545 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 14:07:48,545 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 14:07:48,545 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 14:07:48,547 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 14:07:48,547 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 14:07:48,547 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 14:07:48,547 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 14:07:48,547 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 14:07:48,548 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 14:07:48,548 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 14:07:48,548 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 14:07:48,548 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 14:07:48,548 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 14:07:48,548 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 14:07:48,549 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 14:07:48,549 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 14:07:48,549 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 14:07:48,549 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 14:07:48,549 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 14:07:48,550 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 14:07:48,550 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 14:07:48,550 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 14:07:48,550 - db_health_check - INFO - ============================================================
+2025-08-08 14:07:48,550 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 14:07:48,550 - db_health_check - INFO - ============================================================
+2025-08-08 14:07:48,552 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 15:43:43,478 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 15:43:43,480 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 15:43:43,480 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 15:43:43,483 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 15:43:43,483 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 15:43:43,483 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 15:43:43,483 - db_health_check - INFO - ✅ QQQ: Today's price $573.9500
+2025-08-08 15:43:43,485 - db_health_check - INFO - ✅ BTC-USD: Today's price $116388.0000
+2025-08-08 15:43:43,485 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2632
+2025-08-08 15:43:43,485 - db_health_check - INFO - ✅ VIX: Today's price $15.4400
+2025-08-08 15:43:43,485 - db_health_check - INFO - ✅ ^VIX: Today's price $15.4400
+2025-08-08 15:43:43,485 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 15:43:43,485 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 15:43:43,486 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 15:43:43,487 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 15:43:43,487 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 15:43:43,487 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 15:43:43,487 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 15:43:43,487 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 15:43:43,487 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 15:43:43,487 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 15:43:43,488 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 15:43:43,488 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 15:43:43,488 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 15:43:43,488 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 15:43:43,488 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 15:43:43,488 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 15:43:43,488 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 15:43:43,489 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 15:43:43,489 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 15:43:43,489 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 15:43:43,489 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 15:43:43,489 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 15:43:43,489 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 15:43:43,489 - db_health_check - INFO - ============================================================
+2025-08-08 15:43:43,489 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 15:43:43,489 - db_health_check - INFO - ============================================================
+2025-08-08 15:43:43,490 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 17:16:10,074 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 17:16:10,075 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 17:16:10,075 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 17:16:10,083 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 17:16:10,083 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 17:16:10,083 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 17:16:10,086 - db_health_check - INFO - ✅ QQQ: Today's price $573.9500
+2025-08-08 17:16:10,087 - db_health_check - INFO - ✅ BTC-USD: Today's price $116835.0000
+2025-08-08 17:16:10,087 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2632
+2025-08-08 17:16:10,088 - db_health_check - INFO - ✅ VIX: Today's price $15.4400
+2025-08-08 17:16:10,088 - db_health_check - INFO - ✅ ^VIX: Today's price $15.4400
+2025-08-08 17:16:10,088 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 17:16:10,088 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 17:16:10,090 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 17:16:10,091 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 17:16:10,091 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 17:16:10,091 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 17:16:10,093 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 17:16:10,093 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 17:16:10,093 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 17:16:10,093 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 17:16:10,093 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 17:16:10,093 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 17:16:10,093 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 17:16:10,095 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 17:16:10,095 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 17:16:10,095 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 17:16:10,095 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 17:16:10,096 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 17:16:10,096 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 17:16:10,096 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 17:16:10,096 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 17:16:10,096 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 17:16:10,096 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 17:16:10,096 - db_health_check - INFO - ============================================================
+2025-08-08 17:16:10,097 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 17:16:10,097 - db_health_check - INFO - ============================================================
+2025-08-08 17:16:10,098 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-08 18:02:25,816 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-08
+2025-08-08 18:02:25,816 - db_health_check - INFO - Running Database Integrity check...
+2025-08-08 18:02:25,816 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-08 18:02:25,820 - db_health_check - INFO - ✅ Database integrity check passed (0.2MB)
+2025-08-08 18:02:25,820 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-08 18:02:25,820 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-08 18:02:25,821 - db_health_check - INFO - ✅ QQQ: Today's price $574.5500
+2025-08-08 18:02:25,821 - db_health_check - INFO - ✅ BTC-USD: Today's price $116835.0000
+2025-08-08 18:02:25,822 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2632
+2025-08-08 18:02:25,822 - db_health_check - INFO - ✅ VIX: Today's price $15.4400
+2025-08-08 18:02:25,823 - db_health_check - INFO - ✅ ^VIX: Today's price $15.4400
+2025-08-08 18:02:25,823 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-08 18:02:25,823 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-08 18:02:25,824 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-08 18:02:25,824 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-08 18:02:25,824 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-08 18:02:25,824 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-08 18:02:25,825 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-08 18:02:25,825 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-08 18:02:25,825 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-08 18:02:25,825 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-08 18:02:25,825 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-08 18:02:25,825 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-08 18:02:25,825 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-08 18:02:25,827 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-08 18:02:25,827 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-08 18:02:25,827 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-08 18:02:25,827 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-08 18:02:25,828 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-08 18:02:25,828 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-08 18:02:25,828 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-08 18:02:25,828 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-08 18:02:25,828 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-08 18:02:25,828 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-08 18:02:25,828 - db_health_check - INFO - ============================================================
+2025-08-08 18:02:25,828 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-08
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-08 18:02:25,828 - db_health_check - INFO - ============================================================
+2025-08-08 18:02:25,830 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-09 09:00:04,912 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-09
+2025-08-09 09:00:04,912 - db_health_check - INFO - Running Database Integrity check...
+2025-08-09 09:00:04,914 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-09 09:00:05,038 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-09 09:00:05,039 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-09 09:00:05,039 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-09 09:00:05,040 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $574.5500
+2025-08-09 09:00:05,040 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $116583.0000
+2025-08-09 09:00:05,041 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2668
+2025-08-09 09:00:05,041 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $15.1500
+2025-08-09 09:00:05,041 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $15.1500
+2025-08-09 09:00:05,041 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-09 09:00:05,041 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-09 09:00:05,042 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-06)
+2025-08-09 09:00:05,042 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-09 09:00:05,042 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-09 09:00:05,042 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-09 09:00:05,043 - db_health_check - ERROR - ❌ Long Bull Model V3.2: No recent predictions found
+2025-08-09 09:00:05,043 - db_health_check - ERROR - ❌ QQQ Trading Signal: No recent predictions found
+2025-08-09 09:00:05,043 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-09 09:00:05,043 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-09 09:00:05,043 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-09 09:00:05,043 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-09 09:00:05,043 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-09 09:00:05,044 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-09 09:00:05,044 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-09 09:00:05,044 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-09 09:00:05,044 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-09 09:00:05,045 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-09 09:00:05,045 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-09 09:00:05,045 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-09 09:00:05,045 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-09 09:00:05,045 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-09 09:00:05,045 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-09 09:00:05,045 - db_health_check - INFO - ============================================================
+2025-08-09 09:00:05,045 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-09
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 7
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   0/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-09 09:00:05,046 - db_health_check - INFO - ============================================================
+2025-08-09 09:00:05,047 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-09 15:53:54,574 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-09
+2025-08-09 15:53:54,576 - db_health_check - INFO - Running Database Integrity check...
+2025-08-09 15:53:54,576 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-09 15:53:54,587 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-09 15:53:54,587 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-09 15:53:54,587 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-09 15:53:54,587 - db_health_check - INFO - ✅ QQQ: Today's price $574.5500
+2025-08-09 15:53:54,587 - db_health_check - INFO - ✅ BTC-USD: Today's price $116576.0000
+2025-08-09 15:53:54,587 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2743
+2025-08-09 15:53:54,587 - db_health_check - INFO - ✅ VIX: Today's price $15.1500
+2025-08-09 15:53:54,587 - db_health_check - INFO - ✅ ^VIX: Today's price $15.1500
+2025-08-09 15:53:54,587 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-09 15:53:54,587 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-09 15:53:54,587 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-08)
+2025-08-09 15:53:54,587 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-09 15:53:54,599 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-09 15:53:54,599 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-09 15:53:54,599 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-09 15:53:54,599 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-09 15:53:54,599 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-09 15:53:54,599 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-09 15:53:54,599 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-09 15:53:54,599 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-09 15:53:54,599 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-09 15:53:54,599 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/0)
+2025-08-09 15:53:54,599 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-09 15:53:54,599 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-09 15:53:54,599 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-09 15:53:54,599 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-09 15:53:54,599 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-09 15:53:54,599 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-09 15:53:54,599 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-09 15:53:54,599 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-09 15:53:54,599 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-09 15:53:54,599 - db_health_check - INFO - ============================================================
+2025-08-09 15:53:54,599 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-09
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-09 15:53:54,599 - db_health_check - INFO - ============================================================
+2025-08-09 15:53:54,599 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-10 09:00:05,791 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-10
+2025-08-10 09:00:05,791 - db_health_check - INFO - Running Database Integrity check...
+2025-08-10 09:00:05,791 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-10 09:00:05,908 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-10 09:00:05,908 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-10 09:00:05,908 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-10 09:00:05,909 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $574.5500
+2025-08-10 09:00:05,910 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117019.0000
+2025-08-10 09:00:05,910 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2699
+2025-08-10 09:00:05,910 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $15.1500
+2025-08-10 09:00:05,910 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $15.1500
+2025-08-10 09:00:05,910 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-10 09:00:05,910 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-10 09:00:05,913 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-08)
+2025-08-10 09:00:05,913 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-10 09:00:05,913 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-10 09:00:05,913 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-10 09:00:05,914 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-10 09:00:05,914 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-10 09:00:05,914 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-10 09:00:05,914 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-10 09:00:05,915 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-10 09:00:05,915 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-10 09:00:05,915 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-10 09:00:05,916 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/1)
+2025-08-10 09:00:05,916 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-10 09:00:05,916 - db_health_check - INFO - Bitcoin Model: 0.0% (0/1)
+2025-08-10 09:00:05,916 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-10 09:00:05,916 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-10 09:00:05,917 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-10 09:00:05,917 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-10 09:00:05,917 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-10 09:00:05,917 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-10 09:00:05,917 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-10 09:00:05,917 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-10 09:00:05,917 - db_health_check - INFO - ============================================================
+2025-08-10 09:00:05,917 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-10
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-10 09:00:05,918 - db_health_check - INFO - ============================================================
+2025-08-10 09:00:05,919 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-10 15:53:30,079 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-10
+2025-08-10 15:53:30,079 - db_health_check - INFO - Running Database Integrity check...
+2025-08-10 15:53:30,079 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-10 15:53:30,101 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-10 15:53:30,101 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-10 15:53:30,101 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-10 15:53:30,101 - db_health_check - INFO - ✅ QQQ: Today's price $574.5500
+2025-08-10 15:53:30,103 - db_health_check - INFO - ✅ BTC-USD: Today's price $118681.0000
+2025-08-10 15:53:30,103 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2671
+2025-08-10 15:53:30,103 - db_health_check - INFO - ✅ VIX: Today's price $15.1500
+2025-08-10 15:53:30,103 - db_health_check - INFO - ✅ ^VIX: Today's price $15.1500
+2025-08-10 15:53:30,103 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-10 15:53:30,103 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-10 15:53:30,105 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-08)
+2025-08-10 15:53:30,105 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-10 15:53:30,105 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-10 15:53:30,105 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-10 15:53:30,105 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-10 15:53:30,105 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-10 15:53:30,105 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-10 15:53:30,105 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-10 15:53:30,105 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-10 15:53:30,105 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-10 15:53:30,105 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-10 15:53:30,107 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/1)
+2025-08-10 15:53:30,107 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-10 15:53:30,107 - db_health_check - INFO - Bitcoin Model: 0.0% (0/1)
+2025-08-10 15:53:30,107 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-10 15:53:30,107 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-10 15:53:30,107 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-10 15:53:30,107 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-10 15:53:30,107 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-10 15:53:30,107 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-10 15:53:30,107 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-10 15:53:30,107 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-10 15:53:30,107 - db_health_check - INFO - ============================================================
+2025-08-10 15:53:30,107 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-10
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-10 15:53:30,107 - db_health_check - INFO - ============================================================
+2025-08-10 15:53:30,109 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-11 09:02:11,792 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-11
+2025-08-11 09:02:11,794 - db_health_check - INFO - Running Database Integrity check...
+2025-08-11 09:02:11,794 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-11 09:02:12,278 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-11 09:02:12,278 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-11 09:02:12,278 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-11 09:02:12,281 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $574.5500
+2025-08-11 09:02:12,281 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $118681.0000
+2025-08-11 09:02:12,281 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2671
+2025-08-11 09:02:12,284 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $15.1500
+2025-08-11 09:02:12,284 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $15.1500
+2025-08-11 09:02:12,284 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-11 09:02:12,284 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-11 09:02:12,284 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-08)
+2025-08-11 09:02:12,284 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-11 09:02:12,287 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-11 09:02:12,287 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-11 09:02:12,289 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-11 09:02:12,289 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-11 09:02:12,289 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-11 09:02:12,289 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-11 09:02:12,289 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-11 09:02:12,289 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-11 09:02:12,289 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-11 09:02:12,289 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/2)
+2025-08-11 09:02:12,289 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-11 09:02:12,289 - db_health_check - INFO - Bitcoin Model: 0.0% (0/2)
+2025-08-11 09:02:12,291 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-11 09:02:12,291 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-11 09:02:12,291 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-11 09:02:12,291 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-11 09:02:12,291 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-11 09:02:12,291 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-11 09:02:12,291 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-11 09:02:12,291 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-11 09:02:12,291 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-11 09:02:12,291 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-11 09:02:12,291 - db_health_check - INFO - ============================================================
+2025-08-11 09:02:12,291 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-11
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-11 09:02:12,291 - db_health_check - INFO - ============================================================
+2025-08-11 09:02:12,294 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-11 16:15:00,816 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-11
+2025-08-11 16:15:00,818 - db_health_check - INFO - Running Database Integrity check...
+2025-08-11 16:15:00,818 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-11 16:15:00,876 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-11 16:15:00,876 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-11 16:15:00,876 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-11 16:15:00,877 - db_health_check - INFO - ✅ QQQ: Today's price $574.5500
+2025-08-11 16:15:00,879 - db_health_check - INFO - ✅ BTC-USD: Today's price $119219.0000
+2025-08-11 16:15:00,879 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2582
+2025-08-11 16:15:00,879 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $15.1500
+2025-08-11 16:15:00,882 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $15.1500
+2025-08-11 16:15:00,882 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-11 16:15:00,882 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-11 16:15:00,884 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-08)
+2025-08-11 16:15:00,886 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-11 16:15:00,886 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-11 16:15:00,886 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-11 16:15:00,886 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-11 16:15:00,888 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-11 16:15:00,888 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-11 16:15:00,888 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-11 16:15:00,888 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-11 16:15:00,888 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-11 16:15:00,888 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-11 16:15:00,890 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/2)
+2025-08-11 16:15:00,890 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-11 16:15:00,890 - db_health_check - INFO - Bitcoin Model: 0.0% (0/2)
+2025-08-11 16:15:00,890 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-11 16:15:00,890 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-11 16:15:00,890 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-11 16:15:00,890 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-11 16:15:00,892 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-11 16:15:00,892 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-11 16:15:00,892 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-11 16:15:00,892 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-11 16:15:00,892 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-11 16:15:00,892 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-11 16:15:00,892 - db_health_check - INFO - ============================================================
+2025-08-11 16:15:00,892 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-11
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-11 16:15:00,892 - db_health_check - INFO - ============================================================
+2025-08-11 16:15:00,895 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-11 16:17:28,612 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-11
+2025-08-11 16:17:28,612 - db_health_check - INFO - Running Database Integrity check...
+2025-08-11 16:17:28,612 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-11 16:17:28,657 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-11 16:17:28,657 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-11 16:17:28,657 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-11 16:17:28,659 - db_health_check - INFO - ✅ QQQ: Today's price $574.5500
+2025-08-11 16:17:28,659 - db_health_check - INFO - ✅ BTC-USD: Today's price $119219.0000
+2025-08-11 16:17:28,661 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2582
+2025-08-11 16:17:28,661 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $15.1500
+2025-08-11 16:17:28,661 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $15.1500
+2025-08-11 16:17:28,663 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-11 16:17:28,663 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-11 16:17:28,665 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-08)
+2025-08-11 16:17:28,667 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-11 16:17:28,667 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-11 16:17:28,667 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-11 16:17:28,669 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-11 16:17:28,669 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-11 16:17:28,669 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-11 16:17:28,669 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-11 16:17:28,669 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-11 16:17:28,669 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-11 16:17:28,670 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-11 16:17:28,670 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/2)
+2025-08-11 16:17:28,670 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-11 16:17:28,672 - db_health_check - INFO - Bitcoin Model: 0.0% (0/2)
+2025-08-11 16:17:28,672 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-11 16:17:28,672 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-11 16:17:28,672 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-11 16:17:28,672 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-11 16:17:28,675 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-11 16:17:28,675 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-11 16:17:28,675 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-11 16:17:28,675 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-11 16:17:28,675 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-11 16:17:28,675 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-11 16:17:28,675 - db_health_check - INFO - ============================================================
+2025-08-11 16:17:28,675 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-11
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-11 16:17:28,675 - db_health_check - INFO - ============================================================
+2025-08-11 16:17:28,677 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-12 09:00:05,460 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-12
+2025-08-12 09:00:05,460 - db_health_check - INFO - Running Database Integrity check...
+2025-08-12 09:00:05,460 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-12 09:00:05,550 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-12 09:00:05,550 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-12 09:00:05,550 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-12 09:00:05,550 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $574.5500
+2025-08-12 09:00:05,550 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $119219.0000
+2025-08-12 09:00:05,550 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2548
+2025-08-12 09:00:05,550 - db_health_check - ERROR - ❌ VIX: No recent price data
+2025-08-12 09:00:05,550 - db_health_check - ERROR - ❌ ^VIX: No recent price data
+2025-08-12 09:00:05,550 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-12 09:00:05,550 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-12 09:00:05,550 - db_health_check - WARNING - [WARN] btc: Onchain data is stale (latest: 2025-08-08)
+2025-08-12 09:00:05,550 - db_health_check - WARNING - [WARN] Onchain data is stale for all assets
+2025-08-12 09:00:05,550 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-12 09:00:05,550 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-12 09:00:05,550 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-12 09:00:05,550 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-12 09:00:05,550 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-12 09:00:05,550 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-12 09:00:05,550 - db_health_check - ERROR - ❌ Wishing Well QQQ Model: No recent predictions found
+2025-08-12 09:00:05,566 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-12 09:00:05,566 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-12 09:00:05,566 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/5)
+2025-08-12 09:00:05,566 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-12 09:00:05,566 - db_health_check - INFO - Bitcoin Model: 0.0% (0/4)
+2025-08-12 09:00:05,566 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/1)
+2025-08-12 09:00:05,566 - db_health_check - WARNING - Found 2 groups of stale predictions:
+2025-08-12 09:00:05,566 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-12 09:00:05,566 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-12 09:00:05,566 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-12 09:00:05,566 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-12 09:00:05,566 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-12 09:00:05,566 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-12 09:00:05,566 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-12 09:00:05,566 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-12 09:00:05,566 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-12 09:00:05,566 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-12 09:00:05,566 - db_health_check - INFO - ============================================================
+2025-08-12 09:00:05,566 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-12
+Overall Status: FAILED
+Total Checks: 5 (Passed: 1, Failed: 4)
+Warnings: 1, Critical Issues: 6
+✅ Database Integrity: OK
+❌ Price Data: FAILED
+   3/5 symbols have recent data
+⚠️ Onchain Data: WARNING
+   Onchain data: 0 assets current, 1 stale
+❌ Prediction Storage: FAILED
+   3/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-12 09:00:05,568 - db_health_check - INFO - ============================================================
+2025-08-12 09:00:05,569 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-12 15:53:15,544 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-12
+2025-08-12 15:53:15,544 - db_health_check - INFO - Running Database Integrity check...
+2025-08-12 15:53:15,544 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-12 15:53:15,558 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-12 15:53:15,558 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ QQQ: Today's price $572.8500
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ BTC-USD: Today's price $119691.0000
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2737
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ VIX: Today's price $14.8900
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ ^VIX: Today's price $14.8900
+2025-08-12 15:53:15,558 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-12 15:53:15,558 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-12 15:53:15,558 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-11)
+2025-08-12 15:53:15,558 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-12 15:53:15,558 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-12 15:53:15,558 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-12 15:53:15,558 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-12 15:53:15,558 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-12 15:53:15,558 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-12 15:53:15,558 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-12 15:53:15,558 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/5)
+2025-08-12 15:53:15,558 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-12 15:53:15,558 - db_health_check - INFO - Bitcoin Model: 0.0% (0/4)
+2025-08-12 15:53:15,558 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/1)
+2025-08-12 15:53:15,558 - db_health_check - WARNING - Found 2 groups of stale predictions:
+2025-08-12 15:53:15,558 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-12 15:53:15,558 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-12 15:53:15,558 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-12 15:53:15,558 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-12 15:53:15,558 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-12 15:53:15,558 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-12 15:53:15,558 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-12 15:53:15,558 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-12 15:53:15,558 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-12 15:53:15,558 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-12 15:53:15,558 - db_health_check - INFO - ============================================================
+2025-08-12 15:53:15,558 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-12
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-12 15:53:15,558 - db_health_check - INFO - ============================================================
+2025-08-12 15:53:15,558 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-13 09:00:04,897 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-13
+2025-08-13 09:00:04,898 - db_health_check - INFO - Running Database Integrity check...
+2025-08-13 09:00:04,898 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-13 09:00:04,995 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-13 09:00:04,995 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-13 09:00:04,995 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-13 09:00:04,996 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $572.8500
+2025-08-13 09:00:04,997 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $119691.0000
+2025-08-13 09:00:04,997 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2737
+2025-08-13 09:00:04,997 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $14.8900
+2025-08-13 09:00:04,998 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $14.8900
+2025-08-13 09:00:04,998 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-13 09:00:04,998 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-13 09:00:04,999 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-11)
+2025-08-13 09:00:04,999 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-13 09:00:04,999 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-13 09:00:04,999 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-13 09:00:05,000 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-13 09:00:05,000 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-13 09:00:05,000 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-13 09:00:05,000 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-13 09:00:05,000 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-13 09:00:05,000 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-13 09:00:05,000 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-13 09:00:05,001 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/8)
+2025-08-13 09:00:05,001 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-13 09:00:05,001 - db_health_check - INFO - Bitcoin Model: 0.0% (0/6)
+2025-08-13 09:00:05,001 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/2)
+2025-08-13 09:00:05,001 - db_health_check - WARNING - Found 4 groups of stale predictions:
+2025-08-13 09:00:05,001 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-12
+2025-08-13 09:00:05,001 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-12
+2025-08-13 09:00:05,001 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-13 09:00:05,001 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-13 09:00:05,002 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-13 09:00:05,002 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-13 09:00:05,002 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-13 09:00:05,003 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-13 09:00:05,003 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-13 09:00:05,003 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-13 09:00:05,003 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-13 09:00:05,003 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-13 09:00:05,003 - db_health_check - INFO - ============================================================
+2025-08-13 09:00:05,003 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-13
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-13 09:00:05,004 - db_health_check - INFO - ============================================================
+2025-08-13 09:00:05,005 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-13 16:18:07,729 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-13
+2025-08-13 16:18:07,729 - db_health_check - INFO - Running Database Integrity check...
+2025-08-13 16:18:07,729 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-13 16:18:07,752 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-13 16:18:07,752 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-13 16:18:07,752 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-13 16:18:07,753 - db_health_check - INFO - ✅ QQQ: Today's price $580.3400
+2025-08-13 16:18:07,753 - db_health_check - INFO - ✅ BTC-USD: Today's price $122767.0000
+2025-08-13 16:18:07,754 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2758
+2025-08-13 16:18:07,754 - db_health_check - INFO - ✅ VIX: Today's price $14.4000
+2025-08-13 16:18:07,754 - db_health_check - INFO - ✅ ^VIX: Today's price $14.4000
+2025-08-13 16:18:07,754 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-13 16:18:07,754 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-13 16:18:07,756 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-11)
+2025-08-13 16:18:07,756 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-13 16:18:07,756 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-13 16:18:07,756 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-13 16:18:07,757 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-13 16:18:07,757 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-13 16:18:07,757 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-13 16:18:07,757 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-13 16:18:07,757 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-13 16:18:07,757 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-13 16:18:07,757 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-13 16:18:07,758 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/8)
+2025-08-13 16:18:07,758 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-13 16:18:07,758 - db_health_check - INFO - Bitcoin Model: 0.0% (0/6)
+2025-08-13 16:18:07,758 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/2)
+2025-08-13 16:18:07,758 - db_health_check - WARNING - Found 4 groups of stale predictions:
+2025-08-13 16:18:07,758 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-12
+2025-08-13 16:18:07,758 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-12
+2025-08-13 16:18:07,758 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-13 16:18:07,758 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-13 16:18:07,758 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-13 16:18:07,758 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-13 16:18:07,759 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-13 16:18:07,759 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-13 16:18:07,759 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-13 16:18:07,759 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-13 16:18:07,759 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-13 16:18:07,759 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-13 16:18:07,759 - db_health_check - INFO - ============================================================
+2025-08-13 16:18:07,759 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-13
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 3
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   4/5 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/5 models have accuracy data
+2025-08-13 16:18:07,759 - db_health_check - INFO - ============================================================
+2025-08-13 16:18:07,760 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-13 19:07:46,355 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-13
+2025-08-13 19:07:46,355 - db_health_check - INFO - Running Database Integrity check...
+2025-08-13 19:07:46,355 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-13 19:07:46,377 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-13 19:07:46,377 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-13 19:07:46,377 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-13 19:07:46,379 - db_health_check - INFO - ✅ QQQ: Today's price $580.3400
+2025-08-13 19:07:46,379 - db_health_check - INFO - ✅ BTC-USD: Today's price $122767.0000
+2025-08-13 19:07:46,380 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2758
+2025-08-13 19:07:46,380 - db_health_check - INFO - ✅ VIX: Today's price $14.4000
+2025-08-13 19:07:46,380 - db_health_check - INFO - ✅ ^VIX: Today's price $14.4000
+2025-08-13 19:07:46,381 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-13 19:07:46,381 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-13 19:07:46,383 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-11)
+2025-08-13 19:07:46,383 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-13 19:07:46,383 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-13 19:07:46,383 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-13 19:07:46,384 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-13 19:07:46,384 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-13 19:07:46,384 - db_health_check - ERROR - ❌ Algorand Model: No recent predictions found
+2025-08-13 19:07:46,384 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-13 19:07:46,384 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-13 19:07:46,384 - db_health_check - ERROR - ❌ NVIDIA Bull Momentum Model: No recent predictions found
+2025-08-13 19:07:46,384 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-13 19:07:46,384 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-13 19:07:46,384 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-13 19:07:46,385 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/8)
+2025-08-13 19:07:46,385 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-13 19:07:46,385 - db_health_check - INFO - Bitcoin Model: 0.0% (0/6)
+2025-08-13 19:07:46,385 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/2)
+2025-08-13 19:07:46,385 - db_health_check - WARNING - Found 4 groups of stale predictions:
+2025-08-13 19:07:46,385 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-12
+2025-08-13 19:07:46,385 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-12
+2025-08-13 19:07:46,385 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-13 19:07:46,385 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-10
+2025-08-13 19:07:46,385 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-13 19:07:46,385 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - WARNING - ⚠️  QQQ Master Model: No evaluated predictions found
+2025-08-13 19:07:46,386 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-13 19:07:46,387 - db_health_check - INFO - ============================================================
+2025-08-13 19:07:46,387 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-13
+Overall Status: FAILED
+Total Checks: 6 (Passed: 3, Failed: 3)
+Warnings: 0, Critical Issues: 4
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   5/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/7 models have accuracy data
+2025-08-13 19:07:46,387 - db_health_check - INFO - ============================================================
+2025-08-13 19:07:46,388 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-14 09:00:09,804 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-14
+2025-08-14 09:00:09,804 - db_health_check - INFO - Running Database Integrity check...
+2025-08-14 09:00:09,804 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-14 09:00:09,997 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-14 09:00:09,997 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-14 09:00:09,997 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-14 09:00:10,002 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $580.3400
+2025-08-14 09:00:10,003 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $122767.0000
+2025-08-14 09:00:10,006 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2819
+2025-08-14 09:00:10,006 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $14.4000
+2025-08-14 09:00:10,006 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $14.4000
+2025-08-14 09:00:10,009 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-14 09:00:10,009 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-14 09:00:10,014 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-11)
+2025-08-14 09:00:10,014 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-14 09:00:10,014 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-14 09:00:10,014 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-14 09:00:10,016 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-14 09:00:10,016 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-14 09:00:10,016 - db_health_check - WARNING - ⚠️  Algorand Model: No predictions today, but 1 yesterday
+2025-08-14 09:00:10,016 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-14 09:00:10,016 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-14 09:00:10,018 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No predictions today, but 6 yesterday
+2025-08-14 09:00:10,018 - db_health_check - WARNING - ⚠️  QQQ Master Model: No predictions today, but 1 yesterday
+2025-08-14 09:00:10,018 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-14 09:00:10,018 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-14 09:00:10,020 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/16)
+2025-08-14 09:00:10,020 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-14 09:00:10,020 - db_health_check - INFO - Bitcoin Model: 0.0% (0/8)
+2025-08-14 09:00:10,020 - db_health_check - INFO - NVIDIA Bull Momentum Model: 0.0% (0/3)
+2025-08-14 09:00:10,020 - db_health_check - INFO - QQQ Master Model: 0.0% (0/1)
+2025-08-14 09:00:10,020 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/3)
+2025-08-14 09:00:10,022 - db_health_check - INFO - Wishing Well QQQ Model: 0.0% (0/1)
+2025-08-14 09:00:10,022 - db_health_check - WARNING - Found 6 groups of stale predictions:
+2025-08-14 09:00:10,022 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-13
+2025-08-14 09:00:10,022 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-13
+2025-08-14 09:00:10,022 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-12
+2025-08-14 09:00:10,022 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-12
+2025-08-14 09:00:10,022 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-14 09:00:10,022 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-14 09:00:10,022 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-14 09:00:10,024 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-14 09:00:10,024 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-14 09:00:10,026 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-14 09:00:10,026 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-14 09:00:10,026 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-14 09:00:10,026 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No evaluated predictions found
+2025-08-14 09:00:10,026 - db_health_check - WARNING - ⚠️  QQQ Master Model: No evaluated predictions found
+2025-08-14 09:00:10,026 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-14 09:00:10,026 - db_health_check - INFO - ============================================================
+2025-08-14 09:00:10,026 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-14
+Overall Status: FAILED
+Total Checks: 6 (Passed: 4, Failed: 2)
+Warnings: 7, Critical Issues: 2
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+⚠️ Prediction Storage: WARNING
+   7/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/7 models have accuracy data
+2025-08-14 09:00:10,026 - db_health_check - INFO - ============================================================
+2025-08-14 09:00:10,030 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-14 18:44:39,252 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-14
+2025-08-14 18:44:39,253 - db_health_check - INFO - Running Database Integrity check...
+2025-08-14 18:44:39,253 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-14 18:44:39,270 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-14 18:44:39,270 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-14 18:44:39,270 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-14 18:44:39,272 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-14 18:44:39,272 - db_health_check - INFO - ✅ BTC-USD: Today's price $118199.0000
+2025-08-14 18:44:39,272 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2516
+2025-08-14 18:44:39,272 - db_health_check - INFO - ✅ VIX: Today's price $14.8300
+2025-08-14 18:44:39,272 - db_health_check - INFO - ✅ ^VIX: Today's price $14.8300
+2025-08-14 18:44:39,273 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-14 18:44:39,273 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-14 18:44:39,274 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-14 18:44:39,274 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-14 18:44:39,275 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-14 18:44:39,275 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-14 18:44:39,275 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-14 18:44:39,276 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-14 18:44:39,276 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-14 18:44:39,277 - db_health_check - INFO - Overall actual price update rate: 0.0% (0/16)
+2025-08-14 18:44:39,277 - db_health_check - INFO - Recent updates in last week: 0
+2025-08-14 18:44:39,277 - db_health_check - INFO - Bitcoin Model: 0.0% (0/8)
+2025-08-14 18:44:39,277 - db_health_check - INFO - NVIDIA Bull Momentum Model: 0.0% (0/3)
+2025-08-14 18:44:39,277 - db_health_check - INFO - QQQ Master Model: 0.0% (0/1)
+2025-08-14 18:44:39,277 - db_health_check - INFO - QQQ Trading Signal: 0.0% (0/3)
+2025-08-14 18:44:39,277 - db_health_check - INFO - Wishing Well QQQ Model: 0.0% (0/1)
+2025-08-14 18:44:39,278 - db_health_check - WARNING - Found 6 groups of stale predictions:
+2025-08-14 18:44:39,278 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-13
+2025-08-14 18:44:39,278 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-13
+2025-08-14 18:44:39,278 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 2 predictions due 2025-08-12
+2025-08-14 18:44:39,278 - db_health_check - WARNING -   QQQ Trading Signal (QQQ): 1 predictions due 2025-08-12
+2025-08-14 18:44:39,278 - db_health_check - WARNING -   Bitcoin Model (BTC-USD): 1 predictions due 2025-08-11
+2025-08-14 18:44:39,278 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-14 18:44:39,278 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-14 18:44:39,278 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-14 18:44:39,278 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No evaluated predictions found
+2025-08-14 18:44:39,278 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-14 18:44:39,278 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-14 18:44:39,278 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No evaluated predictions found
+2025-08-14 18:44:39,279 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No evaluated predictions found
+2025-08-14 18:44:39,279 - db_health_check - WARNING - ⚠️  QQQ Master Model: No evaluated predictions found
+2025-08-14 18:44:39,279 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-14 18:44:39,279 - db_health_check - INFO - ============================================================
+2025-08-14 18:44:39,279 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-14
+Overall Status: FAILED
+Total Checks: 6 (Passed: 4, Failed: 2)
+Warnings: 0, Critical Issues: 2
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   0.0% of due predictions have actual prices
+❌ Accuracy Assessment: FAILED
+   0/7 models have accuracy data
+2025-08-14 18:44:39,279 - db_health_check - INFO - ============================================================
+2025-08-14 18:44:39,280 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 09:00:06,522 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 09:00:06,523 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 09:00:06,523 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 09:00:06,647 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 09:00:06,648 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 09:00:06,648 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 09:00:06,649 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $579.8900
+2025-08-15 09:00:06,650 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $118199.0000
+2025-08-15 09:00:06,650 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2516
+2025-08-15 09:00:06,651 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $14.8300
+2025-08-15 09:00:06,651 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $14.8300
+2025-08-15 09:00:06,651 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 09:00:06,651 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 09:00:06,655 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 09:00:06,655 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 09:00:06,655 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 09:00:06,655 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 09:00:06,656 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-15 09:00:06,656 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-15 09:00:06,656 - db_health_check - WARNING - ⚠️  Algorand Model: No predictions today, but 1 yesterday
+2025-08-15 09:00:06,656 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-15 09:00:06,656 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-15 09:00:06,656 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No predictions today, but 2 yesterday
+2025-08-15 09:00:06,657 - db_health_check - WARNING - ⚠️  QQQ Master Model: No predictions today, but 1 yesterday
+2025-08-15 09:00:06,657 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 09:00:06,657 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 09:00:06,657 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 09:00:06,657 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 09:00:06,658 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 09:00:06,658 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 09:00:06,658 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 09:00:06,658 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 09:00:06,658 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 09:00:06,658 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 09:00:06,659 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 09:00:06,659 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 09:00:06,659 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 09:00:06,659 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 09:00:06,659 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 09:00:06,659 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 09:00:06,659 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 09:00:06,659 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 09:00:06,659 - db_health_check - INFO - ============================================================
+2025-08-15 09:00:06,659 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: FAILED
+Total Checks: 5 (Passed: 4, Failed: 1)
+Warnings: 1, Critical Issues: 1
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   6/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 09:00:06,659 - db_health_check - INFO - ============================================================
+2025-08-15 09:00:06,661 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 15:45:59,440 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 15:45:59,440 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 15:45:59,440 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 15:45:59,461 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 15:45:59,462 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 15:45:59,462 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 15:45:59,462 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 15:45:59,462 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 15:45:59,462 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 15:45:59,462 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 15:45:59,462 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 15:45:59,462 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 15:45:59,462 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 15:45:59,462 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 15:45:59,462 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 15:45:59,462 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 15:45:59,462 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 15:45:59,462 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 15:45:59,462 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 15:45:59,462 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 15:45:59,462 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 15:45:59,462 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 15:45:59,462 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 15:45:59,462 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 15:45:59,462 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 15:45:59,462 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 15:45:59,462 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 15:45:59,462 - db_health_check - INFO - ============================================================
+2025-08-15 15:45:59,462 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: WARNING
+Total Checks: 5 (Passed: 5, Failed: 0)
+Warnings: 1, Critical Issues: 0
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 15:45:59,462 - db_health_check - INFO - ============================================================
+2025-08-15 15:45:59,462 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 15:58:22,923 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 15:58:22,924 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 15:58:22,924 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 15:58:23,027 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 15:58:23,027 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 15:58:23,027 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 15:58:23,029 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 15:58:23,029 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 15:58:23,029 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 15:58:23,029 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 15:58:23,031 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 15:58:23,031 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 15:58:23,031 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 15:58:23,033 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 15:58:23,034 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 15:58:23,034 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 15:58:23,034 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 15:58:23,035 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 15:58:23,035 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 15:58:23,036 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 15:58:23,036 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 15:58:23,036 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 15:58:23,036 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 15:58:23,036 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 15:58:23,036 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 15:58:23,037 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 15:58:23,037 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 15:58:23,037 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 15:58:23,037 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 15:58:23,037 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 15:58:23,037 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 15:58:23,037 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 15:58:23,037 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 15:58:23,037 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 15:58:23,038 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 15:58:23,038 - db_health_check - INFO - ============================================================
+2025-08-15 15:58:23,038 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: WARNING
+Total Checks: 5 (Passed: 5, Failed: 0)
+Warnings: 1, Critical Issues: 0
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 15:58:23,038 - db_health_check - INFO - ============================================================
+2025-08-15 15:58:23,039 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 15:59:58,419 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 15:59:58,419 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 15:59:58,419 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 15:59:58,436 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 15:59:58,436 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 15:59:58,436 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 15:59:58,450 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 15:59:58,450 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 15:59:58,450 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 15:59:58,450 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 15:59:58,450 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 15:59:58,450 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 15:59:58,450 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 15:59:58,450 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 15:59:58,450 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 15:59:58,450 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 15:59:58,450 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 15:59:58,450 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 15:59:58,450 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 15:59:58,450 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 15:59:58,450 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 15:59:58,450 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 15:59:58,455 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 15:59:58,455 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 15:59:58,455 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 15:59:58,455 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 15:59:58,455 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 15:59:58,455 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 15:59:58,455 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 15:59:58,455 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 15:59:58,455 - db_health_check - INFO - ============================================================
+2025-08-15 15:59:58,455 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: WARNING
+Total Checks: 5 (Passed: 5, Failed: 0)
+Warnings: 1, Critical Issues: 0
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 15:59:58,455 - db_health_check - INFO - ============================================================
+2025-08-15 15:59:58,457 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 16:10:36,318 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 16:10:36,318 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 16:10:36,318 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 16:10:36,338 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 16:10:36,338 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 16:10:36,338 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 16:10:36,339 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 16:10:36,339 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 16:10:36,340 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 16:10:36,340 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 16:10:36,340 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 16:10:36,340 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 16:10:36,340 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 16:10:36,342 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 16:10:36,342 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 16:10:36,342 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 16:10:36,342 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 16:10:36,343 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 16:10:36,343 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 16:10:36,343 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 16:10:36,343 - db_health_check - ERROR - ❌ Bitcoin Model: No recent predictions found
+2025-08-15 16:10:36,343 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 16:10:36,343 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No predictions today, but 2 yesterday
+2025-08-15 16:10:36,343 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 16:10:36,343 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 16:10:36,343 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 16:10:36,344 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 16:10:36,344 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 16:10:36,345 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 16:10:36,345 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 16:10:36,345 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 16:10:36,345 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 16:10:36,345 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 16:10:36,345 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 16:10:36,346 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 16:10:36,346 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 16:10:36,346 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 16:10:36,346 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 16:10:36,346 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 16:10:36,346 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 16:10:36,346 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 16:10:36,346 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 16:10:36,346 - db_health_check - INFO - ============================================================
+2025-08-15 16:10:36,346 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: FAILED
+Total Checks: 5 (Passed: 4, Failed: 1)
+Warnings: 1, Critical Issues: 1
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+❌ Prediction Storage: FAILED
+   6/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 16:10:36,346 - db_health_check - INFO - ============================================================
+2025-08-15 16:10:36,347 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 16:20:50,119 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 16:20:50,119 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 16:20:50,119 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 16:20:50,224 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 16:20:50,224 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 16:20:50,224 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 16:20:50,226 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 16:20:50,226 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 16:20:50,228 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 16:20:50,228 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 16:20:50,228 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 16:20:50,228 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 16:20:50,228 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 16:20:50,232 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 16:20:50,232 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 16:20:50,232 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 16:20:50,232 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 16:20:50,234 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 16:20:50,234 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 16:20:50,234 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 16:20:50,234 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 16:20:50,234 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 16:20:50,234 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 16:20:50,234 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 16:20:50,236 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 16:20:50,236 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 16:20:50,236 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 16:20:50,237 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 16:20:50,237 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 16:20:50,237 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 16:20:50,238 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 16:20:50,238 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 16:20:50,238 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 16:20:50,238 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 16:20:50,238 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 16:20:50,238 - db_health_check - INFO - ============================================================
+2025-08-15 16:20:50,238 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: WARNING
+Total Checks: 5 (Passed: 5, Failed: 0)
+Warnings: 1, Critical Issues: 0
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 16:20:50,238 - db_health_check - INFO - ============================================================
+2025-08-15 16:20:50,238 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 16:22:10,229 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 16:22:10,229 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 16:22:10,229 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 16:22:10,248 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 16:22:10,248 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 16:22:10,248 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 16:22:10,248 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 16:22:10,248 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 16:22:10,249 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 16:22:10,249 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 16:22:10,249 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 16:22:10,249 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 16:22:10,249 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 16:22:10,252 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 16:22:10,252 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 16:22:10,252 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 16:22:10,252 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 16:22:10,253 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 16:22:10,253 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 16:22:10,253 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 16:22:10,253 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-15 16:22:10,254 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 16:22:10,254 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-15 16:22:10,254 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 16:22:10,254 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 16:22:10,254 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 16:22:10,254 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 16:22:10,254 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 16:22:10,254 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 16:22:10,255 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 16:22:10,255 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 16:22:10,255 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 16:22:10,255 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 16:22:10,255 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 16:22:10,256 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 16:22:10,256 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 16:22:10,256 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 16:22:10,256 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 16:22:10,256 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 16:22:10,256 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 16:22:10,256 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 16:22:10,256 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 16:22:10,256 - db_health_check - INFO - ============================================================
+2025-08-15 16:22:10,256 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: WARNING
+Total Checks: 5 (Passed: 5, Failed: 0)
+Warnings: 1, Critical Issues: 0
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 16:22:10,256 - db_health_check - INFO - ============================================================
+2025-08-15 16:22:10,257 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-15 16:25:07,653 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-15
+2025-08-15 16:25:07,653 - db_health_check - INFO - Running Database Integrity check...
+2025-08-15 16:25:07,653 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-15 16:25:07,669 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-15 16:25:07,669 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-15 16:25:07,669 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-15 16:25:07,683 - db_health_check - INFO - ✅ QQQ: Today's price $579.8900
+2025-08-15 16:25:07,683 - db_health_check - INFO - ✅ BTC-USD: Today's price $117071.0000
+2025-08-15 16:25:07,683 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2500
+2025-08-15 16:25:07,684 - db_health_check - INFO - ✅ VIX: Today's price $14.9800
+2025-08-15 16:25:07,684 - db_health_check - INFO - ✅ ^VIX: Today's price $14.9800
+2025-08-15 16:25:07,684 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-15 16:25:07,684 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-15 16:25:07,686 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-15 16:25:07,686 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-15 16:25:07,686 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-15 16:25:07,686 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-15 16:25:07,686 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-15 16:25:07,686 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-15 16:25:07,686 - db_health_check - INFO - Overall actual price update rate: 90.9% (10/11)
+2025-08-15 16:25:07,686 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-15 16:25:07,686 - db_health_check - INFO - NVIDIA Bull Momentum Model: 100.0% (3/3)
+2025-08-15 16:25:07,686 - db_health_check - INFO - QQQ Master Model: 50.0% (1/2)
+2025-08-15 16:25:07,686 - db_health_check - INFO - QQQ Trading Signal: 100.0% (4/4)
+2025-08-15 16:25:07,686 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-15 16:25:07,686 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-15 16:25:07,686 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-15 16:25:07,686 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-15 16:25:07,686 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-15 16:25:07,686 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-15 16:25:07,686 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-15 16:25:07,686 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-15 16:25:07,686 - db_health_check - INFO - ============================================================
+2025-08-15 16:25:07,686 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-15
+Overall Status: WARNING
+Total Checks: 5 (Passed: 5, Failed: 0)
+Warnings: 1, Critical Issues: 0
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+✅ Actual Price Updates: OK
+   90.9% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-15 16:25:07,686 - db_health_check - INFO - ============================================================
+2025-08-15 16:25:07,686 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-16 11:34:15,377 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-16
+2025-08-16 11:34:15,377 - db_health_check - INFO - Running Database Integrity check...
+2025-08-16 11:34:15,377 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-16 11:34:15,572 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-16 11:34:15,572 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-16 11:34:15,572 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-16 11:34:15,574 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $579.8900
+2025-08-16 11:34:15,574 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117071.0000
+2025-08-16 11:34:15,574 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2500
+2025-08-16 11:34:15,574 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $14.9800
+2025-08-16 11:34:15,574 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $14.9800
+2025-08-16 11:34:15,574 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-16 11:34:15,574 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-16 11:34:15,577 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-16 11:34:15,577 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-16 11:34:15,577 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-16 11:34:15,577 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Algorand Model: No predictions today, but 1 yesterday
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No predictions today, but 2 yesterday
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  QQQ Master Model: No predictions today, but 1 yesterday
+2025-08-16 11:34:15,577 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-16 11:34:15,577 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-16 11:34:15,577 - db_health_check - INFO - Overall actual price update rate: 62.5% (10/16)
+2025-08-16 11:34:15,577 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-16 11:34:15,577 - db_health_check - INFO - Algorand Model: 0.0% (0/1)
+2025-08-16 11:34:15,577 - db_health_check - INFO - Bitcoin Model: 0.0% (0/1)
+2025-08-16 11:34:15,577 - db_health_check - INFO - NVIDIA Bull Momentum Model: 75.0% (3/4)
+2025-08-16 11:34:15,577 - db_health_check - INFO - QQQ Master Model: 33.3% (1/3)
+2025-08-16 11:34:15,577 - db_health_check - INFO - QQQ Trading Signal: 80.0% (4/5)
+2025-08-16 11:34:15,577 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-16 11:34:15,577 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-16 11:34:15,577 - db_health_check - WARNING -   QQQ Master Model (QQQ): 1 predictions due 2025-08-15
+2025-08-16 11:34:15,577 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-16 11:34:15,577 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-16 11:34:15,577 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-16 11:34:15,577 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-16 11:34:15,577 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-16 11:34:15,577 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-16 11:34:15,577 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-16 11:34:15,577 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-16 11:34:15,577 - db_health_check - INFO - ============================================================
+2025-08-16 11:34:15,577 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-16
+Overall Status: FAILED
+Total Checks: 5 (Passed: 4, Failed: 1)
+Warnings: 8, Critical Issues: 1
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+⚠️ Prediction Storage: WARNING
+   7/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   62.5% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-16 11:34:15,577 - db_health_check - INFO - ============================================================
+2025-08-16 11:34:15,577 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-16 11:56:12,107 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-16
+2025-08-16 11:56:12,117 - db_health_check - INFO - Running Database Integrity check...
+2025-08-16 11:56:12,117 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-16 11:56:12,202 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-16 11:56:12,202 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-16 11:56:12,202 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-16 11:56:12,202 - db_health_check - WARNING - ⚠️  QQQ: No today's price, yesterday's: $579.8900
+2025-08-16 11:56:12,202 - db_health_check - WARNING - ⚠️  BTC-USD: No today's price, yesterday's: $117071.0000
+2025-08-16 11:56:12,202 - db_health_check - WARNING - ⚠️  ALGO-USD: No today's price, yesterday's: $0.2500
+2025-08-16 11:56:12,202 - db_health_check - WARNING - ⚠️  VIX: No today's price, yesterday's: $14.9800
+2025-08-16 11:56:12,202 - db_health_check - WARNING - ⚠️  ^VIX: No today's price, yesterday's: $14.9800
+2025-08-16 11:56:12,202 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-16 11:56:12,202 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-16 11:56:12,210 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-13)
+2025-08-16 11:56:12,210 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-16 11:56:12,210 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-16 11:56:12,210 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No predictions today, but 1 yesterday
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  QQQ Trading Signal: No predictions today, but 1 yesterday
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  Algorand Model: No predictions today, but 1 yesterday
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  Bitcoin Model: No predictions today, but 3 yesterday
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  Wishing Well QQQ Model: No predictions today, but 1 yesterday
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  NVIDIA Bull Momentum Model: No predictions today, but 2 yesterday
+2025-08-16 11:56:12,210 - db_health_check - WARNING - ⚠️  QQQ Master Model: No predictions today, but 1 yesterday
+2025-08-16 11:56:12,210 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-16 11:56:12,210 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-16 11:56:12,210 - db_health_check - INFO - Overall actual price update rate: 62.5% (10/16)
+2025-08-16 11:56:12,210 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-16 11:56:12,210 - db_health_check - INFO - Algorand Model: 0.0% (0/1)
+2025-08-16 11:56:12,210 - db_health_check - INFO - Bitcoin Model: 0.0% (0/1)
+2025-08-16 11:56:12,210 - db_health_check - INFO - NVIDIA Bull Momentum Model: 75.0% (3/4)
+2025-08-16 11:56:12,214 - db_health_check - INFO - QQQ Master Model: 33.3% (1/3)
+2025-08-16 11:56:12,214 - db_health_check - INFO - QQQ Trading Signal: 80.0% (4/5)
+2025-08-16 11:56:12,214 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-16 11:56:12,214 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-16 11:56:12,214 - db_health_check - WARNING -   QQQ Master Model (QQQ): 1 predictions due 2025-08-15
+2025-08-16 11:56:12,214 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-16 11:56:12,214 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-16 11:56:12,214 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-16 11:56:12,214 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-16 11:56:12,214 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-16 11:56:12,214 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-16 11:56:12,214 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-16 11:56:12,214 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-16 11:56:12,215 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-16 11:56:12,215 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-16 11:56:12,215 - db_health_check - INFO - ============================================================
+2025-08-16 11:56:12,215 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-16
+Overall Status: FAILED
+Total Checks: 5 (Passed: 4, Failed: 1)
+Warnings: 8, Critical Issues: 1
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+⚠️ Prediction Storage: WARNING
+   7/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   62.5% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-16 11:56:12,215 - db_health_check - INFO - ============================================================
+2025-08-16 11:56:12,217 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-16 15:45:15,265 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-16
+2025-08-16 15:45:15,265 - db_health_check - INFO - Running Database Integrity check...
+2025-08-16 15:45:15,265 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-16 15:45:15,281 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-16 15:45:15,282 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-16 15:45:15,282 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-16 15:45:15,282 - db_health_check - INFO - ✅ QQQ: Today's price $577.3400
+2025-08-16 15:45:15,282 - db_health_check - INFO - ✅ BTC-USD: Today's price $117805.0000
+2025-08-16 15:45:15,283 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2620
+2025-08-16 15:45:15,283 - db_health_check - INFO - ✅ VIX: Today's price $15.0900
+2025-08-16 15:45:15,283 - db_health_check - INFO - ✅ ^VIX: Today's price $15.0900
+2025-08-16 15:45:15,283 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-16 15:45:15,283 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-16 15:45:15,284 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-15)
+2025-08-16 15:45:15,284 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-16 15:45:15,284 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-16 15:45:15,284 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-16 15:45:15,285 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-16 15:45:15,285 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-16 15:45:15,285 - db_health_check - INFO - Overall actual price update rate: 62.5% (10/16)
+2025-08-16 15:45:15,285 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-16 15:45:15,285 - db_health_check - INFO - Algorand Model: 0.0% (0/1)
+2025-08-16 15:45:15,286 - db_health_check - INFO - Bitcoin Model: 0.0% (0/1)
+2025-08-16 15:45:15,286 - db_health_check - INFO - NVIDIA Bull Momentum Model: 75.0% (3/4)
+2025-08-16 15:45:15,286 - db_health_check - INFO - QQQ Master Model: 33.3% (1/3)
+2025-08-16 15:45:15,286 - db_health_check - INFO - QQQ Trading Signal: 80.0% (4/5)
+2025-08-16 15:45:15,286 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-16 15:45:15,286 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-16 15:45:15,286 - db_health_check - WARNING -   QQQ Master Model (QQQ): 1 predictions due 2025-08-15
+2025-08-16 15:45:15,286 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-16 15:45:15,286 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-16 15:45:15,286 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-16 15:45:15,286 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-16 15:45:15,286 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-16 15:45:15,287 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-16 15:45:15,287 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-16 15:45:15,287 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-16 15:45:15,287 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-16 15:45:15,287 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-16 15:45:15,287 - db_health_check - INFO - ============================================================
+2025-08-16 15:45:15,287 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-16
+Overall Status: FAILED
+Total Checks: 5 (Passed: 4, Failed: 1)
+Warnings: 1, Critical Issues: 1
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   62.5% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-16 15:45:15,287 - db_health_check - INFO - ============================================================
+2025-08-16 15:45:15,289 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json
+2025-08-16 18:27:21,115 - db_health_check - INFO - 🔍 Starting comprehensive database health check for 2025-08-16
+2025-08-16 18:27:21,115 - db_health_check - INFO - Running Database Integrity check...
+2025-08-16 18:27:21,116 - db_health_check - INFO - === CHECKING DATABASE INTEGRITY ===
+2025-08-16 18:27:21,136 - db_health_check - INFO - ✅ Database integrity check passed (2.3MB)
+2025-08-16 18:27:21,136 - db_health_check - INFO - Running Price Data Completeness check...
+2025-08-16 18:27:21,136 - db_health_check - INFO - === CHECKING PRICE DATA COMPLETENESS ===
+2025-08-16 18:27:21,137 - db_health_check - INFO - ✅ QQQ: Today's price $577.3400
+2025-08-16 18:27:21,137 - db_health_check - INFO - ✅ BTC-USD: Today's price $117805.0000
+2025-08-16 18:27:21,137 - db_health_check - INFO - ✅ ALGO-USD: Today's price $0.2620
+2025-08-16 18:27:21,138 - db_health_check - INFO - ✅ VIX: Today's price $15.0900
+2025-08-16 18:27:21,138 - db_health_check - INFO - ✅ ^VIX: Today's price $15.0900
+2025-08-16 18:27:21,138 - db_health_check - INFO - Running Onchain Data Completeness check...
+2025-08-16 18:27:21,138 - db_health_check - INFO - === CHECKING ONCHAIN DATA COMPLETENESS ===
+2025-08-16 18:27:21,139 - db_health_check - INFO - [OK] btc: Recent onchain data available (latest: 2025-08-15)
+2025-08-16 18:27:21,139 - db_health_check - INFO - [OK] Onchain data check passed - 1 assets have recent data
+2025-08-16 18:27:21,139 - db_health_check - INFO - Running Prediction Storage check...
+2025-08-16 18:27:21,139 - db_health_check - INFO - === CHECKING PREDICTION STORAGE ===
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ Long Bull Model V3.2: 1 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ QQQ Trading Signal: 1 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ Algorand Model: 1 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ Bitcoin Model: 3 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 1 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 2 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - ✅ QQQ Master Model: 1 predictions stored today
+2025-08-16 18:27:21,140 - db_health_check - INFO - Running Actual Price Updates check...
+2025-08-16 18:27:21,140 - db_health_check - INFO - === CHECKING ACTUAL PRICE UPDATES ===
+2025-08-16 18:27:21,141 - db_health_check - INFO - Overall actual price update rate: 62.5% (10/16)
+2025-08-16 18:27:21,141 - db_health_check - INFO - Recent updates in last week: 10
+2025-08-16 18:27:21,141 - db_health_check - INFO - Algorand Model: 0.0% (0/1)
+2025-08-16 18:27:21,141 - db_health_check - INFO - Bitcoin Model: 0.0% (0/1)
+2025-08-16 18:27:21,141 - db_health_check - INFO - NVIDIA Bull Momentum Model: 75.0% (3/4)
+2025-08-16 18:27:21,141 - db_health_check - INFO - QQQ Master Model: 33.3% (1/3)
+2025-08-16 18:27:21,141 - db_health_check - INFO - QQQ Trading Signal: 80.0% (4/5)
+2025-08-16 18:27:21,141 - db_health_check - INFO - Wishing Well QQQ Model: 100.0% (2/2)
+2025-08-16 18:27:21,141 - db_health_check - WARNING - Found 1 groups of stale predictions:
+2025-08-16 18:27:21,141 - db_health_check - WARNING -   QQQ Master Model (QQQ): 1 predictions due 2025-08-15
+2025-08-16 18:27:21,142 - db_health_check - INFO - Running Accuracy Assessment check...
+2025-08-16 18:27:21,142 - db_health_check - INFO - === CHECKING PREDICTION ACCURACY ASSESSMENT ===
+2025-08-16 18:27:21,142 - db_health_check - INFO - ✅ NVIDIA Bull Momentum Model: 33.3% accuracy (1/3)
+2025-08-16 18:27:21,142 - db_health_check - INFO - ✅ QQQ Master Model: 100.0% accuracy (1/1)
+2025-08-16 18:27:21,142 - db_health_check - INFO - ✅ QQQ Trading Signal: 75.0% accuracy (3/4)
+2025-08-16 18:27:21,142 - db_health_check - INFO - ✅ Wishing Well QQQ Model: 100.0% accuracy (2/2)
+2025-08-16 18:27:21,142 - db_health_check - WARNING - ⚠️  Long Bull Model V3.2: No evaluated predictions found
+2025-08-16 18:27:21,142 - db_health_check - WARNING - ⚠️  Algorand Model: No evaluated predictions found
+2025-08-16 18:27:21,142 - db_health_check - WARNING - ⚠️  Bitcoin Model: No evaluated predictions found
+2025-08-16 18:27:21,142 - db_health_check - INFO - === GENERATING HEALTH SUMMARY ===
+2025-08-16 18:27:21,143 - db_health_check - INFO - ============================================================
+2025-08-16 18:27:21,143 - db_health_check - INFO - 📊 DATABASE HEALTH CHECK SUMMARY - 2025-08-16
+Overall Status: FAILED
+Total Checks: 5 (Passed: 4, Failed: 1)
+Warnings: 1, Critical Issues: 1
+✅ Database Integrity: OK
+✅ Price Data: OK
+   5/5 symbols have recent data
+✅ Onchain Data: OK
+   Onchain data: 1 assets current, 0 stale
+✅ Prediction Storage: OK
+   7/7 models have recent predictions
+❌ Actual Price Updates: FAILED
+   62.5% of due predictions have actual prices
+⚠️ Accuracy Assessment: WARNING
+   4/7 models have accuracy data
+2025-08-16 18:27:21,143 - db_health_check - INFO - ============================================================
+2025-08-16 18:27:21,144 - db_health_check - INFO - Health report saved to C:\Users\rrose\trading-models-system\core-system\daily_health_report.json

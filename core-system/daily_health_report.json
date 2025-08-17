@@ -1,0 +1,302 @@
+{
+  "timestamp": "2025-08-16T18:27:21.115926",
+  "overall_status": "FAILED",
+  "checks_passed": 4,
+  "checks_failed": 1,
+  "warnings": 1,
+  "critical_issues": 1,
+  "details": {
+    "database_integrity": {
+      "integrity_check": "ok",
+      "expected_tables": [
+        "model_predictions",
+        "price_history",
+        "onchain_metrics"
+      ],
+      "existing_tables": [
+        "price_history",
+        "sqlite_sequence",
+        "onchain_metrics",
+        "model_predictions",
+        "model_metrics",
+        "reports"
+      ],
+      "missing_tables": [],
+      "database_size_mb": 2.31,
+      "recent_activity": {
+        "predictions_last_week": 47,
+        "price_updates_last_week": 38
+      },
+      "status": "OK",
+      "issues": []
+    },
+    "price_data": {
+      "status": "OK",
+      "symbols": {
+        "QQQ": {
+          "today_available": true,
+          "today_price": 577.34,
+          "yesterday_available": true,
+          "yesterday_price": 579.89,
+          "recent_days_count": 8,
+          "null_price_count": 0,
+          "status": "OK"
+        },
+        "BTC-USD": {
+          "today_available": true,
+          "today_price": 117805.0,
+          "yesterday_available": true,
+          "yesterday_price": 117071.0,
+          "recent_days_count": 8,
+          "null_price_count": 0,
+          "status": "OK"
+        },
+        "ALGO-USD": {
+          "today_available": true,
+          "today_price": 0.261986,
+          "yesterday_available": true,
+          "yesterday_price": 0.249958,
+          "recent_days_count": 8,
+          "null_price_count": 0,
+          "status": "OK"
+        },
+        "VIX": {
+          "today_available": true,
+          "today_price": 15.09,
+          "yesterday_available": true,
+          "yesterday_price": 14.98,
+          "recent_days_count": 7,
+          "null_price_count": 0,
+          "status": "OK"
+        },
+        "^VIX": {
+          "today_available": true,
+          "today_price": 15.09,
+          "yesterday_available": true,
+          "yesterday_price": 14.98,
+          "recent_days_count": 7,
+          "null_price_count": 0,
+          "status": "OK"
+        }
+      },
+      "failed_symbols": [],
+      "warning_symbols": [],
+      "summary": "5/5 symbols have recent data"
+    },
+    "onchain_data": {
+      "status": "OK",
+      "assets": {
+        "btc": {
+          "recent_days_with_data": 7,
+          "latest_date": "2025-08-15",
+          "available_metrics": [
+            "AdrActCnt",
+            "FeeTotUSD",
+            "TxCnt",
+            "TxTfrValAdjUSD"
+          ],
+          "metric_count": 4,
+          "data_freshness_days": 1,
+          "status": "OK"
+        }
+      },
+      "warning_assets": [],
+      "ok_assets": [
+        "btc"
+      ],
+      "summary": "Onchain data: 1 assets current, 0 stale"
+    },
+    "prediction_storage": {
+      "status": "OK",
+      "models": {
+        "Long Bull Model V3.2": {
+          "today_count": 1,
+          "yesterday_count": 1,
+          "recent_active_days": 8,
+          "incomplete_count": 0,
+          "status": "OK"
+        },
+        "QQQ Trading Signal": {
+          "today_count": 1,
+          "yesterday_count": 1,
+          "recent_active_days": 8,
+          "incomplete_count": 0,
+          "status": "OK"
+        },
+        "Algorand Model": {
+          "today_count": 1,
+          "yesterday_count": 1,
+          "recent_active_days": 4,
+          "incomplete_count": 0,
+          "status": "OK"
+        },
+        "Bitcoin Model": {
+          "today_count": 3,
+          "yesterday_count": 3,
+          "recent_active_days": 2,
+          "incomplete_count": 0,
+          "status": "OK"
+        },
+        "Wishing Well QQQ Model": {
+          "today_count": 1,
+          "yesterday_count": 1,
+          "recent_active_days": 7,
+          "incomplete_count": 0,
+          "status": "OK"
+        },
+        "NVIDIA Bull Momentum Model": {
+          "today_count": 2,
+          "yesterday_count": 2,
+          "recent_active_days": 4,
+          "incomplete_count": 0,
+          "status": "OK"
+        },
+        "QQQ Master Model": {
+          "today_count": 1,
+          "yesterday_count": 1,
+          "recent_active_days": 4,
+          "incomplete_count": 0,
+          "status": "OK"
+        }
+      },
+      "failed_models": [],
+      "warning_models": [],
+      "summary": "7/7 models have recent predictions"
+    },
+    "actual_price_updates": {
+      "status": "FAILED",
+      "overall_update_rate": 62.5,
+      "total_due": 16,
+      "total_updated": 10,
+      "total_missing": 6,
+      "recent_updates": 10,
+      "models": {
+        "Algorand Model": {
+          "total_due": 1,
+          "updated_count": 0,
+          "missing_count": 1,
+          "update_rate": 0.0
+        },
+        "Bitcoin Model": {
+          "total_due": 1,
+          "updated_count": 0,
+          "missing_count": 1,
+          "update_rate": 0.0
+        },
+        "NVIDIA Bull Momentum Model": {
+          "total_due": 4,
+          "updated_count": 3,
+          "missing_count": 1,
+          "update_rate": 75.0
+        },
+        "QQQ Master Model": {
+          "total_due": 3,
+          "updated_count": 1,
+          "missing_count": 2,
+          "update_rate": 33.33333333333333
+        },
+        "QQQ Trading Signal": {
+          "total_due": 5,
+          "updated_count": 4,
+          "missing_count": 1,
+          "update_rate": 80.0
+        },
+        "Wishing Well QQQ Model": {
+          "total_due": 2,
+          "updated_count": 2,
+          "missing_count": 0,
+          "update_rate": 100.0
+        }
+      },
+      "stale_predictions_sample": [
+        [
+          "QQQ Master Model",
+          "QQQ",
+          "2025-08-15",
+          1
+        ]
+      ],
+      "summary": "62.5% of due predictions have actual prices"
+    },
+    "accuracy_assessment": {
+      "status": "WARNING",
+      "has_direction_correct_column": true,
+      "has_error_pct_column": true,
+      "models": {
+        "NVIDIA Bull Momentum Model": {
+          "total_evaluated": 3,
+          "correct_direction": 1,
+          "direction_accuracy": 33.333333333333336,
+          "has_accuracy_data": true,
+          "missing_accuracy_count": 0
+        },
+        "QQQ Master Model": {
+          "total_evaluated": 1,
+          "correct_direction": 1,
+          "direction_accuracy": 100.0,
+          "has_accuracy_data": true,
+          "missing_accuracy_count": 0
+        },
+        "QQQ Trading Signal": {
+          "total_evaluated": 4,
+          "correct_direction": 3,
+          "direction_accuracy": 75.0,
+          "has_accuracy_data": true,
+          "missing_accuracy_count": 0
+        },
+        "Wishing Well QQQ Model": {
+          "total_evaluated": 2,
+          "correct_direction": 2,
+          "direction_accuracy": 100.0,
+          "has_accuracy_data": true,
+          "missing_accuracy_count": 0
+        },
+        "Long Bull Model V3.2": {
+          "total_evaluated": 0,
+          "correct_direction": 0,
+          "direction_accuracy": 0,
+          "has_accuracy_data": false,
+          "missing_accuracy_count": 0
+        },
+        "Algorand Model": {
+          "total_evaluated": 0,
+          "correct_direction": 0,
+          "direction_accuracy": 0,
+          "has_accuracy_data": false,
+          "missing_accuracy_count": 0
+        },
+        "Bitcoin Model": {
+          "total_evaluated": 0,
+          "correct_direction": 0,
+          "direction_accuracy": 0,
+          "has_accuracy_data": false,
+          "missing_accuracy_count": 0
+        }
+      },
+      "models_with_accuracy": [
+        "NVIDIA Bull Momentum Model",
+        "QQQ Master Model",
+        "QQQ Trading Signal",
+        "Wishing Well QQQ Model"
+      ],
+      "models_missing_accuracy": [],
+      "summary": "4/7 models have accuracy data"
+    }
+  },
+  "recent_reports": [],
+  "summary_text": "\ud83d\udcca DATABASE HEALTH CHECK SUMMARY - 2025-08-16\nOverall Status: FAILED\nTotal Checks: 5 (Passed: 4, Failed: 1)\nWarnings: 1, Critical Issues: 1\n\u2705 Database Integrity: OK\n\u2705 Price Data: OK\n   5/5 symbols have recent data\n\u2705 Onchain Data: OK\n   Onchain data: 1 assets current, 0 stale\n\u2705 Prediction Storage: OK\n   7/7 models have recent predictions\n\u274c Actual Price Updates: FAILED\n   62.5% of due predictions have actual prices\n\u26a0\ufe0f Accuracy Assessment: WARNING\n   4/7 models have accuracy data",
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "Price Updates",
+      "issue": "Low actual price update rate: 62.5%",
+      "action": "Check update_pending_actual_prices() function. Verify data_fetcher can access historical prices."
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "Accuracy Tracking",
+      "issue": "Some predictions missing accuracy calculations",
+      "action": "Run update_direction_accuracy() function to calculate missing accuracy metrics."
+    }
+  ]
+}

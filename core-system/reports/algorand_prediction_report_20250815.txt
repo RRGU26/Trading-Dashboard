@@ -1,0 +1,44 @@
+============================================================
+ALGORAND (ALGO-USD) PREDICTION REPORT - V2.0 FIXED
+============================================================
+Generated: 2025-08-15 15:40:13
+Symbol: ALGO-USD
+
+--- CURRENT STATUS ---
+Current Price: $0.2502
+Market Regime: HIGH_VOLATILITY
+
+--- PREDICTION DETAILS ---
+Predicted Price (3d): $0.3016
+Expected Return: +20.54%
+Confidence: 20.0%
+Suggested Action: BUY
+
+--- MODEL INFORMATION ---
+Model Type: Fixed Ensemble (XGBoost + LightGBM + RandomForest)
+Validation: Walk-forward with 80/20 split
+Features: Technical indicators + momentum + volatility
+
+--- MARKET CONDITIONS ---
+Volatility: 198.6%
+Price Trend (10d): +30.0%
+Bear Market Signals: 2/3
+
+--- FIXES APPLIED ---
+✅ Fix #1: Directional bias correction
+✅ Fix #2: Confidence recalibration
+✅ Fix #3: Volatility filtering
+
+--- MODEL ENSEMBLE BREAKDOWN ---
+XGBOOST: $0.2864 (+14.49%)
+LIGHTGBM: $0.3061 (+22.33%)
+RANDOM_FOREST: $0.3784 (+51.23%)
+Model Agreement: 0.0395 (lower = better)
+
+--- DISCLAIMER ---
+This report is for informational purposes only and does not constitute
+financial advice. Cryptocurrency investments are highly volatile and risky.
+Past performance is not indicative of future results.
+
+*** ALGORAND MODEL V2.0 - CRITICAL FIXES APPLIED ***
+============================================================

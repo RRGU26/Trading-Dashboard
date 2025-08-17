@@ -1,0 +1,68 @@
+QQQ Long Bull Report
+Generated: 2025-08-08 15:40:51
+
+PREDICTION SUMMARY
+=====================================
+Current Price: $569.24
+Target Price: $553.45
+Expected Return: -2.77%
+Time Horizon: 10 days
+
+SIGNAL ANALYSIS
+=====================================
+Signal: STRONG SELL
+Suggested Action: STRONG SELL
+Confidence: MEDIUM
+Risk Level: MODERATE
+
+TECHNICAL ANALYSIS
+=====================================
+Direction Accuracy: 55.8%
+Model R² Score: -0.650
+Hit Rate (>1% moves): 48.6%
+Model Agreement: 0.9%
+Market Regime: BEAR_PRESSURE
+
+RISK MANAGEMENT
+=====================================
+Stop Loss: $512.32
+Position Size: Moderate (based on confidence)
+Max Drawdown Risk: 27.6%
+
+MARKET CONDITIONS
+=====================================
+VIX Data Available: No (Synthetic Used)
+Assets Analyzed: 1
+Training Data Quality: 20 features
+Data Lookback: 3 years
+
+MODEL COMPOSITION
+=====================================
+Ensemble Models: 5 (XGBoost, LightGBM, RandomForest, ExtraTrees, GradientBoost)
+Feature Engineering: QQQ-focused with VIX alignment
+Optimization: Multi-horizon with 10-day selected
+
+INDIVIDUAL MODEL PREDICTIONS
+=====================================
+Xgboost: $550.87 (-3.23%) [Weight: 22.1%]
+Lightgbm: $555.98 (-2.33%) [Weight: 23.1%]
+Random_Forest: $556.12 (-2.31%) [Weight: 18.0%]
+Extra_Trees: $553.56 (-2.75%) [Weight: 18.0%]
+Gradient_Boost: $550.73 (-3.25%) [Weight: 18.8%]
+
+TECHNICAL INDICATORS SUMMARY
+=====================================
+RSI Analysis: Multiple timeframes analyzed
+MACD Status: Trend momentum evaluated  
+Bollinger Bands: Volatility breakout signals
+Moving Averages: Multi-timeframe alignment
+Volume Analysis: Institutional flow patterns
+
+DISCLAIMER
+=====================================
+This analysis is for informational purposes only. Past performance 
+does not guarantee future results. Please consult with a financial 
+advisor before making investment decisions.
+
+Report ID: LongBull_20250808_154051
+Model Version: 3.2 VIX Alignment Fix

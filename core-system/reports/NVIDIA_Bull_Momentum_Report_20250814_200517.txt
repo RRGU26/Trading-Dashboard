@@ -1,0 +1,24 @@
+=== NVIDIA Bull Momentum Analysis Report ===
+Generated on: 2025-08-14 20:05:17
+Symbol: NVDA
+Current Price: $182.02
+
+--- TRADING SIGNALS ---
+Predicted 5-Day Price: $170.80
+Predicted 5-Day Return: -6.16%
+Predicted 1-Day Price: $179.78
+Predicted 1-Day Return: -1.23%
+
+Signal: SELL
+Confidence: High
+
+--- SUGGESTED ACTION ---
+Suggested Action: SELL
+
+--- DISCLAIMER ---
+This model is for educational and informational purposes only.
+Past performance does not guarantee future results.
+Always consult with a qualified financial advisor before making investment decisions.
+
+Data Source: Alpha Vantage / Yahoo Finance
+Model Version: NVIDIA Bull Momentum v1.0

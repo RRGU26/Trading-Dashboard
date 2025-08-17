@@ -35,31 +35,17 @@ BASE_URL = "https://www.alphavantage.co/query"
 
 # Desktop path detection
 def get_desktop_path():
-    """Get the user's desktop path, accounting for OneDrive"""
+    """Get the reports path in GitHub repo instead of desktop"""
     try:
-        user_profile = os.environ.get("USERPROFILE", "")
-        if not user_profile:
-            desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-            if os.path.exists(desktop_path):
-                return desktop_path
-            reports_path = os.path.join(os.getcwd(), "nvidia_reports")
-            os.makedirs(reports_path, exist_ok=True)
-            return reports_path
-
-        onedrive_desktop = os.path.join(user_profile, "OneDrive", "Desktop")
-        if os.path.exists(onedrive_desktop):
-            return onedrive_desktop
+        # Use GitHub repo reports directory instead of Desktop
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        reports_path = os.path.join(script_dir, "reports")
+        os.makedirs(reports_path, exist_ok=True)
+        return reports_path
         
-        standard_desktop = os.path.join(user_profile, "Desktop")
-        if os.path.exists(standard_desktop):
-            return standard_desktop
-        
-        fallback_desktop = os.path.join(os.getcwd(), "Desktop_Fallback")
-        os.makedirs(fallback_desktop, exist_ok=True)
-        return fallback_desktop
-
     except Exception as e:
-        fallback_desktop = os.path.join(os.getcwd(), "Desktop_Fallback")
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        fallback_desktop = os.path.join(script_dir, "reports_fallback")
         os.makedirs(fallback_desktop, exist_ok=True)
         return fallback_desktop
 
@@ -564,17 +550,32 @@ def main():
         print("=== NVIDIA Bull Momentum Model ===")
         print("AI-focused price prediction optimized for NVIDIA's growth patterns")
         
-        # Data Acquisition with multiple fallback options
+        # Data Acquisition - Use local CSV file for historical data
         print("\n=== DATA ACQUISITION ===")
-        stock_data = fetch_alpha_vantage_data(TICKER, ALPHA_VANTAGE_API_KEY)
         
-        if stock_data is None or stock_data.empty:
-            print("Alpha Vantage failed. Trying Yahoo Finance fallback...")
-            stock_data = fetch_yahoo_fallback(TICKER)
+        # Use the CSV file with correct split-adjusted prices
+        csv_path = r'C:\Users\rrose\trading-models-system\qqq_data_cache\NVDA_data.csv'
+        if os.path.exists(csv_path):
+            print(f"Loading NVDA historical data from CSV...")
+            stock_data = pd.read_csv(csv_path)
+            stock_data['Date'] = pd.to_datetime(stock_data['Date'])
+            stock_data.set_index('Date', inplace=True)
+            stock_data['Adj_Close'] = stock_data['Close']  # CSV already has adjusted prices
+            print(f"Loaded {len(stock_data)} days of historical data")
+            print(f"Date range: {stock_data.index.min().strftime('%Y-%m-%d')} to {stock_data.index.max().strftime('%Y-%m-%d')}")
+            print(f"Latest historical price: ${stock_data['Close'].iloc[-1]:.2f}")
+        else:
+            # Fallback to API if CSV not found
+            print("CSV file not found, falling back to API...")
+            stock_data = fetch_alpha_vantage_data(TICKER, ALPHA_VANTAGE_API_KEY)
             
-        if stock_data is None or stock_data.empty:
-            print("All external sources failed. Using sample data for demonstration...")
-            stock_data = fetch_manual_fallback()
+            if stock_data is None or stock_data.empty:
+                print("Alpha Vantage failed. Trying Yahoo Finance fallback...")
+                stock_data = fetch_yahoo_fallback(TICKER)
+            
+            if stock_data is None or stock_data.empty:
+                print("All external sources failed. Using sample data for demonstration...")
+                stock_data = fetch_manual_fallback()
         
         if stock_data is None or stock_data.empty:
             print(f"Failed to fetch {TICKER} data. Exiting.")
@@ -586,32 +587,51 @@ def main():
         print(f"NVIDIA data shape: {stock_data.shape}")
         print(f"Date range: {stock_data.index.min()} to {stock_data.index.max()}")
         
-        # Get current price with fallback
-        print("Fetching current NVIDIA price...")
-        current_price = fetch_current_price(TICKER, ALPHA_VANTAGE_API_KEY)
-        if current_price is None:
-            # Try to get from yfinance as fallback
-            try:
-                if YFINANCE_AVAILABLE:
-                    ticker = yf.Ticker(TICKER)
-                    current_data = ticker.history(period="1d")
-                    if not current_data.empty:
-                        current_price = current_data['Close'].iloc[-1]
-                        print(f"Current NVIDIA price (Yahoo): ${current_price:.2f}")
-                    else:
-                        current_price = stock_data['Adj_Close'].iloc[-1]
-                        print(f"Using last historical price: ${current_price:.2f}")
-                else:
-                    current_price = stock_data['Adj_Close'].iloc[-1]
-                    print(f"Using last historical price: ${current_price:.2f}")
-            except:
-                current_price = stock_data['Adj_Close'].iloc[-1]
-                print(f"Using last historical price: ${current_price:.2f}")
-        else:
-            print(f"Current NVIDIA price (Alpha Vantage): ${current_price:.2f}")
+        # No need to adjust for split - CSV already has correct post-split prices
+        print("Using split-adjusted historical data from CSV")
         
-        # Add small delay to respect API limits
-        time.sleep(1)
+        # Get current price - PRIORITIZE yfinance (more reliable)
+        print("Fetching current NVIDIA price...")
+        current_price = None
+        
+        # Try yfinance FIRST
+        if YFINANCE_AVAILABLE:
+            try:
+                ticker = yf.Ticker(TICKER)
+                # Try info first (less likely to be rate limited)
+                info = ticker.info
+                current_price = info.get('currentPrice') or info.get('regularMarketPrice')
+                if current_price:
+                    print(f"Current NVIDIA price (Yahoo): ${current_price:.2f}")
+                else:
+                    # Try history as backup
+                    hist = ticker.history(period="1d")
+                    if not hist.empty:
+                        current_price = hist['Close'].iloc[-1]
+                        print(f"Current NVIDIA price (Yahoo history): ${current_price:.2f}")
+            except Exception as e:
+                print(f"yfinance failed: {e}")
+        
+        # Only try Alpha Vantage if yfinance failed
+        if current_price is None:
+            current_price = fetch_current_price(TICKER, ALPHA_VANTAGE_API_KEY)
+            if current_price:
+                # Check if it's a pre-split price
+                if current_price > 400:
+                    print(f"WARNING: Alpha Vantage returned pre-split price ${current_price:.2f}")
+                    current_price = current_price / 10
+                    print(f"Adjusted to: ${current_price:.2f}")
+                else:
+                    print(f"Current NVIDIA price (Alpha Vantage): ${current_price:.2f}")
+        
+        # Last resort - use most recent CSV price
+        if current_price is None:
+            current_price = stock_data['Close'].iloc[-1]
+            print(f"Using last CSV price: ${current_price:.2f}")
+        
+        # Add delay to respect API limits (prevent 23-minute timeout)
+        print("Adding API delay to prevent throttling...")
+        time.sleep(2)  # Reduced but still sufficient delay
         
         # Feature Engineering
         print("\n=== FEATURE ENGINEERING ===")
@@ -683,9 +703,9 @@ def main():
                 eval_metric='rmse',
                 tree_method='hist',
                 random_state=42,
-                n_estimators=400,      # Higher for NVIDIA complexity
-                max_depth=8,           # Deeper for capturing momentum patterns
-                learning_rate=0.03,    # Lower for better generalization
+                n_estimators=200,      # Reduced for faster execution
+                max_depth=6,           # Reduced for speed
+                learning_rate=0.05,    # Slightly higher for speed
                 subsample=0.85,
                 colsample_bytree=0.8,
                 reg_alpha=0.1,
@@ -701,7 +721,7 @@ def main():
         
         # Backtesting
         print("\n=== BACKTESTING ===")
-        backtest_preds = nvidia_walk_forward_backtest(df, features, model, max_predictions=250)
+        backtest_preds = nvidia_walk_forward_backtest(df, features, model, max_predictions=100)  # Reduced for speed
         
         if len(backtest_preds) == 0:
             print("No predictions generated during backtesting.")
@@ -900,12 +920,20 @@ Model Version: NVIDIA Bull Momentum v1.0
         print("\n[DATABASE] Saving predictions to database...")
         
         # Save 1-day prediction
+        # Convert confidence to numeric value
+        confidence_numeric = {
+            "Very High": 95.0,
+            "High": 85.0,
+            "Medium": 65.0,
+            "Low": 45.0
+        }.get(confidence, 50.0)
+        
         db_success_1d = quick_save_prediction(
             model_name="NVIDIA Bull Momentum Model",
             symbol="NVDA",
             current_price=current_price,
             predicted_price=predicted_1d_price,
-            confidence=float(confidence.rstrip('%')),
+            confidence=confidence_numeric,
             horizon_days=1,
             suggested_action=signal
         )
@@ -916,23 +944,28 @@ Model Version: NVIDIA Bull Momentum v1.0
             symbol="NVDA",
             current_price=current_price,
             predicted_price=predicted_5d_price,
-            confidence=float(confidence.rstrip('%')),
+            confidence=confidence_numeric,
             horizon_days=5,
             suggested_action=signal
         )
         
         if db_success_1d:
-            print("[DATABASE] ✅ 1-day prediction saved to database")
+            print("[DATABASE] [OK] 1-day prediction saved to database")
         else:
-            print("[DATABASE] ❌ Failed to save 1-day prediction")
+            print("[DATABASE] [FAIL] Failed to save 1-day prediction")
             
         if db_success_5d:
-            print("[DATABASE] ✅ 5-day prediction saved to database")
+            print("[DATABASE] [OK] 5-day prediction saved to database")
         else:
-            print("[DATABASE] ❌ Failed to save 5-day prediction")
+            print("[DATABASE] [FAIL] Failed to save 5-day prediction")
         
         # Save model metrics to database
         print("[DATABASE] Saving model metrics...")
+        
+        # Calculate win rate and average return
+        win_rate = (strategy_returns > 0).mean() if len(strategy_returns) > 0 else 0.0
+        avg_return = strategy_returns.mean() if len(strategy_returns) > 0 else 0.0
+        
         nvidia_metrics = {
             "hit_rate": hit_rate,
             "r2_score": r2,
@@ -944,9 +977,9 @@ Model Version: NVIDIA Bull Momentum v1.0
         
         metrics_success = quick_save_metrics("NVIDIA Bull Momentum Model", "NVDA", nvidia_metrics)
         if metrics_success:
-            print("[DATABASE] ✅ Model metrics saved to database")
+            print("[DATABASE] [OK] Model metrics saved to database")
         else:
-            print("[DATABASE] ❌ Failed to save model metrics")
+            print("[DATABASE] [FAIL] Failed to save model metrics")
 
 
     except Exception as e:

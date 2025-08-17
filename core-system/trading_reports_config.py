@@ -14,13 +14,14 @@ import logging
 class EmailConfig:
     """Email configuration settings"""
     sender: str = 'RRGU26@gmail.com'
+    # PRODUCTION MODE - sending to all recipients
     recipients: List[str] = field(default_factory=lambda: [
-        'RRGU26@gmail.com', 
+        'RRGU26@gmail.com',
         'timbarney62@gmail.com',
-        'rebeccalynnrosenthal@gmail.com', 
+        'rebeccalynnrosenthal@gmail.com',
         'samkest419@gmail.com',
-        'georgelaffey@gmail.com', 
-        'gmrosenthal1@gmail.com', 
+        'georgelaffey@gmail.com',
+        'gmrosenthal1@gmail.com',
         'david.worldco@gmail.com'
     ])
     smtp_server: str = 'smtp.gmail.com'

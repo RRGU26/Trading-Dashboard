@@ -57,7 +57,7 @@ longhorn_model_path = os.path.join(script_dir, "QQQ Long Horn Bull Model.py")
 trading_signal_path = os.path.join(script_dir, "QQQ Trading Signal.py")
 algorand_model_path = os.path.join(script_dir, "Algorand Price Prediction Model.py")
 bitcoin_model_path = os.path.join(script_dir, "new bitcoin model updated.py")
-wishing_well_path = r"C:\Users\rrose\OneDrive\Desktop\wishing well.py"
+wishing_well_path = os.path.join(script_dir, "wishing well.py")
 nvidia_model_path = os.path.join(script_dir, "davemodel.py")
 qqq_master_model_path = os.path.join(script_dir, "unified_qqq_master_model_optimized.py")
 send_report_path = os.path.join(script_dir, "send_report.py")
@@ -233,6 +233,54 @@ def run_dashboard_data_collection():
         return False
     except Exception as e:
         logger.error(f"[FAIL] Exception during dashboard data collection: {e}")
+        return False
+
+def run_cloud_sync():
+    """Sync latest predictions to cloud dashboard via GitHub"""
+    try:
+        logger.info("[CLOUD] Starting cloud sync process...")
+        
+        # Import and run the sync function
+        sync_script_path = os.path.join(script_dir, "sync_to_cloud.py")
+        if not os.path.exists(sync_script_path):
+            logger.warning(f"[WARN] Cloud sync script not found: {sync_script_path}")
+            return False
+        
+        # Run the sync script
+        process = subprocess.run(
+            [sys.executable, sync_script_path],
+            capture_output=True,
+            text=True,
+            cwd=script_dir,
+            timeout=120  # 2 minutes timeout
+        )
+        
+        # Log output
+        if process.stdout:
+            logger.info("[CLOUD] Sync output:")
+            for line in process.stdout.split('\n'):
+                if line.strip():
+                    logger.info(f"  {line}")
+        
+        if process.stderr:
+            logger.warning("[CLOUD] Sync warnings/errors:")
+            for line in process.stderr.split('\n'):
+                if line.strip():
+                    logger.warning(f"  {line}")
+        
+        if process.returncode == 0:
+            logger.info("[OK] Cloud sync completed successfully")
+            logger.info("   Dashboard will be updated at: https://rrgu26-trading-dashboard.streamlit.app")
+            return True
+        else:
+            logger.error(f"[FAIL] Cloud sync failed with exit code: {process.returncode}")
+            return False
+            
+    except subprocess.TimeoutExpired:
+        logger.error("[FAIL] Cloud sync timed out after 2 minutes")
+        return False
+    except Exception as e:
+        logger.error(f"[FAIL] Exception during cloud sync: {e}")
         return False
 
 def run_daily_trading_analysis():
@@ -488,7 +536,7 @@ def main():
         models_run.append(("Algorand Model", success))
         if not success:
             models_successful = False
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping Algorand model - script not found")
     
@@ -498,7 +546,7 @@ def main():
         models_run.append(("Bitcoin Model", success))
         if not success:
             models_successful = False
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping Bitcoin model - script not found")
     
@@ -508,7 +556,7 @@ def main():
         models_run.append(("QQQ Long Horn Bull Model", success))
         if not success:
             models_successful = False
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping QQQ Long Horn Bull model - script not found")
     
@@ -518,7 +566,7 @@ def main():
         models_run.append(("QQQ Trading Signal", success))
         if not success:
             models_successful = False
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping QQQ Trading Signal - script not found")
     
@@ -528,7 +576,7 @@ def main():
         models_run.append(("NVIDIA Bull Momentum Model", success))
         if not success:
             models_successful = False
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping NVIDIA model - script not found")
 
@@ -538,7 +586,7 @@ def main():
         models_run.append(("Wishing Well QQQ Model", success))
         if not success:
             models_successful = False
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping Wishing Well model - script not found")
     
@@ -574,7 +622,7 @@ def main():
                     logger.warning("[EMAIL] QQQ email script not found")
             except Exception as e:
                 logger.warning(f"[EMAIL] QQQ email system error: {e}")
-        time.sleep(2)
+        time.sleep(10)  # Increased delay to prevent API rate limiting
     else:
         logger.warning("Skipping QQQ Master Model - script not found")
     
@@ -635,6 +683,11 @@ def main():
             
             dashboard_success = run_dashboard_data_collection()
             
+            # Sync to cloud dashboard
+            logger.info("="*50)
+            logger.info("[CLOUD] Syncing data to cloud dashboard...")
+            cloud_sync_success = run_cloud_sync()
+            
             # Run database health check
             logger.info("="*50)
             logger.info("[SEARCH] Running database health check...")
@@ -654,6 +707,7 @@ def main():
                 ("Model Execution", models_successful, "All prediction models ran successfully"),
                 ("Report Generation", send_report_success, "Email reports sent successfully"),
                 ("Data Collection", dashboard_success, "Dashboard data collected and verified"),
+                ("Cloud Sync", cloud_sync_success, "Data synced to cloud dashboard"),
                 ("Health Check", health_check_success, "Database health validated"),
                 ("Trading Analysis", trading_analysis_success, "Comprehensive trading analysis email sent")
             ]
@@ -680,6 +734,8 @@ def main():
                     logger.error("   [EMAIL] Report sending failed - check email configuration")
                 if not dashboard_success:
                     logger.error("   [CHART] Data collection failed - check report file generation")
+                if not cloud_sync_success:
+                    logger.error("   [CLOUD] Cloud sync failed - check GitHub credentials and connectivity")
                 if not health_check_success:
                     logger.error("   [SEARCH] Health check failed - check database integrity")
             

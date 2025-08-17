@@ -54,33 +54,17 @@ except ImportError:
 
 # Set up logging and paths
 def get_desktop_path():
-    """Get the user's desktop path, accounting for OneDrive"""
+    """Get the reports path in GitHub repo instead of desktop"""
     try:
-        user_profile = os.environ.get("USERPROFILE", "")
-        if not user_profile:
-            desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-            if os.path.exists(desktop_path):
-                return desktop_path
-            reports_path = os.path.join(script_dir, "reports")
-            os.makedirs(reports_path, exist_ok=True)
-            return reports_path
-
-        onedrive_desktop = os.path.join(user_profile, "OneDrive", "Desktop")
-        if os.path.exists(onedrive_desktop):
-            return onedrive_desktop
+        # Use GitHub repo reports directory instead of Desktop
+        reports_path = os.path.join(script_dir, "reports")
+        os.makedirs(reports_path, exist_ok=True)
+        safe_print(f"Using GitHub repo reports path: {reports_path}")
+        return reports_path
         
-        standard_desktop = os.path.join(user_profile, "Desktop")
-        if os.path.exists(standard_desktop):
-            return standard_desktop
-        
-        fallback_desktop = os.path.join(script_dir, "Desktop_Fallback")
-        os.makedirs(fallback_desktop, exist_ok=True)
-        safe_print(f"Standard desktop paths not found. Using fallback: {fallback_desktop}")
-        return fallback_desktop
-
     except Exception as e:
-        safe_print(f"Error getting desktop path: {e}. Using fallback in script directory.")
-        fallback_desktop = os.path.join(script_dir, "Desktop_Fallback")
+        safe_print(f"Error creating reports directory: {e}. Using fallback in script directory.")
+        fallback_desktop = os.path.join(script_dir, "reports_fallback")
         os.makedirs(fallback_desktop, exist_ok=True)
         return fallback_desktop
 

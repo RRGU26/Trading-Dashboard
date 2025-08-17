@@ -1,0 +1,68 @@
+QQQ Long Bull Report
+Generated: 2025-08-08 17:59:49
+
+PREDICTION SUMMARY
+=====================================
+Current Price: $574.55
+Target Price: $561.27
+Expected Return: -2.31%
+Time Horizon: 10 days
+
+SIGNAL ANALYSIS
+=====================================
+Signal: STRONG SELL
+Suggested Action: STRONG SELL
+Confidence: LOW
+Risk Level: MODERATE
+
+TECHNICAL ANALYSIS
+=====================================
+Direction Accuracy: 56.9%
+Model R² Score: -0.675
+Hit Rate (>1% moves): 49.7%
+Model Agreement: 0.7%
+Market Regime: BEAR_PRESSURE
+
+RISK MANAGEMENT
+=====================================
+Stop Loss: $517.09
+Position Size: Moderate (based on confidence)
+Max Drawdown Risk: 33.0%
+
+MARKET CONDITIONS
+=====================================
+VIX Data Available: No (Synthetic Used)
+Assets Analyzed: 1
+Training Data Quality: 20 features
+Data Lookback: 3 years
+
+MODEL COMPOSITION
+=====================================
+Ensemble Models: 5 (XGBoost, LightGBM, RandomForest, ExtraTrees, GradientBoost)
+Feature Engineering: QQQ-focused with VIX alignment
+Optimization: Multi-horizon with 10-day selected
+
+INDIVIDUAL MODEL PREDICTIONS
+=====================================
+Xgboost: $565.43 (-1.59%) [Weight: 24.0%]
+Lightgbm: $557.34 (-2.99%) [Weight: 28.1%]
+Random_Forest: $565.35 (-1.60%) [Weight: 19.9%]
+Extra_Trees: $558.39 (-2.81%) [Weight: 22.0%]
+Gradient_Boost: $560.04 (-2.53%) [Weight: 6.1%]
+
+TECHNICAL INDICATORS SUMMARY
+=====================================
+RSI Analysis: Multiple timeframes analyzed
+MACD Status: Trend momentum evaluated  
+Bollinger Bands: Volatility breakout signals
+Moving Averages: Multi-timeframe alignment
+Volume Analysis: Institutional flow patterns
+
+DISCLAIMER
+=====================================
+This analysis is for informational purposes only. Past performance 
+does not guarantee future results. Please consult with a financial 
+advisor before making investment decisions.
+
+Report ID: LongBull_20250808_175949
+Model Version: 3.2 VIX Alignment Fix
