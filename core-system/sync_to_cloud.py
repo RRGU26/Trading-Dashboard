@@ -115,7 +115,7 @@ def sync_to_github():
         commands = [
             ['git', 'add', 'data/latest_predictions.json'],
             ['git', 'commit', '-m', f'Auto-update predictions - {datetime.now().strftime("%Y-%m-%d %H:%M")}'],
-            ['git', 'push', 'origin', 'main']
+            ['git', 'push', 'origin', 'master']
         ]
         
         for cmd in commands:
