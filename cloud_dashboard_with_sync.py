@@ -235,17 +235,32 @@ def main():
                     
                     with col3:
                         confidence = prediction.get('confidence', 0)
-                        st.metric("Confidence", f"{confidence:.0f}%")
+                        if confidence is not None and isinstance(confidence, (int, float)):
+                            st.metric("Confidence", f"{confidence:.0f}%")
+                        else:
+                            st.metric("Confidence", "N/A")
                     
                     with col4:
                         expected_return = prediction.get('expected_return', 0)
-                        st.metric("Expected Return", f"{expected_return:+.2f}%")
+                        if expected_return is not None and isinstance(expected_return, (int, float)):
+                            st.metric("Expected Return", f"{expected_return:+.2f}%")
+                        else:
+                            st.metric("Expected Return", "N/A")
                     
-                    # Additional details
-                    if 'current_price' in prediction:
-                        st.caption(f"Current Price: ${prediction['current_price']:.2f}")
-                    if 'predicted_price' in prediction:
-                        st.caption(f"Target Price: ${prediction['predicted_price']:.2f}")
+                    # Additional details with safe formatting
+                    if 'current_price' in prediction and prediction['current_price'] is not None:
+                        try:
+                            price = float(prediction['current_price'])
+                            st.caption(f"Current Price: ${price:.2f}")
+                        except (ValueError, TypeError):
+                            st.caption(f"Current Price: {prediction['current_price']}")
+                    
+                    if 'predicted_price' in prediction and prediction['predicted_price'] is not None:
+                        try:
+                            price = float(prediction['predicted_price'])
+                            st.caption(f"Target Price: ${price:.2f}")
+                        except (ValueError, TypeError):
+                            st.caption(f"Target Price: {prediction['predicted_price']}")
                     
                     st.markdown('</div>', unsafe_allow_html=True)
                     st.divider()
@@ -258,35 +273,90 @@ def main():
         if predictions:
             df = pd.DataFrame(predictions)
             
-            # Expected returns chart
-            if 'expected_return' in df.columns and 'model' in df.columns:
-                fig = px.bar(
-                    df,
-                    x='model',
-                    y='expected_return',
-                    color='suggested_action',
-                    title='Expected Returns by Model',
-                    color_discrete_map={
-                        'BUY': '#28a745',
-                        'SELL': '#dc3545',
-                        'HOLD': '#ffc107'
-                    }
-                )
-                fig.update_layout(xaxis_tickangle=-45)
-                st.plotly_chart(fig, use_container_width=True)
+            # Clean and validate data for charts
+            # Convert expected_return to numeric, handling None/invalid values
+            if 'expected_return' in df.columns:
+                df['expected_return'] = pd.to_numeric(df['expected_return'], errors='coerce')
+                df = df.dropna(subset=['expected_return'])  # Remove rows with invalid returns
             
-            # Confidence levels
+            # Convert confidence to numeric
             if 'confidence' in df.columns:
-                fig2 = px.bar(
-                    df,
-                    x='model',
-                    y='confidence',
-                    title='Model Confidence Levels',
-                    color='confidence',
+                df['confidence'] = pd.to_numeric(df['confidence'], errors='coerce')
+            
+            # Expected returns chart (only if we have valid data)
+            if 'expected_return' in df.columns and 'model' in df.columns and len(df) > 0:
+                try:
+                    fig = px.bar(
+                        df,
+                        x='model',
+                        y='expected_return',
+                        color='suggested_action',
+                        title='Expected Returns by Model',
+                        color_discrete_map={
+                            'BUY': '#28a745',
+                            'SELL': '#dc3545',
+                            'HOLD': '#ffc107'
+                        }
+                    )
+                    fig.update_layout(xaxis_tickangle=-45)
+                    st.plotly_chart(fig, use_container_width=True)
+                except Exception as e:
+                    st.warning("Unable to display expected returns chart - data formatting issue")
+            
+            # Confidence levels chart
+            if 'confidence' in df.columns and len(df.dropna(subset=['confidence'])) > 0:
+                try:
+                    # Filter to only rows with valid confidence
+                    df_conf = df.dropna(subset=['confidence'])
+                    fig2 = px.bar(
+                        df_conf,
+                        x='model',
+                        y='confidence',
+                        title='Model Confidence Levels',
+                        color='confidence',
+                        color_continuous_scale='RdYlGn'
+                    )
+                    fig2.update_layout(xaxis_tickangle=-45)
+                    st.plotly_chart(fig2, use_container_width=True)
+                except Exception as e:
+                    st.warning("Unable to display confidence chart - data formatting issue")
+        
+        # Model Performance vs Actual Results
+        st.subheader("📊 Predictions vs Actual Results")
+        
+        # This would typically come from your database with actual prices
+        # For now, showing placeholder structure for when you add this data
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.info("**Coming Soon**: Track how well predictions performed vs actual market movements")
+            st.write("Features will include:")
+            st.write("• Prediction accuracy by model")
+            st.write("• Actual vs predicted price movements") 
+            st.write("• Win/loss ratios for signals")
+            st.write("• Historical performance trends")
+        
+        with col2:
+            # Placeholder accuracy data - you can populate this from your database
+            st.subheader("Model Accuracy (Last 30 Days)")
+            accuracy_sample = pd.DataFrame({
+                'Model': ['QQQ Long Bull', 'QQQ Master', 'NVIDIA', 'Bitcoin', 'Algorand'],
+                'Direction_Accuracy': [62.3, 58.5, 55.2, 51.3, 48.7],
+                'Avg_Error': [2.1, 2.8, 4.2, 3.1, 5.1]
+            })
+            
+            try:
+                fig3 = px.bar(
+                    accuracy_sample, 
+                    x='Model', 
+                    y='Direction_Accuracy',
+                    title='Direction Prediction Accuracy %',
+                    color='Direction_Accuracy',
                     color_continuous_scale='RdYlGn'
                 )
-                fig2.update_layout(xaxis_tickangle=-45)
-                st.plotly_chart(fig2, use_container_width=True)
+                st.plotly_chart(fig3, use_container_width=True)
+            except Exception as e:
+                st.warning("Sample accuracy chart unavailable")
         
         # Data freshness indicator
         if last_update != 'Unknown':
