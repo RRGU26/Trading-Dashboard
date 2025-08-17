@@ -1,6 +1,6 @@
 {
   "date": "2025-08-16",
-  "last_updated": "2025-08-16T20:19:49.093699",
+  "last_updated": "2025-08-16T20:49:31.166685",
   "signal_counts": {
     "BUY": 2,
     "HOLD": 4,
@@ -8,5 +8,32 @@
   },
   "average_confidence": 61.3,
   "total_models": 3,
-  "status": "active"
+  "status": "active",
+  "performance_data": [
+    {
+      "model": "NVIDIA Bull Momentum Model",
+      "total_predictions": 3,
+      "accuracy": 33.3,
+      "avg_error": 0.5
+    },
+    {
+      "model": "QQQ Master Model",
+      "total_predictions": 1,
+      "accuracy": 100.0,
+      "avg_error": 1.44
+    },
+    {
+      "model": "QQQ Trading Signal",
+      "total_predictions": 4,
+      "accuracy": 75.0,
+      "avg_error": 0.69
+    },
+    {
+      "model": "Wishing Well QQQ Model",
+      "total_predictions": 2,
+      "accuracy": 100.0,
+      "avg_error": 5.78
+    }
+  ],
+  "dashboard_url": "https://rrgu26-trading-dashboard-cloud-dashboard-with-sync-crrtqv.streamlit.app"
 }
