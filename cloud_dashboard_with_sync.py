@@ -445,7 +445,6 @@ def main():
                         # Add time horizon for Bitcoin and NVIDIA models
                         if 'target_date' in prediction and 'prediction_date' in prediction:
                             try:
-                                from datetime import datetime
                                 pred_date = datetime.strptime(prediction['prediction_date'], '%Y-%m-%d')
                                 target_date = datetime.strptime(prediction['target_date'], '%Y-%m-%d')
                                 days_ahead = (target_date - pred_date).days
