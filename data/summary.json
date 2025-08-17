@@ -1,0 +1,12 @@
+{
+  "date": "2025-08-16",
+  "last_updated": "2025-08-16T20:19:49.093699",
+  "signal_counts": {
+    "BUY": 2,
+    "HOLD": 4,
+    "SELL": 4
+  },
+  "average_confidence": 61.3,
+  "total_models": 3,
+  "status": "active"
+}
