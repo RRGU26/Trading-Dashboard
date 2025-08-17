@@ -440,7 +440,22 @@ def main():
                     col1, col2, col3, col4 = st.columns([3, 2, 2, 2])
                     
                     with col1:
-                        st.markdown(f'<div class="model-name">{prediction.get("model", "Unknown Model")}</div>', unsafe_allow_html=True)
+                        model_name = prediction.get("model", "Unknown Model")
+                        
+                        # Add time horizon for Bitcoin and NVIDIA models
+                        if 'target_date' in prediction and 'prediction_date' in prediction:
+                            try:
+                                from datetime import datetime
+                                pred_date = datetime.strptime(prediction['prediction_date'], '%Y-%m-%d')
+                                target_date = datetime.strptime(prediction['target_date'], '%Y-%m-%d')
+                                days_ahead = (target_date - pred_date).days
+                                
+                                if days_ahead > 0:
+                                    model_name += f" ({days_ahead}d)"
+                            except:
+                                pass
+                        
+                        st.markdown(f'<div class="model-name">{model_name}</div>', unsafe_allow_html=True)
                         if 'symbol' in prediction:
                             st.markdown(f'<span style="font-size: 12px; color: #64748b; font-weight: 500;">{prediction["symbol"]}</span>', unsafe_allow_html=True)
                         
