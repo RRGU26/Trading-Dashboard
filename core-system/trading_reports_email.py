@@ -713,7 +713,7 @@ class ComprehensiveEmailFormatter:
                                 <a href="{dashboard_url}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin-right: 10px;">
                                     📊 Local Dashboard
                                 </a>
-                                <a href="https://rrgu26-trading-dashboard.streamlit.app" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                                <a href="https://rrgu26-trading-dashboard-cloud-dashboard-with-sync-crrtqv.streamlit.app" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
                                     🌐 Live Cloud Dashboard
                                 </a>
                             </div>

@@ -24,34 +24,230 @@ st.set_page_config(
 GITHUB_REPO = "RRGU26/Trading-Dashboard"
 BASE_URL = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/data/"
 
-# Custom CSS
+# Enhanced Custom CSS with improved visual hierarchy
 st.markdown("""
 <style>
+    /* Global app styling */
     .stApp {
         max-width: 100%;
+        font-size: 14px;
     }
-    .main-header {
-        font-size: 1.8rem;
-        font-weight: bold;
-        text-align: center;
-        color: #1f77b4;
-        margin-bottom: 1rem;
-    }
-    .signal-card {
-        background-color: #f0f2f6;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        border-left: 4px solid #1f77b4;
-    }
-    .buy-signal { border-left-color: #28a745; }
-    .sell-signal { border-left-color: #dc3545; }
-    .hold-signal { border-left-color: #ffc107; }
     
+    /* Reduce default streamlit text sizes */
+    .stMarkdown p, .stText {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    
+    .stMetric > div > div {
+        font-size: 12px;
+    }
+    
+    .stCaption {
+        font-size: 11px;
+        opacity: 0.7;
+    }
+    
+    /* Header styling */
+    .main-header {
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Enhanced signal cards with modern design */
+    .signal-card {
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+        padding: 1.25rem;
+        border-radius: 16px;
+        margin-bottom: 1rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .signal-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #64748b;
+    }
+    
+    .signal-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Signal-specific card styling */
+    .buy-signal::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .sell-signal::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .hold-signal::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    
+    /* Prominent price displays */
+    .price-display {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #1e293b;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        margin: 0.5rem 0;
+    }
+    
+    .predicted-price {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin: 0.25rem 0;
+    }
+    
+    .price-current { color: #3b82f6; }
+    .price-target-up { color: #10b981; }
+    .price-target-down { color: #ef4444; }
+    
+    /* Enhanced signal display */
+    .signal-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin: 0.5rem 0;
+    }
+    
+    .signal-buy {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    
+    .signal-sell {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+    
+    .signal-hold {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    
+    /* Model name styling */
+    .model-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Confidence and return styling */
+    .confidence-high { color: #10b981; font-weight: 600; }
+    .confidence-medium { color: #f59e0b; font-weight: 600; }
+    .confidence-low { color: #ef4444; font-weight: 600; }
+    
+    .return-positive { color: #10b981; font-weight: 700; }
+    .return-negative { color: #ef4444; font-weight: 700; }
+    
+    /* Status indicators */
+    .status-live {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .status-demo {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
         .main-header {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .signal-card {
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .price-display {
             font-size: 1.4rem;
         }
+        
+        .predicted-price {
+            font-size: 1.2rem;
+        }
+        
+        .signal-badge {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+        
+        .model-name {
+            font-size: 1rem;
+        }
+        
+        .stMetric > div > div {
+            font-size: 11px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .main-header {
+            font-size: 1.1rem;
+        }
+        
+        .price-display {
+            font-size: 1.2rem;
+        }
+        
+        .predicted-price {
+            font-size: 1rem;
+        }
+        
+        .signal-card {
+            padding: 0.75rem;
+        }
+    }
+    
+    /* Summary cards styling */
+    .summary-card {
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        border: 1px solid #e2e8f0;
+        text-align: center;
+    }
+    
+    /* Tab styling improvements */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: 500;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -167,7 +363,8 @@ def main():
     
     with col1:
         status_text = "Live Data" if data.get('system_status') == 'operational' else "Demo Mode"
-        st.metric("Status", f"{status_color} {status_text}")
+        status_class = "status-live" if data.get('system_status') == 'operational' else "status-demo"
+        st.markdown(f'<div class="{status_class}">{status_color} {status_text}</div>', unsafe_allow_html=True)
     
     with col2:
         if last_update != 'Unknown':
@@ -206,11 +403,29 @@ def main():
                 
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    st.metric("🟢 BUY Signals", signal_counts.get('BUY', 0))
+                    buy_count = signal_counts.get('BUY', 0)
+                    st.markdown(f'''
+                    <div class="summary-card" style="border-left: 4px solid #10b981;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981;">{buy_count}</div>
+                        <div style="font-size: 12px; color: #64748b;">🟢 BUY SIGNALS</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
                 with col2:
-                    st.metric("🔴 SELL Signals", signal_counts.get('SELL', 0))
+                    sell_count = signal_counts.get('SELL', 0)
+                    st.markdown(f'''
+                    <div class="summary-card" style="border-left: 4px solid #ef4444;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #ef4444;">{sell_count}</div>
+                        <div style="font-size: 12px; color: #64748b;">🔴 SELL SIGNALS</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
                 with col3:
-                    st.metric("🟡 HOLD Signals", signal_counts.get('HOLD', 0))
+                    hold_count = signal_counts.get('HOLD', 0)
+                    st.markdown(f'''
+                    <div class="summary-card" style="border-left: 4px solid #f59e0b;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b;">{hold_count}</div>
+                        <div style="font-size: 12px; color: #64748b;">🟡 HOLD SIGNALS</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
             
             st.divider()
             
@@ -225,42 +440,57 @@ def main():
                     col1, col2, col3, col4 = st.columns([3, 2, 2, 2])
                     
                     with col1:
-                        st.subheader(prediction.get('model', 'Unknown Model'))
+                        st.markdown(f'<div class="model-name">{prediction.get("model", "Unknown Model")}</div>', unsafe_allow_html=True)
                         if 'symbol' in prediction:
-                            st.caption(f"Symbol: {prediction['symbol']}")
+                            st.markdown(f'<span style="font-size: 12px; color: #64748b; font-weight: 500;">{prediction["symbol"]}</span>', unsafe_allow_html=True)
+                        
+                        # Prominent price displays
+                        if 'current_price' in prediction and prediction['current_price'] is not None:
+                            try:
+                                price = float(prediction['current_price'])
+                                st.markdown(f'<div class="price-display price-current">${price:,.2f}</div>', unsafe_allow_html=True)
+                                st.markdown('<span style="font-size: 11px; color: #64748b;">Current Price</span>', unsafe_allow_html=True)
+                            except (ValueError, TypeError):
+                                pass
                     
                     with col2:
-                        signal_emoji = {'BUY': '🟢', 'SELL': '🔴', 'HOLD': '🟡'}.get(signal, '⚪')
-                        st.metric("Signal", f"{signal_emoji} {signal}")
+                        # Enhanced signal badge
+                        signal_class = f"signal-{signal.lower()}" if signal in ['BUY', 'SELL', 'HOLD'] else ""
+                        signal_emoji = {'BUY': '⬆', 'SELL': '⬇', 'HOLD': '⏸'}.get(signal, '⚪')
+                        st.markdown(f'<div class="signal-badge {signal_class}">{signal_emoji} {signal}</div>', unsafe_allow_html=True)
+                        
+                        # Target price if available
+                        if 'predicted_price' in prediction and prediction['predicted_price'] is not None:
+                            try:
+                                target_price = float(prediction['predicted_price'])
+                                current_price = float(prediction.get('current_price', 0))
+                                price_class = "price-target-up" if target_price > current_price else "price-target-down"
+                                st.markdown(f'<div class="predicted-price {price_class}">${target_price:,.2f}</div>', unsafe_allow_html=True)
+                                st.markdown('<span style="font-size: 11px; color: #64748b;">Target Price</span>', unsafe_allow_html=True)
+                            except (ValueError, TypeError):
+                                pass
                     
                     with col3:
                         confidence = prediction.get('confidence', 0)
                         if confidence is not None and isinstance(confidence, (int, float)):
-                            st.metric("Confidence", f"{confidence:.0f}%")
+                            conf_class = "confidence-high" if confidence >= 80 else "confidence-medium" if confidence >= 60 else "confidence-low"
+                            st.markdown(f'<div style="font-size: 1.2rem; font-weight: 700;" class="{conf_class}">{confidence:.0f}%</div>', unsafe_allow_html=True)
+                            st.markdown('<span style="font-size: 11px; color: #64748b;">Confidence</span>', unsafe_allow_html=True)
                         else:
-                            st.metric("Confidence", "N/A")
+                            st.markdown('<span style="color: #64748b;">N/A</span>', unsafe_allow_html=True)
                     
                     with col4:
                         expected_return = prediction.get('expected_return', 0)
                         if expected_return is not None and isinstance(expected_return, (int, float)):
-                            st.metric("Expected Return", f"{expected_return:+.2f}%")
+                            return_class = "return-positive" if expected_return > 0 else "return-negative"
+                            st.markdown(f'<div style="font-size: 1.2rem; font-weight: 700;" class="{return_class}">{expected_return:+.2f}%</div>', unsafe_allow_html=True)
+                            st.markdown('<span style="font-size: 11px; color: #64748b;">Expected Return</span>', unsafe_allow_html=True)
                         else:
-                            st.metric("Expected Return", "N/A")
+                            st.markdown('<span style="color: #64748b;">N/A</span>', unsafe_allow_html=True)
                     
-                    # Additional details with safe formatting
-                    if 'current_price' in prediction and prediction['current_price'] is not None:
-                        try:
-                            price = float(prediction['current_price'])
-                            st.caption(f"Current Price: ${price:.2f}")
-                        except (ValueError, TypeError):
-                            st.caption(f"Current Price: {prediction['current_price']}")
-                    
-                    if 'predicted_price' in prediction and prediction['predicted_price'] is not None:
-                        try:
-                            price = float(prediction['predicted_price'])
-                            st.caption(f"Target Price: ${price:.2f}")
-                        except (ValueError, TypeError):
-                            st.caption(f"Target Price: {prediction['predicted_price']}")
+                    # Additional context information
+                    if 'prediction_date' in prediction:
+                        st.markdown(f'<span style="font-size: 10px; color: #94a3b8;">📅 {prediction["prediction_date"]}</span>', unsafe_allow_html=True)
                     
                     st.markdown('</div>', unsafe_allow_html=True)
                     st.divider()
@@ -337,26 +567,65 @@ def main():
             st.write("• Historical performance trends")
         
         with col2:
-            # Placeholder accuracy data - you can populate this from your database
+            # Real accuracy data from your database
             st.subheader("Model Accuracy (Last 30 Days)")
-            accuracy_sample = pd.DataFrame({
-                'Model': ['QQQ Long Bull', 'QQQ Master', 'NVIDIA', 'Bitcoin', 'Algorand'],
-                'Direction_Accuracy': [62.3, 58.5, 55.2, 51.3, 48.7],
-                'Avg_Error': [2.1, 2.8, 4.2, 3.1, 5.1]
-            })
             
-            try:
-                fig3 = px.bar(
-                    accuracy_sample, 
-                    x='Model', 
-                    y='Direction_Accuracy',
-                    title='Direction Prediction Accuracy %',
-                    color='Direction_Accuracy',
-                    color_continuous_scale='RdYlGn'
-                )
-                st.plotly_chart(fig3, use_container_width=True)
-            except Exception as e:
-                st.warning("Sample accuracy chart unavailable")
+            if summary and 'performance_data' in summary and summary['performance_data']:
+                performance_df = pd.DataFrame(summary['performance_data'])
+                
+                try:
+                    fig3 = px.bar(
+                        performance_df, 
+                        x='model', 
+                        y='accuracy',
+                        title='Direction Prediction Accuracy %',
+                        color='accuracy',
+                        color_continuous_scale='RdYlGn',
+                        text='accuracy'
+                    )
+                    fig3.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
+                    fig3.update_layout(xaxis_tickangle=-45)
+                    st.plotly_chart(fig3, use_container_width=True)
+                    
+                    # Show detailed performance table
+                    st.subheader("📊 Detailed Performance Metrics")
+                    st.dataframe(
+                        performance_df.round(2),
+                        column_config={
+                            "model": "Model",
+                            "total_predictions": "Total Predictions",
+                            "accuracy": st.column_config.NumberColumn("Accuracy %", format="%.1f%%"),
+                            "avg_error": st.column_config.NumberColumn("Avg Error %", format="%.2f%%")
+                        },
+                        hide_index=True,
+                        use_container_width=True
+                    )
+                    
+                except Exception as e:
+                    st.warning("Unable to display performance data")
+            else:
+                # Fallback to placeholder when no real data available
+                st.info("Performance tracking will show here once models have historical data with actual price comparisons.")
+                
+                # Show sample structure
+                sample_df = pd.DataFrame({
+                    'Model': ['QQQ Long Bull', 'QQQ Master', 'NVIDIA'],
+                    'Accuracy': [62.3, 58.5, 55.2],
+                    'Predictions': [25, 25, 20]
+                })
+                
+                try:
+                    fig3 = px.bar(
+                        sample_df, 
+                        x='Model', 
+                        y='Accuracy',
+                        title='Sample: Direction Prediction Accuracy %',
+                        color='Accuracy',
+                        color_continuous_scale='RdYlGn'
+                    )
+                    st.plotly_chart(fig3, use_container_width=True)
+                except Exception as e:
+                    st.warning("Sample chart unavailable")
         
         # Data freshness indicator
         if last_update != 'Unknown':

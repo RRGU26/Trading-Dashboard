@@ -192,7 +192,7 @@ def create_summary_json():
             'total_models': len(signal_counts) if signal_counts else 0,
             'status': 'active' if signal_counts else 'pending',
             'performance_data': performance_data,
-            'dashboard_url': 'https://rrgu26-trading-dashboard.streamlit.app'
+            'dashboard_url': 'https://rrgu26-trading-dashboard-cloud-dashboard-with-sync-crrtqv.streamlit.app'
         }
         
         # Save summary
