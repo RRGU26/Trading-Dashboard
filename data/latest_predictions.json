@@ -1,7 +1,7 @@
 {
-  "last_updated": "2025-09-03T00:40:09.752299",
+  "last_updated": "2025-09-03T22:41:03.095426",
   "export_date": "2025-09-03",
-  "total_predictions": 10,
+  "total_predictions": 19,
   "predictions": [
     {
       "model": "Algorand Model",
@@ -11,6 +11,17 @@
       "suggested_action": "HOLD",
       "confidence": 34.156018824188266,
       "expected_return": 0.9386199966489489,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-06"
+    },
+    {
+      "model": "Algorand Model",
+      "symbol": "ALGO-USD",
+      "current_price": 0.234715,
+      "predicted_price": 0.2293567836115935,
+      "suggested_action": "SELL",
+      "confidence": 35.82074695310793,
+      "expected_return": -2.282860655862003,
       "prediction_date": "2025-09-03",
       "target_date": "2025-09-06"
     },
@@ -48,6 +59,39 @@
       "target_date": "2025-09-10"
     },
     {
+      "model": "Bitcoin Model",
+      "symbol": "BTC-USD",
+      "current_price": 112152.0,
+      "predicted_price": 112278.7578125,
+      "suggested_action": "HOLD",
+      "confidence": 50.0,
+      "expected_return": 0.11302322149276733,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-04"
+    },
+    {
+      "model": "Bitcoin Model",
+      "symbol": "BTC-USD",
+      "current_price": 112152.0,
+      "predicted_price": 111700.1796875,
+      "suggested_action": "HOLD",
+      "confidence": 50.0,
+      "expected_return": -0.4028642475605011,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-06"
+    },
+    {
+      "model": "Bitcoin Model",
+      "symbol": "BTC-USD",
+      "current_price": 112152.0,
+      "predicted_price": 115012.0546875,
+      "suggested_action": "BUY",
+      "confidence": 50.0,
+      "expected_return": 2.550159454345703,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-10"
+    },
+    {
       "model": "Long Bull Model V3.2",
       "symbol": "QQQ",
       "current_price": 565.62,
@@ -55,6 +99,17 @@
       "suggested_action": "STRONG SELL",
       "confidence": 66.71442251897767,
       "expected_return": -1.9464011422424348,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-13"
+    },
+    {
+      "model": "Long Bull Model V3.2",
+      "symbol": "QQQ",
+      "current_price": 570.07,
+      "predicted_price": 562.6406965564852,
+      "suggested_action": "SELL",
+      "confidence": 63.30036850544406,
+      "expected_return": -1.3032265236751341,
       "prediction_date": "2025-09-03",
       "target_date": "2025-09-13"
     },
@@ -81,6 +136,28 @@
       "target_date": "2025-09-08"
     },
     {
+      "model": "NVIDIA Bull Momentum Model",
+      "symbol": "NVDA",
+      "current_price": 173.72,
+      "predicted_price": 172.0664558148384,
+      "suggested_action": "SELL",
+      "confidence": 85.0,
+      "expected_return": -0.9518444538116468,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-04"
+    },
+    {
+      "model": "NVIDIA Bull Momentum Model",
+      "symbol": "NVDA",
+      "current_price": 173.72,
+      "predicted_price": 165.45225836515428,
+      "suggested_action": "SELL",
+      "confidence": 85.0,
+      "expected_return": -4.759234189987175,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-08"
+    },
+    {
       "model": "QQQ Master Model",
       "symbol": "QQQ",
       "current_price": 565.62,
@@ -103,6 +180,17 @@
       "target_date": "2025-09-06"
     },
     {
+      "model": "QQQ Trading Signal",
+      "symbol": "QQQ",
+      "current_price": 570.07,
+      "predicted_price": 571.3937723477185,
+      "suggested_action": "HOLD",
+      "confidence": 14.400975098539185,
+      "expected_return": 0.23221224546431696,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-06"
+    },
+    {
       "model": "Wishing Well QQQ Model",
       "symbol": "QQQ",
       "current_price": 565.62,
@@ -110,6 +198,17 @@
       "suggested_action": "SELL",
       "confidence": 56.666666666666664,
       "expected_return": -6.671732665274925,
+      "prediction_date": "2025-09-03",
+      "target_date": "2025-09-08"
+    },
+    {
+      "model": "Wishing Well QQQ Model",
+      "symbol": "QQQ",
+      "current_price": 570.07,
+      "predicted_price": 532.0492548862661,
+      "suggested_action": "SELL",
+      "confidence": 56.666666666666664,
+      "expected_return": -6.669487100484842,
       "prediction_date": "2025-09-03",
       "target_date": "2025-09-08"
     }
