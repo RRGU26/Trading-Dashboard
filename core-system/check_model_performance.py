@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 def check_model_performance():
     # Connect to database
-    conn = sqlite3.connect('models_dashboard.db')
+    conn = sqlite3.connect('reports_tracking.db')
     cursor = conn.cursor()
     
     # Get yesterday's predictions (2025-08-15)

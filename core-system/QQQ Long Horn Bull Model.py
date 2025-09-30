@@ -61,17 +61,17 @@ class DatabaseIntegrator:
         
     def _find_database(self) -> str:
         possible_paths = [
-            os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", "models_dashboard.db"),
-            os.path.join(os.path.expanduser("~"), "Desktop", "models_dashboard.db"),
-            "models_dashboard.db"
+            os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", "reports_tracking.db"),
+            os.path.join(os.path.expanduser("~"), "Desktop", "reports_tracking.db"),
+            "reports_tracking.db"
         ]
         
         for path in possible_paths:
             if os.path.exists(path):
-                print(f"✅ Found database: {path}")
+                print(f"[OK] Found database: {path}")
                 return path
         
-        print("⚠️  Database not found - will run in standalone mode")
+        print("[WARN]  Database not found - will run in standalone mode")
         return None
     
     def get_historical_vix_data(self, days_back: int = 252) -> Optional[pd.DataFrame]:
@@ -102,14 +102,14 @@ class DatabaseIntegrator:
                 df.set_index('date', inplace=True)
                 df.sort_index(inplace=True)
                 
-                print(f"✅ Retrieved {len(df)} VIX data points from database")
+                print(f"[OK] Retrieved {len(df)} VIX data points from database")
                 return df
             else:
-                print("⚠️  No VIX data found in database")
+                print("[WARN]  No VIX data found in database")
                 return None
                 
         except Exception as e:
-            print(f"❌ Failed to retrieve VIX data from database: {e}")
+            print(f"[ERROR] Failed to retrieve VIX data from database: {e}")
             return None
     
     def get_historical_predictions_performance(self) -> Dict:
@@ -145,14 +145,14 @@ class DatabaseIntegrator:
                     'total_predictions': result[2] or 0,
                     'avg_confidence': result[3] or 0
                 }
-                print(f"📊 Historical performance: {performance['direction_accuracy']:.1%} accuracy from {performance['total_predictions']} predictions")
+                print(f"[DATA] Historical performance: {performance['direction_accuracy']:.1%} accuracy from {performance['total_predictions']} predictions")
                 return performance
             else:
-                print("⚠️  No historical prediction data available")
+                print("[WARN]  No historical prediction data available")
                 return {}
                 
         except Exception as e:
-            print(f"❌ Failed to retrieve historical performance: {e}")
+            print(f"[ERROR] Failed to retrieve historical performance: {e}")
             return {}
     
     def save_prediction(self, prediction_data: Dict) -> bool:
@@ -204,15 +204,15 @@ class DatabaseIntegrator:
             conn.commit()
             conn.close()
             
-            print(f"✅ Prediction saved to database")
-            print(f"   📅 {prediction_date} → {target_date} ({horizon_days}d)")
-            print(f"   💰 ${current_price:.2f} → ${predicted_price:.2f} ({predicted_return:+.2f}%)")
-            print(f"   🎯 {action} (Confidence: {confidence:.1f}%)")
+            print(f"[OK] Prediction saved to database")
+            print(f"   [DATE] {prediction_date} -> {target_date} ({horizon_days}d)")
+            print(f"   [PRICE] ${current_price:.2f} -> ${predicted_price:.2f} ({predicted_return:+.2f}%)")
+            print(f"   [TARGET] {action} (Confidence: {confidence:.1f}%)")
             
             return True
             
         except Exception as e:
-            print(f"❌ Failed to save prediction: {e}")
+            print(f"[ERROR] Failed to save prediction: {e}")
             return False
     
     def save_metrics(self, training_results: Dict) -> bool:
@@ -244,11 +244,11 @@ class DatabaseIntegrator:
             conn.commit()
             conn.close()
             
-            print(f"✅ Model metrics saved to database")
+            print(f"[OK] Model metrics saved to database")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to save metrics: {e}")
+            print(f"[ERROR] Failed to save metrics: {e}")
             return False
 
     def update_actual_prices(self) -> int:
@@ -300,12 +300,12 @@ class DatabaseIntegrator:
             conn.close()
             
             if updated > 0:
-                print(f"✅ Updated {updated} predictions with actual prices")
+                print(f"[OK] Updated {updated} predictions with actual prices")
             
             return updated
             
         except Exception as e:
-            print(f"❌ Error updating actual prices: {e}")
+            print(f"[ERROR] Error updating actual prices: {e}")
             return 0
 
 
@@ -321,7 +321,7 @@ class EnhancedDataFetcher:
                                    min_rows: int = 100) -> Optional[pd.DataFrame]:
         """Fetch data with rate limiting protection"""
         
-        print(f"  🔍 Fetching {asset_name}...")
+        print(f"  [FETCH] Fetching {asset_name}...")
         
         for i, symbol in enumerate(symbols):
             print(f"    Trying {symbol}...")
@@ -333,15 +333,15 @@ class EnhancedDataFetcher:
                 df = data_fetcher.get_historical_data(symbol, start_date, end_date)
                 
                 if df is not None and not df.empty and len(df) >= min_rows:
-                    print(f"    ✅ {symbol}: {len(df)} rows via data_fetcher")
+                    print(f"    [OK] {symbol}: {len(df)} rows via data_fetcher")
                     return self._prepare_dataframe(df)
                 else:
-                    print(f"    ⚠️  {symbol}: {len(df) if df is not None else 0} rows (insufficient)")
+                    print(f"    [WARN]  {symbol}: {len(df) if df is not None else 0} rows (insufficient)")
                     
             except Exception as e:
-                print(f"    ❌ {symbol} failed: {e}")
+                print(f"    [ERROR] {symbol} failed: {e}")
         
-        print(f"    ❌ No data source succeeded for {asset_name}")
+        print(f"    [ERROR] No data source succeeded for {asset_name}")
         return None
     
     def _prepare_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -403,32 +403,32 @@ class QQQLongBullModelV32:
         
     def fetch_all_data(self) -> Dict[str, pd.DataFrame]:
         """PRIORITY DATA FETCHING: QQQ + VIX first, others optional"""
-        print("🚀 PRIORITY DATA FETCHING: QQQ + VIX ALIGNMENT")
+        print("[LAUNCH] PRIORITY DATA FETCHING: QQQ + VIX ALIGNMENT")
         print("=" * 60)
         
         end_date = datetime.now().strftime("%Y-%m-%d")
         start_date = (datetime.now() - timedelta(days=10*365)).strftime("%Y-%m-%d")  # 10 years of data
         
-        print(f"📅 Date range: {start_date} to {end_date}")
+        print(f"[DATE] Date range: {start_date} to {end_date}")
         
         data = {}
         
         # STEP 1: Fetch QQQ (required)
-        print("\n🎯 STEP 1: Fetching QQQ (required)")
+        print("\n[TARGET] STEP 1: Fetching QQQ (required)")
         qqq_config = SYMBOLS_CONFIG['QQQ']
         qqq_df = self.data_fetcher.fetch_symbol_with_fallbacks(
             'QQQ', qqq_config['symbols'], start_date, end_date, 200
         )
         
         if qqq_df is None or qqq_df.empty:
-            raise ValueError("❌ Cannot proceed without QQQ data")
+            raise ValueError("[ERROR] Cannot proceed without QQQ data")
         
         data['QQQ'] = qqq_df
         self.correlation_assets.append('QQQ')
-        print(f"    ✅ QQQ: {len(qqq_df)} rows - USING AS REFERENCE")
+        print(f"    [OK] QQQ: {len(qqq_df)} rows - USING AS REFERENCE")
         
         # STEP 2: Fetch VIX and align to QQQ immediately - Enhanced with database fallback
-        print("\n🔥 STEP 2: Fetching VIX and aligning to QQQ")
+        print("\n[HOT] STEP 2: Fetching VIX and aligning to QQQ")
         vix_config = SYMBOLS_CONFIG['VIX']
         vix_df = self.data_fetcher.fetch_symbol_with_fallbacks(
             'VIX', vix_config['symbols'], start_date, end_date, 50  # Lower threshold
@@ -436,7 +436,7 @@ class QQQLongBullModelV32:
         
         # If API fetch failed, try database
         if vix_df is None or vix_df.empty:
-            print("⚠️  VIX API fetch failed - trying database...")
+            print("[WARN]  VIX API fetch failed - trying database...")
             db_vix_df = self.db_integrator.get_historical_vix_data()
             if db_vix_df is not None and not db_vix_df.empty:
                 # Convert single column VIX data to OHLC format
@@ -446,7 +446,7 @@ class QQQLongBullModelV32:
                 vix_df['Low'] = db_vix_df['vix_close'] * 0.98
                 vix_df['Open'] = db_vix_df['vix_close']
                 vix_df['Volume'] = 1000000  # Default volume
-                print("✅ Using VIX data from database")
+                print("[OK] Using VIX data from database")
         
         if vix_df is not None and not vix_df.empty:
             # Find QQQ-VIX overlap
@@ -454,23 +454,23 @@ class QQQLongBullModelV32:
             vix_dates = vix_df.index
             common_dates = qqq_dates.intersection(vix_dates)
             
-            print(f"    📊 QQQ dates: {len(qqq_dates)}")
-            print(f"    📊 VIX dates: {len(vix_dates)}")
-            print(f"    📊 QQQ-VIX overlap: {len(common_dates)} days")
+            print(f"    [DATA] QQQ dates: {len(qqq_dates)}")
+            print(f"    [DATA] VIX dates: {len(vix_dates)}")
+            print(f"    [DATA] QQQ-VIX overlap: {len(common_dates)} days")
             
             if len(common_dates) >= 100:  # Need at least 100 overlapping days
                 # Align both to common dates
                 data['QQQ'] = qqq_df.loc[common_dates]
                 data['VIX'] = vix_df.loc[common_dates]
                 self.correlation_assets.append('VIX')
-                print(f"    ✅ VIX: {len(common_dates)} aligned days with QQQ")
+                print(f"    [OK] VIX: {len(common_dates)} aligned days with QQQ")
             else:
-                print(f"    ⚠️  VIX: Only {len(common_dates)} overlapping days - will use synthetic VIX")
+                print(f"    [WARN]  VIX: Only {len(common_dates)} overlapping days - will use synthetic VIX")
         else:
-            print(f"    ⚠️  VIX: No data - will use synthetic VIX")
+            print(f"    [WARN]  VIX: No data - will use synthetic VIX")
         
         # STEP 3: Fetch other correlations and align to QQQ+VIX
-        print("\n📈 STEP 3: Fetching additional correlations")
+        print("\n[CHART] STEP 3: Fetching additional correlations")
         
         # Use current QQQ dates as reference (may be reduced after VIX alignment)
         reference_dates = data['QQQ'].index
@@ -491,15 +491,15 @@ class QQQLongBullModelV32:
                 if len(overlap_dates) >= 200:  # Good overlap
                     data[asset_name] = asset_df.loc[overlap_dates]
                     self.correlation_assets.append(asset_name)
-                    print(f"    ✅ {asset_name}: {len(overlap_dates)} aligned days")
+                    print(f"    [OK] {asset_name}: {len(overlap_dates)} aligned days")
                 else:
-                    print(f"    ⚠️  {asset_name}: Only {len(overlap_dates)} overlapping days - skipping")
+                    print(f"    [WARN]  {asset_name}: Only {len(overlap_dates)} overlapping days - skipping")
             else:
-                print(f"    ❌ {asset_name}: No data available")
+                print(f"    [ERROR] {asset_name}: No data available")
         
         # FINAL ALIGNMENT: Align all to common dates
         if len(data) > 1:
-            print(f"\n🔧 FINAL ALIGNMENT:")
+            print(f"\n[ALIGN] FINAL ALIGNMENT:")
             final_dates = None
             for asset_name, df in data.items():
                 if final_dates is None:
@@ -507,34 +507,34 @@ class QQQLongBullModelV32:
                 else:
                     final_dates = final_dates.intersection(df.index)
             
-            print(f"   📅 Final common dates: {len(final_dates)}")
+            print(f"   [DATE] Final common dates: {len(final_dates)}")
             
             for asset_name in data:
                 data[asset_name] = data[asset_name].loc[final_dates]
         
         # Data quality report
-        print(f"\n📊 DATA QUALITY REPORT:")
-        print(f"   ✅ Successfully aligned: {len(data)} assets")
-        print(f"   📈 Available assets: {', '.join(self.correlation_assets)}")
+        print(f"\n[DATA] DATA QUALITY REPORT:")
+        print(f"   [OK] Successfully aligned: {len(data)} assets")
+        print(f"   [CHART] Available assets: {', '.join(self.correlation_assets)}")
         
         if len(data) > 0:
             sample_length = len(list(data.values())[0])
-            print(f"   📅 Final training data: {sample_length} days")
+            print(f"   [DATE] Final training data: {sample_length} days")
             
             if sample_length < 200:
-                print(f"   ⚠️  WARNING: Limited training data ({sample_length} days)")
+                print(f"   [WARN]  WARNING: Limited training data ({sample_length} days)")
         
         return data
     
     def create_qqq_focused_features(self, data: Dict[str, pd.DataFrame]) -> pd.DataFrame:
         """Create QQQ-focused features with smart VIX handling"""
-        print("\n🛠️  QQQ-FOCUSED FEATURE ENGINEERING")
+        print("\n[TOOLS]  QQQ-FOCUSED FEATURE ENGINEERING")
         print("=" * 60)
         
         qqq_df = data['QQQ'].copy()
         
         # 1. COMPREHENSIVE QQQ INTERNAL FEATURES
-        print("  📈 Creating comprehensive QQQ features...")
+        print("  [CHART] Creating comprehensive QQQ features...")
         
         # Multi-timeframe returns
         for period in [1, 2, 3, 5, 7, 10, 14, 21]:
@@ -549,7 +549,7 @@ class QQQLongBullModelV32:
         qqq_df['momentum_consistency'] = qqq_df['direction_1d'].rolling(10).std()
         
         # 2. ENHANCED VOLATILITY FEATURES
-        print("  📊 Creating enhanced volatility features...")
+        print("  [DATA] Creating enhanced volatility features...")
         
         for window in [5, 10, 20, 30, 60]:
             vol = qqq_df['returns_1d'].rolling(window).std()
@@ -565,7 +565,7 @@ class QQQLongBullModelV32:
         qqq_df['vol_breakout'] = (qqq_df['volatility_5d'] > qqq_df['volatility_20d'].rolling(60).quantile(0.9)).astype(int)
         
         # 3. COMPREHENSIVE TECHNICAL INDICATORS
-        print("  🔧 Creating technical indicators...")
+        print("  [TOOL] Creating technical indicators...")
         
         # RSI with multiple periods
         for period in [7, 14, 21, 30]:
@@ -635,20 +635,20 @@ class QQQLongBullModelV32:
         # 4. VIX FEATURES (CRITICAL)
         vix_features = 0
         if 'VIX' in data and len(data['VIX']) == len(qqq_df):
-            print("  🔥 Adding REAL VIX features (CRITICAL)...")
+            print("  [HOT] Adding REAL VIX features (CRITICAL)...")
             vix_features = self._add_real_vix_features(qqq_df, data['VIX'])
         else:
-            print("  🔄 Adding SYNTHETIC VIX features...")
+            print("  [SYNC] Adding SYNTHETIC VIX features...")
             vix_features = self._add_synthetic_vix_features(qqq_df)
         
         # 5. OTHER CORRELATIONS
         other_features = 0
         if 'BTC' in data and len(data['BTC']) == len(qqq_df):
-            print("  ₿ Adding BTC features...")
+            print("  [BTC] Adding BTC features...")
             other_features += self._add_btc_features(qqq_df, data['BTC'])
         
         # 6. TIME AND SEASONAL FEATURES
-        print("  ⏰ Adding time and seasonal features...")
+        print("  [TIME] Adding time and seasonal features...")
         
         # Calendar features
         qqq_df['day_of_week'] = qqq_df.index.dayofweek
@@ -673,7 +673,7 @@ class QQQLongBullModelV32:
         qqq_df['is_fall'] = ((qqq_df['month'] >= 9) & (qqq_df['month'] <= 11)).astype(int)  # Volatility season
         
         # 7. INTERACTION AND CONFLUENCE FEATURES
-        print("  🔗 Creating interaction features...")
+        print("  [LINK] Creating interaction features...")
         
         # Technical confluence signals
         qqq_df['bullish_confluence'] = (
@@ -702,11 +702,11 @@ class QQQLongBullModelV32:
         qqq_df['choppy_market'] = ((qqq_df['trend_strength'] < 0.4) & qqq_df['vol_regime_high']).astype(int)
         
         total_features = len(qqq_df.columns)
-        print(f"\n✅ QQQ-FOCUSED FEATURE ENGINEERING COMPLETE:")
-        print(f"   📊 Total features: {total_features}")
-        print(f"   🔥 VIX features: {vix_features}")
-        print(f"   📈 Other correlations: {other_features}")
-        print(f"   🎯 QQQ internal features: {total_features - vix_features - other_features}")
+        print(f"\n[OK] QQQ-FOCUSED FEATURE ENGINEERING COMPLETE:")
+        print(f"   [DATA] Total features: {total_features}")
+        print(f"   [HOT] VIX features: {vix_features}")
+        print(f"   [CHART] Other correlations: {other_features}")
+        print(f"   [TARGET] QQQ internal features: {total_features - vix_features - other_features}")
         
         return qqq_df
     
@@ -763,17 +763,17 @@ class QQQLongBullModelV32:
             qqq_df['vix_backwardation'] = (qqq_df['vix_term_structure'] > 1.15).astype(int)
             qqq_df['vix_contango'] = (qqq_df['vix_term_structure'] < 0.9).astype(int)
             
-            print(f"    ✅ Added 28 real VIX features")
+            print(f"    [OK] Added 28 real VIX features")
             return 28
             
         except Exception as e:
-            print(f"    ❌ Real VIX features failed: {e}")
+            print(f"    [ERROR] Real VIX features failed: {e}")
             return self._add_synthetic_vix_features(qqq_df)
     
     def _add_synthetic_vix_features(self, qqq_df: pd.DataFrame) -> int:
         """Add synthetic VIX features based on QQQ volatility"""
         
-        print("    🔄 Creating synthetic VIX from QQQ volatility...")
+        print("    [SYNC] Creating synthetic VIX from QQQ volatility...")
         
         # Create synthetic VIX based on QQQ volatility patterns
         # VIX typically ranges 10-80, with mean around 20
@@ -808,7 +808,7 @@ class QQQLongBullModelV32:
         # Synthetic correlations (based on typical VIX-QQQ relationship)
         qqq_df['vix_qqq_corr_20d'] = synthetic_vix.rolling(20).corr(-qqq_df['returns_1d'])  # Negative correlation
         
-        print(f"    ✅ Added 13 synthetic VIX features")
+        print(f"    [OK] Added 13 synthetic VIX features")
         return 13
     
     def _add_btc_features(self, qqq_df: pd.DataFrame, btc_df: pd.DataFrame) -> int:
@@ -837,15 +837,15 @@ class QQQLongBullModelV32:
             qqq_df['btc_outperform'] = (btc_returns > qqq_df['returns_1d']).astype(int)
             qqq_df['btc_momentum_strength'] = np.abs(btc_returns) / (np.abs(qqq_df['returns_1d']) + 1e-8)
             
-            print(f"    ✅ Added 11 BTC features")
+            print(f"    [OK] Added 11 BTC features")
             return 11
         except Exception as e:
-            print(f"    ❌ BTC features failed: {e}")
+            print(f"    [ERROR] BTC features failed: {e}")
             return 0
     
     def train_model(self, df: pd.DataFrame) -> Dict:
         """Train optimized model with enhanced features"""
-        print("\n🤖 TRAINING OPTIMIZED MODEL")
+        print("\n[MODEL] TRAINING OPTIMIZED MODEL")
         print("=" * 50)
         
         # Find optimal horizon
@@ -855,9 +855,9 @@ class QQQLongBullModelV32:
         X, y = self._prepare_optimized_training_data(df, best_horizon)
         
         if len(X) < 100:
-            print(f"⚠️  WARNING: Limited training data ({len(X)} samples)")
+            print(f"[WARN]  WARNING: Limited training data ({len(X)} samples)")
         
-        print(f"📊 Training with {len(X)} samples, {len(X.columns)} features")
+        print(f"[DATA] Training with {len(X)} samples, {len(X.columns)} features")
         
         # Train enhanced ensemble
         results = self._train_enhanced_ensemble(X, y)
@@ -871,15 +871,15 @@ class QQQLongBullModelV32:
         # Save to database
         self.db_integrator.save_metrics(results)
         
-        print(f"\n🎉 TRAINING COMPLETE!")
-        print(f"   🎯 Direction Accuracy: {results['ensemble_metrics']['direction_accuracy']:.1%}")
-        print(f"   📊 R² Score: {results['ensemble_metrics']['r2']:.4f}")
+        print(f"\n[SUCCESS] TRAINING COMPLETE!")
+        print(f"   [TARGET] Direction Accuracy: {results['ensemble_metrics']['direction_accuracy']:.1%}")
+        print(f"   [DATA] R² Score: {results['ensemble_metrics']['r2']:.4f}")
         
         return results
     
     def _find_best_horizon(self, df: pd.DataFrame) -> int:
         """Find best horizon with comprehensive testing"""
-        print("🎯 Comprehensive horizon optimization...")
+        print("[TARGET] Comprehensive horizon optimization...")
         
         best_horizon = 5
         best_score = -999
@@ -952,7 +952,7 @@ class QQQLongBullModelV32:
                 print(f"   {horizon}d: Failed - {e}")
         
         self.best_horizon = best_horizon
-        print(f"   🏆 Best: {best_horizon} days (score: {best_score:.3f})")
+        print(f"   [EXCELLENT] Best: {best_horizon} days (score: {best_score:.3f})")
         
         return best_horizon
     
@@ -1072,7 +1072,7 @@ class QQQLongBullModelV32:
         scores = {}
         
         for name, model in models.items():
-            print(f"   🔧 Training {name}...")
+            print(f"   [TOOL] Training {name}...")
             try:
                 model.fit(X_train_scaled, y_train)
                 y_pred = model.predict(X_test_scaled)
@@ -1098,17 +1098,17 @@ class QQQLongBullModelV32:
                     'hit_rate_1pct': hit_rate_1pct
                 }
                 
-                print(f"      ✅ Dir={direction_acc:.3f}, R²={r2:.3f}, Hit1%={hit_rate_1pct:.3f}")
+                print(f"      [OK] Dir={direction_acc:.3f}, R²={r2:.3f}, Hit1%={hit_rate_1pct:.3f}")
                 
             except Exception as e:
-                print(f"      ❌ Failed: {e}")
+                print(f"      [ERROR] Failed: {e}")
         
         if not trained_models:
             raise ValueError("No models trained successfully")
         
         # Smart ensemble weighting
         weights = self._calculate_smart_weights(scores)
-        print(f"   🎯 Ensemble weights: {weights}")
+        print(f"   [TARGET] Ensemble weights: {weights}")
         
         # Create ensemble prediction
         ensemble_pred = np.zeros_like(list(predictions.values())[0])
@@ -1180,22 +1180,68 @@ class QQQLongBullModelV32:
     
     def make_prediction(self, df_latest: pd.DataFrame, current_price: float) -> Dict:
         """Make enhanced prediction"""
-        print(f"\n🔮 MAKING ENHANCED PREDICTION")
+        print(f"\n[PREDICT] MAKING ENHANCED PREDICTION")
         print("=" * 40)
         
         if self.best_horizon not in self.models:
             raise ValueError(f"No model for {self.best_horizon}-day horizon")
         
-        print(f"  💰 Current price: ${current_price:.2f}")
-        print(f"  📅 Horizon: {self.best_horizon} days")
+        print(f"  [PRICE] Current price: ${current_price:.2f}")
+        print(f"  [DATE] Horizon: {self.best_horizon} days")
         
         # Get features
         latest_features = df_latest[self.feature_cols].iloc[-1:].copy()
         latest_features = latest_features.fillna(method='ffill').fillna(0)
         
+        # Data quality check for infinity and extreme values
+        print(f"[DATA] Checking feature data quality...")
+        
+        # Replace infinity values
+        latest_features = latest_features.replace([np.inf, -np.inf], np.nan)
+        
+        # Check for remaining NaN/infinity issues
+        if latest_features.isnull().any().any():
+            nan_cols = latest_features.columns[latest_features.isnull().any()].tolist()
+            print(f"[WARN] Found NaN values in features: {nan_cols[:5]}...")
+            latest_features = latest_features.fillna(0)
+        
+        # Check for extreme values that could cause issues
+        extreme_threshold = 1e10
+        extreme_mask = (np.abs(latest_features) > extreme_threshold).any(axis=1)
+        if extreme_mask.any():
+            print(f"[WARN] Found extreme values, clipping to +/- {extreme_threshold}")
+            latest_features = latest_features.clip(-extreme_threshold, extreme_threshold)
+        
+        # Validate data before scaling
+        if not np.isfinite(latest_features.values).all():
+            print(f"[ERROR] Features still contain non-finite values after cleaning")
+            # Force cleanup by replacing any remaining bad values
+            latest_features = pd.DataFrame(
+                np.nan_to_num(latest_features.values, nan=0.0, posinf=1e6, neginf=-1e6),
+                columns=latest_features.columns,
+                index=latest_features.index
+            )
+            print(f"[OK] Applied emergency cleanup - replaced all non-finite values")
+        
+        print(f"[OK] Feature data quality validated")
+        
         # Scale
         scaler = self.scalers[self.best_horizon]
-        latest_scaled = scaler.transform(latest_features)
+        try:
+            latest_scaled = scaler.transform(latest_features)
+        except ValueError as e:
+            if "infinity" in str(e) or "finite" in str(e):
+                print(f"[ERROR] Scaler failed with data quality issue: {str(e)}")
+                print(f"[FIX] Applying additional data cleanup...")
+                
+                # Emergency fallback: ensure all values are finite
+                cleaned_features = np.nan_to_num(latest_features.values, nan=0.0, posinf=1e6, neginf=-1e6)
+                latest_scaled = scaler.transform(cleaned_features.reshape(1, -1))
+                print(f"[OK] Successfully scaled with emergency cleanup")
+            else:
+                raise ValueError(f"Scaler error (not data quality): {str(e)}")
+        
+        print(f"[OK] Features successfully scaled for prediction")
         
         # Get predictions from all models
         models = self.models[self.best_horizon]
@@ -1203,12 +1249,32 @@ class QQQLongBullModelV32:
         
         predictions = {}
         for name, model in models.items():
-            pred = model.predict(latest_scaled)[0]
-            predictions[name] = pred
+            try:
+                pred = model.predict(latest_scaled)[0]
+                # Validate prediction is finite
+                if not np.isfinite(pred):
+                    print(f"[WARN] Model {name} returned non-finite prediction: {pred}, using 0")
+                    pred = 0.0
+                predictions[name] = pred
+            except Exception as e:
+                print(f"[ERROR] Model {name} prediction failed: {str(e)}, using 0")
+                predictions[name] = 0.0
         
-        # Weighted ensemble prediction
+        print(f"[OK] Generated predictions from {len(predictions)} models")
+        
+        # Weighted ensemble prediction with validation
         ensemble_return = sum(weights.get(name, 0) * pred for name, pred in predictions.items())
+        
+        # Validate ensemble return is reasonable
+        if not np.isfinite(ensemble_return):
+            print(f"[ERROR] Ensemble return is not finite: {ensemble_return}, defaulting to 0")
+            ensemble_return = 0.0
+        elif abs(ensemble_return) > 50:  # Cap extreme predictions at +/- 50%
+            print(f"[WARN] Extreme ensemble return {ensemble_return:.2f}%, capping at +/- 50%")
+            ensemble_return = np.clip(ensemble_return, -50, 50)
+        
         ensemble_price = current_price * (1 + ensemble_return / 100)
+        print(f"[PREDICT] Ensemble return: {ensemble_return:.2f}%, price: ${ensemble_price:.2f}")
         
         # Enhanced confidence calculation
         pred_values = list(predictions.values())
@@ -1250,10 +1316,10 @@ class QQQLongBullModelV32:
             'performance_factor': perf_factor
         }
         
-        print(f"  📈 Predicted: ${ensemble_price:.2f} ({ensemble_return:+.2f}%)")
-        print(f"  🎯 Confidence: {confidence:.1f}%")
-        print(f"  🤝 Model agreement: {agreement_factor:.2f}")
-        print(f"  💪 Signal strength: {signal_strength:.2f}")
+        print(f"  [CHART] Predicted: ${ensemble_price:.2f} ({ensemble_return:+.2f}%)")
+        print(f"  [TARGET] Confidence: {confidence:.1f}%")
+        print(f"  [AGREE] Model agreement: {agreement_factor:.2f}")
+        print(f"  [SIGNAL] Signal strength: {signal_strength:.2f}")
         
         # Save
         self.db_integrator.save_prediction(result)
@@ -1403,11 +1469,11 @@ Model Version: 3.2 VIX Alignment Fix
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(report_content)
             
-            print(f"📄 Report saved: {filepath}")
+            print(f"[REPORT] Report saved: {filepath}")
             return filepath
             
         except Exception as e:
-            print(f"❌ Failed to save report: {e}")
+            print(f"[ERROR] Failed to save report: {e}")
             return None
     
     def save_model(self, filepath: str):
@@ -1423,19 +1489,19 @@ Model Version: 3.2 VIX Alignment Fix
         }
         
         joblib.dump(model_data, filepath)
-        print(f"💾 Model saved to: {filepath}")
+        print(f"[SAVE] Model saved to: {filepath}")
 
 
 def main():
     """Main execution with VIX priority alignment + Text Report Generation"""
-    print("🚀 QQQ LONG BULL MODEL V3.2 - FINAL VIX ALIGNMENT FIX + REPORT GENERATION")
+    print("QQQ LONG BULL MODEL V3.2 - FINAL VIX ALIGNMENT FIX + REPORT GENERATION")
     print("=" * 80)
-    print("✅ QQQ+VIX priority alignment")
-    print("✅ Enhanced QQQ-focused features")
-    print("✅ Smart synthetic VIX fallback")
-    print("✅ Optimized ensemble with 5 models")
-    print("✅ Advanced feature selection")
-    print("✅ TEXT REPORT GENERATION for trading system integration")
+    print("[OK] QQQ+VIX priority alignment")
+    print("[OK] Enhanced QQQ-focused features")
+    print("[OK] Smart synthetic VIX fallback")
+    print("[OK] Optimized ensemble with 5 models")
+    print("[OK] Advanced feature selection")
+    print("[OK] TEXT REPORT GENERATION for trading system integration")
     print("=" * 80)
     
     try:
@@ -1449,16 +1515,16 @@ def main():
         data = model.fetch_all_data()
         
         if 'QQQ' not in data:
-            raise ValueError("❌ Cannot proceed without QQQ data")
+            raise ValueError("[ERROR] Cannot proceed without QQQ data")
         
         # Check data quality
         sample_size = len(data['QQQ'])
         has_real_vix = 'VIX' in data and len(data['VIX']) == sample_size
         
-        print(f"\n📊 DATA SUMMARY:")
-        print(f"   📅 Training period: {sample_size} days")
-        print(f"   🔥 Real VIX data: {'✅ YES' if has_real_vix else '❌ NO (using synthetic)'}")
-        print(f"   📈 Available assets: {len(data)}")
+        print(f"\n[DATA] DATA SUMMARY:")
+        print(f"   [DATE] Training period: {sample_size} days")
+        print(f"   [HOT] Real VIX data: {'[OK] YES' if has_real_vix else '[ERROR] NO (using synthetic)'}")
+        print(f"   [CHART] Available assets: {len(data)}")
         
         # Create enhanced features
         df_features = model.create_qqq_focused_features(data)
@@ -1470,9 +1536,9 @@ def main():
         current_price = data_fetcher.get_current_price('QQQ')
         if current_price is None:
             current_price = data['QQQ']['Close'].iloc[-1]
-            print(f"⚠️  Using last available price: ${current_price:.2f}")
+            print(f"[WARN]  Using last available price: ${current_price:.2f}")
         else:
-            print(f"💰 Current QQQ price: ${current_price:.2f}")
+            print(f"[PRICE] Current QQQ price: ${current_price:.2f}")
         
         # Make prediction
         prediction = model.make_prediction(df_features, current_price)
@@ -1480,9 +1546,9 @@ def main():
         # Generate text report (NEW!)
         report_path = model.generate_text_report(prediction, training_results, current_price)
         if report_path:
-            print(f"✅ Text report generated: {os.path.basename(report_path)}")
+            print(f"[OK] Text report generated: {os.path.basename(report_path)}")
         else:
-            print("❌ Failed to generate text report")
+            print("[ERROR] Failed to generate text report")
         
         # Save model
         model_path = os.path.join(OUTPUTS_DIR, f"qqq_long_bull_model_v32_{datetime.now().strftime('%Y%m%d')}.pkl")
@@ -1493,36 +1559,36 @@ def main():
         r2_score = training_results['ensemble_metrics']['r2']
         
         print("\n" + "=" * 80)
-        print("🎉 QQQ LONG BULL MODEL V3.2 COMPLETE!")
+        print("[SUCCESS] QQQ LONG BULL MODEL V3.2 COMPLETE!")
         print("=" * 80)
-        print(f"📊 MODEL PERFORMANCE:")
-        print(f"   🎯 Direction Accuracy: {direction_acc:.1%} {'✅' if direction_acc > 0.55 else '⚠️' if direction_acc > 0.45 else '❌'}")
-        print(f"   📈 R² Score: {r2_score:.4f} {'✅' if r2_score > 0 else '❌'}")
-        print(f"   📊 Training Data: {sample_size} days")
-        print(f"   🔥 VIX Integration: {'Real data' if has_real_vix else 'Synthetic'}")
-        print(f"\n🔮 PREDICTION ({prediction['horizon_days']} days):")
-        print(f"   💰 ${prediction['current_price']:.2f} → ${prediction['predicted_price']:.2f}")
-        print(f"   📈 Expected Return: {prediction['predicted_return']:+.2f}%")
-        print(f"   🎯 Confidence: {prediction['confidence']:.1f}%")
-        print(f"   🤝 Model Agreement: {prediction['model_agreement']:.2f}")
-        print(f"\n✅ Saved to database and file: {model_path}")
+        print(f"[DATA] MODEL PERFORMANCE:")
+        print(f"   [TARGET] Direction Accuracy: {direction_acc:.1%} {'[OK]' if direction_acc > 0.55 else '[WARN]' if direction_acc > 0.45 else '[ERROR]'}")
+        print(f"   [CHART] R² Score: {r2_score:.4f} {'[OK]' if r2_score > 0 else '[ERROR]'}")
+        print(f"   [DATA] Training Data: {sample_size} days")
+        print(f"   [HOT] VIX Integration: {'Real data' if has_real_vix else 'Synthetic'}")
+        print(f"\n[PREDICT] PREDICTION ({prediction['horizon_days']} days):")
+        print(f"   [PRICE] ${prediction['current_price']:.2f} -> ${prediction['predicted_price']:.2f}")
+        print(f"   [CHART] Expected Return: {prediction['predicted_return']:+.2f}%")
+        print(f"   [TARGET] Confidence: {prediction['confidence']:.1f}%")
+        print(f"   [AGREE] Model Agreement: {prediction['model_agreement']:.2f}")
+        print(f"\n[OK] Saved to database and file: {model_path}")
         if report_path:
-            print(f"✅ Text report: {os.path.basename(report_path)}")
+            print(f"[OK] Text report: {os.path.basename(report_path)}")
         
         # Performance assessment
         if direction_acc > 0.6:
-            print("🏆 EXCELLENT: Direction accuracy > 60%")
+            print("[EXCELLENT] EXCELLENT: Direction accuracy > 60%")
         elif direction_acc > 0.55:
-            print("🎯 GOOD: Direction accuracy > 55%")
+            print("[TARGET] GOOD: Direction accuracy > 55%")
         elif direction_acc > 0.5:
-            print("📈 MARGINAL: Direction accuracy > 50%")
+            print("[CHART] MARGINAL: Direction accuracy > 50%")
         else:
-            print("⚠️  POOR: Direction accuracy <= 50% (needs improvement)")
+            print("[WARN]  POOR: Direction accuracy <= 50% (needs improvement)")
         
         print("=" * 80)
         
     except Exception as e:
-        print(f"❌ CRITICAL ERROR: {e}")
+        print(f"[ERROR] CRITICAL ERROR: {e}")
         traceback.print_exc()
 
 

@@ -51,9 +51,9 @@ class OptionsStrategyAnalyzer:
     def _find_database(self) -> str:
         """Find the trading database"""
         possible_paths = [
-            os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", "models_dashboard.db"),
-            os.path.join(os.path.expanduser("~"), "Desktop", "models_dashboard.db"),
-            os.path.join(os.path.dirname(__file__), "models_dashboard.db")
+            os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", "reports_tracking.db"),
+            os.path.join(os.path.expanduser("~"), "Desktop", "reports_tracking.db"),
+            os.path.join(os.path.dirname(__file__), "reports_tracking.db")
         ]
         
         for path in possible_paths:

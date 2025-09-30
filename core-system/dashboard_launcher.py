@@ -24,7 +24,7 @@ def launch_dashboard():
         return False
     
     # Check database
-    db_file = "models_dashboard.db"
+    db_file = "reports_tracking.db"
     if not os.path.exists(db_file):
         print(f"[WARNING] {db_file} not found - dashboard may show limited data")
     else:

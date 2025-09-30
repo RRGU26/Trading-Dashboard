@@ -22,7 +22,7 @@ warnings.filterwarnings("ignore")
 class EnhancedDashboardAutomation:
     def __init__(self):
         self.desktop_path = os.path.join(os.environ.get("USERPROFILE", ""), "OneDrive", "Desktop")
-        self.main_db = os.path.join(self.desktop_path, "models_dashboard.db")
+        self.main_db = os.path.join(self.desktop_path, "reports_tracking.db")
         self.qqq_master_db = os.path.join(self.desktop_path, "qqq_master_model.db")
         
         # 7 core models focus (matching actual database names)
@@ -452,7 +452,7 @@ DASHBOARD ACCESS:
 
 DAILY REPORTS FLOW:
 1. Models run at 3:40 PM via wrapper.py (7 models total)
-2. Predictions saved to models_dashboard.db 
+2. Predictions saved to reports_tracking.db 
 3. Enhanced health analysis runs at 4:00 PM
 4. Performance monitoring analysis runs at 4:05 PM
 5. Email reports sent to 7 recipients with dashboard links

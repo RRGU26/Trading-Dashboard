@@ -13,7 +13,7 @@ import os
 
 # Configuration
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DB_PATH = os.path.join(SCRIPT_DIR, "reports_tracking.db")
 
 def backfill_qqq_historical_data():
     """Backfill missing QQQ data from 2014 to 2022"""

@@ -13,7 +13,7 @@ from pathlib import Path
 import sys
 
 # Database path
-DB_PATH = r'C:\Users\rrose\trading-models-system\databases\models_dashboard.db'
+DB_PATH = r'C:\Users\rrose\trading-models-system\databases\reports_tracking.db'
 
 def check_model_executions():
     """Check if models ran today by looking at database predictions"""

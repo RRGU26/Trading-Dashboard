@@ -15,7 +15,7 @@ import requests
 import subprocess
 
 # Configuration
-DB_PATH = r'C:\Users\rrose\trading-models-system\core-system\models_dashboard.db'
+DB_PATH = r'C:\Users\rrose\trading-models-system\core-system\reports_tracking.db'
 DASHBOARD_PATH = r'C:\Users\rrose\trading-models-system\dashboard_improved.py'
 REPORTS_DIR = r'C:\Users\rrose\trading-models-system\core-system\reports'
 

@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 def export_predictions_to_json():
     """Export latest predictions to JSON for cloud dashboard"""
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "models_dashboard.db")
+    db_path = os.path.join(script_dir, "reports_tracking.db")
     
     if not os.path.exists(db_path):
         logger.error("Database not found")
@@ -134,7 +134,7 @@ def sync_to_github():
 def create_summary_json():
     """Create a summary JSON with key metrics including performance tracking"""
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "models_dashboard.db")
+    db_path = os.path.join(script_dir, "reports_tracking.db")
     
     try:
         conn = sqlite3.connect(db_path)

@@ -8,7 +8,7 @@ import os
 def fix_database_schema():
     """Add missing columns to model_predictions table"""
     
-    db_path = os.path.join(os.path.dirname(__file__), "models_dashboard.db")
+    db_path = os.path.join(os.path.dirname(__file__), "reports_tracking.db")
     
     try:
         conn = sqlite3.connect(db_path)

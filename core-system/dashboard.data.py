@@ -14,7 +14,7 @@ from data_fetcher import auto_refresh_onchain_data
 
 # File and database paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DB_PATH = os.path.join(SCRIPT_DIR, "reports_tracking.db")
 ALPHA_VANTAGE_API_KEY = "YWNJ5JVM3SWD5PHD" # Your Alpha Vantage API Key from the previous file
 
 # Set up logging

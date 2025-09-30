@@ -8,7 +8,7 @@ import os
 
 # Configuration
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DB_PATH = os.path.join(SCRIPT_DIR, "reports_tracking.db")
 
 # Dashboard title and configuration
 st.set_page_config(

@@ -15,7 +15,7 @@ load_dotenv()
 
 # Configuration flags
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DB_PATH = os.path.join(SCRIPT_DIR, "reports_tracking.db")
 DEBUG_DIR = os.path.join(SCRIPT_DIR, "debug")
 os.makedirs(DEBUG_DIR, exist_ok=True)
 
@@ -1231,8 +1231,8 @@ def get_current_price(symbol, api_key_twelvedata=None):
             save_current_price_to_db("^VIX", vix_price)
             return vix_price
     
-    # Special handling for QQQ - use Alpha Vantage first
-    if symbol.upper() == "QQQ":
+    # Special handling for QQQ and NVDA - use Alpha Vantage first to avoid rate limits
+    if symbol.upper() in ["QQQ", "NVDA"]:
         price = fetch_current_price_alphavantage(symbol)
         if price:
             save_current_price_to_db(symbol, price)
@@ -1940,7 +1940,7 @@ def store_onchain_data_to_db_working(coinmetrics_records):
     try:
         # Find your database
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        db_path = os.path.join(script_dir, "models_dashboard.db")
+        db_path = os.path.join(script_dir, "reports_tracking.db")
         
         if not os.path.exists(db_path):
             # Try alternative database path

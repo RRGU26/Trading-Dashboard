@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Merge QQQ data from temporary database to main models_dashboard.db
+Merge QQQ data from temporary database to main reports_tracking.db
 """
 import sqlite3
 from datetime import datetime
 
 # Database paths
 TEMP_DB = r'C:\Users\rrose\trading-models-system\database\trading_models.db'
-MAIN_DB = r'C:\Users\rrose\trading-models-system\databases\models_dashboard.db'
+MAIN_DB = r'C:\Users\rrose\trading-models-system\databases\reports_tracking.db'
 
 def merge_qqq_data():
     """Merge QQQ data from temporary database to main database"""

@@ -11,7 +11,7 @@ import pandas as pd
 
 # Configuration
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DB_PATH = os.path.join(SCRIPT_DIR, "reports_tracking.db")
 HEALTH_CHECK_LOG = os.path.join(SCRIPT_DIR, "database_health_check.log")
 HEALTH_REPORT_FILE = os.path.join(SCRIPT_DIR, "daily_health_report.json")
 

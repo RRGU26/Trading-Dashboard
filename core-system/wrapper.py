@@ -135,7 +135,7 @@ def verify_dashboard_data_collection():
         import sqlite3
         from datetime import datetime
         
-        db_path = os.path.join(script_dir, "models_dashboard.db")
+        db_path = os.path.join(script_dir, "reports_tracking.db")
         
         if not os.path.exists(db_path):
             logger.warning("[WARN] Database file not found - no data was collected")

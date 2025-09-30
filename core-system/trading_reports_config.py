@@ -42,7 +42,7 @@ class EmailConfig:
 @dataclass
 class DatabaseConfig:
     """Database configuration settings"""
-    db_name: str = "models_dashboard.db"
+    db_name: str = "reports_tracking.db"
     backup_enabled: bool = True
     backup_retention_days: int = 30
     connection_timeout: int = 30

@@ -25,7 +25,7 @@ def restore_nvidia_data():
             print(f'Latest NVIDIA price in backup: ${nvidia_data["close"].iloc[-1]:.2f}')
             
             # Insert into database
-            conn = sqlite3.connect('models_dashboard.db')
+            conn = sqlite3.connect('reports_tracking.db')
             cursor = conn.cursor()
             
             # Delete existing NVIDIA data first

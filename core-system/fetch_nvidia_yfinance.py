@@ -47,7 +47,7 @@ def fetch_nvidia_yfinance():
         hist_reset['Date'] = hist_reset['Date'].dt.strftime('%Y-%m-%d')
         
         # Insert into database
-        conn = sqlite3.connect('models_dashboard.db')
+        conn = sqlite3.connect('reports_tracking.db')
         cursor = conn.cursor()
         
         # Delete existing NVIDIA data

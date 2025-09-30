@@ -34,10 +34,10 @@ class DataSalvageEngine:
         # Search patterns for database files
         search_patterns = [
             "models_dashboard_backup_*.db",
-            "models_dashboard.db", 
+            "reports_tracking.db", 
             "qqq_master_model.db",
             "reports_tracking.db",
-            "**/models_dashboard.db"  # Recursive search
+            "**/reports_tracking.db"  # Recursive search
         ]
         
         backup_files = []
@@ -311,7 +311,7 @@ def main():
     """Main execution function"""
     # Set paths
     desktop_path = Path(r"C:\Users\rrose\OneDrive\Desktop")
-    master_db_path = str(desktop_path / "models_dashboard.db")
+    master_db_path = str(desktop_path / "reports_tracking.db")
     
     # Create backup of current master database
     if os.path.exists(master_db_path):
@@ -324,7 +324,7 @@ def main():
     results = salvage_engine.run_comprehensive_salvage()
     
     # Copy salvaged database to GitHub structure
-    github_db_path = r"C:\Users\rrose\trading-models-system\databases\models_dashboard.db"
+    github_db_path = r"C:\Users\rrose\trading-models-system\databases\reports_tracking.db"
     if os.path.exists(master_db_path):
         shutil.copy2(master_db_path, github_db_path)
         logger.info(f"📁 Copied salvaged database to GitHub: {Path(github_db_path).name}")

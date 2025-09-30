@@ -60,9 +60,9 @@ class DatabaseIntegrator:
         # Use GitHub repo location first, then fallbacks
         script_dir = os.path.dirname(os.path.abspath(__file__))
         possible_paths = [
-            os.path.join(script_dir, "models_dashboard.db"),
-            "models_dashboard.db",
-            os.path.join(".", "models_dashboard.db")
+            os.path.join(script_dir, "reports_tracking.db"),
+            "reports_tracking.db",
+            os.path.join(".", "reports_tracking.db")
         ]
         
         for path in possible_paths:

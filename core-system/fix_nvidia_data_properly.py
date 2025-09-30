@@ -12,7 +12,7 @@ import sqlite3
 from datetime import datetime, timedelta
 
 # Database path
-DB_PATH = r'C:\Users\rrose\trading-models-system\databases\models_dashboard.db'
+DB_PATH = r'C:\Users\rrose\trading-models-system\databases\reports_tracking.db'
 
 def fetch_and_store_nvda_data():
     """Fetch NVDA data from yfinance and store in database"""

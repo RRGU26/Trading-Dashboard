@@ -15,7 +15,7 @@ import time
 
 # Configuration
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(SCRIPT_DIR, "models_dashboard.db")
+DB_PATH = os.path.join(SCRIPT_DIR, "reports_tracking.db")
 
 def scrape_yahoo_finance_data(url):
     """Scrape historical data from Yahoo Finance page"""

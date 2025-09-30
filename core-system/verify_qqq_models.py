@@ -9,7 +9,7 @@ import os
 import sys
 
 # Database path
-DB_PATH = r'C:\Users\rrose\trading-models-system\databases\models_dashboard.db'
+DB_PATH = r'C:\Users\rrose\trading-models-system\databases\reports_tracking.db'
 
 def verify_qqq_models():
     """Verify QQQ models have access to full historical data"""

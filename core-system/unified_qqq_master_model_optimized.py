@@ -41,7 +41,7 @@ class OptimizedQQQModel:
     """Optimized QQQ Master Model - Fast execution with full ML power"""
     
     def __init__(self):
-        self.db_path = os.path.join(DESKTOP_PATH, "models_dashboard.db")
+        self.db_path = os.path.join(DESKTOP_PATH, "reports_tracking.db")
         
     def fetch_data(self) -> Optional[pd.DataFrame]:
         """Fetch QQQ data efficiently"""

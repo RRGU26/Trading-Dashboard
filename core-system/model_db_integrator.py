@@ -23,10 +23,10 @@ class ModelDatabaseIntegrator:
     def find_database(self) -> Optional[str]:
         """Find the models dashboard database"""
         possible_paths = [
-            os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", "models_dashboard.db"),
-            os.path.join(os.path.expanduser("~"), "Desktop", "models_dashboard.db"),
-            "models_dashboard.db",
-            os.path.join(".", "models_dashboard.db")
+            os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", "reports_tracking.db"),
+            os.path.join(os.path.expanduser("~"), "Desktop", "reports_tracking.db"),
+            "reports_tracking.db",
+            os.path.join(".", "reports_tracking.db")
         ]
         
         for path in possible_paths:
@@ -63,7 +63,9 @@ class ModelDatabaseIntegrator:
                 else:
                     suggested_action = "HOLD"
             
-            conn = sqlite3.connect(self.db_path)
+            # Use timeout and WAL mode to handle concurrent access
+            conn = sqlite3.connect(self.db_path, timeout=30.0)
+            conn.execute('PRAGMA journal_mode=WAL')  # Enable Write-Ahead Logging
             cursor = conn.cursor()
             
             cursor.execute("""
@@ -75,8 +77,8 @@ class ModelDatabaseIntegrator:
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 self.model_name, self.symbol, prediction_date, target_date, horizon_days,
-                current_price, predicted_price, None, confidence,
-                suggested_action, None, None, predicted_return, None, None
+                float(current_price), float(predicted_price), None, float(confidence),
+                suggested_action, None, None, float(predicted_return), None, None
             ))
             
             conn.commit()
@@ -89,6 +91,40 @@ class ModelDatabaseIntegrator:
             
             return True
             
+        except sqlite3.OperationalError as e:
+            if "database is locked" in str(e):
+                print(f"[RETRY] Database locked, retrying in 5 seconds...")
+                import time
+                time.sleep(5)
+                # Try one more time
+                try:
+                    conn = sqlite3.connect(self.db_path, timeout=60.0)
+                    conn.execute('PRAGMA journal_mode=WAL')
+                    cursor = conn.cursor()
+                    
+                    cursor.execute("""
+                        INSERT INTO model_predictions (
+                            model, symbol, prediction_date, target_date, horizon,
+                            current_price, predicted_price, actual_price, confidence,
+                            suggested_action, error_pct, direction_correct,
+                            expected_return, actual_return, return_error
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (
+                        self.model_name, self.symbol, prediction_date, target_date, horizon_days,
+                        float(current_price), float(predicted_price), None, float(confidence),
+                        suggested_action, None, None, float(predicted_return), None, None
+                    ))
+                    
+                    conn.commit()
+                    conn.close()
+                    print(f"[OK] Prediction saved to database (retry successful)")
+                    return True
+                except Exception as retry_e:
+                    print(f"[ERROR] Retry failed: {retry_e}")
+                    return False
+            else:
+                print(f"[ERROR] Database error: {e}")
+                return False
         except Exception as e:
             print(f"[ERROR] Error saving prediction: {e}")
             print(f"   Traceback: {traceback.format_exc()}")
@@ -100,7 +136,9 @@ class ModelDatabaseIntegrator:
             return False
             
         try:
-            conn = sqlite3.connect(self.db_path)
+            # Use timeout and WAL mode to handle concurrent access
+            conn = sqlite3.connect(self.db_path, timeout=30.0)
+            conn.execute('PRAGMA journal_mode=WAL')  # Enable Write-Ahead Logging
             cursor = conn.cursor()
             
             date_str = datetime.now().strftime('%Y-%m-%d')

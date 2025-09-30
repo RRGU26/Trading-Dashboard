@@ -8,7 +8,7 @@ import pandas as pd
 from datetime import date, datetime
 import yfinance as yf
 
-DB_PATH = r'C:\Users\rrose\trading-models-system\core-system\models_dashboard.db'
+DB_PATH = r'C:\Users\rrose\trading-models-system\core-system\reports_tracking.db'
 
 def get_actual_price(symbol, target_date):
     """Get actual price for a symbol on target date"""
